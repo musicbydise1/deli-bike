@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: hassan
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database-data:/var/lib/postgresql/data/
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+
+  backend:
+    build:
+      context: . # Путь к вашему проекту
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_HOST=postgres
+      - DATABASE_USER=hassan
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=ecommercedb
+    ports:
+      - "3000:3000" # Порт вашего приложения
+    depends_on:
+      - postgres

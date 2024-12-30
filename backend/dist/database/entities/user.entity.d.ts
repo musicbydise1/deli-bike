@@ -1,0 +1,33 @@
+import { Product } from './product.entity';
+import { Role } from './role.entity';
+export declare class User {
+    id: number;
+    firstName: string;
+    lastName: string;
+    patronymic?: string;
+    email: string;
+    password: string;
+    phoneNumber?: string;
+    companyName?: string;
+    iin?: string;
+    idCardNumber?: string;
+    idCardFrontImage?: string;
+    idCardBackImage?: string;
+    isVerified: boolean;
+    verificationCode?: string;
+    mfaEnabled: boolean;
+    mfaSecret?: string;
+    status: string;
+    profileImage?: string;
+    address?: string;
+    paymentMethod?: string;
+    paymentStatus?: string;
+    rentalHistory?: string;
+    walletBalance: number;
+    subscriptionType?: string;
+    preferredCurrency: string;
+    roles: Role[];
+    products: Product;
+    createdAt: Date;
+    updatedAt: Date;
+}
