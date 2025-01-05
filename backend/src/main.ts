@@ -6,7 +6,13 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Включение глобальной валидации
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalPipes(
+      new ValidationPipe({
+        transform: true,
+        whitelist: true, // Убирает лишние поля из входных данных
+        forbidNonWhitelisted: true, // Запрещает неразрешённые поля
+      }),
+  );
 
   // Включение CORS
   app.enableCors({

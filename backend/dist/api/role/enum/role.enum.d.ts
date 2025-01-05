@@ -1,10 +1,14 @@
 export declare enum RoleIds {
-    Customer = 1,
-    Merchant = 2,
-    Admin = 3
+    Admin = 1,
+    Courier = 2,
+    Corporate = 3,
+    Customer = 4,
+    Merchant = 5
 }
 export declare enum Roles {
     Customer = "Customer",
     Merchant = "Merchant",
-    Admin = "Admin"
+    Admin = "Admin",
+    Corporate = "Corporate",
+    Courier = "Courier"
 }

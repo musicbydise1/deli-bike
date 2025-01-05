@@ -10,15 +10,15 @@ import { RoleService } from 'src/api/role/services/role.service';
 import { CreateUserDto } from 'src/api/user/dto/user.dto';
 import { UserService } from 'src/api/user/services/user.service';
 import { errorMessages } from 'src/errors/custom';
-import { PayloadDto } from '../dto/auth.dto';
+import { PayloadDto, RegisterDto } from '../dto/auth.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly userService: UserService,
-    private readonly roleService: RoleService,
-    private jwtService: JwtService,
-    private configService: ConfigService,
+      private readonly userService: UserService,
+      private readonly roleService: RoleService,
+      private jwtService: JwtService,
+      private configService: ConfigService,
   ) {}
 
   async login(user: CreateUserDto) {
@@ -28,8 +28,8 @@ export class AuthService {
       throw new UnauthorizedException(errorMessages.auth.wronCredentials);
 
     const isValidPassword = await this.userService.comparePassword(
-      password,
-      alreadyExistingUser.password,
+        password,
+        alreadyExistingUser.password,
     );
     if (!isValidPassword)
       throw new UnauthorizedException(errorMessages.auth.wronCredentials);
@@ -39,14 +39,24 @@ export class AuthService {
     });
   }
 
-  async register(user: CreateUserDto) {
+  async register(user: RegisterDto) {
     const alreadyExistingUser = await this.userService.findByEmail(user.email);
     if (alreadyExistingUser)
       throw new ConflictException(errorMessages.auth.userAlreadyExist);
 
-    const customerRole = await this.roleService.findById(RoleIds.Customer);
+    // Determine role based on the provided role in the request
+    const role =
+        user.role === 'corporate'
+            ? await this.roleService.findById(RoleIds.Corporate)
+            : await this.roleService.findById(RoleIds.Courier);
 
-    await this.userService.createUser(user, customerRole);
+    // Prepare user data for creation
+    const newUser = {
+      ...user,
+      isVerified: user.role !== 'corporate', // Corporate clients need verification
+    };
+
+    await this.userService.createUser(newUser, role);
 
     return {
       message: 'success',

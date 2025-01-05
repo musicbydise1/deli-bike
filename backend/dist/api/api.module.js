@@ -14,12 +14,19 @@ const auth_module_1 = require("./auth/auth.module");
 const user_module_1 = require("./user/user.module");
 const role_module_1 = require("./role/role.module");
 const product_module_1 = require("./product/product.module");
+const bike_module_1 = require("./bike/bike.module");
+const rental_module_1 = require("./rental/rental.module");
+const payment_module_1 = require("./payment/payment.module");
+const notification_module_1 = require("./notification/notification.module");
+const admin_module_1 = require("./admin/admin.module");
+const review_module_1 = require("./review/review.module");
+const maintenance_module_1 = require("./maintenance/maintenance.module");
 const errors_filter_1 = require("../errors/errors.filter");
 let ApiModule = class ApiModule {
 };
 ApiModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, user_module_1.UserModule, role_module_1.RoleModule, product_module_1.ProductModule],
+        imports: [auth_module_1.AuthModule, user_module_1.UserModule, role_module_1.RoleModule, product_module_1.ProductModule, bike_module_1.BikeModule, rental_module_1.RentalModule, payment_module_1.PaymentModule, notification_module_1.NotificationModule, admin_module_1.AdminModule, review_module_1.ReviewModule, maintenance_module_1.MaintenanceModule],
         providers: [
             {
                 provide: core_1.APP_INTERCEPTOR,

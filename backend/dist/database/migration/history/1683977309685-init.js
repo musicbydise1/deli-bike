@@ -8,7 +8,7 @@ class Init1683977309684 {
     async up(queryRunner) {
         await queryRunner.query(`CREATE TYPE "user_status_enum" AS ENUM('active', 'suspended', 'deleted')`);
         await queryRunner.query(`CREATE TYPE "user_payment_status_enum" AS ENUM('pending', 'completed', 'failed')`);
-        await queryRunner.query(`CREATE TYPE "availability_status_enum" AS ENUM('available', 'rented', 'maintenance')`);
+        await queryRunner.query(`CREATE TYPE "availability_status_enum" AS ENUM('available', 'unavailable', 'rented', 'maintenance')`);
         await queryRunner.query(`CREATE TYPE "rental_status_enum" AS ENUM('active', 'completed', 'cancelled')`);
         await queryRunner.query(`CREATE TYPE "payment_status_enum" AS ENUM('pending', 'completed', 'failed')`);
         await queryRunner.query(`CREATE TYPE "maintenance_status_enum" AS ENUM('scheduled', 'completed')`);

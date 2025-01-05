@@ -41,8 +41,11 @@ let AuthService = class AuthService {
         const alreadyExistingUser = await this.userService.findByEmail(user.email);
         if (alreadyExistingUser)
             throw new common_1.ConflictException(custom_1.errorMessages.auth.userAlreadyExist);
-        const customerRole = await this.roleService.findById(role_enum_1.RoleIds.Customer);
-        await this.userService.createUser(user, customerRole);
+        const role = user.role === 'corporate'
+            ? await this.roleService.findById(role_enum_1.RoleIds.Corporate)
+            : await this.roleService.findById(role_enum_1.RoleIds.Courier);
+        const newUser = Object.assign(Object.assign({}, user), { isVerified: user.role !== 'corporate' });
+        await this.userService.createUser(newUser, role);
         return {
             message: 'success',
         };
