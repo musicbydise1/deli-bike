@@ -16,26 +16,50 @@ exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const auth_decorator_1 = require("../../auth/guards/auth.decorator");
 const user_decorator_1 = require("../../auth/guards/user.decorator");
-const serialize_interceptor_1 = require("../../../common/helper/serialize.interceptor");
-const user_entity_1 = require("../../../database/entities/user.entity");
-const user_dto_1 = require("../dto/user.dto");
 const user_service_1 = require("../services/user.service");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
-    profile(user) {
-        return this.userService.findById(user.id);
+    async profile(user) {
+        const userWithRoles = await this.userService.findById(user.id, { relations: ['roles'] });
+        const serializedUser = {
+            id: userWithRoles.id,
+            email: userWithRoles.email,
+            firstName: userWithRoles.firstName,
+            lastName: userWithRoles.lastName,
+            patronymic: userWithRoles.patronymic,
+            phoneNumber: userWithRoles.phoneNumber,
+            companyName: userWithRoles.companyName,
+            iin: userWithRoles.iin,
+            idCardNumber: userWithRoles.idCardNumber,
+            idCardFrontImage: userWithRoles.idCardFrontImage,
+            idCardBackImage: userWithRoles.idCardBackImage,
+            isVerified: userWithRoles.isVerified,
+            mfaEnabled: userWithRoles.mfaEnabled,
+            profileImage: userWithRoles.profileImage,
+            address: userWithRoles.address,
+            walletBalance: userWithRoles.walletBalance,
+            subscriptionType: userWithRoles.subscriptionType,
+            preferredCurrency: userWithRoles.preferredCurrency,
+            createdAt: userWithRoles.createdAt,
+            updatedAt: userWithRoles.updatedAt,
+            roles: userWithRoles.roles.map((role) => ({
+                id: role.id,
+                name: role.name,
+            })),
+        };
+        console.log('Serialized User:', serializedUser);
+        return serializedUser;
     }
 };
 __decorate([
     (0, auth_decorator_1.Auth)(),
-    (0, serialize_interceptor_1.Serialize)(user_dto_1.UserDto),
     (0, common_1.Get)('profile'),
     __param(0, (0, user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_entity_1.User]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], UserController.prototype, "profile", null);
 UserController = __decorate([
     (0, common_1.Controller)('user'),

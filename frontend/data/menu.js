@@ -12,9 +12,22 @@ export const megaMenuData = [
 ];
 
 export const CatalogueLinks = [
-  { href: "/inventory-list-01", label: "Электровелосипеды" },
+  { href: "/#", label: "Варианты" },
+  { href: "/inventory-list-01", label: "Велосипеды" },
   { href: "/shop-list", label: "Аксессуары" },
+  { href: "/#", label: "Реклама" },
+  { href: "/#", label: "Акции" },
+  { href: "/#", label: "Сервис" },
+
+
 ];
+
+
+export const AboutLinks = [
+  { href: "/#", label: "История" },
+  { href: "/#", label: "Преимущества" }
+]
+
 export const blogLinks = [
   { href: "/blog-list-01", label: "Blog List 01" },
   { href: "/blog-list-02", label: "Blog List 02" },

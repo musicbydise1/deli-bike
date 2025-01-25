@@ -3,5 +3,5 @@ import { RoleService } from '../services/role.service';
 export declare class RoleController {
     private readonly roleService;
     constructor(roleService: RoleService);
-    assignRoleToUser(body: AssignRoleDto): Promise<import("../../../database/entities/user.entity").User>;
+    assignRoleToUser(body: AssignRoleDto): Promise<void>;
 }

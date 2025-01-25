@@ -8,6 +8,8 @@ import MobileMenu from "@/components/headers/MobileMenu";
 import Context from "@/context/Context";
 import BackToTop from "@/components/common/BackToTop";
 import { usePathname } from "next/navigation"; // Import usePathname
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n"; // Import i18n
 
 export default function RootLayout({ children }) {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -89,18 +91,21 @@ export default function RootLayout({ children }) {
   return (
       <html lang="en">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
         <link
-            href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-            rel="stylesheet"
-        />
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,87.5,100..900;1,87.5,100..900&display=swap"
+            rel="stylesheet"/>
       </head>
       <body>
-      <Context>
-        <MobileMenu />
-        <div className="boxcar-wrapper">{children}</div>
-        <FilterSidebar />
-      </Context>
-      <BackToTop />
+      <I18nextProvider i18n={i18n}>
+        <Context>
+          <MobileMenu/>
+          <div className="boxcar-wrapper">{children}</div>
+          <FilterSidebar/>
+        </Context>
+        <BackToTop/>
+      </I18nextProvider>
       </body>
       </html>
   );

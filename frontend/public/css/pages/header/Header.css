@@ -1,0 +1,117 @@
+.language-switcher .dropdown-togglee {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #333;
+    padding: 5px 10px;
+}
+
+.language-switcher .language-button {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.language-switcher .arrow-icon {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #333;
+}
+
+.language-switcher .dropdown-menu {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.language-switcher .dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.language-switcher .dropdown-menu button:hover {
+    background: #f0f0f0;
+}
+
+.location-switcher .dropdown-togglee {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #333;
+    padding: 5px 10px;
+}
+
+.location-switcher .flag-icon {
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+.location-switcher .arrow-icon {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #333;
+}
+
+.location-switcher .dropdown-menu {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.location-switcher .dropdown-menu button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px 12px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.location-switcher .dropdown-menu button .country-name {
+    margin-left: 8px;
+}
+
+.location-switcher .dropdown-menu button:hover {
+    background: #f0f0f0;
+}
+
+.user-icon {
+    background-color: #ff5500;
+    padding: 8px;
+    border-radius: 50px;
+}
+.user-menu {
+    display: flex;
+}
+.user-info {
+    color: #242424;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16px;
+    margin-right: 5px;
+    margin-top: 12px;
+}

@@ -1,22 +1,46 @@
-import Dashboard from "@/components/dashboard/Dashboard";
+"use client";
+
 import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
 import HeaderDashboard from "@/components/headers/HeaderDashboard";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import DashboardCourier from "@/components/dashboard/DashboardCourier";
+import DashboardCorporate from "@/components/dashboard/DashboardCorporate";
+import DashboardAdmin from "@/components/dashboard/admin/DashboardAdmin";
 
-export const metadata = {
-  title: "Dashboard || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
-};
 export default function DashboardPage() {
-  return (
-    <>
-      <div style={{ background: "var(--theme-color-dark)" }}>
-        <HeaderDashboard />
+  const [userRole, setUserRole] = useState(null);
 
-        <Dashboard />
-        <Footer1 parentClass="boxcar-footer footer-style-one v2" />
-      </div>
-    </>
+  useEffect(() => {
+    // Извлечение данных пользователя из localStorage
+    const userData = localStorage.getItem("userData");
+
+    if (userData) {
+      const parsedData = JSON.parse(userData);
+      // Получаем первую роль пользователя
+      const roleName = parsedData.roles?.[0]?.name || null;
+
+      // Устанавливаем роль: "Courier" или "Corporate"
+      setUserRole(roleName);
+    }
+  }, []);
+
+  if (!userRole) {
+    // Пока роль не определена, можно показывать лоадер
+    return <div>Загрузка...</div>;
+  }
+
+  return (
+      <>
+        <div style={{ background: "var(--theme-color-dark)" }}>
+          <HeaderDashboard />
+
+          {/* Условный рендеринг компонентов в зависимости от роли */}
+          {userRole === "courier" && <DashboardCourier />}
+          {userRole === "corporate" && <DashboardCorporate />}
+          {userRole === "admin" && <DashboardAdmin />}
+
+          <Footer1 parentClass="boxcar-footer footer-style-one v2" />
+        </div>
+      </>
   );
 }

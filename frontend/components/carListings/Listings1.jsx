@@ -12,10 +12,10 @@ export default function Listings1() {
         <div className="boxcar-title-three wow fadeInUp">
           <ul className="breadcrumb">
             <li>
-              <Link href={`/`}>Home</Link>
+              <Link href={`/`}>Главная</Link>
             </li>
             <li>
-              <span>Cars for Sale</span>
+              <span>Каталог электровелосипедов</span>
             </li>
           </ul>
           <h2>New and Used Cars For Sale</h2>

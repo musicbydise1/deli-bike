@@ -42,7 +42,7 @@ export default function Footer3({
                     type="button"
                     className="theme-btn btn-style-one hover-light"
                   >
-                    <span className="btn-title">Sign Up</span>
+                    <span className="btn-title">Отправить</span>
                   </button>
                 </div>
               </form>

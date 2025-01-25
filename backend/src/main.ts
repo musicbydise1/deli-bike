@@ -1,6 +1,8 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { ClassSerializerInterceptor } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -21,6 +23,9 @@ async function bootstrap() {
     credentials: true, // Для работы с куки (если нужно)
   });
 
-  await app.listen(4000);
+    app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+
+
+    await app.listen(4000);
 }
 bootstrap();

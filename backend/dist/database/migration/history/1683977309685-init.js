@@ -11,7 +11,7 @@ class Init1683977309684 {
         await queryRunner.query(`CREATE TYPE "availability_status_enum" AS ENUM('available', 'unavailable', 'rented', 'maintenance')`);
         await queryRunner.query(`CREATE TYPE "rental_status_enum" AS ENUM('active', 'completed', 'cancelled')`);
         await queryRunner.query(`CREATE TYPE "payment_status_enum" AS ENUM('pending', 'completed', 'failed')`);
-        await queryRunner.query(`CREATE TYPE "maintenance_status_enum" AS ENUM('scheduled', 'completed')`);
+        await queryRunner.query(`CREATE TYPE "maintenance_status_enum" AS ENUM('scheduled', 'in_progress', 'completed')`);
         await queryRunner.query(`CREATE TABLE "role" ("id" integer NOT NULL, "name" character varying(120) NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "UQ_ae4578dcaed5adff96595e61660" UNIQUE ("name"), CONSTRAINT "PK_b36bcfe02fc8de3c57a8b2391c2" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "user" (
         "id" SERIAL NOT NULL, 

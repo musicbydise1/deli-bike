@@ -1,0 +1,11 @@
+{
+  "login": "Войти",
+  "dashboard": "Личный кабинет",
+  "logout": "Выйти",
+  "my_orders": "Мои заказы",
+  "settings": "Настройки",
+  "for_corporate": "Для Юр.лиц",
+  "for_courier": "Для Курьеров",
+  "home_title": "Аренда электровелосипедов",
+  "home_title_role": "Для Курьеров"
+}

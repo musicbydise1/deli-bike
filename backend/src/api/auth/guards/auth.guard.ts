@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
         secret: process.env.JWT_SECRET,
       });
       request.user = await this.userService.findById(payload.id, {
-        roles: true,
+        relations: ['roles'], // Передаём связи для загрузки ролей
       });
       return true;
     } catch (error) {

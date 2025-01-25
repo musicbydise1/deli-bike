@@ -16,13 +16,15 @@ import CommentForm from "./sections/CommentForm";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import ModalVideo from "react-modal-video";
 import Link from "next/link";
+import "../../public/css/pages/bike-single/Bike-Single.css"
+
 export default function Single1({ carItem }) {
   const [isOpen, setOpen] = useState(false);
 
   return (
     <>
-      <section className="inventory-section pb-0 layout-radius">
-        <div className="boxcar-container">
+      <section className="inventory-section pb-0 layout-radius single-bike">
+        <div className="boxcar-container single-bike-container">
           <div className="boxcar-title-three">
             <ul className="breadcrumb">
               <li>

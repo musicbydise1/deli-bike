@@ -6,44 +6,12 @@ export const carTypes = [
 
 export const carGroups = [
   [
-    "Used Abarth Cars",
-    "Used Alfa Romeo Cars",
-    "Used Audi Cars",
-    "Used Bentley Cars",
-    "Used BMW Cars",
-    "Used Chevrolet Cars",
+    { name: "Мопед A", category: "Мопеды", price: "1000₸" },
+    { name: "Мопед B", category: "Мопеды", price: "1200₸" },
   ],
   [
-    "Used Chrysler Cars",
-    "Used Citroen Cars",
-    "Used Cupra Cars",
-    "Used Dacia Cars",
-    "Used DS Cars",
-    "Used Fiat Cars",
-  ],
-  [
-    "Used Ford Cars",
-    "Used Honda Cars",
-    "Used Hyundai Cars",
-    "Used Infiniti Cars",
-    "Used Jaguar Cars",
-    "Used Jeep Cars",
-  ],
-  [
-    "Used Kia Cars",
-    "Used Land Rover Cars",
-    "Used Lexus Cars",
-    "Used Mazda Cars",
-    "Used Mercedes-Benz Cars",
-    "Used MG Cars",
-  ],
-  [
-    "Used Mini Cars",
-    "Used Mitsubishi Cars",
-    "Used Nissan Cars",
-    "Used Peugeot Cars",
-    "Used Porsche Cars",
-    "Used Renault Cars",
+    { name: "Электровелосипед X", category: "Электровелосипеды", price: "500₸" },
+    { name: "Электровелосипед Y", category: "Электровелосипеды", price: "700₸" },
   ],
 ];
 

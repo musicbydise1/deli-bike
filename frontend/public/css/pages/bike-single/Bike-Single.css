@@ -1,0 +1,12 @@
+.inventory-section.single-bike {
+    margin-top: 100px !important;
+    margin-bottom: 50px !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.single-bike-container {
+    border-radius: 10px !important;
+    background: #fff !important;
+    padding: 30px 40px !important;
+}

@@ -6,7 +6,7 @@ import Brands2 from "@/components/homes/home-2/Brands2";
 import Cars from "@/components/homes/home-2/Cars";
 import Cars2 from "@/components/homes/home-2/Cars2";
 import Cta from "@/components/homes/home-2/Cta";
-import Features from "@/components/homes/home-2/Features";
+import Features from "@/components/homes/home-2/Feature";
 import Hero from "@/components/homes/home-2/Hero";
 import Inspiration from "@/components/homes/home-2/Inspiration";
 import Service from "@/components/homes/home-2/Service";

@@ -6,6 +6,6 @@ export declare class RoleService {
     private readonly rolesRepository;
     private readonly userService;
     constructor(rolesRepository: Repository<Role>, userService: UserService);
-    assignRoleToUser(data: AssignRoleDto): Promise<import("../../../database/entities/user.entity").User>;
+    assignRoleToUser(data: AssignRoleDto): Promise<void>;
     findById(roleId: number): Promise<Role>;
 }

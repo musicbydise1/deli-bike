@@ -6,24 +6,21 @@ export const carData = [
       "/images/resource/shop3-2.jpg",
       "/images/resource/shop3-3.jpg",
     ],
-    badge: "Low Mileage",
-    title: "Audi A4", // Random title
-    description: "2023 C300e AMG Line Night Ed Premiu...",
+    badge: "Самый дешевый",
+    title: "Deli-Monster",
     specs: [
-      {
-        icon: "flaticon-gasoline-pump",
-        text: "72,925 miles",
-      },
-      {
-        icon: "flaticon-speedometer",
-        text: "Petrol",
-      },
-      {
-        icon: "flaticon-gearbox",
-        text: "Automatic",
-      },
+      { title: "Макс. скорость", text: "50 км/ч" },
+      { title: "Пробег на 1 заряде:", text: "55 км" },
+      { title: "Время зарядки", text: "5-7 ч" },
+      { title: "Макс. нагрузка", text: "200 кг" },
+      { title: "Вес", text: "45 кг" },
+      { title: "Мощность", text: "800 Вт" },
+      { title: "Подвеска", text: "Передняя" },
     ],
-    price: "$768", // Random price
+    pricing: [
+      { value: "1 неделя", title: "1 неделя - 24950" },
+      { value: "1 месяц", title: "1 месяц - 99999" },
+    ],
     oldPrice: "$399",
     lat: 45.7279707552121,
     long: -74.07152705896405,
@@ -38,27 +35,25 @@ export const carData = [
       "/images/resource/shop3-3.jpg",
       "/images/resource/shop3-1.jpg",
     ],
-    title: "Tesla Model 3", // Random title
-    description: "2023 C300e AMG Line Night Ed Premiu...",
+    badge: "Самый быстрый",
+    title: "Deli-Lux",
     specs: [
-      {
-        icon: "flaticon-gasoline-pump",
-        text: "72,925 miles",
-      },
-      {
-        icon: "flaticon-speedometer",
-        text: "Petrol",
-      },
-      {
-        icon: "flaticon-gearbox",
-        text: "Automatic",
-      },
+      { title: "Макс. скорость", text: "55 км/ч" },
+      { title: "Пробег на 1 заряде:", text: "70 км" },
+      { title: "Время зарядки", text: "6-8 ч" },
+      { title: "Макс. нагрузка", text: "200 кг" },
+      { title: "Вес", text: "50 кг" },
+      { title: "Мощность", text: "800 Вт" },
+      { title: "Подвеска", text: "Передняя + задняя" },
     ],
-    price: "$933", // Random price
+    pricing: [
+      { value: "1 неделя", title: "1 неделя - 31662" },
+      { value: "1 месяц", title: "1 месяц - 125999" },
+    ],
     oldPrice: "$399",
     lat: 38.1738017565271,
     long: -118.34227408812067,
-    brand: ["Mercedes", "BMW"],
+    brand: ["Tesla", "BMW"],
     filterCategories: ["New cars", "In Stock"],
     filterBrands: ["SUV", "Hatchback", "Convertible"],
   },
@@ -69,93 +64,27 @@ export const carData = [
       "/images/resource/shop3-2.jpg",
       "/images/resource/shop3-1.jpg",
     ],
-    badge: "Great Price",
-    title: "Deli-Monster", // Random title
-    description: "",
+    badge: "Самый выносливый",
+    title: "Deli-Monster XL",
     specs: [
-      {
-        icon: "flaticon-gasoline-pump",
-        text: "55 км",
-      },
-      {
-        icon: "flaticon-speedometer",
-        text: "55 км/ч",
-      },
-      {
-        icon: "flaticon-gearbox",
-        text: "Передняя",
-      },
+      { title: "Макс. скорость", text: "42 км/ч" },
+      { title: "Пробег на 1 заряде:", text: "90 км" },
+      { title: "Время зарядки", text: "5-7 ч" },
+      { title: "Макс. нагрузка", text: "200 кг" },
+      { title: "Вес", text: "50 кг" },
+      { title: "Мощность", text: "450 Вт" },
+      { title: "Подвеска", text: "Передняя" },
     ],
-    price: "330.000 тенге", // Random price
+    pricing: [
+      { value: "1 неделя", title: "1 неделя - 27200" },
+      { value: "1 месяц", title: "1 месяц - 109999" },
+    ],
     oldPrice: "$399",
     lat: 29.38690953884771,
     long: -94.91651439187791,
     brand: ["Audi", "Mercedes"],
     filterCategories: ["New cars", "Used Cars"],
     filterBrands: ["SUV", "Coupe", "Convertible"],
-  },
-  {
-    id: 4,
-    images: [
-      "/images/resource/shop3-4.jpg",
-      "/images/resource/shop3-5.jpg",
-      "/images/resource/shop3-2.jpg",
-    ],
-    title: "Deli-Lux", // Random title
-    description: "",
-    specs: [
-      {
-        icon: "flaticon-gasoline-pump",
-        text: "70 км",
-      },
-      {
-        icon: "flaticon-speedometer",
-        text: "55 км/ч",
-      },
-      {
-        icon: "flaticon-gearbox",
-        text: "Передняя + Задняя",
-      },
-    ],
-    price: "410.000 тенге", // Random price
-    oldPrice: "$399",
-    lat: 39.62158564223682,
-    long: -80.15625432727268,
-    brand: ["Audi", "BMW"],
-    filterCategories: ["New cars", "In Stock"],
-    filterBrands: ["SUV", "Sedan", "Hatchback"],
-  },
-  {
-    id: 5,
-    images: [
-      "/images/resource/shop3-1.jpg",
-      "/images/resource/shop3-2.jpg",
-      "/images/resource/shop3-3.jpg",
-    ],
-    badge: "Low Mileage",
-    title: "Deli-Monster XL", // Random title
-    description: "",
-    specs: [
-      {
-        icon: "flaticon-gasoline-pump",
-        text: "90 км",
-      },
-      {
-        icon: "flaticon-speedometer",
-        text: "42 км/ч",
-      },
-      {
-        icon: "flaticon-gearbox",
-        text: "Передняя",
-      },
-    ],
-    price: "330.000 тенге", // Random price
-    oldPrice: "$399",
-    lat: 43.71210927454257,
-    long: -117.1392712537564,
-    brand: ["Audi", "BMW", "Mercedes"],
-    filterCategories: ["New cars", "Used Cars", "In Stock"],
-    filterBrands: ["SUV", "Sedan", "Convertible"],
   },
 ];
 export const cars = [

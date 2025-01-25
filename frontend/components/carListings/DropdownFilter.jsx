@@ -8,16 +8,16 @@ export default function DropdownFilter() {
       <div className="boxcar-container">
         <form onSubmit={(e) => e.preventDefault()} className="inventory-form">
           <div className="form_boxes line-r">
-            <SelectComponent options={["Used Cars", "Audi", "Honda"]} />
+            <SelectComponent options={["Велосипеды", "DeliBike", "DeliBike"]} />
           </div>
           <div className="form_boxes line-r">
-            <SelectComponent options={["Any Makes", "Audi", "Honda"]} />
+            <SelectComponent options={["DeliBike", "DeliBike", "DeliBike"]} />
           </div>
           <div className="form_boxes line-r">
-            <SelectComponent options={["Any Models", "A3", "Accord"]} />
+            <SelectComponent options={["Модели", "DeliBike", "DeliBike"]} />
           </div>
           <div className="form_boxes line-r">
-            <SelectComponent options={["Any Price", "200$", "300$"]} />
+            <SelectComponent options={["Цена", "200$", "300$"]} />
           </div>
           <div className="form_boxes">
             <a href="#" title="" className="filter-popup">
@@ -27,13 +27,13 @@ export default function DropdownFilter() {
                 width={24}
                 height={24}
               />
-              More Filters
+               Поиск
             </a>
           </div>
           <div className="form-submit">
             <button type="submit" className="theme-btn">
               <i className="flaticon-search" />
-              Search 9451 Cars
+              Искать
             </button>
           </div>
         </form>

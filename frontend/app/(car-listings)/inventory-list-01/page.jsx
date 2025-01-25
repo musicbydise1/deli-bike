@@ -4,15 +4,16 @@ import Sidebar from "@/components/carListings/Sidebar";
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import React from "react";
+import Header6 from "@/components/headers/Header6";
 
 export const metadata = {
-  title: "Inventory List 1 || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
+  title: "DeliBike",
+  description: "DeliBike",
 };
 export default function InventoryListPage1() {
   return (
     <>
-      <Header1 headerClass="boxcar-header header-style-v1 style-two inner-header bb-0" />
+      <Header6 headerClass="boxcar-header header-style-v1 style-two inner-header bb-0" />
       <div className="bb-0"></div>
       <DropdownFilter />
       <Sidebar />

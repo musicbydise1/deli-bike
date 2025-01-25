@@ -9,6 +9,8 @@ export declare class UserService {
     createUser(body: CreateUserDto, ...roles: Role[]): Promise<User>;
     findByEmail(email: string, relations?: UserRelation): Promise<User>;
     comparePassword(password: any, userPassword: any): Promise<boolean>;
-    findById(id: number, relations?: UserRelation): Promise<User>;
+    findById(id: number, options?: {
+        relations?: string[];
+    }): Promise<User>;
     save(user: User): Promise<User>;
 }

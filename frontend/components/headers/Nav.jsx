@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  AboutLinks,
   blogLinks, CatalogueLinks,
   homeLinks,
   megaMenuData,
@@ -55,40 +56,95 @@ export default function Nav() {
   };
 
   return (
-    <>
-      <li className="current-dropdown current">
-        <Link
-            className={pathname == "/" ? "menuActive" : ""}
-            href={`/`}
-        >
-          Главная
-        </Link>
-      </li>
-      <li className="current-dropdown">
-        <span className={isMenuActive(megaMenuData) ? "menuActive" : ""}>
-          Каталог <i className="fa-solid fa-angle-down"/>
+      <>
+          {/*<li className="current-dropdown current">*/}
+          {/*    <Link*/}
+          {/*        className={pathname == "/" ? "menuActive" : ""}*/}
+          {/*        href={`/`}*/}
+          {/*    >*/}
+          {/*        Главная*/}
+          {/*    </Link>*/}
+          {/*</li>*/}
+          <li className="current-dropdown">
+        <span className={isMenuActive(AboutLinks) ? "menuActive" : ""}>
+          О нас <i className="fa-solid fa-angle-down"/>
         </span>
-        <ul className="dropdown">
-          {CatalogueLinks.map((link, index) => (
-              <li key={index}>
-                <Link
-                    className={isMenuActive(link) ? "menuActive" : ""}
-                    href={link.href}
-                >
-                  {link.label}
-                </Link>
-              </li>
-          ))}
-        </ul>
-      </li>
-      <li className="current-dropdown">
-        <Link
-            className={pathname == "/blog-list-01" ? "menuActive" : ""}
-            href={`/blog-list-02`}
-        >
-          Новости
-        </Link>
-      </li>
-    </>
+              <ul className="dropdown">
+                  {AboutLinks.map((link, index) => (
+                      <li key={index}>
+                          <Link
+                              className={isMenuActive(link) ? "menuActive" : ""}
+                              href={link.href}
+                          >
+                              {link.label}
+                          </Link>
+                      </li>
+                  ))}
+              </ul>
+          </li>
+
+          <li className="current-dropdown">
+        <span className={isMenuActive(CatalogueLinks) ? "menuActive" : ""}>
+          Сотрудничество <i className="fa-solid fa-angle-down"/>
+        </span>
+              <ul className="dropdown">
+                  {CatalogueLinks.map((link, index) => (
+                      <li key={index}>
+                          <Link
+                              className={isMenuActive(link) ? "menuActive" : ""}
+                              href={link.href}
+                          >
+                              {link.label}
+                          </Link>
+                      </li>
+                  ))}
+              </ul>
+          </li>
+
+          {/*<li className="current-dropdown">*/}
+          {/*    <Link*/}
+          {/*        className={pathname == "/blog-list-01" ? "menuActive" : ""}*/}
+          {/*        href={`/blog-list-02`}*/}
+          {/*    >*/}
+          {/*        Новости*/}
+          {/*    </Link>*/}
+          {/*</li>*/}
+
+          {/*<li className="current-dropdown">*/}
+          {/*    <Link*/}
+          {/*        className={pathname == "/blog-list-01" ? "menuActive" : ""}*/}
+          {/*        href={`/#`}*/}
+          {/*    >*/}
+          {/*        Вопрос-Ответы*/}
+          {/*    </Link>*/}
+          {/*</li>*/}
+
+          <li className="current-dropdown">
+              <Link
+                  className={pathname == "/blog-list-01" ? "menuActive" : ""}
+                  href={`/#`}
+              >
+                  Контакты
+              </Link>
+          </li>
+
+          <li className="current-dropdown">
+              <Link
+                  className={pathname == "/blog-list-01" ? "menuActive" : ""}
+                  href={`/#`}
+              >
+                  Отзывы
+              </Link>
+          </li>
+
+          <li className="current-dropdown">
+              <Link
+                  className={pathname == "/blog-list-01" ? "menuActive" : ""}
+                  href={`/#`}
+              >
+                  Вакансии
+              </Link>
+          </li>
+      </>
   );
 }

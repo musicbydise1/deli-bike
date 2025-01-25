@@ -18,7 +18,6 @@ const typeorm_1 = require("typeorm");
 const bcrypt_1 = require("bcrypt");
 const typeorm_2 = require("@nestjs/typeorm");
 const user_entity_1 = require("../../../database/entities/user.entity");
-const custom_1 = require("../../../errors/custom");
 let UserService = class UserService {
     constructor(repository) {
         this.repository = repository;
@@ -40,15 +39,14 @@ let UserService = class UserService {
     async comparePassword(password, userPassword) {
         return (0, bcrypt_1.compare)(password, userPassword);
     }
-    async findById(id, relations) {
+    async findById(id, options) {
         const user = await this.repository.findOne({
-            where: {
-                id,
-            },
-            relations,
+            where: { id },
+            relations: (options === null || options === void 0 ? void 0 : options.relations) || ['roles'],
         });
+        console.log('User fetched from database:', user);
         if (!user) {
-            throw new common_1.NotFoundException(custom_1.errorMessages.user.notFound);
+            throw new common_1.NotFoundException('User not found');
         }
         return user;
     }

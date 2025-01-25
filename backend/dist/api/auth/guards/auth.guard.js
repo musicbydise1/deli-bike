@@ -28,7 +28,7 @@ let AuthGuard = class AuthGuard {
                 secret: process.env.JWT_SECRET,
             });
             request.user = await this.userService.findById(payload.id, {
-                roles: true,
+                relations: ['roles'],
             });
             return true;
         }

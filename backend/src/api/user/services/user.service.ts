@@ -44,16 +44,18 @@ export class UserService {
     return compare(password, userPassword);
   }
 
-  public async findById(id: number, relations?: UserRelation): Promise<User> {
-    const user: User = await this.repository.findOne({
-      where: {
-        id,
-      },
-      relations,
+  public async findById(id: number, options?: { relations?: string[] }): Promise<User> {
+    const user = await this.repository.findOne({
+      where: { id },
+      relations: options?.relations || ['roles'], // Загрузка связей
     });
+
+    console.log('User fetched from database:', user); // Логируем результат
+
     if (!user) {
-      throw new NotFoundException(errorMessages.user.notFound);
+      throw new NotFoundException('User not found');
     }
+
     return user;
   }
 

@@ -1,60 +1,153 @@
-import React from "react";
+"use client";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
-import Link from "next/link";
 export default function Banner() {
+  const [userRole, setUserRole] = useState(null);
+
+  useEffect(() => {
+    const role = localStorage.getItem("userRole"); // Assuming "userRole" is the key in localStorage
+    setUserRole(role);
+  }, []);
+
   return (
     <section className="boxcar-pricing-section-five">
-      <div className="row g-0">
-        {/* image-column */}
-        <div className="image-column col-lg-6 col-md-6 col-sm-12">
-          <div className="inner-column wow fadeInUp">
-            <div className="image-box">
-              <figure className="image">
-                <Image
-                  alt=""
-                  src="/images/resource/pricing5-1.jpg"
-                  width={776}
-                  height={600}
-                />
-              </figure>
-            </div>
-          </div>
-        </div>
-        <div className="content-column col-lg-6 col-md-6 col-sm-12">
-          <div className="inner-column wow fadeInUp" data-wow-delay="100ms">
-            <div className="boxcar-title light">
-              <h2>
-                Online, in-person, <br />
-                everywhere
-              </h2>
-              <div className="text">
-                Choose from thousands of vehicles from multiple brands and buy
-                online with Click &amp; Drive, or visit us at one of our
-                dealerships today.
+      <div className="boxcar-container">
+        <div className="row g-0" style={{background: "#fff", height: "390px", borderRadius: "10px", boxShadow: "0px 4px 12px 0px #00000012" }}>
+          {/* image-column */}
+          <div className="image-column col-lg-6 col-md-6 col-sm-12" style={{maxHeight: "390px"}}>
+            <div className="inner-column wow fadeInUp">
+              <div className="image-box" style={{position: "relative"}}>
+                <figure
+                    className="image work-box work-box-image"
+                    style={{borderRadius: "10px"}}
+                >
+                  <Image
+                      alt=""
+                      src="/images/banner-work1.png"
+                      width={700}
+                      height={390}
+                      style={{height: "390px"}}
+                  />
+                </figure>
+                <div className="overlay-text">
+                  <h2 className="overlay-title">
+                    {userRole === "courier"
+                        ? "КАК МЫ РАБОТАЕМ?"
+                        : "ВАРИАНТЫ СОТРУДНИЧЕСТВА"}
+                  </h2>
+                  <p className="overlay-subtitle">
+                    {userRole === "courier"
+                        ? "Всего три шага — и вы на электровелосипеде."
+                        : "Легко внедрить в ваш бизнес – всего три шага"}
+                  </p>
+                </div>
               </div>
             </div>
-            <Link href={`/contact`} className="read-more">
-              Find Out More
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={14}
-                height={14}
-                viewBox="0 0 14 14"
-                fill="none"
-              >
-                <g clipPath="url(#clip0_634_2156)">
-                  <path
-                    d="M13.6106 0H5.05509C4.84013 0 4.66619 0.173943 4.66619 0.388901C4.66619 0.603859 4.84013 0.777802 5.05509 0.777802H12.6719L0.113453 13.3362C-0.0384687 13.4881 -0.0384687 13.7342 0.113453 13.8861C0.189396 13.962 0.288927 14 0.388422 14C0.487917 14 0.587411 13.962 0.663391 13.8861L13.2218 1.3277V8.94447C13.2218 9.15943 13.3957 9.33337 13.6107 9.33337C13.8256 9.33337 13.9996 9.15943 13.9996 8.94447V0.388901C13.9995 0.173943 13.8256 0 13.6106 0Z"
-                    fill="white"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_634_2156">
-                    <rect width={14} height={14} fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </Link>
+          </div>
+
+
+          <div className="content-column col-lg-6 col-md-6 col-sm-12">
+            <div
+                className="inner-column wow fadeInUp"
+                style={{
+                  backgroundColor: "transparent",
+                  padding: userRole === "courier" ? "40px 50px 40px 40px" : "40px 20px 40px 40px"
+                }}
+                data-wow-delay="100ms"
+            >
+              <div className="boxcar-title work-box dark">
+                <div className="nums">
+                  1
+                </div>
+                <div>
+                  <h2>
+                    {userRole === "courier"
+                        ? "Выбираете тариф на сайте"
+                        : "Депозитная модель"}
+                  </h2>
+                  {userRole === "courier" ? (
+                      <p>
+                        Решаете, что вам ближе: аренда или покупка. Подбираете оптимальный план.
+                      </p>
+                  ) : (
+                      <ul class="corporate-banner-items">
+                        <li class="corporate-banner-item">Заключаем соглашение о сотрудничестве с компанией, которая
+                          оплачивает аренду;
+                        </li>
+                        <li class="corporate-banner-item">Заключаем договор с курьером;</li>
+                        <li class="corporate-banner-item">За транспорт отвечает курьер.</li>
+                      </ul>
+                  )}
+                </div>
+              </div>
+
+              <div className="boxcar-title work-box dark">
+                <div className="nums">
+                  2
+                </div>
+                <div>
+                  <h2>
+                    {userRole === "courier"
+                        ? "Приезжаете к нам"
+                        : "Гарантийная модель"}
+                  </h2>
+                  {userRole === "courier" ? (
+                      <p>
+                        Оформляете договор и получаете полностью заряженный электровелосипед
+                      </p>
+                  ) : (
+                      <ul class="corporate-banner-items">
+                        <li class="corporate-banner-item">Заключаем договор с компанией, которая оплачивает аренду;
+                        </li>
+                        <li class="corporate-banner-item">Мы доставляем транспорт бесплатно;</li>
+                        <li class="corporate-banner-item">За транспорт отвечает компания.</li>
+                      </ul>
+                  )}
+                </div>
+              </div>
+
+              <div className="boxcar-title work-box dark">
+                <div className="nums">
+                  3
+                </div>
+                <div>
+                  <h2>
+                    {userRole === "courier"
+                        ? "Садитесь и едете"
+                        : "Тарифная модель"}
+                  </h2>
+                  {userRole === "courier" ? (
+                      <p>
+                        Начинаете доставлять заказы, объезжать пробки и экономить на топливе
+                      </p>
+                  ) : (
+                      <ul class="corporate-banner-items">
+                        <li class="corporate-banner-item">Заключаем договор с курьером, который оплачивает аренду;</li>
+                        <li class="corporate-banner-item">Мы предоставляем промо-матрериалы и скидки для компаний;</li>
+                        <li class="corporate-banner-item">За транспорт отвечает курьер.</li>
+                      </ul>
+                  )}
+                </div>
+              </div>
+              {userRole === "courier" ? (
+              <div className="boxcar-title work-box dark">
+                <div className="nums">
+                  4
+                </div>
+                <div>
+                  <h2>
+                    Обслуживание без проблем
+                  </h2>
+                  <p>
+                    При необходимости приезжаете на сервис: мы быстро устраним любые неполадки
+                  </p>
+                </div>
+              </div>
+                  ) : (
+                      <></>
+              )
+              }
+            </div>
           </div>
         </div>
       </div>
