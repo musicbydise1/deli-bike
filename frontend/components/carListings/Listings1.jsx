@@ -18,15 +18,15 @@ export default function Listings1() {
               <span>Каталог электровелосипедов</span>
             </li>
           </ul>
-          <h2>New and Used Cars For Sale</h2>
+          <h2>Электровелосипеды</h2>
         </div>
         <div className="text-box">
-          <div className="text">Showing 1 to 16 of 1559 vehicles</div>
+          <div className="text">Показано 1–16 из 1559 велосипедов</div>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="form_boxes v3">
-              <small>Sort by</small>
+              <small>Сортировка</small>
 
-              <SelectComponent options={["Any Makes", "Audi", "Honda"]} />
+              <SelectComponent options={["DeliBike", "DeliBike", "DeliBike"]} />
             </div>
           </form>{" "}
         </div>
@@ -128,7 +128,7 @@ export default function Listings1() {
             <ul className="pagination">
               <Pagination />
             </ul>
-            <div className="text">Showing results 1-30 of 1,415</div>
+            <div className="text">Показаны результаты 1–30 из 1 415</div>
           </nav>
         </div>
       </div>

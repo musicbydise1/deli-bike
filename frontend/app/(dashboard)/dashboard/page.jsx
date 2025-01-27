@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import DashboardCourier from "@/components/dashboard/DashboardCourier";
 import DashboardCorporate from "@/components/dashboard/DashboardCorporate";
 import DashboardAdmin from "@/components/dashboard/admin/DashboardAdmin";
+import Header6 from "@/components/headers/Header6";
 
 export default function DashboardPage() {
   const [userRole, setUserRole] = useState(null);
@@ -32,14 +33,12 @@ export default function DashboardPage() {
   return (
       <>
         <div style={{ background: "var(--theme-color-dark)" }}>
-          <HeaderDashboard />
+          <Header6 />
 
           {/* Условный рендеринг компонентов в зависимости от роли */}
           {userRole === "courier" && <DashboardCourier />}
           {userRole === "corporate" && <DashboardCorporate />}
           {userRole === "admin" && <DashboardAdmin />}
-
-          <Footer1 parentClass="boxcar-footer footer-style-one v2" />
         </div>
       </>
   );

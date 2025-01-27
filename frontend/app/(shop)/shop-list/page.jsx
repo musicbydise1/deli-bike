@@ -3,6 +3,7 @@ import Header1 from "@/components/headers/Header1";
 import ShopList from "@/components/shop/ShopList";
 
 import React from "react";
+import Header6 from "@/components/headers/Header6";
 
 export const metadata = {
   title: "Shop Cart || Boxcar - React Nextjs Car Template",
@@ -11,7 +12,7 @@ export const metadata = {
 export default function ShopListPage() {
   return (
     <>
-      <Header1 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
+      <Header6 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
       <ShopList />
 
       <Footer1 parentClass="boxcar-footer footer-style-one v1 cus-st-1" />

@@ -15,13 +15,17 @@ import '../../public/css/pages/header/Header.css'
 import {SlBasket} from "react-icons/sl";
 import {CgShoppingCart} from "react-icons/cg";
 
-export default function Header6() {
+export default function Header6({  white = false}) {
+
   const [searchQuery, setSearchQuery] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [hasAccessToken, setHasAccessToken] = useState(false);
   const [userRole, setUserRole] = useState(null);
   const [userData, setUserData] = useState(null);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false); // Состояние для локации
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false); // Состояние для языка
+  const [currentLocation, setCurrentLocation] = useState("Kazakhstan"); // Значение по умолчанию
 
   // Проверяем наличие токена и роли в localStorage
   useEffect(() => {
@@ -67,11 +71,26 @@ export default function Header6() {
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
-    setIsDropdownOpen(false);
+    setIsLanguageDropdownOpen(false);
   };
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
+  };
+
+  const toggleLocationDropdown = () => {
+    setIsLocationDropdownOpen((prevState) => !prevState);
+    setIsLanguageDropdownOpen(false); // Закрыть другой дропдаун
+  };
+
+  const toggleLanguageDropdown = () => {
+    setIsLanguageDropdownOpen((prevState) => !prevState);
+    setIsLocationDropdownOpen(false); // Закрыть другой дропдаун
+  };
+
+  const handleLocationChange = (location) => {
+    setCurrentLocation(location);
+    setIsLocationDropdownOpen(false); // Закрываем выпадающее меню после выбора
   };
 
   useEffect(() => {
@@ -139,7 +158,7 @@ export default function Header6() {
                 <div className="nav-out-bar">
                   <nav className="nav main-menu">
                     <ul className="navigation mt-3" id="navbar">
-                      <Nav />
+                      <Nav/>
                     </ul>
                   </nav>
                 </div>
@@ -153,22 +172,26 @@ export default function Header6() {
                   <div className="dropdown">
                     <button
                         className="dropdown-togglee location-button"
-                        onClick={toggleDropdown}
+                        onClick={toggleLocationDropdown}
                     >
                       {/* Отображение текущего флага */}
                       <Image
-                          src={isDropdownOpen ? "/images/kazakhstan-flag.svg" : "/images/belarus-flag.svg"}
-                          alt="Current Location"
+                          src={
+                            currentLocation === "Kazakhstan"
+                                ? "/images/kazakhstan-flag.svg"
+                                : "/images/belarus-flag.svg"
+                          }
+                          alt={currentLocation}
                           width={18}
                           height={13}
                           className="flag-icon"
                       />
-                      <FaChevronDown className="arrow-icon" />
+                      <FaChevronDown className="arrow-icon"/>
                     </button>
-                    {isDropdownOpen && (
-                        <div className="dropdown-menu">
+                    {isLocationDropdownOpen && (
+                        <div className="dropdown-menuu">
                           {/* Опции выбора локации */}
-                          <button onClick={() => console.log("Selected Kazakhstan")}>
+                          <button onClick={() => handleLocationChange("Kazakhstan")}>
                             <Image
                                 src="/images/kazakhstan-flag.svg"
                                 alt="Kazakhstan"
@@ -178,12 +201,12 @@ export default function Header6() {
                             />
                             <span className="country-name">Казахстан</span>
                           </button>
-                          <button onClick={() => console.log("Selected Belarus")}>
+                          <button onClick={() => handleLocationChange("Belarus")}>
                             <Image
                                 src="/images/belarus-flag.svg"
                                 alt="Belarus"
-                                width={24}
-                                height={16}
+                                width={18}
+                                height={13}
                                 className="flag-icon"
                             />
                             <span className="country-name">Беларусь</span>
@@ -198,12 +221,12 @@ export default function Header6() {
                   <div className="dropdown">
                     <button
                         className="dropdown-togglee language-button"
-                        onClick={toggleDropdown}
+                        onClick={toggleLanguageDropdown}
                     >
                       {i18n.language.toUpperCase()} <FaChevronDown className="arrow-icon"/>
                     </button>
-                    {isDropdownOpen && (
-                        <div className="dropdown-menu">
+                    {isLanguageDropdownOpen && (
+                        <div className="dropdown-menuu">
                           <button onClick={() => changeLanguage("kz")}>Қазақша</button>
                           <button onClick={() => changeLanguage("ru")}>Русский</button>
                         </div>
@@ -287,9 +310,9 @@ export default function Header6() {
                 ) : (
                     <ul>
                       <li>
-                          <Button variant="primary" onClick={toggleUserRole}>
-                            {userRole === "courier" ? t("for_corporate") : t("for_courier")}
-                          </Button>
+                        <Button variant="primary" onClick={toggleUserRole}>
+                          {userRole === "courier" ? t("for_corporate") : t("for_courier")}
+                        </Button>
                         <Link href="/login">
                           <Button variant="primary-outline">
                             {t("login")} {/* Войти */}
@@ -300,6 +323,38 @@ export default function Header6() {
                 )}
 
               </div>
+              {/*<div className="right-box">*/}
+              {/*  <div className="mobile-navigation">*/}
+              {/*    {white ? (*/}
+              {/*        <a href="#nav-mobile" title="">*/}
+              {/*          <svg*/}
+              {/*              width={22}*/}
+              {/*              height={11}*/}
+              {/*              viewBox="0 0 22 11"*/}
+              {/*              fill="none"*/}
+              {/*              xmlns="http://www.w3.org/2000/svg"*/}
+              {/*          >*/}
+              {/*            <rect width={22} height={2} fill="#050B20"/>*/}
+              {/*            <rect y={9} width={22} height={2} fill="#050B20"/>*/}
+              {/*          </svg>*/}
+              {/*        </a>*/}
+              {/*    ) : (*/}
+              {/*        <a href="#nav-mobile" title="">*/}
+              {/*          /!* <i className="fa fa-bars"></i> *!/*/}
+              {/*          <svg*/}
+              {/*              width={22}*/}
+              {/*              height={11}*/}
+              {/*              viewBox="0 0 22 11"*/}
+              {/*              fill="none"*/}
+              {/*              xmlns="http://www.w3.org/2000/svg"*/}
+              {/*          >*/}
+              {/*            <rect width={22} height={2} fill="white"/>*/}
+              {/*            <rect y={9} width={22} height={2} fill="white"/>*/}
+              {/*          </svg>*/}
+              {/*        </a>*/}
+              {/*    )}*/}
+              {/*  </div>*/}
+              {/*</div>*/}
             </div>
             {/* Mobile Menu  */}
           </div>
@@ -321,14 +376,14 @@ export default function Header6() {
                     required
                 />
                 <button type="submit">
-                  <i className="fa fa-search" />
+                  <i className="fa fa-search"/>
                 </button>
               </div>
             </form>
           </div>
         </div>
         {/* End Header Search */}
-        <div id="nav-mobile" />
+        <div id="nav-mobile"/>
       </header>
   );
 }

@@ -11,8 +11,10 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import {useTranslation} from "react-i18next";
 
 export default function Nav() {
+    const { t } = useTranslation();
   const pathname = usePathname();
   const isMenuActive = (menuItem) => {
     let active = false;
@@ -67,7 +69,7 @@ export default function Nav() {
           {/*</li>*/}
           <li className="current-dropdown">
         <span className={isMenuActive(AboutLinks) ? "menuActive" : ""}>
-          О нас <i className="fa-solid fa-angle-down"/>
+         {t("menu.about")} <i className="fa-solid fa-angle-down"/>
         </span>
               <ul className="dropdown">
                   {AboutLinks.map((link, index) => (
@@ -85,7 +87,7 @@ export default function Nav() {
 
           <li className="current-dropdown">
         <span className={isMenuActive(CatalogueLinks) ? "menuActive" : ""}>
-          Сотрудничество <i className="fa-solid fa-angle-down"/>
+          {t("menu.cooperation")} <i className="fa-solid fa-angle-down"/>
         </span>
               <ul className="dropdown">
                   {CatalogueLinks.map((link, index) => (
@@ -122,9 +124,9 @@ export default function Nav() {
           <li className="current-dropdown">
               <Link
                   className={pathname == "/blog-list-01" ? "menuActive" : ""}
-                  href={`/#`}
+                  href={`/contact`}
               >
-                  Контакты
+                  {t("menu.contacts")}
               </Link>
           </li>
 
@@ -133,7 +135,7 @@ export default function Nav() {
                   className={pathname == "/blog-list-01" ? "menuActive" : ""}
                   href={`/#`}
               >
-                  Отзывы
+                  {t("menu.reviews")}
               </Link>
           </li>
 
@@ -142,7 +144,7 @@ export default function Nav() {
                   className={pathname == "/blog-list-01" ? "menuActive" : ""}
                   href={`/#`}
               >
-                  Вакансии
+                  {t("menu.vacancies")}
               </Link>
           </li>
       </>

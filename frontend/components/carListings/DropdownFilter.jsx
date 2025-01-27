@@ -20,7 +20,7 @@ export default function DropdownFilter() {
             <SelectComponent options={["Цена", "200$", "300$"]} />
           </div>
           <div className="form_boxes">
-            <a href="#" title="" className="filter-popup">
+            <a href="#" title="" className="filter-popup" >
               <Image
                 alt=""
                 src="/images/icons/filter.svg"
@@ -30,8 +30,8 @@ export default function DropdownFilter() {
                Поиск
             </a>
           </div>
-          <div className="form-submit">
-            <button type="submit" className="theme-btn">
+          <div className="form-submit" style={{ width: "16%" }}>
+            <button type="submit" className="theme-btn" style={{ width: "100%" }}>
               <i className="flaticon-search" />
               Искать
             </button>

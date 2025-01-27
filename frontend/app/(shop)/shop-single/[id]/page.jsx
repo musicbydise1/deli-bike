@@ -4,6 +4,7 @@ import ShopSingle from "@/components/shop/ShopSingle";
 import { products } from "@/data/products";
 
 import React from "react";
+import Header6 from "@/components/headers/Header6";
 
 export const metadata = {
   title: "Shop Single || Boxcar - React Nextjs Car Template",
@@ -14,7 +15,7 @@ export default function ShopSinglePage({ params }) {
     products.filter((elm) => elm.id == params.id)[0] || products[0];
   return (
     <>
-      <Header1 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
+      <Header6 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
       <ShopSingle product={product} />
 
       <Footer1 parentClass="boxcar-footer footer-style-one v1 cus-st-1" />

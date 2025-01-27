@@ -3,6 +3,7 @@ import Header1 from "@/components/headers/Header1";
 import Contact from "@/components/otherPages/Contact";
 
 import React from "react";
+import Header6 from "@/components/headers/Header6";
 
 export const metadata = {
   title: "Contact || Boxcar - React Nextjs Car Template",
@@ -11,7 +12,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <>
-      <Header1 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
+      <Header6 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
       <Contact />
 
       <Footer1 parentClass="boxcar-footer footer-style-one v1 cus-st-1" />

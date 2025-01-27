@@ -3,6 +3,7 @@
 import React, {useEffect, useState} from "react";
 import Button from "@/components/ui/button/Button";
 import Image from "next/image";
+import {useTranslation} from "react-i18next";
 // import { useTranslation } from "react-i18next";
 export default function Hero() {
 
@@ -15,6 +16,7 @@ export default function Hero() {
   }, []);
 
   // const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   return (
     <section className="boxcar-banner-section-six">
@@ -24,31 +26,25 @@ export default function Hero() {
             <div className="inner-column">
               <div className="left-banner">
                 <h1 className="wow fadeInUp mb-0" data-wow-delay="100ms">
-                  АРЕНДА ЭЛЕКТРОВЕЛОСИПЕДОВ{" "}
+                  {t("home_title")}{" "}
                   <span style={{color: "#ff5500", marginBottom: "15px", textTransform: "uppercase"}}>
-                    {userRole === "courier" ? "ДЛЯ КУРЬЕРОВ" : "ДЛЯ бизнеса"}
+                    {userRole === "courier" ? t("for_courier") : t("for_business")}
                   </span>
                 </h1>
                 <span className="wow fadeInUp" data-wow-delay="100ms">
                   {userRole === "courier" ? (
-                      <>
-                        Разгон до 55 км/ч и до 90 км на одном заряде.{" "}
-                        <span style={{fontWeight: 500, marginBottom: 0}}>
-                        Больше доставок → больше денег.
-                      </span>
+                      <>{t("home.hero.courier_text")}
+                        <span style={{fontWeight: 500, marginBottom: 0}}>{t("home.hero.courier_text_second")}</span>
                       </>
-                    ) : (
-                      <>
-                        Сократите транспортные расходы на 50% для вашей компании.{" "}
-                        <span style={{fontWeight: 500, marginBottom: 0}}>
-                        Меньше расходов → больше денег.
-                      </span>
+                  ) : (
+                      <>{t("home.hero.business_text")}
+                        <span style={{fontWeight: 500, marginBottom: 0}}>{t("home.hero.business_text_second")}</span>
                       </>
                   )}
                 </span>
                 <div className="btn-box">
-                  <Button className="!ml-0" variant="primary">Арендовать электровелосипеды</Button>
-                  <Button variant="primary-outline">Получить консультацию</Button>
+                <Button className="!ml-0" variant="primary">{t("home.hero.rent_bike")}</Button>
+                  <Button variant="primary-outline">{t("home.hero.get_consultation")}</Button>
                 </div>
                 <div className="right-box wow fadeInUp" data-wow-delay="100ms">
                   <ul className="service-list">
@@ -87,7 +83,7 @@ export default function Hero() {
               </div>
               <div className="right-banner wow fadeInUp" data-wow-delay="100ms">
                 <div className="right-banner-box">
-                  <p>окупается быстрее любого другого транспорта</p>
+                  <p>{t("home.hero.payback")}</p>
                   <Image
                       alt=""
                       title="DeliBike"

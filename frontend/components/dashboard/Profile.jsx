@@ -45,7 +45,7 @@ export default function Profile() {
     setImages2(newImages);
   };
   return (
-    <section className="dashboard-widget-two">
+    <section className="dashboard-widget">
       <div className="right-box">
         <Sidebar />
         <div className="content-column">

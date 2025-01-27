@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation"; // Импортируем useRouter
 import Image from "next/image";
+import Button from "@/components/ui/button/Button";
 
 export default function Login() {
   const router = useRouter(); // Инициализация useRouter
@@ -171,15 +172,9 @@ export default function Login() {
                         />
                       </div>
                       <div className="form-submit">
-                        <button type="submit" className="theme-btn">
-                          Войти
-                          <Image
-                              alt=""
-                              src="/images/arrow.svg"
-                              width={14}
-                              height={14}
-                          />
-                        </button>
+                          <Button className="w-full !ml-0" variant="primary" type="submit">
+                              Войти
+                          </Button>
                       </div>
                     </form>
                   </div>
@@ -329,23 +324,37 @@ export default function Login() {
 
 
                           <div className="form-submit">
-                              <button type="submit" className="theme-btn">
+                              <Button className="w-full !ml-0" variant="primary" type="submit">
                                   Регистрация
-                                  <Image
-                                      alt=""
-                                      src="/images/arrow.svg"
-                                      width={14}
-                                      height={14}
-                                  />
-                              </button>
+                              </Button>
                           </div>
                       </form>
                   </div>
                 </div>
               </div>
                 {errorMessage && (
-                    <div className="error-message">
-                        <p style={{color: "red"}}>{errorMessage}</p>
+                    <div className="messages-box-el">
+                        <div className="alert alert-error fade show" role="alert">
+                        <p>{errorMessage}</p>
+                        <span data-bs-dismiss="alert" aria-label="Close">
+                  <svg
+                      width={14}
+                      height={14}
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                        d="M1.48881 11.5962L12.0954 0.98963L13.5096 2.40384L2.90302 13.0104L1.48881 11.5962Z"
+                        fill="#AB3331"
+                    />
+                    <path
+                        d="M12.0954 13.7176L0.781703 2.40384L2.19592 0.989631L13.5096 12.3033L12.0954 13.7176Z"
+                        fill="#AB3331"
+                    />
+                  </svg>
+                </span>
+                    </div>
                     </div>
                 )}
             </div>

@@ -3,6 +3,7 @@ import { allCars } from "@/data/cars";
 import React from "react";
 import Header6 from "@/components/headers/Header6";
 import Footer3 from "@/components/footers/Footer3";
+import Footer1 from "@/components/footers/Footer1";
 
 export const metadata = {
   title: "Inventory Single 1 || Boxcar - React Nextjs Car Template",
@@ -14,7 +15,7 @@ export default function InventorySinglePage1({ params }) {
     <>
       <Header6 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
       <Single1 carItem={carItem} />
-      <Footer3 parentClass="boxcar-footer footer-style-one v1 cus-st-1" />
+      <Footer1 parentClass="boxcar-footer footer-style-one v1 cus-st-1" />
     </>
   );
 }

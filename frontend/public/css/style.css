@@ -4423,7 +4423,7 @@ Main Header
 
 .header-style-v9 .header-inner .right-box {
   position: relative;
-  width: 40%;
+  width: 35%;
 }
 
 .header-style-v7 .header-inner .right-box {
@@ -6804,6 +6804,7 @@ Section Title
   font-size: 64px;
   line-height: 80px;
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 .boxcar-banner-section-six .content-column .inner-column .btn-box {
@@ -14106,6 +14107,7 @@ a
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  border-radius: 5px;
 }
 
 /* Shop Order Page Style */
@@ -14386,6 +14388,7 @@ a
 
 .cart-page {
   padding: 70px 0 100px;
+  background: transparent !important;
 }
 
 .cart-table {
@@ -14397,7 +14400,7 @@ a
 }
 
 .cart-table table thead {
-  background: #e9f2ff;
+  background: #f6f6f6;
 }
 
 .cart-table table thead th {
@@ -18974,6 +18977,7 @@ a
 ***/
 .dashboard-widget {
   position: relative;
+  padding-top: 100px;
 }
 
 .dashboard-widget .nav-tabs {
@@ -19037,9 +19041,15 @@ a
 
 .dashboard-widget .content-column .inner-column {
   background-color: var(--theme-color-light);
-  padding: 58px 60px 60px;
+  padding: 25px 40px 40px;
   margin-right: 30px;
-  border-radius: 16px;
+  border-radius: 10px;
+  height: 85vh;
+  margin-bottom: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .dashboard-widget .content-column .inner-column .list-title {
@@ -25454,11 +25464,11 @@ Chat Widget
 
 .inventory-pager {
   padding: 150px 0 70px;
-  background: #050b20;
+  background: #f7f7f7;
 }
 
 .inventory-pager .inventory-form {
-  max-width: 1162px;
+  max-width: 1400px;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -25472,6 +25482,8 @@ Chat Widget
   border-radius: 10px;
   padding: 0 10px;
   height: 76px;
+  border: 0.5px solid #e5e7eb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
 
 .inventory-pager .inventory-form .form_boxes {
@@ -25497,7 +25509,7 @@ Chat Widget
 }
 
 .inventory-pager .inventory-form .form-submit .theme-btn {
-  border-radius: 30px;
+  border-radius: 10px;
 }
 
 .inventory-pager .inventory-form .form-submit .theme-btn i {
@@ -32864,7 +32876,7 @@ Chat Widget
 }
 
 .messages-box-el .alert-error {
-  background-color: rgba(236, 200, 197, 0.5);
+  background-color: rgba(236, 200, 197, 1);
 }
 
 .messages-box-el .alert-success {
@@ -32889,6 +32901,7 @@ Chat Widget
 
 .messages-box-el .alert p {
   margin-bottom: 0px;
+  margin-right: 20px;
 }
 
 .messages-box-el .alert:not(:last-child) {
@@ -33761,8 +33774,8 @@ Chat Widget
 
 .layout-radius {
   border-radius: 10px;
-  margin-top: -80px;
-  margin-bottom: -80px;
+  margin-top: 80px;
+  margin-bottom: 80px;
   background-color: #fff;
 }
 

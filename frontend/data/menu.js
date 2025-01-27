@@ -24,7 +24,7 @@ export const CatalogueLinks = [
 
 
 export const AboutLinks = [
-  { href: "/#", label: "История" },
+  { href: "/about", label: "История" },
   { href: "/#", label: "Преимущества" }
 ]
 
