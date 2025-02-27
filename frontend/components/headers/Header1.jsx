@@ -103,6 +103,7 @@ export default function Header1({
                                 src={car.imgSrc}
                                 width={70}
                                 height={70}
+                                crossOrigin="anonymous"
                               />
                             </div>
                             <div className="info">

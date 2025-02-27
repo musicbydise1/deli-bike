@@ -13,9 +13,12 @@ import { AdminModule } from "./admin/admin.module";
 import { ReviewModule } from "./review/review.module";
 import { MaintenanceModule } from "./maintenance/maintenance.module";
 import { ErrorsFilter } from 'src/errors/errors.filter';
+import {BitrixModule} from "./bitrix/bitrix.module";
 
 @Module({
-  imports: [AuthModule, UserModule, RoleModule, ProductModule, BikeModule, RentalModule, PaymentModule, NotificationModule, AdminModule, ReviewModule, MaintenanceModule],
+  imports: [AuthModule, UserModule, RoleModule, ProductModule,
+    BikeModule, RentalModule, PaymentModule, NotificationModule,
+    AdminModule, ReviewModule, MaintenanceModule, BitrixModule],
   providers: [
     {
       provide: APP_INTERCEPTOR,

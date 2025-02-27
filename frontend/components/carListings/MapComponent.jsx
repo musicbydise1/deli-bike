@@ -261,7 +261,7 @@ export default function ListingMap1() {
                 <div className="inner-box">
                   <div className="image-box">
                     <figure className="image">
-                      <img src={getLocation.images[0]} alt="" />
+                      <img src={getLocation.images[0]} alt="" crossOrigin="anonymous" />
                     </figure>
                   </div>
                   <div className="content">

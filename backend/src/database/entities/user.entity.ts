@@ -28,7 +28,7 @@ export class User {
   @Column({ type: 'varchar', length: 120, unique: true })
   public email: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   public password: string;
 
   @Column({ type: 'varchar', length: 20, nullable: true })
@@ -88,7 +88,7 @@ export class User {
   @Column({ type: 'varchar', length: 10, default: 'USD' })
   public preferredCurrency: string;
 
-  @ManyToMany(() => Role, (role) => role.users)
+  @ManyToMany(() => Role, (role) => role.users, { cascade: true })
   @JoinTable({ name: 'user_roles' })
   public roles: Role[];
 

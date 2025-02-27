@@ -1,9 +1,9 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
+import Footer from "@/components/footers/Footer3";
 import Cart from "@/components/shop/Cart";
 import "./Cart.css"
 import React from "react";
 import Header6 from "@/components/headers/Header6";
+import Footer3 from "@/components/footers/Footer3";
 
 export const metadata = {
   title: "DeliBike",
@@ -15,7 +15,7 @@ export default function CartPage() {
       <Header6 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
       <Cart />
 
-      <Footer1 parentClass="boxcar-footer footer-style-one v1 cus-st-1" />
+        <Footer3 parenttClass="boxcar-footer footer-style-five v6" />
     </>
   );
 }

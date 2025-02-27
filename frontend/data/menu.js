@@ -1,23 +1,18 @@
 export const homeLinks = [
-  { href: "/", title: "Home 01" },
+  { href: "/", title: "Home" },
 ];
 
 export const megaMenuData = [
   {
     links: [
       { href: "/inventory-list-01", label: "Электровелосипеды" },
-      { href: "/shop-list", label: "Аксессуары" },
     ],
   },
 ];
 
 export const CatalogueLinks = [
-  { href: "/#", label: "Варианты" },
   { href: "/inventory-list-01", label: "Велосипеды" },
-  { href: "/shop-list", label: "Аксессуары" },
-  { href: "/#", label: "Реклама" },
-  { href: "/#", label: "Акции" },
-  { href: "/#", label: "Сервис" },
+  { href: "/#service", label: "Сервис" },
 
 
 ];
@@ -25,7 +20,7 @@ export const CatalogueLinks = [
 
 export const AboutLinks = [
   { href: "/about", label: "История" },
-  { href: "/#", label: "Преимущества" }
+  { href: "/#features", label: "Преимущества" }
 ]
 
 export const blogLinks = [

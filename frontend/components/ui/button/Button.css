@@ -86,3 +86,11 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+button[disabled]:hover {
+    background-color: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    cursor: not-allowed;
+    /* Можно убрать любые hover-эффекты, если не нужны */
+}

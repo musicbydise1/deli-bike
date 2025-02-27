@@ -1,10 +1,10 @@
 export declare class RegisterDto {
+    phoneNumber: string;
+    code: string;
     firstName: string;
     lastName: string;
     patronymic?: string;
     email: string;
-    password: string;
-    phoneNumber?: string;
     companyName?: string;
     iin?: string;
     idCardNumber?: string;
@@ -13,6 +13,6 @@ export declare class RegisterDto {
     role: 'courier' | 'corporate';
 }
 export declare class PayloadDto {
-    email: string;
     id: number;
+    phone: string;
 }

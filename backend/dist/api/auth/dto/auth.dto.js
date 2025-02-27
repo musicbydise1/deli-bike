@@ -16,6 +16,14 @@ class RegisterDto {
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
+], RegisterDto.prototype, "phoneNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], RegisterDto.prototype, "code", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
 ], RegisterDto.prototype, "firstName", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
@@ -30,14 +38,6 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RegisterDto.prototype, "email", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], RegisterDto.prototype, "password", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], RegisterDto.prototype, "phoneNumber", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
@@ -67,11 +67,11 @@ class PayloadDto {
 }
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], PayloadDto.prototype, "email", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
 ], PayloadDto.prototype, "id", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], PayloadDto.prototype, "phone", void 0);
 exports.PayloadDto = PayloadDto;
 //# sourceMappingURL=auth.dto.js.map

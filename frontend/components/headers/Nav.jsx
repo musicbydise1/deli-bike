@@ -123,7 +123,7 @@ export default function Nav() {
 
           <li className="current-dropdown">
               <Link
-                  className={pathname == "/blog-list-01" ? "menuActive" : ""}
+                  className={pathname == "/contact" ? "menuActive" : ""}
                   href={`/contact`}
               >
                   {t("menu.contacts")}
@@ -132,8 +132,8 @@ export default function Nav() {
 
           <li className="current-dropdown">
               <Link
-                  className={pathname == "/blog-list-01" ? "menuActive" : ""}
-                  href={`/#`}
+                  className={pathname == "/reviews" ? "menuActive" : ""}
+                  href={`/#reviews`}
               >
                   {t("menu.reviews")}
               </Link>
@@ -141,8 +141,8 @@ export default function Nav() {
 
           <li className="current-dropdown">
               <Link
-                  className={pathname == "/blog-list-01" ? "menuActive" : ""}
-                  href={`/#`}
+                  className={pathname == "/dealer" ? "menuActive" : ""}
+                  href={`/dealer`}
               >
                   {t("menu.vacancies")}
               </Link>

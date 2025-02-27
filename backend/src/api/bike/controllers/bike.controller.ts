@@ -12,6 +12,11 @@ export class BikeController {
         return this.bikeService.findAll();
     }
 
+    @Get(':id')
+    async getBikeById(@Param('id') id: number): Promise<Bike> {
+        return this.bikeService.findOneById(id);
+    }
+
     @Post()
     async createBike(@Body() bikeData: CreateBikeDto): Promise<Bike> {
         return this.bikeService.createBike(bikeData);

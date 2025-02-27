@@ -1,12 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaChevronDown } from "react-icons/fa";
-
-const rentalPeriodOptions = [
-  { label: "1 неделя – 31 662 ₸", value: "1_week" },
-  { label: "2 недели – 63 324 ₸", value: "2_weeks" },
-  { label: "1 месяц – 126 648 ₸", value: "1_month" },
-  { label: "3 месяца – 379 944 ₸", value: "3_months" },
-];
+import { FiAlertTriangle, FiInfo } from "react-icons/fi";
 
 const warrantyOptions = [
   { label: "Стандартная гарантия – 0 ₸", value: "standard" },
@@ -30,12 +24,33 @@ const batteryOptions = [
   { label: "45 Ач", price: "+ 15 417 ₸", value: "45Ah" },
 ];
 
-export default function Overview() {
-  const [rentalPeriod, setRentalPeriod] = useState(rentalPeriodOptions[0]);
+export default function Overview({ price }) {
+  // Если price является массивом, используем его, иначе пытаемся получить price.prices
+  const pricesArr = Array.isArray(price) ? price : price?.prices || [];
+
+  // Формируем опции для аренды
+  const computedRentalPeriodOptions = pricesArr.map((item) => ({
+    label: `${item.priceCategory.name} – ${Number(item.price).toLocaleString("ru-RU", {
+      maximumFractionDigits: 0,
+    })} ₸`,
+    value: item.priceCategory.id, // или можно использовать item.id, если нужно
+  }));
+
+  // Инициализируем состояние. Если данных ещё нет, можно задать пустой объект или добавить проверку.
+  const [rentalPeriod, setRentalPeriod] = useState(
+      computedRentalPeriodOptions[0] || {}
+  );
   const [warranty, setWarranty] = useState(warrantyOptions[0]);
   const [dropdownOpen, setDropdownOpen] = useState({ rental: false, warranty: false });
   const [selectedAdditional, setSelectedAdditional] = useState([]);
   const [selectedBattery, setSelectedBattery] = useState(null);
+
+  // Если данные для аренды обновляются, устанавливаем первый элемент как дефолтное значение
+  useEffect(() => {
+    if (computedRentalPeriodOptions.length > 0 && !rentalPeriod.label) {
+      setRentalPeriod(computedRentalPeriodOptions[0]);
+    }
+  }, [computedRentalPeriodOptions, rentalPeriod]);
 
   const toggleDropdown = (field) => {
     setDropdownOpen((prev) => ({ ...prev, [field]: !prev[field] }));
@@ -49,9 +64,7 @@ export default function Overview() {
 
   const toggleAdditionalOption = (value) => {
     setSelectedAdditional((prev) =>
-        prev.includes(value)
-            ? prev.filter((item) => item !== value)
-            : [...prev, value]
+        prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]
     );
   };
 
@@ -62,16 +75,18 @@ export default function Overview() {
   return (
       <div className="rental-container">
         <div className="section">
-          <h4 className="section-title">Аренда и гарантия. На какой срок?</h4>
+          <h4 className="section-title">
+            Аренда и гарантия. <span>На какой срок?</span>
+          </h4>
 
-          <div className="dropdown-container">
-            <div className="dropdown" onClick={() => toggleDropdown("rental")}>
-              <span>{rentalPeriod.label}</span>
+          <div className="overview-dropdown-container">
+            <div className="overview-dropdown" onClick={() => toggleDropdown("rental")}>
+              <span>{rentalPeriod.label || "Выберите срок"}</span>
               <FaChevronDown className="icon" />
             </div>
             {dropdownOpen.rental && (
-                <ul className="dropdown-menu">
-                  {rentalPeriodOptions.map((option) => (
+                <ul className="overview-dropdown-menu">
+                  {computedRentalPeriodOptions.map((option) => (
                       <li key={option.value} onClick={() => selectOption("rental", option)}>
                         {option.label}
                       </li>
@@ -80,13 +95,13 @@ export default function Overview() {
             )}
           </div>
 
-          <div className="dropdown-container">
-            <div className="dropdown" onClick={() => toggleDropdown("warranty")}>
+          <div className="overview-dropdown-container">
+            <div className="overview-dropdown" onClick={() => toggleDropdown("warranty")}>
               <span>{warranty.label}</span>
               <FaChevronDown className="icon" />
             </div>
             {dropdownOpen.warranty && (
-                <ul className="dropdown-menu">
+                <ul className="overview-dropdown-menu">
                   {warrantyOptions.map((option) => (
                       <li key={option.value} onClick={() => selectOption("warranty", option)}>
                         {option.label}
@@ -96,11 +111,17 @@ export default function Overview() {
             )}
           </div>
 
-          <div className="warning">Возвращаемый депозит – 30 000 ₸</div>
+          <div className="warning">
+            <FiAlertTriangle className="mr-4 align-[-4px]" size={20} />
+            <span>Возвращаемый депозит – 30 000 ₸</span>
+            <FiInfo size={20} className="mr-2 align-[-4px] float-right mt-1" />
+          </div>
         </div>
 
         <div className="section">
-          <h4 className="section-title">Дополнительно. Какие опции хотите добавить?</h4>
+          <h4 className="section-title">
+            Дополнительно. <span>Какие опции хотите добавить?</span>
+          </h4>
           <div className="options-grid">
             {additionalOptions.map((option) => (
                 <button
@@ -110,7 +131,7 @@ export default function Overview() {
                     }`}
                     onClick={() => toggleAdditionalOption(option.value)}
                 >
-                  <span>{option.label}</span>
+                  <span className="section-btn-label">{option.label}</span>
                   <span>{option.price}</span>
                 </button>
             ))}
@@ -118,7 +139,9 @@ export default function Overview() {
         </div>
 
         <div className="section">
-          <h4 className="section-title">АКБ. Добавим дополнительный аккумулятор?</h4>
+          <h4 className="section-title">
+            АКБ. <span>Добавим дополнительный аккумулятор?</span>
+          </h4>
           <div className="options-grid">
             {batteryOptions.map((option) => (
                 <button
@@ -134,105 +157,6 @@ export default function Overview() {
             ))}
           </div>
         </div>
-
-        <style jsx>{`
-        .rental-container {
-          font-family: Arial, sans-serif;
-          padding: 20px;
-        }
-
-        .section {
-          margin-bottom: 20px;
-        }
-
-        .section-title {
-          font-size: 18px;
-          margin-bottom: 10px;
-        }
-
-        .dropdown-container {
-          position: relative;
-          margin-bottom: 15px;
-        }
-
-        .dropdown {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 10px;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          background-color: #fff;
-          cursor: pointer;
-        }
-
-        .dropdown-menu {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: #fff;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          z-index: 10;
-          list-style: none;
-          padding: 0;
-          margin: 5px 0 0;
-        }
-
-        .dropdown-menu li {
-          padding: 10px;
-          cursor: pointer;
-          transition: background-color 0.3s;
-        }
-
-        .dropdown-menu li:hover {
-          background-color: #f0f0f0;
-        }
-
-        .icon {
-          font-size: 14px;
-          color: #999;
-        }
-
-        .warning {
-          margin-top: 10px;
-          padding: 10px;
-          background-color: #ffe5e5;
-          color: #d9534f;
-          font-weight: bold;
-          border-radius: 8px;
-        }
-
-        .options-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-          gap: 10px;
-        }
-
-        .option-button {
-          padding: 10px;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          background: #fff;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          font-size: 14px;
-          cursor: pointer;
-          transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        .option-button:hover {
-          background: #f0f0f0;
-        }
-
-        .option-button.selected {
-          background: #ffe5e5;
-          border-color: #d9534f;
-        }
-      `}</style>
       </div>
   );
 }

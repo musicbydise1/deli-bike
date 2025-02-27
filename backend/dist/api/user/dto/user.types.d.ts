@@ -1,3 +1,1 @@
-export type UserRelation = {
-    roles: boolean;
-};
+export type UserRelation = string[];

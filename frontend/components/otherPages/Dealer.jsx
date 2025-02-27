@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { dealers } from "@/data/dealers";
+import { vacancies } from "@/data/vacancies";
 import Link from "next/link";
 import Pagination from "../common/Pagination";
 export default function Dealer() {
@@ -10,46 +10,35 @@ export default function Dealer() {
         <div className="boxcar-title-three wow fadeInUp">
           <ul className="breadcrumb">
             <li>
-              <Link href={`/`}>Home</Link>
+              <Link href={`/`}>Главная</Link>
             </li>
             <li>
-              <span>Cars for Sale</span>
+              <span>Вакансии</span>
             </li>
           </ul>
-          <h2>Dealer List</h2>
-          <span>Showing 1 to 16 of 1559 vehicles</span>
+          <h2>Список вакансий</h2>
+          <span>Показано 1–6 из 6 вакансий</span>
         </div>
         <div className="row">
-          {dealers.map((dealer, index) => (
-            <div
+          {vacancies.map((vacancy, index) => (
+              <div
               key={index}
               className="dealer-block col-lg-3 col-md-6 col-sm-12"
             >
               <div className="inner-box">
-                <div className="image-box">
-                  <figure className="image">
-                    <Link href={`/dealer-single/${dealer.id}`}>
-                      <Image
-                        alt={dealer.title}
-                        width={dealer.imageWidth}
-                        height={dealer.imageHeight}
-                        src={dealer.imageSrc}
-                      />
-                    </Link>
-                  </figure>
-                </div>
+
                 <div className="content-box">
                   <h6 className="title">
-                    <Link href={`/dealer-single/${dealer.id}`}>
-                      {dealer.title}
+                    <Link href={`/dealer-single/${vacancy.id}`}>
+                      {vacancy.title}
                     </Link>
                   </h6>
-                  <div className="text">{dealer.address}</div>
+                  <div className="text">{vacancy.location}</div>
                   <Link
-                    href={`/dealer-single/${dealer.id}`}
+                    href={`/dealer-single/${vacancy.id}`}
                     className="deal-btn"
                   >
-                    See More
+                    Подробнее
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width={15}
@@ -85,7 +74,7 @@ export default function Dealer() {
             <ul className="pagination">
               <Pagination />
             </ul>
-            <div className="text">Showing results 1-30 of 1,415</div>
+            <div className="text">Показаны результаты 1–6 из 6</div>
           </nav>
         </div>
       </div>

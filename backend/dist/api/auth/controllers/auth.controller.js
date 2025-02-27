@@ -20,13 +20,26 @@ let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
     }
+    sendCode(phoneNumber) {
+        return this.authService.sendCode(phoneNumber);
+    }
     login(user) {
         return this.authService.login(user);
     }
     register(user) {
         return this.authService.register(user);
     }
+    otherLogin(user) {
+        return this.authService.otherLogin(user);
+    }
 };
+__decorate([
+    (0, common_1.Post)('sendCode'),
+    __param(0, (0, common_1.Body)('phoneNumber')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "sendCode", null);
 __decorate([
     (0, common_1.Post)('login'),
     __param(0, (0, common_1.Body)()),
@@ -41,6 +54,13 @@ __decorate([
     __metadata("design:paramtypes", [auth_dto_1.RegisterDto]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "register", null);
+__decorate([
+    (0, common_1.Post)('other-login'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "otherLogin", null);
 AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

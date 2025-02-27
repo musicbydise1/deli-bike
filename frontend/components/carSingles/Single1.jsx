@@ -1,26 +1,32 @@
 "use client";
 import React, { useState } from "react";
-import RelatedCars from "./RelatedCars";
 import Image from "next/image";
 
 import Overview from "./sections/Overview";
-import Description from "./sections/Description";
-import Features from "./sections/Features";
-import Faqs from "./sections/Faqs";
-import Location from "./sections/Location";
-import Financing from "./sections/Financing";
-import Review from "./sections/Review";
-import Ratings from "./sections/Ratings";
-import Replay from "./sections/Replay";
-import CommentForm from "./sections/CommentForm";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import ModalVideo from "react-modal-video";
 import Link from "next/link";
 import "../../public/css/pages/bike-single/Bike-Single.css"
 import SidebarComponent from "@/components/carSingles/sections/SidebarComponent";
+import {FiInfo} from "react-icons/fi";
+import {CiShare1} from "react-icons/ci";
 
 export default function Single1({ carItem }) {
   const [isOpen, setOpen] = useState(false);
+
+  const {
+    name,
+    model,
+    description,
+    maxSpeed,
+    rangePerCharge,
+    chargeTime,
+    imageUrls,
+    prices,
+    tags
+  } = carItem || {};
+
+  const firstPrice = prices && prices.length > 0 ? prices[0] : null;
 
   return (
     <>
@@ -32,92 +38,49 @@ export default function Single1({ carItem }) {
                 <Link href={`/`}>Главная</Link>
               </li>
               <li>
-                <span>Deli Lux</span>
+                <span>{name} {model}</span>
               </li>
             </ul>
-            <h2>Deli Lux</h2>
-            <div className="text">{carItem.title}</div>
+            <div className="single-title">
+              <h2>{name} {model}</h2>
+            </div>
             <ul className="spectes-list">
               <li>
                 <span>
-                  <Image
-                    src="/images/resource/spec1-1.svg"
-                    width={18}
-                    height={18}
-                    alt=""
-                  />
-                  Самый быстрый
+                  <FiInfo size={20} className="mr-2 align-[-4px]" />
+                  { tags[0] }
                 </span>
               </li>
               <li>
                 <span>
-                  <Image
-                    src="/images/resource/spec1-2.svg"
-                    width={18}
-                    height={18}
-                    alt=""
-                  />
-                  Скорость 55 км / ч
+                  <FiInfo size={20} className="mr-2 align-[-4px]" />
+                  Скорость {Math.round(maxSpeed)} км / ч
                 </span>
               </li>
               <li>
                 <span>
-                  <Image
-                    src="/images/resource/spec1-3.svg"
-                    width={18}
-                    height={18}
-                    alt=""
-                  />
-                  70 км на одном заряде
+                 <FiInfo size={20} className="mr-2 align-[-4px]" />
+                  {Math.round(rangePerCharge)} км на одном заряде
                 </span>
               </li>
             </ul>
+
             <div className="content-box">
               <div className="btn-box">
                 <div className="share-btn">
-                  <span>Поделиться</span>
                   <a href="#" className="share">
-                    <Image
-                      src="/images/resource/share.svg"
-                      width={12}
-                      height={12}
-                      alt=""
-                    />
+                    <span>Поделиться</span>
+                    <CiShare1 size={14} color="#ff5500"/>
                   </a>
                 </div>
-                <div className="share-btn">
-                  <span>Оплата и условия аренды</span>
-                  <a href="#" className="share">
-                    <Image
-                      src="/images/resource/share1-1.svg"
-                      width={12}
-                      height={12}
-                      alt=""
-                    />
+                <div className="share-second">
+                  <a href="#" className="">
+                    <span>Оплата и условия аренды</span>
                   </a>
                 </div>
               </div>
-              <h3 className="title">₸  31,662</h3>
-              <span>
-                <svg
-                  width={18}
-                  height={18}
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clipPath="url(#clip0_163_10380)">
-                    <path
-                      d="M7.8047 17.4287C7.80429 17.4287 7.80378 17.4287 7.80326 17.4287C7.2752 17.4283 6.77865 17.2223 6.40539 16.8484L1.14802 11.5835C0.379045 10.8131 0.379045 9.55955 1.14802 8.78923L8.23503 1.68863C8.96538 0.956841 9.93715 0.553711 10.9712 0.553711H15.4676C16.5579 0.553711 17.4451 1.44072 17.4451 2.53125V7.01377C17.4451 8.04714 17.0424 9.01851 16.3113 9.74875L9.20227 16.8504C8.8288 17.2233 8.33246 17.4287 7.8047 17.4287ZM10.9712 1.87207C10.2898 1.87207 9.64948 2.1377 9.16818 2.61993L2.08107 9.72053C1.82471 9.97741 1.82471 10.3952 2.08107 10.652L7.33844 15.9169C7.46276 16.0414 7.62817 16.1102 7.80429 16.1104H7.80481C7.98073 16.1104 8.14614 16.0419 8.27056 15.9176L15.3796 8.81612C15.8614 8.33492 16.1267 7.69469 16.1267 7.01377V2.53125C16.1267 2.16777 15.831 1.87207 15.4676 1.87207H10.9712ZM12.6659 7.24438C11.5755 7.24438 10.6884 6.35738 10.6884 5.26685C10.6884 4.17632 11.5755 3.28931 12.6659 3.28931C13.7564 3.28931 14.6435 4.17632 14.6435 5.26685C14.6435 6.35738 13.7564 7.24438 12.6659 7.24438ZM12.6659 4.60767C12.3025 4.60767 12.0068 4.90337 12.0068 5.26685C12.0068 5.63032 12.3025 5.92603 12.6659 5.92603C13.0295 5.92603 13.3251 5.63032 13.3251 5.26685C13.3251 4.90337 13.0295 4.60767 12.6659 4.60767Z"
-                      fill="#050B20"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_163_10380">
-                      <rect width={18} height={18} fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
+              <h3 className="title">₸  {Math.round(prices[0].price)}</h3>
+              <span className="price-type">
                 Стоимость аренды за 1 неделю
               </span>
             </div>
@@ -148,32 +111,6 @@ export default function Single1({ carItem }) {
                           )}
                         </Item>
                       </figure>
-                      <div className="content-box">
-                        <ul className="video-list">
-                          <li>
-                            <a onClick={() => setOpen(true)}>
-                              <Image
-                                src="/images/resource/video1-1.svg"
-                                width={18}
-                                height={18}
-                                alt=""
-                              />
-                              Video
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <Image
-                                src="/images/resource/video1-2.svg"
-                                width={18}
-                                height={18}
-                                alt=""
-                              />
-                              360 View
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -296,7 +233,7 @@ export default function Single1({ carItem }) {
               <div className="inner-column">
                 {/* overview-sec */}
                 <div className="overview-sec">
-                  <Overview />
+                  <Overview price={prices} />
                 </div>
               </div>
             </div>

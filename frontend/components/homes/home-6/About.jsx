@@ -23,7 +23,7 @@ export default function About() {
                         <div className="exp-block col-md-2 col-sm-12">
                             <div className="inner-box">
                                 <div className="exp-box">
-                                    <div class="ext-text-box">
+                                    <div className="ext-text-box">
                                         <h2 className="title">Шлем</h2>
                                         <div className="text">Учитываем все правила безопасности</div>
                                     </div>
@@ -66,10 +66,10 @@ export default function About() {
                             <div className="image-box two second-box-box mb-[27px]">
                                 <div className="ext-text-box second-text">
                                     <h2 className="title text-[var(--theme-color1)]">Лазерный свет</h2>
-                                    <div className="text pb-[25px]"><span class="font-medium">Будьте заметны на дороге</span> – задний велосипедный фонарь с лазерным наведением.
-                                        Этот мощный фонарь с <span class="font-medium">7 режимами освещения</span> делает вас хорошо заметным для водителей в любое время суток.
+                                    <div className="text pb-[25px]"><span className="font-medium">Будьте заметны на дороге</span> – задний велосипедный фонарь с лазерным наведением.
+                                        Этот мощный фонарь с <span className="font-medium">7 режимами освещения</span> делает вас хорошо заметным для водителей в любое время суток.
                                         Две яркие красные линии создают безопасную зону обгона по обе стороны велосипеда.
-                                        Лазерные линии заметны на расстоянии до <span class="font-medium">1,5 км</span> – водители видят вас заранее.
+                                        Лазерные линии заметны на расстоянии до <span className="font-medium">1,5 км</span> – водители видят вас заранее.
                                     </div>
                                 </div>
                             </div>

@@ -1,15 +1,33 @@
 import { Expose } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsOptional } from 'class-validator';
 import {Role} from "../../../database/entities/role.entity";
 
 export class CreateUserDto {
+  @IsNotEmpty()
+  phoneNumber: string;
+
+  @IsNotEmpty()
+  firstName: string;
+
+  @IsNotEmpty()
+  lastName: string;
+
+  @IsOptional()
+  patronymic?: string;
+
   @IsEmail()
   @IsNotEmpty()
-  public email: string;
+  email: string;
 
-  @IsString()
-  @IsNotEmpty()
-  public password: string;
+  // Сделаем поле password опциональным
+  // @IsOptional()
+  // password?: string;
+
+  @IsOptional()
+  photoIdFront?: string;
+
+  @IsOptional()
+  photoIdBack?: string;
 }
 
 export class UserDto {

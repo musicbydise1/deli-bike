@@ -3,6 +3,8 @@ import Header1 from "@/components/headers/Header1";
 import Dealer from "@/components/otherPages/Dealer";
 
 import React from "react";
+import Header6 from "@/components/headers/Header6";
+import Footer3 from "@/components/footers/Footer3";
 
 export const metadata = {
   title: "Dealer || Boxcar - React Nextjs Car Template",
@@ -11,10 +13,10 @@ export const metadata = {
 export default function DealerPage() {
   return (
     <>
-      <Header1 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
+        <Header6 />
       <Dealer />
 
-      <Footer1 parentClass="boxcar-footer footer-style-one v1 cus-st-1" />
+        <Footer3 parenttClass="boxcar-footer footer-style-five v6" />
     </>
   );
 }

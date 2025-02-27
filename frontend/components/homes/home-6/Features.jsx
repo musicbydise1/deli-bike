@@ -6,7 +6,7 @@ import {RiSpeedFill} from "react-icons/ri";
 
 export default function Features() {
   return (
-      <section className="why-choose-us-section-four why-choose-home">
+      <section className="why-choose-us-section-four why-choose-home" id="features">
         <div className="boxcar-container">
           <div className="boxcar-title wow fadeInUp">
             <h2 className="title">Почему выбирают нас?</h2>

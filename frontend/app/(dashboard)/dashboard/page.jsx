@@ -3,31 +3,49 @@
 import Footer1 from "@/components/footers/Footer1";
 import HeaderDashboard from "@/components/headers/HeaderDashboard";
 import React, { useEffect, useState } from "react";
-import DashboardCourier from "@/components/dashboard/DashboardCourier";
-import DashboardCorporate from "@/components/dashboard/DashboardCorporate";
+import { useRouter } from "next/navigation";
+import DashboardCourier from "@/components/dashboard/courier/DashboardCourier";
+import DashboardCorporate from "@/components/dashboard/corporate/DashboardCorporate";
 import DashboardAdmin from "@/components/dashboard/admin/DashboardAdmin";
 import Header6 from "@/components/headers/Header6";
 
 export default function DashboardPage() {
   const [userRole, setUserRole] = useState(null);
+  const [loading, setLoading] = useState(true); // Для отображения состояния загрузки
+  const router = useRouter();
 
   useEffect(() => {
-    // Извлечение данных пользователя из localStorage
+    // Проверка наличия accessToken в localStorage
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (!accessToken) {
+      // Если токена нет, перенаправляем на страницу входа
+      router.push("/login");
+      return;
+    }
+
+    // Если токен есть, проверяем данные пользователя
     const userData = localStorage.getItem("userData");
 
     if (userData) {
       const parsedData = JSON.parse(userData);
-      // Получаем первую роль пользователя
       const roleName = parsedData.roles?.[0]?.name || null;
 
-      // Устанавливаем роль: "Courier" или "Corporate"
       setUserRole(roleName);
     }
-  }, []);
+
+    // Устанавливаем флаг загрузки как завершённый
+    setLoading(false);
+  }, [router]);
+
+  if (loading) {
+    // Пока проверяется токен и роль, показываем индикатор загрузки
+    return <div>Загрузка...</div>;
+  }
 
   if (!userRole) {
-    // Пока роль не определена, можно показывать лоадер
-    return <div>Загрузка...</div>;
+    // Если роль пользователя не определена
+    return <div>Ошибка: Роль пользователя не найдена.</div>;
   }
 
   return (

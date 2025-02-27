@@ -3,7 +3,9 @@ import React from "react";
 import Image from "next/image";
 import { useContextElement } from "@/context/Context";
 import Link from "next/link";
-import { useTranslation } from "next-i18next"; // Предположим, что используется next-i18next
+import { useTranslation } from "next-i18next";
+import {BiTrashAlt} from "react-icons/bi";
+import Button from "@/components/ui/button/Button"; // Предположим, что используется next-i18next
 
 export default function Cart() {
   const { t } = useTranslation(); // Хук для получения перевода
@@ -27,7 +29,7 @@ export default function Cart() {
   return (
       <section className="cart-page layout-radius">
         <div className="boxcar-container">
-          <div className="boxcar-title-three">
+          <div className="cart-title">
             <ul className="breadcrumb">
               <li>
                 <Link href={`/`}>{t("breadcrumb.home")}</Link>
@@ -120,12 +122,7 @@ export default function Cart() {
                                   onClick={() => removeItem(elm.id)}
                                   className="remove-cart-item"
                               >
-                                <Image
-                                    alt=""
-                                    width={18}
-                                    height={18}
-                                    src="/images/icons/remove.svg"
-                                />
+                                <BiTrashAlt />
                               </a>
                             </td>
                           </tr>
@@ -135,57 +132,16 @@ export default function Cart() {
                 ) : (
                     <div className="row">
                       <div className="col-6">{t("cart.emptyMessage")}</div>
-                      <div className="col-6">
+                      <div className="col-12">
                         <Link
-                            href="/shop-list"
+                            href="/inventory-list-01"
                             title=""
-                            className="theme-btn-web"
+                            className="mt-4"
                         >
-                          {t("cart.shopNow")}
-                          <Image
-                              alt=""
-                              width={14}
-                              height={14}
-                              src="/images/arrow.svg"
-                          />
+                          <Button className="mt-4 !ml-0">{t("cart.shopNow")}</Button>
                         </Link>
                       </div>
                     </div>
-                )}
-                {cartProducts.length ? (
-                    <div className="cart-table-bottom">
-                      <form
-                          onSubmit={(e) => e.preventDefault()}
-                          className="coupan-form"
-                      >
-                        <input
-                            type="text"
-                            name="coupan"
-                            required
-                            placeholder={t("cart.couponPlaceholder")}
-                        />
-                        <button type="submit" className="theme-btn-web">
-                          {t("cart.applyCoupon")}{" "}
-                          <Image
-                              alt=""
-                              width={14}
-                              height={14}
-                              src="/images/arrow.svg"
-                          />
-                        </button>
-                      </form>
-                      <a href="#" title="" className="theme-btn-web">
-                        {t("cart.updateCart")}{" "}
-                        <Image
-                            alt=""
-                            width={14}
-                            height={14}
-                            src="/images/arrow.svg"
-                        />
-                      </a>
-                    </div>
-                ) : (
-                    ""
                 )}
               </div>
               {/*cart-table*/}
@@ -205,15 +161,11 @@ export default function Cart() {
                   </tr>
                   </tbody>
                 </table>
-                <a href="/checkout" title="" className="theme-btn-web">
+                <Link href="/checkout" title="">
+                  <Button className="!ml-0 w-full">
                   {t("cart.proceedToCheckout")}{" "}
-                  <Image
-                      alt=""
-                      width={14}
-                      height={14}
-                      src="/images/arrow.svg"
-                  />
-                </a>
+                  </Button>
+                </Link>
               </div>
               {/*cart-totals end*/}
             </div>

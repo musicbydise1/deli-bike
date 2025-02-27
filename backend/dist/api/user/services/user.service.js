@@ -23,15 +23,19 @@ let UserService = class UserService {
         this.repository = repository;
     }
     async createUser(body, ...roles) {
-        body.password = await (0, bcrypt_1.hash)(body.password, 10);
         const user = this.repository.create(Object.assign(Object.assign({}, body), { roles }));
         return this.repository.save(user);
     }
     async findByEmail(email, relations) {
         const user = await this.repository.findOne({
-            where: {
-                email,
-            },
+            where: { email },
+            relations,
+        });
+        return user;
+    }
+    async findByPhone(phoneNumber, relations) {
+        const user = await this.repository.findOne({
+            where: { phoneNumber },
             relations,
         });
         return user;
@@ -44,7 +48,6 @@ let UserService = class UserService {
             where: { id },
             relations: (options === null || options === void 0 ? void 0 : options.relations) || ['roles'],
         });
-        console.log('User fetched from database:', user);
         if (!user) {
             throw new common_1.NotFoundException('User not found');
         }
@@ -52,6 +55,14 @@ let UserService = class UserService {
     }
     async save(user) {
         return this.repository.save(user);
+    }
+    async updateUserTelegramChatId(phoneNumber, chatId) {
+        const user = await this.repository.findOne({ where: { phoneNumber } });
+        if (!user) {
+            throw new common_1.NotFoundException('Пользователь с таким номером телефона не найден.');
+        }
+        user.iin = chatId;
+        await this.repository.save(user);
     }
 };
 UserService = __decorate([

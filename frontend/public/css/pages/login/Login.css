@@ -1,0 +1,179 @@
+.login-section {
+    margin-bottom: 0 !important;
+}
+
+.login-section .right-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form_boxes:focus-within {
+    border-color: #ff9966 !important;
+    box-shadow: 0 0 2px #ff5500;
+}
+
+.login-text {
+    text-align: center;
+}
+
+.login-text h2 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+    margin: 0;
+    text-transform: uppercase;
+}
+.login-text p {
+    font-size: 14px;
+    line-height: 18px;
+    color: #4B5675;
+}
+
+.politic-privacy {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.politic-privacy p {
+    color: #A7ADBE;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.politic-privacy span {
+    color: #78829D;
+    font-size: 14px;
+    text-decoration: underline;
+    line-height: 18px;
+}
+
+.code-step-title {
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.code-step-subtitle {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 24px;
+}
+
+.otp-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+/* Базовый вид каждого поля */
+.otp-input {
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+/* При фокусе */
+.otp-input:focus {
+    border-color: #ff5500;
+}
+
+/*
+  Дополнительный класс 'filled',
+  который мы добавляем динамически,
+  если в поле есть цифра.
+*/
+.otp-input.filled {
+    border-color: #ff5500;
+}
+
+.resend-wrapper {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.resend-button {
+    background: #ff5500;
+    border: 1px solid #ff5500;
+    padding: 10px;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 34px;
+}
+
+.resend-button:hover {
+    background-color: transparent;
+    color: #ff5500;
+}
+
+.form-submit {
+    margin-top: 16px;
+}
+
+.progress-stepper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.progress-stepper .step {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0.5rem;
+    font-weight: bold;
+    color: #666;
+}
+.progress-stepper .step.active {
+    background-color: #0070f3;
+    color: white;
+}
+.progress-stepper .separator {
+    font-size: 1.5rem;
+    color: #ccc;
+}
+.custom-file-upload {
+    /* Вы можете добавить дополнительные стили для кастомного upload-контейнера */
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.custom-file-upload:hover {
+    background-color: #f9f9f9;
+}
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.upload-box {
+    border: none !important;
+}
+
+.upload-box label {
+    font-size: 14px !important;
+    color: #000 !important;
+    text-align: center;
+}
+
+.upload-box input {
+    background: #F1F3F6;
+    border-radius: 4px;
+}

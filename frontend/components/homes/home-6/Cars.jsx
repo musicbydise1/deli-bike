@@ -13,15 +13,29 @@ const buttons = [
 ];
 
 export default function Cars() {
+  const [bikes, setBikes] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(buttons[0]);
-  const [sortedItems, setSortedItems] = useState([...carData]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    setSortedItems([
-      ...carData.filter((elm) =>
-        elm.filterCategories.includes(selectedCategory.label)
-      ),
-    ]);
-  }, [selectedCategory]);
+    const fetchBikes = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/bikes/");
+        if (!response.ok) {
+          throw new Error("Ошибка при загрузке данных о байках");
+        }
+        const result = await response.json();
+        setBikes(result.data); // Извлекаем массив байков из `data`
+      } catch (error) {
+        console.error("Ошибка:", error);
+      } finally {
+        setIsLoading(false); // Завершаем загрузку
+      }
+    };
+
+    fetchBikes();
+  }, []);
+
+
   return (
     <section className="cars-section-three cars-home">
       <div className="boxcar-container">
@@ -119,7 +133,7 @@ export default function Cars() {
               className="row car-slider-three"
               data-preview="4.8"
             >
-              {sortedItems.map((car, index) => (
+              {bikes.map((bike, index) => (
                 <div
                   key={index}
                   className="box-car car-block-three style-2 col-lg-3 col-md-6 col-sm-12"
@@ -127,21 +141,21 @@ export default function Cars() {
                   <div className="inner-box">
                     <div
                       className={`image-box ${
-                        car.badge == "Great Price" ? "two" : ""
+                        bike.tags[0] == "Great Price" ? "two" : ""
                       }`}
                     >
                       <Slider
                         dots
                         slidesToShow={1}
-                        key={car.id}
+                        key={bike.id}
                         className="slider-thumb"
                       >
-                        {car.images.map((image, i) => (
+                        {bike.imageUrls.map((image, i) => (
                           <div key={i} className="image d-block">
-                            <Link href={`/inventory-page-single-v1/${car.id}`}>
+                            <Link href={`/inventory-page-single-v1/${bike.id}`}>
                               <Image
                                 alt=""
-                                src={image}
+                                src="/images/resource/shop3-1.jpg"
                                 width={329}
                                 height={220}
                               />
@@ -149,19 +163,19 @@ export default function Cars() {
                           </div>
                         ))}
                       </Slider>
-                      {car.badge && <span>{car.badge}</span>}
+                      {bike.tags && <span>{bike.tags[0]}</span>}
                     </div>
                     <div className="content-box">
                       <h6 className="title">
-                        <Link href={`/inventory-page-single-v1/${car.id}`}>
-                          {car.title}
+                        <Link href={`/inventory-page-single-v1/${bike.id}`}>
+                          {bike.name} - {bike.model}
                         </Link>
                       </h6>
                       <div className="select-wrapper" style={{position: "relative"}}>
                         <select className="car-select w-full mb-2">
-                          {car.pricing.map((pricing, i) => (
-                              <option value={pricing.value} key={i}>
-                                {pricing.title} ₸
+                          {bike.prices.map((prices, i) => (
+                              <option value={prices.price} key={i}>
+                                {prices.priceCategory.name} {prices.price} ₸
                               </option>
                           ))}
                         </select>
@@ -169,16 +183,44 @@ export default function Cars() {
                         <IoIosArrowDown className="icon"/>
                       </div>
                       <ul className="specs-list">
-                        {car.specs.map((spec, i) => (
-                            <li key={i} className="spec-item">
-                              <span className="spec-title">{spec.title}</span>
-                              <span className="spec-value">{spec.text}</span>
-                            </li>
-                        ))}
+                        <li className="spec-item">
+                          <span className="spec-title">Макс. скорость</span>
+                          <span className="spec-value">{bike.maxSpeed}</span>
+                        </li>
+
+                        <li className="spec-item">
+                          <span className="spec-title">Пробег на 1 заряде:</span>
+                          <span className="spec-value">{bike.rangePerCharge}</span>
+                        </li>
+
+                        <li className="spec-item">
+                          <span className="spec-title">Время зарядки</span>
+                          <span className="spec-value">{bike.chargeTime}</span>
+                        </li>
+
+                        <li className="spec-item">
+                          <span className="spec-title">Макс. нагрузка</span>
+                          <span className="spec-value">{bike.maxLoad}</span>
+                        </li>
+
+                        <li className="spec-item">
+                          <span className="spec-title">Вес</span>
+                          <span className="spec-value">{bike.weight}</span>
+                        </li>
+
+                        <li className="spec-item">
+                          <span className="spec-title">Мощность</span>
+                          <span className="spec-value">{bike.power}</span>
+                        </li>
+
+                        <li className="spec-item">
+                          <span className="spec-title">Подвеска</span>
+                          <span className="spec-value">{bike.suspension}</span>
+                        </li>
                       </ul>
                       <div className="btn-box">
                         <Link
-                            href={`/inventory-page-single-v1/${car.id}`}
+                            href={`/inventory-page-single-v1/${bike.id}`}
                             className="details"
                         >
                           <Button className="w-full mb-2 !ml-0" variant="secondary">Подробнее</Button>

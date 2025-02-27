@@ -22,11 +22,14 @@ const admin_module_1 = require("./admin/admin.module");
 const review_module_1 = require("./review/review.module");
 const maintenance_module_1 = require("./maintenance/maintenance.module");
 const errors_filter_1 = require("../errors/errors.filter");
+const bitrix_module_1 = require("./bitrix/bitrix.module");
 let ApiModule = class ApiModule {
 };
 ApiModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, user_module_1.UserModule, role_module_1.RoleModule, product_module_1.ProductModule, bike_module_1.BikeModule, rental_module_1.RentalModule, payment_module_1.PaymentModule, notification_module_1.NotificationModule, admin_module_1.AdminModule, review_module_1.ReviewModule, maintenance_module_1.MaintenanceModule],
+        imports: [auth_module_1.AuthModule, user_module_1.UserModule, role_module_1.RoleModule, product_module_1.ProductModule,
+            bike_module_1.BikeModule, rental_module_1.RentalModule, payment_module_1.PaymentModule, notification_module_1.NotificationModule,
+            admin_module_1.AdminModule, review_module_1.ReviewModule, maintenance_module_1.MaintenanceModule, bitrix_module_1.BitrixModule],
         providers: [
             {
                 provide: core_1.APP_INTERCEPTOR,

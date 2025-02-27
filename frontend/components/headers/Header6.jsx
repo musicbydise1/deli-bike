@@ -4,16 +4,14 @@ import Nav from "./Nav";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { IoMdGlobe } from "react-icons/io";
-import {FaChevronDown, FaMapMarkerAlt, FaShoppingCart, FaUser} from "react-icons/fa";
+import {FaChevronDown, FaUser} from "react-icons/fa";
 import { HiOutlineLogout, HiOutlineShoppingBag } from "react-icons/hi";
 import { MdSettings } from "react-icons/md";
 import { IoGridSharp } from "react-icons/io5";
-import { FcGlobe } from "react-icons/fc";
 import Button from "../ui/button/Button"
 import '../../public/css/pages/header/Header.css'
-import {SlBasket} from "react-icons/sl";
 import {CgShoppingCart} from "react-icons/cg";
+import {FaArrowRightToBracket} from "react-icons/fa6";
 
 export default function Header6({  white = false}) {
 
@@ -184,6 +182,7 @@ export default function Header6({  white = false}) {
                           alt={currentLocation}
                           width={18}
                           height={13}
+                          style={{ width: 'auto', height: 'auto' }}
                           className="flag-icon"
                       />
                       <FaChevronDown className="arrow-icon"/>
@@ -197,6 +196,7 @@ export default function Header6({  white = false}) {
                                 alt="Kazakhstan"
                                 width={18}
                                 height={13}
+                                style={{ width: 'auto', height: 'auto' }}
                                 className="flag-icon"
                             />
                             <span className="country-name">Казахстан</span>
@@ -207,6 +207,7 @@ export default function Header6({  white = false}) {
                                 alt="Belarus"
                                 width={18}
                                 height={13}
+                                style={{ width: 'auto', height: 'auto' }}
                                 className="flag-icon"
                             />
                             <span className="country-name">Беларусь</span>
@@ -311,9 +312,9 @@ export default function Header6({  white = false}) {
                     <ul>
                       <li>
                         <Button variant="primary" onClick={toggleUserRole}>
-                          {userRole === "courier" ? t("for_corporate") : t("for_courier")}
+                          {userRole === "courier" ? t("for_corporate") : t("for_courier")} <FaArrowRightToBracket className="ml-2" />
                         </Button>
-                        <Link href="/login">
+                        <Link href={userRole === "courier" ? "/login" : "/other-login"}>
                           <Button variant="primary-outline">
                             {t("login")} {/* Войти */}
                           </Button>

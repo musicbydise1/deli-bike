@@ -11,14 +11,13 @@ import { errorMessages } from 'src/errors/custom';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User) private readonly repository: Repository<User>,
+      @InjectRepository(User) private readonly repository: Repository<User>,
   ) {}
 
   public async createUser(
-    body: CreateUserDto,
-    ...roles: Role[]
+      body: CreateUserDto,
+      ...roles: Role[]
   ): Promise<User> {
-    body.password = await hash(body.password, 10);
     const user: User = this.repository.create({
       ...body,
       roles,
@@ -28,29 +27,38 @@ export class UserService {
   }
 
   public async findByEmail(
-    email: string,
-    relations?: UserRelation,
+      email: string,
+      relations?: string[],
   ): Promise<User> {
     const user: User = await this.repository.findOne({
-      where: {
-        email,
-      },
+      where: { email },
+      relations, // Здесь теперь ожидается массив строк
+    });
+    return user;
+  }
+
+  // Добавленный метод для поиска пользователя по номеру телефона
+  public async findByPhone(
+      phoneNumber: string,
+      relations?: string[],
+  ): Promise<User> {
+    const user: User = await this.repository.findOne({
+      where: { phoneNumber },
       relations,
     });
     return user;
   }
 
-  public async comparePassword(password, userPassword): Promise<boolean> {
+
+  public async comparePassword(password: string, userPassword: string): Promise<boolean> {
     return compare(password, userPassword);
   }
 
   public async findById(id: number, options?: { relations?: string[] }): Promise<User> {
     const user = await this.repository.findOne({
       where: { id },
-      relations: options?.relations || ['roles'], // Загрузка связей
+      relations: options?.relations || ['roles'],
     });
-
-    console.log('User fetched from database:', user); // Логируем результат
 
     if (!user) {
       throw new NotFoundException('User not found');
@@ -61,5 +69,18 @@ export class UserService {
 
   public async save(user: User) {
     return this.repository.save(user);
+  }
+
+  async updateUserTelegramChatId(phoneNumber: string, chatId: string): Promise<void> {
+    // Ищем пользователя по номеру телефона
+    const user = await this.repository.findOne({ where: { phoneNumber } });
+
+    if (!user) {
+      throw new NotFoundException('Пользователь с таким номером телефона не найден.');
+    }
+
+    // Обновляем поле telegramChatId
+    user.iin = chatId;
+    await this.repository.save(user);
   }
 }

@@ -36,7 +36,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar' }),
+    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
@@ -116,7 +116,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "preferredCurrency", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => role_entity_1.Role, (role) => role.users),
+    (0, typeorm_1.ManyToMany)(() => role_entity_1.Role, (role) => role.users, { cascade: true }),
     (0, typeorm_1.JoinTable)({ name: 'user_roles' }),
     __metadata("design:type", Array)
 ], User.prototype, "roles", void 0);

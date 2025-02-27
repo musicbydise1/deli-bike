@@ -10,7 +10,7 @@ export default function Banner() {
   }, []);
 
   return (
-    <section className="boxcar-pricing-section-five">
+    <section className="boxcar-pricing-section-five" id="service">
       <div className="boxcar-container">
         <div className="row g-0" style={{background: "#fff", height: "390px", borderRadius: "10px", boxShadow: "0px 4px 12px 0px #00000012" }}>
           {/* image-column */}
@@ -70,12 +70,12 @@ export default function Banner() {
                         Решаете, что вам ближе: аренда или покупка. Подбираете оптимальный план.
                       </p>
                   ) : (
-                      <ul class="corporate-banner-items">
-                        <li class="corporate-banner-item">Заключаем соглашение о сотрудничестве с компанией, которая
+                      <ul className="corporate-banner-items">
+                        <li className="corporate-banner-item">Заключаем соглашение о сотрудничестве с компанией, которая
                           оплачивает аренду;
                         </li>
-                        <li class="corporate-banner-item">Заключаем договор с курьером;</li>
-                        <li class="corporate-banner-item">За транспорт отвечает курьер.</li>
+                        <li className="corporate-banner-item">Заключаем договор с курьером;</li>
+                        <li className="corporate-banner-item">За транспорт отвечает курьер.</li>
                       </ul>
                   )}
                 </div>
@@ -96,11 +96,11 @@ export default function Banner() {
                         Оформляете договор и получаете полностью заряженный электровелосипед
                       </p>
                   ) : (
-                      <ul class="corporate-banner-items">
-                        <li class="corporate-banner-item">Заключаем договор с компанией, которая оплачивает аренду;
+                      <ul className="corporate-banner-items">
+                        <li className="corporate-banner-item">Заключаем договор с компанией, которая оплачивает аренду;
                         </li>
-                        <li class="corporate-banner-item">Мы доставляем транспорт бесплатно;</li>
-                        <li class="corporate-banner-item">За транспорт отвечает компания.</li>
+                        <li className="corporate-banner-item">Мы доставляем транспорт бесплатно;</li>
+                        <li className="corporate-banner-item">За транспорт отвечает компания.</li>
                       </ul>
                   )}
                 </div>
@@ -121,10 +121,10 @@ export default function Banner() {
                         Начинаете доставлять заказы, объезжать пробки и экономить на топливе
                       </p>
                   ) : (
-                      <ul class="corporate-banner-items">
-                        <li class="corporate-banner-item">Заключаем договор с курьером, который оплачивает аренду;</li>
-                        <li class="corporate-banner-item">Мы предоставляем промо-матрериалы и скидки для компаний;</li>
-                        <li class="corporate-banner-item">За транспорт отвечает курьер.</li>
+                      <ul className="corporate-banner-items">
+                        <li className="corporate-banner-item">Заключаем договор с курьером, который оплачивает аренду;</li>
+                        <li className="corporate-banner-item">Мы предоставляем промо-матрериалы и скидки для компаний;</li>
+                        <li className="corporate-banner-item">За транспорт отвечает курьер.</li>
                       </ul>
                   )}
                 </div>

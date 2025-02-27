@@ -1,6 +1,11 @@
 export declare class CreateUserDto {
+    phoneNumber: string;
+    firstName: string;
+    lastName: string;
+    patronymic?: string;
     email: string;
-    password: string;
+    photoIdFront?: string;
+    photoIdBack?: string;
 }
 export declare class UserDto {
     id: number;

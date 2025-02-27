@@ -1,21 +1,74 @@
 import Single1 from "@/components/carSingles/Single1";
-import { allCars } from "@/data/cars";
-import React from "react";
 import Header6 from "@/components/headers/Header6";
-import Footer3 from "@/components/footers/Footer3";
 import Footer1 from "@/components/footers/Footer1";
 
-export const metadata = {
-  title: "Inventory Single 1 || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
-};
-export default function InventorySinglePage1({ params }) {
-  const carItem = allCars.filter((elm) => elm.id == params.id)[0] || allCars[0];
-  return (
-    <>
-      <Header6 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
-      <Single1 carItem={carItem} />
-      <Footer1 parentClass="boxcar-footer footer-style-one v1 cus-st-1" />
-    </>
-  );
+/**
+ * Функция generateStaticParams возвращает список параметров для генерации
+ * статических страниц для всех значений динамического сегмента [id].
+ */
+export async function generateStaticParams() {
+    const res = await fetch("http://localhost:4000/bikes", { cache: "no-store" });
+    if (!res.ok) {
+        return [];
+    }
+    const { data } = await res.json();
+    return data.map((bike) => ({
+        id: bike.id.toString(),
+    }));
+}
+
+/**
+ * Функция generateMetadata позволяет задать title, description и т.д.
+ * динамически (на основе данных, полученных с API).
+ */
+export async function generateMetadata({ params }) {
+    const { id } = params;
+
+    // Делаем запрос на ваш сервер
+    const res = await fetch(`http://localhost:4000/bikes/${id}`, { cache: "no-store" });
+
+    // Если получили ошибку — можно выбросить ее или вернуть дефолтные метаданные
+    if (!res.ok) {
+        return {
+            title: "Bike not found",
+            description: "Ошибка при загрузке данных о товаре",
+        };
+    }
+
+    const { data } = await res.json();
+
+    // Извлекаем название и описание из объекта data
+    const title = `${data?.name ?? ''} ${data?.model ?? ''}`.trim() || "Bike Details";
+    const description = data?.description || "Bike description";
+
+    return {
+        title: `${title} || DeliBike - Аренда электровелосипедов`,
+        description: description,
+    };
+}
+
+/**
+ * Основной компонент страницы, где вы также fetch'ите данные
+ * и рендерите компонент Single1.
+ */
+export default async function InventorySinglePage1({ params }) {
+    const { id } = params;
+
+    // Запрос к вашему API, чтобы получить данные конкретного байка
+    const res = await fetch(`http://localhost:4000/bikes/${id}`, { cache: "no-store" });
+    if (!res.ok) {
+        throw new Error("Не удалось загрузить данные о байке");
+    }
+
+    // Парсим результат
+    const { data } = await res.json();
+
+    // Прокидываем data в ваш компонент Single1 через prop carItem
+    return (
+        <>
+            <Header6 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
+            <Single1 carItem={data} />
+            <Footer1 parentClass="boxcar-footer footer-style-one v1 cus-st-1" />
+        </>
+    );
 }

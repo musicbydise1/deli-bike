@@ -1,5 +1,6 @@
+// Button.js
 import React from 'react';
-import './Button.css'; // Подключаем CSS файл
+import './Button.css'; // Подключаем ваш CSS
 
 const Button = ({
                     children,
@@ -23,10 +24,13 @@ const Button = ({
         <button
             type={type}
             onClick={onClick}
-            disabled={disabled}
-            className={`${baseStyles} ${variants[variant]} ${
-                disabled ? disabledStyles : ''
-            } ${className}`}
+            disabled={disabled} // <-- ВАЖНО: передаём атрибут disabled
+            className={`
+        ${baseStyles}
+        ${variants[variant]}
+        ${disabled ? disabledStyles : ''}
+        ${className}
+      `}
         >
             {children}
         </button>

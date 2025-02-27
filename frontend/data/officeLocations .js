@@ -1,21 +1,9 @@
 export const officeLocations = [
   {
-    city: "San Francisco",
-    address: "329 Queensberry Street, North Melbourne VIC3051, Australia.",
-    email: "ali@boxcars.com",
-    phone: "+76 956 039 967",
-  },
-  {
-    city: "New York",
-    address: "329 Queensberry Street, North Melbourne VIC3051, Australia.",
-    email: "newyork@boxcars.com",
-    phone: "+76 956 039 967",
-  },
-  {
-    city: "London",
-    address: "329 Queensberry Street, North Melbourne VIC3051, Australia.",
-    email: "newyork@boxcars.com",
-    phone: "+76 956 039 967",
+    city: "Казахстан, Алматы",
+    address: "ул.Суюнбая",
+    email: "info@deli-bike.kz",
+    phone: "+7 (727) 390 29 27",
   },
   // Add more locations as needed
 ];
