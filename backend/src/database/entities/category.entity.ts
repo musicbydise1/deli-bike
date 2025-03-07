@@ -6,7 +6,6 @@ import {
   OneToMany,
   PrimaryColumn,
 } from 'typeorm';
-import { Product } from './product.entity';
 
 @Entity()
 export class Category {
@@ -16,8 +15,6 @@ export class Category {
   @Column({ type: 'varchar' })
   public name: string;
 
-  @OneToMany(() => Product, (product) => product.category)
-  products: Product;
 
   @CreateDateColumn({ type: 'timestamp' })
   public createdAt!: Date;

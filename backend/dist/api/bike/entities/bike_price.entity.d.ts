@@ -1,5 +1,5 @@
 import { Bike } from './bike.entity';
-import { PriceCategory } from './price_category.entity';
+import { PriceCategory } from '../../price-category/entities/price-category.entity';
 export declare class BikePrice {
     id: number;
     bike: Bike;

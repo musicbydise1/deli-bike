@@ -42,11 +42,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Rental.prototype, "totalPrice", void 0);
 __decorate([
-    (0, typeorm_1.Column)({
-        type: 'enum',
-        enum: ['active', 'completed', 'cancelled'],
-        default: 'active',
-    }),
+    (0, typeorm_1.Column)({ type: 'enum', enum: ['on_payment', 'active', 'completed', 'cancelled'], default: 'on_payment' }),
     __metadata("design:type", String)
 ], Rental.prototype, "status", void 0);
 __decorate([

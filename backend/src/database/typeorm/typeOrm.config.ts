@@ -15,7 +15,7 @@ export const dataSourceOptions: DataSourceOptions = {
   username: 'postgres',
   password: 'password',
   entities: [process.env.DATABASE_ENTITIES],
-  migrations: ['dist/src/database/migration/history/*.js'],
+  migrations: ['dist/database/migration/history/*.js'],
   logger: 'simple-console',
   synchronize: false, // never use TRUE in production!
   logging: true, // for debugging in dev Area only

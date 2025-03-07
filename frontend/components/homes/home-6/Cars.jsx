@@ -41,7 +41,7 @@ export default function Cars() {
       <div className="boxcar-container">
         <div className="boxcar-title wow fadeInUp">
           <h2>СТОИМОСТЬ АРЕНДЫ</h2>
-          <Link href={`/inventory-list-01`} className="btn-title">
+          <Link href={`/bikes`} className="btn-title">
             Посмотреть
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -145,29 +145,36 @@ export default function Cars() {
                       }`}
                     >
                       <Slider
-                        dots
-                        slidesToShow={1}
-                        key={bike.id}
-                        className="slider-thumb"
+                          dots
+                          slidesToShow={1}
+                          infinite={false} // отключаем бесконечное пролистывание
+                          key={bike.id}
+                          className="slider-thumb"
                       >
                         {bike.imageUrls.map((image, i) => (
-                          <div key={i} className="image d-block">
-                            <Link href={`/inventory-page-single-v1/${bike.id}`}>
-                              <Image
-                                alt=""
-                                src="/images/resource/shop3-1.jpg"
-                                width={329}
-                                height={220}
-                              />
-                            </Link>
-                          </div>
+                            <div key={i} className="image d-block">
+                              <Link href={`/bike/${bike.id}`}>
+                                <Image
+                                    alt="Изображение велосипеда"
+                                    src={image}
+                                    width={377}
+                                    height={220}
+                                    style={{
+                                      width: '377px',
+                                      height: '220px',
+                                      objectFit: 'cover', // изображение заполнит заданную область, сохраняя пропорции и обрезая лишнее
+                                      display: 'block',
+                                    }}
+                                />
+                              </Link>
+                            </div>
                         ))}
                       </Slider>
                       {bike.tags && <span>{bike.tags[0]}</span>}
                     </div>
                     <div className="content-box">
                       <h6 className="title">
-                        <Link href={`/inventory-page-single-v1/${bike.id}`}>
+                        <Link href={`/bike/${bike.id}`}>
                           {bike.name} - {bike.model}
                         </Link>
                       </h6>
@@ -175,7 +182,7 @@ export default function Cars() {
                         <select className="car-select w-full mb-2">
                           {bike.prices.map((prices, i) => (
                               <option value={prices.price} key={i}>
-                                {prices.priceCategory.name} {prices.price} ₸
+                                {prices.priceCategory.name} - {Math.round(prices.price).toLocaleString("ru-RU")} ₸
                               </option>
                           ))}
                         </select>
@@ -220,7 +227,7 @@ export default function Cars() {
                       </ul>
                       <div className="btn-box">
                         <Link
-                            href={`/inventory-page-single-v1/${bike.id}`}
+                            href={`/bike/${bike.id}`}
                             className="details"
                         >
                           <Button className="w-full mb-2 !ml-0" variant="secondary">Подробнее</Button>

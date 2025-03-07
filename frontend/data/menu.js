@@ -5,13 +5,13 @@ export const homeLinks = [
 export const megaMenuData = [
   {
     links: [
-      { href: "/inventory-list-01", label: "Электровелосипеды" },
+      { href: "/bikes", label: "Электровелосипеды" },
     ],
   },
 ];
 
 export const CatalogueLinks = [
-  { href: "/inventory-list-01", label: "Велосипеды" },
+  { href: "/bikes", label: "Велосипеды" },
   { href: "/#service", label: "Сервис" },
 
 
@@ -58,8 +58,8 @@ export const pages = [
   { title: "Terms", href: "/terms" },
   { title: "Team List", href: "/team-list" },
   { title: "Team Single", href: "/team-single/1" },
-  { title: "Dealer List", href: "/dealer" },
-  { title: "Dealer Single", href: "/dealer-single/1" },
+  { title: "Dealer List", href: "/vacancy" },
+  { title: "Dealer Single", href: "/vacancy-single/1" },
   { title: "Loan Calculator", href: "/loan-calculator" },
   { title: "Compare", href: "/compare" },
   { title: "404", href: "/404" },

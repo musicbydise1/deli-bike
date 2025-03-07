@@ -18,11 +18,17 @@ export class RentalService {
         const { userId, bikeId, startDate, endDate, totalPrice } = createRentalDto;
 
         const bike = await this.bikeRepository.findOne({ where: { id: bikeId } });
-        if (!bike || bike.availability_status === 'unavailable') {
+        if (!bike || bike.stock <= 0) {
             throw new NotFoundException('Bike is not available');
         }
 
-        bike.availability_status = 'unavailable';
+        // Уменьшаем stock на 1
+        bike.stock -= 1;
+
+        // Если stock стал 0, меняем статус на 'unavailable'
+        if (bike.stock === 0) {
+            bike.availability_status = 'unavailable';
+        }
         await this.bikeRepository.save(bike);
 
         const rental = this.rentalRepository.create({
@@ -31,6 +37,7 @@ export class RentalService {
             startDate,
             endDate,
             totalPrice,
+            status: 'on_payment',
         });
 
         return this.rentalRepository.save(rental);
@@ -58,6 +65,32 @@ export class RentalService {
 
         rental.bike.availability_status = 'available';
         await this.bikeRepository.save(rental.bike);
+
+        return rental;
+    }
+
+    async activateRental(id: number): Promise<Rental> {
+        const rental = await this.rentalRepository.findOne({
+            where: { id },
+            relations: ['bike'],
+        });
+
+        if (!rental) {
+            throw new NotFoundException(`Rental with ID ${id} not found`);
+        }
+
+        if (!rental.bike) {
+            throw new NotFoundException(`Bike associated with rental ID ${id} not found`);
+        }
+
+        rental.status = 'active';
+        await this.rentalRepository.save(rental);
+
+        // Если требуется, можно обновить статус велосипеда.
+        // Например, если активная аренда подразумевает, что велосипед уже используется,
+        // его статус может оставаться 'unavailable'.
+        // rental.bike.availability_status = 'unavailable';
+        // await this.bikeRepository.save(rental.bike);
 
         return rental;
     }

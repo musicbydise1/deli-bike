@@ -37,25 +37,31 @@ let BikeService = class BikeService {
     async findAll() {
         return this.bikeRepository.find({
             where: { availability_status: 'available' },
-            relations: ['prices', 'prices.priceCategory'],
+            relations: ['prices', 'prices.priceCategory', 'accessories'],
         });
     }
     async findOneById(id) {
         return this.bikeRepository.findOne({
             where: { id },
-            relations: ['prices', 'prices.priceCategory'],
+            relations: ['prices', 'prices.priceCategory', 'accessories'],
         });
     }
     async createBike(bikeData) {
+        console.log('BikeService.createBike, bikeData:', bikeData);
         const { prices } = bikeData, bikeDetails = __rest(bikeData, ["prices"]);
+        console.log('Получены цены:', prices);
         const bike = this.bikeRepository.create(bikeDetails);
         const savedBike = await this.bikeRepository.save(bike);
+        console.log('BikeService.createBike, prices:', bikeData.prices);
         if (prices && prices.length > 0) {
-            const bikePrices = prices.map((price) => this.bikePriceRepository.create({
-                bike: savedBike,
-                priceCategory: { id: price.categoryId },
-                price: price.price,
-            }));
+            const bikePrices = prices.map((price) => {
+                console.log('Создаем цену для:', price);
+                return this.bikePriceRepository.create({
+                    bike: savedBike,
+                    priceCategory: { id: price.categoryId },
+                    price: price.price,
+                });
+            });
             await this.bikePriceRepository.save(bikePrices);
         }
         return savedBike;

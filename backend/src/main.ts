@@ -1,30 +1,36 @@
-import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express'; // Импортируем NestExpressApplication
 import { AppModule } from './app.module';
-import { ClassSerializerInterceptor } from '@nestjs/common';
+import { ValidationPipe, ClassSerializerInterceptor } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { join } from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create<NestExpressApplication>(AppModule); // Указываем тип приложения
 
-  // Включение глобальной валидации
-  app.useGlobalPipes(
-      new ValidationPipe({
-        transform: true,
-        whitelist: true, // Убирает лишние поля из входных данных
-        forbidNonWhitelisted: true, // Запрещает неразрешённые поля
-      }),
-  );
+    // Включение глобальной валидации
+    app.useGlobalPipes(
+        new ValidationPipe({
+            transform: true,
+            whitelist: true,
+            // forbidNonWhitelisted: false,
+            // transformOptions: { enableImplicitConversion: true }, // excludeExtraneousValues не указываем
+        }),
+    );
 
-  // Включение CORS
-  app.enableCors({
-    origin: 'http://localhost:3000', // URL вашего фронтенда
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Разрешенные HTTP-методы
-    credentials: true, // Для работы с куки (если нужно)
-  });
+    // Включение CORS
+    app.enableCors({
+        origin: 'http://localhost:3000',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+    });
 
     app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
+    // Настройка статической выдачи файлов из папки uploads
+    app.useStaticAssets(join(__dirname, '..', 'uploads'), {
+        prefix: '/uploads/',
+    });
 
     await app.listen(4000);
 }

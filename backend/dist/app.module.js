@@ -14,6 +14,7 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const typeorm_service_1 = require("./database/typeorm/typeorm.service");
 const api_module_1 = require("./api/api.module");
+const platform_express_1 = require("@nestjs/platform-express");
 const config_2 = require("./config");
 let AppModule = class AppModule {
 };
@@ -22,6 +23,9 @@ AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot({ load: [config_2.configuration], isGlobal: true }),
             typeorm_1.TypeOrmModule.forRootAsync({ useClass: typeorm_service_1.TypeOrmConfigService }),
+            platform_express_1.MulterModule.register({
+                dest: './uploads',
+            }),
             api_module_1.ApiModule,
         ],
         controllers: [app_controller_1.AppController],

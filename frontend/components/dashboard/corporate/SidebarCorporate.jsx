@@ -11,9 +11,15 @@ const corporateTabs = [
     },
     {
         key: "rent",
-        label: "Аренда",
+        label: "Заказы",
         icon: "/images/icons/dash2.svg",
     },
+    {
+        key: "couriers",
+        label: "Курьеры",
+        icon: "/images/icons/dash2.svg",
+    },
+
     {
         key: "profile",
         label: "Профиль",

@@ -8,6 +8,7 @@ export declare class RentalService {
     constructor(rentalRepository: Repository<Rental>, bikeRepository: Repository<Bike>);
     createRental(createRentalDto: CreateRentalDto): Promise<Rental>;
     completeRental(id: number): Promise<Rental>;
+    activateRental(id: number): Promise<Rental>;
     getAllRentals(): Promise<Rental[]>;
     getActiveRentals(): Promise<Rental[]>;
     getRentalsByUser(userId: number): Promise<Rental[]>;

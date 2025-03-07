@@ -267,7 +267,7 @@ export default function ListingMap1() {
                   <div className="content">
                     <h3>
                       <Link
-                        href={`/inventory-page-single-v1/${getLocation.id}`}
+                        href={`/bike/${getLocation.id}`}
                       >
                         {getLocation.title}
                       </Link>

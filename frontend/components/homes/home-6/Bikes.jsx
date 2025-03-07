@@ -80,7 +80,7 @@ export default function Bikes() {
             <div className="boxcar-container">
                 <div className="boxcar-title wow fadeInUp">
                     <h2>Электровелосипеды для Аренды</h2>
-                    <Link href={`/inventory-list-01`} className="btn-title">
+                    <Link href={`/bikes`} className="btn-title">
                         Посмотреть
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +130,7 @@ export default function Bikes() {
                                 <div className="inner-box">
                                     <div className="image-box">
                                         <figure className="image">
-                                            <Link href={`/inventory-page-single-v1/${elm.id}`}>
+                                            <Link href={`/bike/${elm.id}`}>
                                                 <Image
                                                     alt=""
                                                     src={elm.images[0]}
@@ -163,7 +163,7 @@ export default function Bikes() {
                                     </div>
                                     <div className={`content-box v${[2, 4, 3, 4][i]}`}>
                                         <h6 className="title">
-                                            <Link href={`/inventory-page-single-v1/${elm.id}`}>
+                                            <Link href={`/bike/${elm.id}`}>
                                                 {elm.title}
                                             </Link>
                                         </h6>
@@ -181,7 +181,7 @@ export default function Bikes() {
                                         </div>
                                         <div className="btn-box">
                                             <Link
-                                                href={`/inventory-page-single-v1/${elm.id}`}
+                                                href={`/bike/${elm.id}`}
                                                 className="details"
                                             >
                                                 Заказать

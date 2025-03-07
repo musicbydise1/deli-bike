@@ -17,5 +17,11 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
-  }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "files": [
+    "src/database/migration/history/1740727593705-AddAccessoriesVacanciesTariffs.ts"
+  ]
 }

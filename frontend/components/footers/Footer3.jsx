@@ -123,11 +123,11 @@ export default function Footer3({
         <div className="boxcar-container">
           <div className="inner-container">
             <div className="copyright-text wow fadeInUp">
-              © <a href="#">2024 DeliBike. Все права защищены.</a>
+              © <a href="#">2025 DeliBike. Все права защищены.</a>
             </div>
             <ul className="footer-nav wow fadeInUp" data-wow-delay="100ms">
               <li>
-                <a href="#">Политика конфиденциальности</a>
+                <a href="/terms">Политика конфиденциальности</a>
               </li>
               <li>
                 <a href="#"></a>

@@ -38,6 +38,11 @@ export class RentalController {
         return this.rentalService.getUserRentalHistory(userId);
     }
 
+    @Patch(':id/activate')
+    async activateRental(@Param('id', ParseIntPipe) id: number): Promise<Rental> {
+        return this.rentalService.activateRental(id);
+    }
+
     @Patch(':id/cancel')
     async cancelRental(@Param('id') id: number): Promise<Rental> {
         return this.rentalService.cancelRental(id);

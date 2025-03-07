@@ -18,17 +18,23 @@ export default function UserModal({
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Собираем данные формы и вызываем onSave
-        onSave({
+        // Собираем данные формы
+        const payload = {
             id: currentUser.id,
             firstName: currentUser.firstName,
             lastName: currentUser.lastName,
             email: currentUser.email,
             phoneNumber: currentUser.phoneNumber,
-            // Передаём пароль, если он введён
             password: currentUser.password,
             role: currentUser.role,
-        });
+        };
+
+        // Если выбрана роль corporate, добавляем companyName
+        if (currentUser.role === "corporate") {
+            payload.companyName = currentUser.companyName;
+        }
+
+        onSave(payload);
     };
 
     return (
@@ -99,6 +105,18 @@ export default function UserModal({
                             ))}
                         </select>
                     </div>
+                    {/* Если выбрана роль "corporate", показываем поле для ввода названия компании */}
+                    {currentUser.role === "corporate" && (
+                        <div className="modal-form-row">
+                            <label>Название компании:</label>
+                            <input
+                                type="text"
+                                value={currentUser.companyName || ""}
+                                onChange={(e) => handleChange("companyName", e.target.value)}
+                                required
+                            />
+                        </div>
+                    )}
                     <div className="modal-buttons">
                         <Button type="submit" variant="primary">
                             {isEditMode ? "Сохранить изменения" : "Добавить"}
@@ -110,56 +128,56 @@ export default function UserModal({
                 </form>
             </div>
             <style jsx>{`
-        .modal-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.5);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          z-index: 1000;
-        }
-        .modal-user {
-          background: #fff;
-          padding: 2rem;
-          border-radius: 8px;
-          width: 90%;
-          max-width: 500px;
-          max-height: 80vh; /* Ограничиваем максимальную высоту */
-          overflow-y: auto; /* Включаем вертикальную прокрутку, если контент превышает max-height */
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-          z-index: 1001;
-        }
-        .modal-form {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-        .modal-form-row {
-          display: flex;
-          flex-direction: column;
-        }
-        .modal-form-row label {
-          margin-bottom: 0.5rem;
-          font-weight: 600;
-        }
-        .modal-form-row input,
-        .modal-form-row select {
-          padding: 0.5rem;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          font-size: 1rem;
-        }
-        .modal-buttons {
-          display: flex;
-          justify-content: flex-end;
-          gap: 1rem;
-          margin-top: 1rem;
-        }
-      `}</style>
+                .modal-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 1000;
+                }
+                .modal-user {
+                    background: #fff;
+                    padding: 2rem;
+                    border-radius: 8px;
+                    width: 90%;
+                    max-width: 500px;
+                    max-height: 80vh; /* Ограничиваем максимальную высоту */
+                    overflow-y: auto; /* Вертикальная прокрутка при необходимости */
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                    z-index: 1001;
+                }
+                .modal-form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+                .modal-form-row {
+                    display: flex;
+                    flex-direction: column;
+                }
+                .modal-form-row label {
+                    margin-bottom: 0.5rem;
+                    font-weight: 600;
+                }
+                .modal-form-row input,
+                .modal-form-row select {
+                    padding: 0.5rem;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-size: 1rem;
+                }
+                .modal-buttons {
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 1rem;
+                    margin-top: 1rem;
+                }
+            `}</style>
         </div>
     );
 }

@@ -6,7 +6,7 @@ export class Init1683977309684 implements MigrationInterface {
         await queryRunner.query(`CREATE TYPE "user_status_enum" AS ENUM('active', 'suspended', 'deleted')`);
         await queryRunner.query(`CREATE TYPE "user_payment_status_enum" AS ENUM('pending', 'completed', 'failed')`);
         await queryRunner.query(`CREATE TYPE "availability_status_enum" AS ENUM('available', 'unavailable', 'rented', 'maintenance')`);
-        await queryRunner.query(`CREATE TYPE "rental_status_enum" AS ENUM('active', 'completed', 'cancelled')`);
+        await queryRunner.query(`CREATE TYPE "rental_status_enum" AS ENUM('on_payment', 'active', 'completed', 'cancelled')`);
         await queryRunner.query(`CREATE TYPE "payment_status_enum" AS ENUM('pending', 'completed', 'failed')`);
         await queryRunner.query(`CREATE TYPE "maintenance_status_enum" AS ENUM('scheduled', 'in_progress', 'completed')`);
 
@@ -17,7 +17,7 @@ export class Init1683977309684 implements MigrationInterface {
         "lastName" character varying(255), 
         "patronymic" character varying(255), 
         "email" character varying(120) NOT NULL, 
-        "password" character varying NOT NULL, 
+        "password" character varying, 
         "phoneNumber" character varying(20), 
         "companyName" character varying(255), 
         "iin" character varying(12) UNIQUE, 
@@ -48,6 +48,7 @@ export class Init1683977309684 implements MigrationInterface {
             "model" character varying(255) NOT NULL,
             "description" text,
             "availability_status" "availability_status_enum" NOT NULL DEFAULT 'available',
+            "stock" integer NOT NULL DEFAULT 0,
             "max_speed" decimal(10, 2) NOT NULL,
             "range_per_charge" decimal(10, 2) NOT NULL,
             "charge_time" character varying(255) NOT NULL,
@@ -88,7 +89,7 @@ export class Init1683977309684 implements MigrationInterface {
             "start_date" TIMESTAMP NOT NULL,
             "end_date" TIMESTAMP NOT NULL,
             "total_price" decimal(10, 2) NOT NULL,
-            "status" "rental_status_enum" NOT NULL DEFAULT 'active',
+            "status" "rental_status_enum" NOT NULL DEFAULT 'on_payment',
             "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
             "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
             CONSTRAINT "PK_rental_id" PRIMARY KEY ("id"),
@@ -193,6 +194,10 @@ export class Init1683977309684 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE "role"`);
         await queryRunner.query(`DROP TYPE "user_status_enum"`);
         await queryRunner.query(`DROP TYPE "user_payment_status_enum"`);
+        await queryRunner.query(`DROP TYPE "availability_status_enum"`);
+        await queryRunner.query(`DROP TYPE "rental_status_enum"`);
+        await queryRunner.query(`DROP TYPE "payment_status_enum"`);
+        await queryRunner.query(`DROP TYPE "maintenance_status_enum"`);
     }
 
 }

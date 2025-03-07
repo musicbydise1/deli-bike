@@ -13,11 +13,16 @@ const admin_service_1 = require("./services/admin.service");
 const admin_controller_1 = require("./controllers/admin.controller");
 const user_entity_1 = require("../../database/entities/user.entity");
 const bike_entity_1 = require("../bike/entities/bike.entity");
+const rental_entity_1 = require("../rental/entities/rental.entity");
+const role_module_1 = require("../role/role.module");
 let AdminModule = class AdminModule {
 };
 AdminModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, bike_entity_1.Bike])],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, bike_entity_1.Bike, rental_entity_1.Rental]),
+            role_module_1.RoleModule,
+        ],
         controllers: [admin_controller_1.AdminController],
         providers: [admin_service_1.AdminService],
     })

@@ -29,13 +29,13 @@ export default function Dealer() {
 
                 <div className="content-box">
                   <h6 className="title">
-                    <Link href={`/dealer-single/${vacancy.id}`}>
+                    <Link href={`/vacancy-single/${vacancy.id}`}>
                       {vacancy.title}
                     </Link>
                   </h6>
                   <div className="text">{vacancy.location}</div>
                   <Link
-                    href={`/dealer-single/${vacancy.id}`}
+                    href={`/vacancy-single/${vacancy.id}`}
                     className="deal-btn"
                   >
                     Подробнее

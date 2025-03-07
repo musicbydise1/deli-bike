@@ -4,21 +4,24 @@ import React, { useState } from "react";
 import SidebarCorporate from "./SidebarCorporate";
 
 // Импортируем табы
-import DashboardTab from "./tabs/DashboardTab";
+import DashboardTab from "./tabs/dashboard/DashboardTab";
 import RentTab from "./tabs/RentTab";
 import ProfileTab from "./tabs/ProfileTab";
 import RentPolicyTab from "./tabs/RentPolicyTab";
 import ReturnPolicyTab from "./tabs/ReturnPolicyTab";
 import RenterResponsibilityTab from "./tabs/RenterResponsibilityTab";
-import SupportTab from "./tabs/SupportTab";
+import SupportTab from "./tabs/support/SupportTab";
+import CouriersTab from "@/components/dashboard/corporate/tabs/CouriersTab";
+import {useRouter} from "next/navigation";
 
 export default function DashboardCorporate() {
   const [activeTab, setActiveTab] = useState("dashboard");
+  const router = useRouter();
 
   // Логика выхода
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
-    window.location.href = "/login"; // или router.push("/login");
+    router.push("/other-login");
   };
 
   // Определяем, что рендерить
@@ -28,6 +31,8 @@ export default function DashboardCorporate() {
         return <DashboardTab />;
       case "rent":
         return <RentTab />;
+      case "couriers":
+        return <CouriersTab />;
       case "profile":
         return <ProfileTab />;
       case "rentPolicy":

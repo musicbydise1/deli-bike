@@ -2,6 +2,7 @@ import { Controller, Get, Patch, Post, Delete, Param, Body } from '@nestjs/commo
 import { AdminService } from '../services/admin.service';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { CreateBikeDto } from '../dto/create-bike.dto';
+import { CreateUserDto } from '../dto/create-user.dto';
 import { User } from '../../../database/entities/user.entity';
 import { Bike } from '../../bike/entities/bike.entity';
 
@@ -12,6 +13,11 @@ export class AdminController {
     @Get('/users')
     async getAllUsers(): Promise<User[]> {
         return this.adminService.getAllUsers();
+    }
+
+    @Post('/users')
+    async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
+        return this.adminService.createUser(createUserDto);
     }
 
     @Patch('/users/:id')

@@ -10,6 +10,7 @@ import Button from "@/components/ui/button/Button"; // Предположим, �
 export default function Cart() {
   const { t } = useTranslation(); // Хук для получения перевода
   const { cartProducts, setCartProducts, totalPrice } = useContextElement();
+  console.log(cartProducts);
 
   const setQuantity = (id, quantity) => {
     if (quantity >= 1) {
@@ -64,16 +65,16 @@ export default function Cart() {
                                       alt=""
                                       width={80}
                                       height={80}
-                                      src={elm.imgSrc}
+                                      src={elm.imageUrls[0]}
                                   />
                                 </div>
                                 <div className="shop-product-cart-info">
                                   <h3>
                                     <Link
-                                        href={`/shop-single/${elm.id}`}
+                                        href={`/bike/${elm.id}`}
                                         title=""
                                     >
-                                      {elm.title}
+                                      {elm.name} {elm.model}
                                     </Link>
                                   </h3>
                                 </div>
@@ -81,7 +82,7 @@ export default function Cart() {
                             </td>
                             <td>
                           <span className="price">
-                            ${elm.discountedPrice}
+                            {elm.price.toLocaleString("ru-RU")} ₸
                           </span>
                             </td>
                             <td>
@@ -114,7 +115,7 @@ export default function Cart() {
                             </td>
                             <td>
                           <span className="price">
-                            ${elm.discountedPrice * elm.quantity}
+                            {(elm.price * elm.quantity).toLocaleString("ru-RU")} ₸
                           </span>
                             </td>
                             <td>
@@ -134,7 +135,7 @@ export default function Cart() {
                       <div className="col-6">{t("cart.emptyMessage")}</div>
                       <div className="col-12">
                         <Link
-                            href="/inventory-list-01"
+                            href="/bikes"
                             title=""
                             className="mt-4"
                         >
@@ -153,15 +154,15 @@ export default function Cart() {
                   <tbody>
                   <tr>
                     <th>{t("cart.subtotal")}</th>
-                    <td>${totalPrice}</td>
+                    <td>{totalPrice.toLocaleString("ru-RU")} ₸</td>
                   </tr>
                   <tr>
                     <th>{t("cart.total")}</th>
-                    <td>${totalPrice ? totalPrice + 20 : 0}</td>
+                    <td>{(totalPrice ? totalPrice + 20 : 0).toLocaleString("ru-RU")} ₸</td>
                   </tr>
                   </tbody>
                 </table>
-                <Link href="/checkout" title="">
+                <Link href="/checkout/" title="">
                   <Button className="!ml-0 w-full">
                   {t("cart.proceedToCheckout")}{" "}
                   </Button>

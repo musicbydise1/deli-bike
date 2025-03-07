@@ -9,5 +9,6 @@ import { Bike } from '../bike/entities/bike.entity';
     imports: [TypeOrmModule.forFeature([Rental, Bike])],
     controllers: [RentalController],
     providers: [RentalService],
+    exports: [TypeOrmModule],
 })
 export class RentalModule {}

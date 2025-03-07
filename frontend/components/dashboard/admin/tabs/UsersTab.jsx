@@ -7,7 +7,7 @@ import UsersTable from "./users/UsersTable";
 import UserModal from "./users/UserModal";
 import ErrorMessage from "./users/ErrorMessage";
 
-const AVAILABLE_ROLES = ["user", "admin", "courier"];
+const AVAILABLE_ROLES = ["corporate", "admin", "courier"];
 
 export default function UsersTab() {
     const [users, setUsers] = useState([]);
@@ -23,7 +23,8 @@ export default function UsersTab() {
         lastName: "",
         email: "",
         phoneNumber: "",
-        role: "user", // по умолчанию
+        companyName: "",
+        role: "corporate", // по умолчанию
     });
 
     // Получаем список пользователей при монтировании
@@ -60,7 +61,8 @@ export default function UsersTab() {
             lastName: "",
             email: "",
             phoneNumber: "",
-            role: "user",
+            companyName: "",
+            role: "corporate",
         });
         setShowModal(true);
     };
@@ -73,6 +75,7 @@ export default function UsersTab() {
             lastName: user.lastName || "",
             email: user.email || "",
             phoneNumber: user.phoneNumber || "",
+            companyName: user.companyName || "",
             role: user.role || "user",
         });
         setShowModal(true);
@@ -166,17 +169,17 @@ export default function UsersTab() {
                 />
             )}
             <style jsx>{`
-        .tab-content {
-          padding: 2rem;
-          background: #fff;
-          border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        h3 {
-          margin-bottom: 1rem;
-        }
-      `}</style>
+                .tab-content {
+                    padding: 2rem;
+                    background: #fff;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                }
+                h3 {
+                    margin-bottom: 1rem;
+                }
+            `}</style>
         </div>
     );
 }

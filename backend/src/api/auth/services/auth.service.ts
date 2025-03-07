@@ -14,12 +14,24 @@ import { RoleService } from 'src/api/role/services/role.service';
 import * as TelegramBot from 'node-telegram-bot-api';
 
 
+interface ConversationState {
+  step: string;
+  phoneNumber?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  photoIdFront?: string;
+  photoIdBack?: string;
+}
+
+
 @Injectable()
 export class AuthService {
   // In-memory хранилище для SMS-кодов: { phone: { code, expires } }
   private codes: Map<string, { code: string; expires: number }> = new Map();
 
   private telegramBot: TelegramBot;
+  private conversationState: Map<string, ConversationState> = new Map();
 
   constructor(
       private readonly userService: UserService,
@@ -32,22 +44,114 @@ export class AuthService {
     this.telegramBot = new TelegramBot(telegramToken, { polling: true });
 
     this.telegramBot.on('message', async (msg) => {
-      if (msg.text && msg.text.startsWith('/start')) {
-        const chatId = msg.chat.id.toString();
-        // Ожидаем, что после /start через пробел передается номер телефона
-        const parts = msg.text.split(' ');
-        if (parts.length < 2) {
-          await this.telegramBot.sendMessage(chatId, 'Пожалуйста, передайте ваш номер телефона, например: /start +79161234567');
+      const chatId = msg.chat.id.toString();
+      const text = msg.text ? msg.text.trim() : '';
+
+      // Если получена команда /start
+      if (text === '/start') {
+        // Сбрасываем состояние для данного чата
+        this.conversationState.delete(chatId);
+        await this.telegramBot.sendMessage(chatId, 'Добро пожаловать! Введите, пожалуйста, ваш номер телефона:');
+        this.conversationState.set(chatId, { step: 'awaitingPhone' });
+        return;
+      }
+
+      // Если ожидаем номер телефона
+      const state = this.conversationState.get(chatId);
+      if (state && state.step === 'awaitingPhone') {
+        const phoneNumber = text;
+        try {
+          const user = await this.userService.findByPhone(phoneNumber);
+          if (user) {
+            await this.telegramBot.sendMessage(chatId, 'Вы уже зарегистрированы.');
+            this.conversationState.delete(chatId);
+          } else {
+            await this.telegramBot.sendMessage(chatId, 'Пользователь не найден. Для регистрации введите команду /register.');
+            this.conversationState.set(chatId, { step: 'awaitingRegistration', phoneNumber });
+          }
+        } catch (error) {
+          await this.telegramBot.sendMessage(chatId, 'Ошибка при проверке номера. Попробуйте ещё раз.');
+        }
+        return;
+      }
+
+      // Если получена команда /register
+      if (text === '/register') {
+        const regState = this.conversationState.get(chatId);
+        if (!regState || regState.step !== 'awaitingRegistration') {
+          await this.telegramBot.sendMessage(chatId, 'Сначала введите номер телефона через /start.');
           return;
         }
-        const phoneNumber = parts[1].trim();
-        try {
-          // Вызываем метод сервиса, который обновляет пользователя по номеру телефона и сохраняет chatId
-          await this.userService.updateUserTelegramChatId(phoneNumber, chatId);
-          await this.telegramBot.sendMessage(chatId, 'Ваш Telegram чат успешно привязан к аккаунту.');
-        } catch (error) {
-          await this.telegramBot.sendMessage(chatId, 'Ошибка при привязке Telegram чата. Проверьте правильность номера.');
+        await this.telegramBot.sendMessage(chatId, 'Введите ваше имя:');
+        regState.step = 'awaitingFirstName';
+        this.conversationState.set(chatId, regState);
+        return;
+      }
+
+      // Если идёт процесс регистрации
+      if (state) {
+        if (state.step === 'awaitingFirstName') {
+          state.firstName = text;
+          state.step = 'awaitingLastName';
+          this.conversationState.set(chatId, state);
+          await this.telegramBot.sendMessage(chatId, 'Введите вашу фамилию:');
+          return;
         }
+        if (state.step === 'awaitingLastName') {
+          state.lastName = text;
+          state.step = 'awaitingEmail';
+          this.conversationState.set(chatId, state);
+          await this.telegramBot.sendMessage(chatId, 'Введите ваш email:');
+          return;
+        }
+        if (state.step === 'awaitingEmail') {
+          state.email = text;
+          state.step = 'awaitingPhotoIdFront';
+          this.conversationState.set(chatId, state);
+          await this.telegramBot.sendMessage(chatId, 'Отправьте фотографию удостоверения (передняя сторона):');
+          return;
+        }
+      }
+
+      // Если ожидается фото передней стороны удостоверения
+      if (state && state.step === 'awaitingPhotoIdFront' && msg.photo) {
+        // Выбираем самое большое фото из массива
+        const photo = msg.photo[msg.photo.length - 1];
+        state.photoIdFront = photo.file_id;
+        state.step = 'awaitingPhotoIdBack';
+        this.conversationState.set(chatId, state);
+        await this.telegramBot.sendMessage(chatId, 'Отправьте фотографию удостоверения (задняя сторона):');
+        return;
+      }
+
+      // Если ожидается фото задней стороны удостоверения
+      // Если ожидается фото задней стороны удостоверения
+      if (state && state.step === 'awaitingPhotoIdBack' && msg.photo) {
+        const photo = msg.photo[msg.photo.length - 1];
+        state.photoIdBack = photo.file_id;
+        // Формируем данные для регистрации с дополнительными полями
+        const registerDto: RegisterDto = {
+          phoneNumber: state.phoneNumber,
+          firstName: state.firstName,
+          lastName: state.lastName,
+          patronymic: '', // если не требуется, можно оставить пустым
+          email: state.email,
+          idCardFrontImage: state.photoIdFront,
+          idCardBackImage: state.photoIdBack,
+          code: '',      // значение по умолчанию
+          role: 'courier',  // значение по умолчанию или другое, подходящее вашему приложению
+          iin: chatId
+        };
+        try {
+          // Вызываем метод регистрации
+          const tokenData = await this.register(registerDto);
+          await this.telegramBot.sendMessage(chatId, 'Регистрация прошла успешно!');
+        } catch (error) {
+          await this.telegramBot.sendMessage(chatId, `Ошибка регистрации: ${error.message}`);
+        }
+        // Сбрасываем состояние для данного чата
+        this.conversationState.delete(chatId);
+        return;
       }
     });
 
@@ -127,15 +231,13 @@ export class AuthService {
    * - photoIdBack: string (ссылка или base64)
    */
   async register(registerDto: RegisterDto) {
-    const { phoneNumber } = registerDto; // поле code исключено из регистрации
-
-    // Проверяем, существует ли уже пользователь с таким номером телефона
+    const { phoneNumber } = registerDto;
     const existingUser = await this.userService.findByPhone(phoneNumber);
     if (existingUser) {
       throw new ConflictException(errorMessages.auth.userAlreadyExist);
     }
 
-    // Создаём нового пользователя (без поля code)
+    // Передаем chatId (например, registerDto.iin) при создании пользователя
     const newUser = await this.userService.createUser({
       phoneNumber,
       firstName: registerDto.firstName,
@@ -144,9 +246,10 @@ export class AuthService {
       email: registerDto.email,
       photoIdFront: registerDto.idCardFrontImage,
       photoIdBack: registerDto.idCardBackImage,
+      iin: registerDto.iin, // сохраняем Telegram chatId, если поле называется "iin"
     });
 
-    // Получаем роль "courier" (например, если роль "courier" имеет id = 1)
+    // Получаем роль "courier"
     const courierRole = await this.roleService.findById(1);
     if (!courierRole) {
       throw new NotFoundException('Роль "courier" не найдена');
@@ -160,6 +263,7 @@ export class AuthService {
 
     return this.generateToken({ id: newUser.id, phone: newUser.phoneNumber });
   }
+
 
   /**
    * Генерация JWT-токена.

@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BikePrice = void 0;
 const typeorm_1 = require("typeorm");
 const bike_entity_1 = require("./bike.entity");
-const price_category_entity_1 = require("./price_category.entity");
+const price_category_entity_1 = require("../../price-category/entities/price-category.entity");
 let BikePrice = class BikePrice {
 };
 __decorate([

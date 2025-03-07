@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/ui/button/Button";
 import Link from "next/link";
@@ -9,6 +9,13 @@ export default function CorporateLogin() {
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    // useEffect(() => {
+    //     const userRole = localStorage.getItem("userRole");
+    //     if (userRole !== "admin" || userRole !== "corporate") {
+    //         router.push("/login");
+    //     }
+    // }, [router]);
 
     const handleCorporateLogin = async (e) => {
         e.preventDefault();

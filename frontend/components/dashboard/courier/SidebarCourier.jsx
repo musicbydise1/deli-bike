@@ -12,7 +12,7 @@ const courierTabs = [
     },
     {
         key: "rent",
-        label: "Аренда",
+        label: "Заказы",
         icon: "/images/icons/dash2.svg",
     },
     {

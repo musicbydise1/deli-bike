@@ -103,7 +103,7 @@ export default function RelatedCars() {
                 >
                   <div className="slider-thumb">
                     <div className="image">
-                      <Link href={`/inventory-page-single-v1/${car.id}`}>
+                      <Link href={`/bike/${car.id}`}>
                         <Image
                           alt=""
                           src={car.images[1]}
@@ -115,7 +115,7 @@ export default function RelatedCars() {
                   </div>
                   {car.badge && <span>{car.badge}</span>}
                   <Link
-                    href={`/inventory-page-single-v1/${car.id}`}
+                    href={`/bike/${car.id}`}
                     title=""
                     className="icon-box"
                   >

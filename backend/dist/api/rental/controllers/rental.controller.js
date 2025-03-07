@@ -39,6 +39,9 @@ let RentalController = class RentalController {
     async getUserRentalHistory(userId) {
         return this.rentalService.getUserRentalHistory(userId);
     }
+    async activateRental(id) {
+        return this.rentalService.activateRental(id);
+    }
     async cancelRental(id) {
         return this.rentalService.cancelRental(id);
     }
@@ -89,6 +92,13 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], RentalController.prototype, "getUserRentalHistory", null);
+__decorate([
+    (0, common_1.Patch)(':id/activate'),
+    __param(0, (0, common_1.Param)('id', common_2.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], RentalController.prototype, "activateRental", null);
 __decorate([
     (0, common_1.Patch)(':id/cancel'),
     __param(0, (0, common_1.Param)('id')),

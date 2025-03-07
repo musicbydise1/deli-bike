@@ -4,10 +4,12 @@ import {
     Column,
     CreateDateColumn,
     UpdateDateColumn,
-    OneToMany
+    OneToMany, ManyToMany
 } from 'typeorm';
 
 import { BikePrice } from './bike_price.entity';
+import { Accessory } from '../../accessories/entities/accessory.entity';
+import { Tariff } from '../../tariffs/entities/tariff.entity';
 
 @Entity('bike')
 export class Bike {
@@ -55,11 +57,20 @@ export class Bike {
     @Column({ name: 'image_urls', type: 'text', array: true, default: '{}' })
     imageUrls: string[];
 
+    @Column({ name: 'stock', type: 'integer', nullable: true })
+    stock?: number;
+
     @Column({ name: 'tags', type: 'text', array: true, default: '{}' })
     tags: string[];
 
     @OneToMany(() => BikePrice, (bikePrice) => bikePrice.bike, { cascade: true })
     prices: BikePrice[];
+
+    @OneToMany(() => Accessory, (accessory) => accessory.bike)
+    accessories: Accessory[];
+
+    @OneToMany(() => Tariff, tariff => tariff.bike)
+    tariffs: Tariff[];
 
 
     @CreateDateColumn({ name: 'createdAt', type: 'timestamp' })

@@ -136,8 +136,6 @@ body {
   -moz-font-smoothing: antialiased;
   color: var(--text-color);
   font-size: var(--body-font-size);
-  /*font-family: var(--text-font);*/
-  /*font-weight: var(--body-font-weight);*/
   line-height: var(--body-line-height);
   font-family: var(--title-font);
   font-weight: 400; /* Используйте вес из диапазона 100–900 */
@@ -1169,6 +1167,7 @@ Scroll To Top style
 .boxcar-title-three h2 {
   margin-bottom: 36px;
   font-weight: 700;
+  text-transform:uppercase;
 }
 
 .boxcar-title-three .text {
@@ -10142,6 +10141,72 @@ a
   width: 100%;
 }
 
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.select-wrapper select {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 8px 16px;
+  border: 1px solid #f6f6f6;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 500;
+  background: #f6f6f6;
+}
+
+.select-wrapper .icon {
+  position: absolute;
+  top: 45%;
+  right: 16px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 20px;
+  color: #555;
+}
+
+.specs-list {
+  list-style: none; /* Убираем маркеры списка */
+  padding: 0; /* Убираем внутренние отступы */
+  margin: 0; /* Убираем внешние отступы */
+}
+
+.spec-item {
+  display: block !important; /* Делаем строки горизонтальными */
+  justify-content: space-between; /* Разделяем текст слева и справа */
+  align-items: center; /* Выравниваем по вертикали */
+  padding: 8px 0; /* Отступы сверху и снизу для каждой строки */
+  font-size: 16px; /* Размер текста */
+  border-bottom: 1px solid #f1f1f1; /* Разделительная линия */
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.spec-item:last-child {
+  border-bottom: none; /* Убираем линию у последнего элемента */
+}
+
+.spec-title {
+  font-weight: 500; /* Жирный текст для заголовка */
+  color: #333; /* Темный цвет текста */
+  text-align: left; /* Выравнивание текста по левому краю */
+  flex: 1; /* Заголовок занимает все доступное пространство слева */
+}
+
+.spec-value {
+  font-weight: 400; /* Обычный текст для значения */
+  color: #666; /* Серый цвет текста */
+  text-align: right !important; /* Выравнивание текста по правому краю */
+  flex: 1; /* Значение занимает все доступное пространство справа */
+  white-space: nowrap; /* Предотвращает перенос текста на следующую строку */
+  float: right;
+}
+
 .car-block-three .inner-box .image-box .image {
   width: 100%;
   border-radius: 15px 15px 0px 0px;
@@ -10159,10 +10224,10 @@ a
   left: 20px;
   font-size: 14px;
   background-color: var(--theme-color1);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--theme-color-light);
-  padding: 6px 16px 6px;
-  border-radius: 50px;
+  padding: 0 15px;
+  border-radius: 6px;
 }
 
 .car-block-three .inner-box .image-box .icon-box {
@@ -14023,7 +14088,7 @@ a
 .payment-options {
   padding: 30px;
   border: 1px solid #e1e1e1;
-  border-radius: 16px;
+  border-radius: 8px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
@@ -22218,11 +22283,11 @@ Chat Widget
 }
 
 .uii-item {
-  border-radius: 16px;
-  height: 170px;
+  border-radius: 8px;
+  height: 150px;
   position: relative;
   border: 1px solid #e1e1e1;
-  padding: 0 30px;
+  padding: 5px 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -22232,7 +22297,7 @@ Chat Widget
   flex-direction: column;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: center;
+  justify-content: flex-start;
   /* Large devices */
 }
 
@@ -22244,10 +22309,10 @@ Chat Widget
 
 .uii-item .ui-icon {
   position: absolute;
-  top: 50%;
-  right: 30px;
-  width: 70px;
-  height: 70px;
+  top: 0;
+  right: -15px;
+  width: 40px;
+  height: 40px;
   background-color: #e9f2ff;
   border-radius: 50%;
   display: -webkit-box;
@@ -22276,8 +22341,7 @@ Chat Widget
 }
 
 .uii-item > span {
-  color: #050b20;
-  font-size: 15px;
+  font-size: 13px;
   margin-bottom: -5px;
 }
 
@@ -25679,11 +25743,11 @@ Chat Widget
 }
 
 .checkout-section .content-column .inner-column form .form_boxes {
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid rgb(225, 225, 225);
   background: var(--color-white, #fff);
-  padding: 7px 15px;
-  margin-bottom: 30px;
+  padding: 0 15px 7px;
+  margin-bottom: 15px;
 }
 
 .checkout-section .content-column .inner-column form .form_boxes textarea {
@@ -25739,7 +25803,7 @@ Chat Widget
 .checkout-section .content-column .inner-column form .form_boxes label {
   display: block;
   color: #818181;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -25795,7 +25859,7 @@ Chat Widget
 }
 
 .checkout-section .side-bar .order-box {
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid var(--Border, #e1e1e1);
   background: var(--theme-color-light);
   padding: 31px 30px 35px;
@@ -33694,8 +33758,10 @@ Chat Widget
 }
 
 .car-block-three.style-2 .inner-box {
-  border-radius: 15px;
+  border-radius: 10px;
   border: 1px solid rgba(225, 225, 225, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .car-block-three.style-2 .inner-box .image-box {
@@ -35007,6 +35073,12 @@ input[type="radio"] {
   transition: all 0.3s ease;
 }
 
+.cart-icon {
+  color: #080341;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
 .header-style-v9.fixed-header .navigation a,
 .header-style-v9.fixed-header .language-switcher .language-button,
 .header-style-v9.fixed-header .language-switcher .arrow-icon,
@@ -35014,7 +35086,9 @@ input[type="radio"] {
 .header-style-v9.fixed-header .location-switcher .arrow-icon,
 .header-style-v9.fixed-header .navigation span,
 .header-style-v9.fixed-header .nav-out-bar .icon-link,
-.header-style-v9.fixed-header .nav-out-bar .user-icon {
+.header-style-v9.fixed-header .nav-out-bar .user-icon,
+.header-style-v9.fixed-header .cart-icon,
+.header-style-v9.fixed-header .user-info{
   color: #fff !important;
 }
 
@@ -35028,4 +35102,10 @@ svg {
 
 /* Чтобы основной контент не «подпрыгивал» */
 .header-style-v9.fixed-header .inner-container {
+}
+
+.user-data {
+  padding: 20px 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
 }

@@ -7,7 +7,7 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 import { Bike } from './bike.entity';
-import { PriceCategory } from './price_category.entity';
+import { PriceCategory } from '../../price-category/entities/price-category.entity';
 
 @Entity('bike_price')
 export class BikePrice {

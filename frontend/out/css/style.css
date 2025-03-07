@@ -14023,7 +14023,7 @@ a
 .payment-options {
   padding: 30px;
   border: 1px solid #e1e1e1;
-  border-radius: 16px;
+  border-radius: 8px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
@@ -25739,7 +25739,7 @@ Chat Widget
 .checkout-section .content-column .inner-column form .form_boxes label {
   display: block;
   color: #818181;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -25795,7 +25795,7 @@ Chat Widget
 }
 
 .checkout-section .side-bar .order-box {
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid var(--Border, #e1e1e1);
   background: var(--theme-color-light);
   padding: 31px 30px 35px;

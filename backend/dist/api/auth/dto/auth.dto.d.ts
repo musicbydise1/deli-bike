@@ -5,6 +5,7 @@ export declare class RegisterDto {
     lastName: string;
     patronymic?: string;
     email: string;
+    password?: string;
     companyName?: string;
     iin?: string;
     idCardNumber?: string;

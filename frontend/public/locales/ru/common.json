@@ -2,8 +2,8 @@
   "login": "Войти",
   "dashboard": "Личный кабинет",
   "logout": "Выйти",
-  "my_orders": "Мои заказы",
-  "settings": "Настройки",
+  "my_orders": "Аренда",
+  "profile": "Профиль",
   "menu" : {
     "about": "О нас",
     "cooperation": "Сотрудничество",

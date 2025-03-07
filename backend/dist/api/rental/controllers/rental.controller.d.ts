@@ -10,6 +10,7 @@ export declare class RentalController {
     getActiveRentals(): Promise<Rental[]>;
     getRentalsByUser(userId: number): Promise<Rental[]>;
     getUserRentalHistory(userId: number): Promise<Rental[]>;
+    activateRental(id: number): Promise<Rental>;
     cancelRental(id: number): Promise<Rental>;
     getRentalById(id: number): Promise<Rental>;
     checkBikeAvailability(bikeId: number): Promise<boolean>;

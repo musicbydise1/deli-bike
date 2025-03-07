@@ -103,7 +103,7 @@ export const teamBlocks = [
 
 export const cars = [
   {
-    href: "/inventory-page-single-v1/1",
+    href: "/bike/1",
     src: "/images/resource/vehicles1-1.png",
     width: 250,
     height: 93,
@@ -138,7 +138,7 @@ export const cars = [
     name: "HRV",
   },
   {
-    href: "/inventory-page-single-v1/1",
+    href: "/bike/1",
     src: "/images/resource/vehicles1-1.png",
     width: 250,
     height: 93,

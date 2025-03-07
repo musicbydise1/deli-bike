@@ -83,7 +83,7 @@ export default function HeaderDashboard() {
                             .map((car) => (
                                 <li key={car.id}>
                                   <Link
-                                      href={`/inventory-page-single-v1/${car.id}`}
+                                      href={`/bike/${car.id}`}
                                       className="car-search-item"
                                   >
                                     <div className="box-img">
@@ -103,7 +103,7 @@ export default function HeaderDashboard() {
                             ))}
                       </ul>
                       <Link
-                          href={`/inventory-page-single-v1`}
+                          href={`/bike`}
                           className="btn-view-search"
                       >
                         Посмотреть детали

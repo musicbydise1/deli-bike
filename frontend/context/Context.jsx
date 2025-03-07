@@ -1,9 +1,6 @@
 "use client";
-import { products } from "@/data/products";
+import React, { useEffect, useState, useContext } from "react";
 
-// import { openCart } from "@/utlis/toggleCart";
-import React, { useEffect } from "react";
-import { useContext, useState } from "react";
 const dataContext = React.createContext();
 export const useContextElement = () => {
   return useContext(dataContext);
@@ -12,50 +9,70 @@ export const useContextElement = () => {
 export default function Context({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
   const [wishList, setWishList] = useState([1, 2, 3]);
-  const [quickViewItem, setQuickViewItem] = useState(products[0]);
+  const [quickViewItem, setQuickViewItem] = useState(null);
   const [quickAddItem, setQuickAddItem] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
+  // Состояние для продуктов, загруженных с API
+  const [products, setProducts] = useState([]);
+
+  // Загружаем продукты (велосипеды) с API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("http://localhost:4000/bikes/");
+        const json = await res.json();
+        const data = Array.isArray(json.data) ? json.data : [];
+        setProducts(data);
+        if (data.length > 0) {
+          setQuickViewItem(data[0]);
+        }
+      } catch (error) {
+        console.error("Error fetching bikes:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   useEffect(() => {
     const subtotal = cartProducts.reduce((accumulator, product) => {
-      return accumulator + product.quantity * product.discountedPrice;
+      return accumulator + product.quantity * product.price;
     }, 0);
     setTotalPrice(subtotal);
   }, [cartProducts]);
 
-  const addProductToCart = (id, qty) => {
-    if (!cartProducts.filter((elm) => elm.id == id)[0]) {
+  const addProductToCart = (id, qty, price) => {
+    if (!cartProducts.some((elm) => elm.id == id)) {
       const item = {
-        ...products.filter((elm) => elm.id == id)[0],
+        ...products.find((elm) => elm.id == id),
         quantity: qty ? qty : 1,
+        price: price ? price : 0,
       };
-      setCartProducts((pre) => [...pre, item]);
-
+      setCartProducts((prev) => [...prev, item]);
       // openCart();
     }
   };
+
   const isAddedToCartProducts = (id) => {
-    if (cartProducts.filter((elm) => elm.id == id)[0]) {
-      return true;
-    }
-    return false;
+    return cartProducts.some((elm) => elm.id == id);
   };
 
   const addToWishlist = (id) => {
     if (!wishList.includes(id)) {
-      setWishList((pre) => [...pre, id]);
+      setWishList((prev) => [...prev, id]);
     }
   };
+
   const removeFromWishlist = (id) => {
     if (wishList.includes(id)) {
-      setWishList((pre) => [...pre.filter((elm) => elm != id)]);
+      setWishList((prev) => prev.filter((elm) => elm !== id));
     }
   };
+
   const isAddedtoWishlist = (id) => {
-    if (wishList.includes(id)) {
-      return true;
-    }
-    return false;
+    return wishList.includes(id);
   };
+
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartList"));
     if (items?.length) {
@@ -66,6 +83,7 @@ export default function Context({ children }) {
   useEffect(() => {
     localStorage.setItem("cartList", JSON.stringify(cartProducts));
   }, [cartProducts]);
+
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("wishlist"));
     if (items?.length) {
@@ -91,10 +109,12 @@ export default function Context({ children }) {
     setQuickViewItem,
     quickAddItem,
     setQuickAddItem,
+    products, // Добавляем список продуктов в контекст, если понадобится
   };
+
   return (
-    <dataContext.Provider value={contextElement}>
-      {children}
-    </dataContext.Provider>
+      <dataContext.Provider value={contextElement}>
+        {children}
+      </dataContext.Provider>
   );
 }

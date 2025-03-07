@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import "../../../public/css/pages/login/Login.css";
 
@@ -11,6 +11,13 @@ import ErrorMessage from "./ErrorMessage";
 
 export default function Login() {
     const router = useRouter();
+
+    useEffect(() => {
+        const userRole = localStorage.getItem("userRole");
+        if (userRole === "admin" || userRole === "corporate") {
+            router.push("/other-login");
+        }
+    }, [router]);
 
     // Шаги авторизации: phone -> code -> register
     const [step, setStep] = useState("phone");

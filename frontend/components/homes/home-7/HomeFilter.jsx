@@ -51,7 +51,7 @@ export default function HomeFilter() {
                     <input type="text" required placeholder="$499 to $956" />
                   </div>
                 </div>
-                <Link href={`/inventory-list-01`} className="form-submit">
+                <Link href={`/bikes`} className="form-submit">
                   <button type="submit" className="theme-btn">
                     <i className="flaticon-search" />
                     Search 9451 Cars

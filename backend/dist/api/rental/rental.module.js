@@ -20,6 +20,7 @@ RentalModule = __decorate([
         imports: [typeorm_1.TypeOrmModule.forFeature([rental_entity_1.Rental, bike_entity_1.Bike])],
         controllers: [rental_controller_1.RentalController],
         providers: [rental_service_1.RentalService],
+        exports: [typeorm_1.TypeOrmModule],
     })
 ], RentalModule);
 exports.RentalModule = RentalModule;

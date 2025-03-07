@@ -41,6 +41,10 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
+], RegisterDto.prototype, "password", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
 ], RegisterDto.prototype, "companyName", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),

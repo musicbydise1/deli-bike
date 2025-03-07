@@ -20,14 +20,17 @@ export class CreateUserDto {
   email: string;
 
   // Сделаем поле password опциональным
-  // @IsOptional()
-  // password?: string;
+  @IsOptional()
+  password?: string;
 
   @IsOptional()
   photoIdFront?: string;
 
   @IsOptional()
   photoIdBack?: string;
+
+  @IsNotEmpty()
+  iin: string;
 }
 
 export class UserDto {

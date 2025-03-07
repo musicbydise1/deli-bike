@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Categories = exports.CategoryIds = exports.Category = void 0;
 const typeorm_1 = require("typeorm");
-const product_entity_1 = require("./product.entity");
 let Category = class Category {
 };
 __decorate([
@@ -22,10 +21,6 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'varchar' }),
     __metadata("design:type", String)
 ], Category.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => product_entity_1.Product, (product) => product.category),
-    __metadata("design:type", product_entity_1.Product)
-], Category.prototype, "products", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)

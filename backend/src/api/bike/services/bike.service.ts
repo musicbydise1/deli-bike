@@ -17,33 +17,39 @@ export class BikeService {
     async findAll(): Promise<Bike[]> {
         return this.bikeRepository.find({
             where: { availability_status: 'available' }, // Убедитесь, что используется правильное имя свойства
-            relations: ['prices', 'prices.priceCategory'], // Загружаем связанные цены и категории
+            relations: ['prices', 'prices.priceCategory', 'accessories'], // Загружаем связанные цены и категории
         });
     }
 
     async findOneById(id: number): Promise<Bike> {
         return this.bikeRepository.findOne({
             where: { id },
-            relations: ['prices', 'prices.priceCategory'], // Загружаем связанные цены и категории
+            relations: ['prices', 'prices.priceCategory', 'accessories'], // Загружаем связанные цены и категории
         });
     }
 
     async createBike(bikeData: CreateBikeDto): Promise<Bike> {
+        console.log('BikeService.createBike, bikeData:', bikeData);
         const { prices, ...bikeDetails } = bikeData;
+        console.log('Получены цены:', prices);
 
         // Создаем велосипед
         const bike = this.bikeRepository.create(bikeDetails);
         const savedBike = await this.bikeRepository.save(bike);
 
+
+        console.log('BikeService.createBike, prices:', bikeData.prices);
+
         // Если цены переданы, создаем связанные записи цен
         if (prices && prices.length > 0) {
-            const bikePrices = prices.map((price) =>
-                this.bikePriceRepository.create({
+            const bikePrices = prices.map((price) => {
+                console.log('Создаем цену для:', price);
+                return this.bikePriceRepository.create({
                     bike: savedBike, // Связываем с сохраненным велосипедом
                     priceCategory: { id: price.categoryId }, // Указываем категорию через ID
                     price: price.price,
-                }),
-            );
+                });
+            });
 
             await this.bikePriceRepository.save(bikePrices);
         }

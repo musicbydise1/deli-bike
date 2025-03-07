@@ -14,7 +14,7 @@ exports.dataSourceOptions = {
     username: 'postgres',
     password: 'password',
     entities: [process.env.DATABASE_ENTITIES],
-    migrations: ['dist/src/database/migration/history/*.js'],
+    migrations: ['dist/database/migration/history/*.js'],
     logger: 'simple-console',
     synchronize: false,
     logging: true,

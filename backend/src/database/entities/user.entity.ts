@@ -8,7 +8,6 @@ import {
   JoinTable,
   OneToMany,
 } from 'typeorm';
-import { Product } from './product.entity';
 import { Role } from './role.entity';
 
 @Entity()
@@ -28,8 +27,8 @@ export class User {
   @Column({ type: 'varchar', length: 120, unique: true })
   public email: string;
 
-  @Column({ type: 'varchar', nullable: true })
-  public password: string;
+  @Column({ nullable: true })
+  password?: string;
 
   @Column({ type: 'varchar', length: 20, nullable: true })
   public phoneNumber?: string;
@@ -91,9 +90,6 @@ export class User {
   @ManyToMany(() => Role, (role) => role.users, { cascade: true })
   @JoinTable({ name: 'user_roles' })
   public roles: Role[];
-
-  @OneToMany(() => Product, (product) => product.merchant)
-  public products: Product;
 
   @CreateDateColumn({ type: 'timestamp' })
   public createdAt!: Date;

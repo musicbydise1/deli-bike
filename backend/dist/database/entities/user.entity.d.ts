@@ -1,4 +1,3 @@
-import { Product } from './product.entity';
 import { Role } from './role.entity';
 export declare class User {
     id: number;
@@ -6,7 +5,7 @@ export declare class User {
     lastName: string;
     patronymic?: string;
     email: string;
-    password: string;
+    password?: string;
     phoneNumber?: string;
     companyName?: string;
     iin?: string;
@@ -27,7 +26,6 @@ export declare class User {
     subscriptionType?: string;
     preferredCurrency: string;
     roles: Role[];
-    products: Product;
     createdAt: Date;
     updatedAt: Date;
 }

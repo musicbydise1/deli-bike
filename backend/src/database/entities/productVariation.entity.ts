@@ -8,7 +8,6 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { Color } from './color.entity';
-import { Product } from './product.entity';
 import { Size } from './size.entity';
 
 @Entity()
@@ -16,9 +15,7 @@ export class ProductVariation {
   @PrimaryGeneratedColumn()
   public id!: number;
 
-  @ManyToOne(() => Product)
-  @JoinColumn({ name: 'productId' })
-  public product: Product;
+
 
   @Column({ type: 'int' })
   public productId: number;

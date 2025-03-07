@@ -1,4 +1,8 @@
-declare class BikePriceDto {
+export declare enum AvailabilityStatus {
+    AVAILABLE = "available",
+    UNAVAILABLE = "unavailable"
+}
+export declare class BikePriceDto {
     categoryId: number;
     price: number;
 }
@@ -15,6 +19,6 @@ export declare class CreateBikeDto {
     power?: string;
     suspension?: string;
     tags?: string[];
+    availabilityStatus: AvailabilityStatus;
     prices: BikePriceDto[];
 }
-export {};

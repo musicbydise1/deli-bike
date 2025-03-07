@@ -26,10 +26,13 @@ let RentalService = class RentalService {
     async createRental(createRentalDto) {
         const { userId, bikeId, startDate, endDate, totalPrice } = createRentalDto;
         const bike = await this.bikeRepository.findOne({ where: { id: bikeId } });
-        if (!bike || bike.availability_status === 'unavailable') {
+        if (!bike || bike.stock <= 0) {
             throw new common_1.NotFoundException('Bike is not available');
         }
-        bike.availability_status = 'unavailable';
+        bike.stock -= 1;
+        if (bike.stock === 0) {
+            bike.availability_status = 'unavailable';
+        }
         await this.bikeRepository.save(bike);
         const rental = this.rentalRepository.create({
             user: { id: userId },
@@ -37,6 +40,7 @@ let RentalService = class RentalService {
             startDate,
             endDate,
             totalPrice,
+            status: 'on_payment',
         });
         return this.rentalRepository.save(rental);
     }
@@ -57,6 +61,21 @@ let RentalService = class RentalService {
         await this.rentalRepository.save(rental);
         rental.bike.availability_status = 'available';
         await this.bikeRepository.save(rental.bike);
+        return rental;
+    }
+    async activateRental(id) {
+        const rental = await this.rentalRepository.findOne({
+            where: { id },
+            relations: ['bike'],
+        });
+        if (!rental) {
+            throw new common_1.NotFoundException(`Rental with ID ${id} not found`);
+        }
+        if (!rental.bike) {
+            throw new common_1.NotFoundException(`Bike associated with rental ID ${id} not found`);
+        }
+        rental.status = 'active';
+        await this.rentalRepository.save(rental);
         return rental;
     }
     async getAllRentals() {

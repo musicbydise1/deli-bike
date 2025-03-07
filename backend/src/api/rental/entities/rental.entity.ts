@@ -10,6 +10,8 @@ import {
 import { User } from '../../../database/entities/user.entity';
 import { Bike } from '../../bike/entities/bike.entity';
 
+export type RentalStatus = 'on_payment' | 'active' | 'completed' | 'cancelled';
+
 @Entity('rental')
 export class Rental {
     @PrimaryGeneratedColumn()
@@ -32,12 +34,8 @@ export class Rental {
     @Column({ name: 'total_price', type: 'decimal', precision: 10, scale: 2 })
     totalPrice: number;
 
-    @Column({
-        type: 'enum',
-        enum: ['active', 'completed', 'cancelled'],
-        default: 'active',
-    })
-    status: 'active' | 'completed' | 'cancelled';
+    @Column({ type: 'enum', enum: ['on_payment', 'active', 'completed', 'cancelled'], default: 'on_payment' })
+    status: RentalStatus;
 
     @CreateDateColumn()
     createdAt: Date;

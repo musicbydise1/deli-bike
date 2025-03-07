@@ -141,8 +141,8 @@ export default function Nav() {
 
           <li className="current-dropdown">
               <Link
-                  className={pathname == "/dealer" ? "menuActive" : ""}
-                  href={`/dealer`}
+                  className={pathname == "/vacancy" ? "menuActive" : ""}
+                  href={`/vacancy`}
               >
                   {t("menu.vacancies")}
               </Link>

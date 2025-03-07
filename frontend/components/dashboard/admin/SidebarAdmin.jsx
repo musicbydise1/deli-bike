@@ -28,7 +28,7 @@ export default function SidebarAdmin({ activeTab, setActiveTab }) {
     const handleLogout = (e) => {
         e.preventDefault();
         localStorage.removeItem("accessToken");
-        router.push("/login");
+        router.push("/other-login");
     };
 
     return (

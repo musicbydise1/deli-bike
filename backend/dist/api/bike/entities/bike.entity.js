@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Bike = void 0;
 const typeorm_1 = require("typeorm");
 const bike_price_entity_1 = require("./bike_price.entity");
+const accessory_entity_1 = require("../../accessories/entities/accessory.entity");
+const tariff_entity_1 = require("../../tariffs/entities/tariff.entity");
 let Bike = class Bike {
 };
 __decorate([
@@ -72,6 +74,10 @@ __decorate([
     __metadata("design:type", Array)
 ], Bike.prototype, "imageUrls", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ name: 'stock', type: 'integer', nullable: true }),
+    __metadata("design:type", Number)
+], Bike.prototype, "stock", void 0);
+__decorate([
     (0, typeorm_1.Column)({ name: 'tags', type: 'text', array: true, default: '{}' }),
     __metadata("design:type", Array)
 ], Bike.prototype, "tags", void 0);
@@ -79,6 +85,14 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => bike_price_entity_1.BikePrice, (bikePrice) => bikePrice.bike, { cascade: true }),
     __metadata("design:type", Array)
 ], Bike.prototype, "prices", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => accessory_entity_1.Accessory, (accessory) => accessory.bike),
+    __metadata("design:type", Array)
+], Bike.prototype, "accessories", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => tariff_entity_1.Tariff, tariff => tariff.bike),
+    __metadata("design:type", Array)
+], Bike.prototype, "tariffs", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'createdAt', type: 'timestamp' }),
     __metadata("design:type", Date)

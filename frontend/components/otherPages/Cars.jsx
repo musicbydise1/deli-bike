@@ -64,7 +64,7 @@ export default function Cars() {
                       >
                         {car.images.map((image, i) => (
                           <div key={i} className="image d-block">
-                            <Link href={`/inventory-page-single-v1/${car.id}`}>
+                            <Link href={`/bike/${car.id}`}>
                               <Image
                                 alt=""
                                 src={image}
@@ -77,7 +77,7 @@ export default function Cars() {
                       </Slider>
                       {car.badge && <span>{car.badge}</span>}
                       <Link
-                        href={`/inventory-page-single-v1/${car.id}`}
+                        href={`/bike/${car.id}`}
                         title=""
                         className="icon-box"
                       >
@@ -104,7 +104,7 @@ export default function Cars() {
                     </div>
                     <div className="content-box">
                       <h6 className="title">
-                        <Link href={`/inventory-page-single-v1/${car.id}`}>
+                        <Link href={`/bike/${car.id}`}>
                           {car.title}
                         </Link>
                       </h6>

@@ -17,12 +17,16 @@ const common_1 = require("@nestjs/common");
 const admin_service_1 = require("../services/admin.service");
 const update_user_dto_1 = require("../dto/update-user.dto");
 const create_bike_dto_1 = require("../dto/create-bike.dto");
+const create_user_dto_1 = require("../dto/create-user.dto");
 let AdminController = class AdminController {
     constructor(adminService) {
         this.adminService = adminService;
     }
     async getAllUsers() {
         return this.adminService.getAllUsers();
+    }
+    async createUser(createUserDto) {
+        return this.adminService.createUser(createUserDto);
     }
     async updateUser(id, updateUserDto) {
         return this.adminService.updateUser(id, updateUserDto);
@@ -43,6 +47,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AdminController.prototype, "getAllUsers", null);
+__decorate([
+    (0, common_1.Post)('/users'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
+    __metadata("design:returntype", Promise)
+], AdminController.prototype, "createUser", null);
 __decorate([
     (0, common_1.Patch)('/users/:id'),
     __param(0, (0, common_1.Param)('id')),

@@ -24,8 +24,8 @@ export class RegisterDto {
 
   // Если логика авторизации полностью по SMS-коду, пароль может не использоваться.
   // Если же пароль нужен для корпоративных клиентов или в иных случаях — можно оставить его как опциональное поле.
-  // @IsOptional()
-  // public password?: string;
+  @IsOptional()
+  public password?: string;
 
   @IsOptional()
   public companyName?: string;

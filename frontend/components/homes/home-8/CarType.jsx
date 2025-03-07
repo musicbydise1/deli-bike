@@ -7,7 +7,7 @@ export default function CarType() {
       <div className="boxcar-container">
         <div className="boxcar-title wow fadeInUp">
           <h2>Browse by Type</h2>
-          <Link href={`/inventory-list-01`} className="btn-title">
+          <Link href={`/bikes`} className="btn-title">
             View All
             <svg
               xmlns="http://www.w3.org/2000/svg"

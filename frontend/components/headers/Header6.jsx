@@ -12,6 +12,8 @@ import Button from "../ui/button/Button"
 import '../../public/css/pages/header/Header.css'
 import {CgShoppingCart} from "react-icons/cg";
 import {FaArrowRightToBracket} from "react-icons/fa6";
+import { useContextElement } from "@/context/Context";
+import { useRouter } from "next/navigation";
 
 export default function Header6({  white = false}) {
 
@@ -24,6 +26,13 @@ export default function Header6({  white = false}) {
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false); // Состояние для локации
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false); // Состояние для языка
   const [currentLocation, setCurrentLocation] = useState("Kazakhstan"); // Значение по умолчанию
+  const { cartProducts } = useContextElement();
+  const router = useRouter();
+
+  const cartQuantity = cartProducts.reduce(
+      (acc, item) => acc + (item.quantity || 1),
+      0
+  );
 
   // Проверяем наличие токена и роли в localStorage
   useEffect(() => {
@@ -102,9 +111,36 @@ export default function Header6({  white = false}) {
   };
 
   const handleLogout = () => {
+    // Удаляем токен и userData из localStorage
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("userData");
+
+    // Сбрасываем состояния в приложении
     setHasAccessToken(false);
     setIsProfileMenuOpen(false);
+
+    // Пытаемся прочитать userData из localStorage, чтобы узнать роль
+    const storedData = localStorage.getItem("userData");
+    if (storedData) {
+      try {
+        const parsedData = JSON.parse(storedData);
+        // Предположим, что роль хранится в parsedData.roles[0].name (как в предыдущих примерах)
+        const userRole = parsedData.roles?.[0]?.name;
+
+        if (userRole === "courier") {
+          router.push("/login");
+        } else {
+          router.push("/other-login");
+        }
+      } catch (error) {
+        console.error("Ошибка парсинга userData:", error);
+        // На случай ошибки парсинга отправляем по умолчанию на /login
+        router.push("/login");
+      }
+    } else {
+      // Если userData отсутствует, тоже отправляем на /login (или по логике — /other-login)
+      router.push("/login");
+    }
   };
 
   // >>> Добавляем эффект, который слушает скролл <<<
@@ -136,21 +172,35 @@ export default function Header6({  white = false}) {
               <div className="logo st-logo">
                 <Link href={`/`}>
                   {isScrolled ? (
-                      <Image
-                          alt=""
-                          title="DeliBike"
-                          src="/images/logo-deli.svg" // <-- Логотип для "тёмного" фона
-                          width={130}
-                          height={26}
-                      />
+                      <div>
+                        <Image
+                            alt=""
+                            title="DeliBike"
+                            src="/images/logo-deli2.svg" // <-- Логотип для "тёмного" фона
+                            width={111}
+                            height={48}
+                        />
+                        <div style={{lineHeight: "5px"}}>
+                          <span className="logo-text white-text">Скорость</span>
+                          <span className="logo-text white-text">Свобода</span>
+                          <span className="logo-text white-text">Стиль</span>
+                        </div>
+                      </div>
                   ) : (
-                      <Image
-                          alt=""
-                          title="DeliBike"
-                          src="/images/logo-deli-dark1.svg"  // <-- Логотип по умолчанию
-                          width={130}
-                          height={26}
-                      />
+                      <div>
+                        <Image
+                            alt=""
+                            title="DeliBike"
+                            src="/images/logo-deli-dark2.svg"  // <-- Логотип по умолчанию
+                            width={111}
+                            height={48}
+                        />
+                        <div style={{ lineHeight: "5px" }}>
+                          <span className="logo-text">Скорость</span>
+                          <span className="logo-text">Свобода</span>
+                          <span className="logo-text">Стиль</span>
+                        </div>
+                      </div>
                   )}
                 </Link>
                 <div className="nav-out-bar">
@@ -240,11 +290,17 @@ export default function Header6({  white = false}) {
 
                       {/* Корзина */}
                       <li>
-                        <Link href="/cart" className="icon-link">
+                        <Link href="/cart" className="icon-link" style={{ position: "relative" }}>
                           <CgShoppingCart
+                              className="cart-icon"
                               size={20}
-                              style={{color: "#080341", marginTop: "5px", marginLeft: "10px"}}
+                              style={{ color: "#080341", marginTop: "5px", marginLeft: "10px" }}
                           />
+                          {cartQuantity > 0 && (
+                              <span className="cart-badge">
+                                {cartQuantity}
+                              </span>
+                          )}
                         </Link>
                       </li>
 
@@ -276,7 +332,7 @@ export default function Header6({  white = false}) {
                               </li>
                               <li>
                                 <Link
-                                    href="/my-orders"
+                                    href="/dashboard"
                                     onClick={() => setIsProfileMenuOpen(false)}
                                 >
                                   <HiOutlineShoppingBag
@@ -288,11 +344,11 @@ export default function Header6({  white = false}) {
                               </li>
                               <li>
                                 <Link
-                                    href="/settings"
+                                    href="/dashboard"
                                     onClick={() => setIsProfileMenuOpen(false)}
                                 >
                                   <MdSettings size={20} style={{marginRight: "10px"}}/>
-                                  {t("settings")}
+                                  {t("profile")}
                                 </Link>
                               </li>
                               <li>

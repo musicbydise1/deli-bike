@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductVariation = void 0;
 const typeorm_1 = require("typeorm");
 const color_entity_1 = require("./color.entity");
-const product_entity_1 = require("./product.entity");
 const size_entity_1 = require("./size.entity");
 let ProductVariation = class ProductVariation {
 };
@@ -20,11 +19,6 @@ __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], ProductVariation.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => product_entity_1.Product),
-    (0, typeorm_1.JoinColumn)({ name: 'productId' }),
-    __metadata("design:type", product_entity_1.Product)
-], ProductVariation.prototype, "product", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'int' }),
     __metadata("design:type", Number)

@@ -65,6 +65,14 @@ export default function PhoneStep({ phone, setPhone, handlePhoneSubmit }) {
                     >
                         Получить код
                     </Button>
+                    <Button
+                        className="w-full !ml-0 mt-4"
+                        variant="secondary"
+                        onClick={() => window.open('https://t.me/DeliBikeBot', '_blank')}
+                    >
+                        Привязать Telegram
+                    </Button>
+
                 </div>
 
                 <div className="politic-privacy">

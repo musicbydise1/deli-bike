@@ -2,38 +2,27 @@ import React, { useState, useEffect } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { FiAlertTriangle, FiInfo } from "react-icons/fi";
 
-const warrantyOptions = [
-  { label: "Стандартная гарантия – 0 ₸", value: "standard" },
-  { label: "Расширенная гарантия – 10 000 ₸", value: "extended" },
-  { label: "Без гарантии", value: "none" },
-];
-
-const additionalOptions = [
-  { label: "Шлем", price: "+ 341 ₸", value: "helmet" },
-  { label: "Велозамок", price: "+ 341 ₸", value: "lock" },
-  { label: "Дождевик", price: "+ 304 ₸", value: "raincoat" },
-  { label: "Термоконтейнер", price: "+ 9 742 ₸", value: "container" },
-  { label: "Смартфон", price: "+ 1 705 ₸", value: "smartphone" },
-  { label: "Лазерный свет", price: "+ 487 ₸", value: "laser_light" },
-  { label: "Доп. З/У", price: "+ 487 ₸", value: "charger" },
-];
 
 const batteryOptions = [
-  { label: "21 Ач", price: "+ 10 278 ₸", value: "21Ah" },
-  { label: "30 Ач", price: "+ 10 278 ₸", value: "30Ah" },
-  { label: "45 Ач", price: "+ 15 417 ₸", value: "45Ah" },
+  { label: "21 Ач", price: "10278", value: "21Ah" },
+  { label: "30 Ач", price: "10278", value: "30Ah" },
+  { label: "45 Ач", price: "15417", value: "45Ah" },
 ];
 
-export default function Overview({ price }) {
+export default function Overview({ price, accessories, onRentalPeriodChange, onWarrantyChange, warrantyOptions, onAdditionalChange, onBatteryChange }) {
   // Если price является массивом, используем его, иначе пытаемся получить price.prices
   const pricesArr = Array.isArray(price) ? price : price?.prices || [];
+
+  const accessoriesArr = Array.isArray(accessories) ? accessories : accessories?.accessories || [];
 
   // Формируем опции для аренды
   const computedRentalPeriodOptions = pricesArr.map((item) => ({
     label: `${item.priceCategory.name} – ${Number(item.price).toLocaleString("ru-RU", {
       maximumFractionDigits: 0,
     })} ₸`,
-    value: item.priceCategory.id, // или можно использовать item.id, если нужно
+    value: item.priceCategory.id,
+    price: item.price,
+    categoryName: item.priceCategory.name, // добавляем поле для названия категории
   }));
 
   // Инициализируем состояние. Если данных ещё нет, можно задать пустой объект или добавить проверку.
@@ -57,19 +46,40 @@ export default function Overview({ price }) {
   };
 
   const selectOption = (field, option) => {
-    if (field === "rental") setRentalPeriod(option);
-    if (field === "warranty") setWarranty(option);
+    if (field === "rental") {
+      setRentalPeriod(option);
+      if (onRentalPeriodChange) {
+        // Передаём выбранный вариант в родительский компонент
+        onRentalPeriodChange(option);
+      }
+    }
+    if (field === "warranty") {
+      setWarranty(option);
+      if (onWarrantyChange) {
+        onWarrantyChange(option);
+      }
+    }
     setDropdownOpen((prev) => ({ ...prev, [field]: false }));
   };
 
-  const toggleAdditionalOption = (value) => {
-    setSelectedAdditional((prev) =>
-        prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]
-    );
+  const toggleAdditionalOption = (option) => {
+    let updated;
+    if (selectedAdditional.some((item) => item.id === option.id)) {
+      updated = selectedAdditional.filter((item) => item.id !== option.id);
+    } else {
+      updated = [...selectedAdditional, option];
+    }
+    setSelectedAdditional(updated);
+    if (onAdditionalChange) {
+      onAdditionalChange(updated);
+    }
   };
 
-  const selectBatteryOption = (value) => {
-    setSelectedBattery(value);
+  const selectBatteryOption = (option) => {
+    setSelectedBattery(option);
+    if (onBatteryChange) {
+      onBatteryChange(option);
+    }
   };
 
   return (
@@ -97,14 +107,14 @@ export default function Overview({ price }) {
 
           <div className="overview-dropdown-container">
             <div className="overview-dropdown" onClick={() => toggleDropdown("warranty")}>
-              <span>{warranty.label}</span>
+              <span>{warranty.label} {warranty.value !== "none" && `- ${Number(warranty.price).toLocaleString("ru-RU")} ₸`}</span>
               <FaChevronDown className="icon" />
             </div>
             {dropdownOpen.warranty && (
                 <ul className="overview-dropdown-menu">
                   {warrantyOptions.map((option) => (
                       <li key={option.value} onClick={() => selectOption("warranty", option)}>
-                        {option.label}
+                        {option.label} {option.value !== "none" && `- ${Number(option.price).toLocaleString("ru-RU")} ₸`}
                       </li>
                   ))}
                 </ul>
@@ -123,16 +133,16 @@ export default function Overview({ price }) {
             Дополнительно. <span>Какие опции хотите добавить?</span>
           </h4>
           <div className="options-grid">
-            {additionalOptions.map((option) => (
+            {accessoriesArr.map((option) => (
                 <button
-                    key={option.value}
+                    key={option.id}
                     className={`option-button ${
-                        selectedAdditional.includes(option.value) ? "selected" : ""
+                        selectedAdditional.some((item) => item.id === option.id) ? "selected" : ""
                     }`}
-                    onClick={() => toggleAdditionalOption(option.value)}
+                    onClick={() => toggleAdditionalOption(option)}
                 >
-                  <span className="section-btn-label">{option.label}</span>
-                  <span>{option.price}</span>
+                  <span className="section-btn-label">{option.name}</span>
+                  <span>+ {Math.round(Number(option.price)).toLocaleString("ru-RU")} ₸</span>
                 </button>
             ))}
           </div>
@@ -147,12 +157,12 @@ export default function Overview({ price }) {
                 <button
                     key={option.value}
                     className={`option-button ${
-                        selectedBattery === option.value ? "selected" : ""
+                        selectedBattery && selectedBattery.value === option.value ? "selected" : ""
                     }`}
-                    onClick={() => selectBatteryOption(option.value)}
+                    onClick={() => selectBatteryOption(option)}  // передаём весь объект, а не option.value
                 >
                   <span>{option.label}</span>
-                  <span>{option.price}</span>
+                  <span>+ {Number(option.price).toLocaleString("ru-RU")} ₸</span>
                 </button>
             ))}
           </div>

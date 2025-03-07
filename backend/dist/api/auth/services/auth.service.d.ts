@@ -10,6 +10,7 @@ export declare class AuthService {
     private readonly roleService;
     private codes;
     private telegramBot;
+    private conversationState;
     constructor(userService: UserService, jwtService: JwtService, configService: ConfigService, roleService: RoleService);
     sendCode(phoneNumber: string): Promise<{
         message: string;
