@@ -28,7 +28,7 @@ export default function AdminOrderDetails({ orderId }) {
     useEffect(() => {
         async function fetchOrder() {
             try {
-                const response = await fetch(`http://91.243.71.138:4000/rentals/${orderId}`);
+                const response = await fetch(`https://api.deli-bike.kz/rentals/${orderId}`);
                 if (!response.ok) {
                     throw new Error("Не удалось загрузить детали заказа");
                 }
@@ -59,7 +59,7 @@ export default function AdminOrderDetails({ orderId }) {
 
     const handleStatusUpdate = async () => {
         try {
-            const response = await fetch(`http://91.243.71.138:4000/rentals/${order.id}/status`, {
+            const response = await fetch(`https://api.deli-bike.kz/rentals/${order.id}/status`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

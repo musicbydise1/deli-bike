@@ -25,7 +25,7 @@ export default function FormModalContent() {
         setError("");
 
         try {
-            const response = await fetch("http://91.243.71.138:4000/lead", {
+            const response = await fetch("https://api.deli-bike.kz/lead", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

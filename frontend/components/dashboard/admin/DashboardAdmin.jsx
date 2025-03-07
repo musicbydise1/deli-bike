@@ -65,7 +65,7 @@ export default function DashboardAdmin() {
         async function fetchAnalytics() {
             try {
                 const token = localStorage.getItem("accessToken");
-                const response = await fetch("http://91.243.71.138:4000/admin/analytics", {
+                const response = await fetch("https://api.deli-bike.kz/admin/analytics", {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,

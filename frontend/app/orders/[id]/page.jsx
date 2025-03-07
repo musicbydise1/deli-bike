@@ -13,7 +13,7 @@ export const metadata = {
 // Обязательно экспортируем функцию с именем generateStaticParams
 export async function generateStaticParams() {
     // Пример запроса к API:
-    const res = await fetch("http://91.243.71.138:4000/rentals", { cache: "no-store" });
+    const res = await fetch("https://api.deli-bike.kz/rentals", { cache: "no-store" });
     if (!res.ok) {
         throw new Error("Ошибка при получении данных из API");
     }

@@ -29,7 +29,7 @@ export default function AccessoriesTab() {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch("http://91.243.71.138:4000/accessories");
+            const response = await fetch("https://api.deli-bike.kz/accessories");
             if (!response.ok) throw new Error("Ошибка при получении аксессуаров");
             const result = await response.json();
             if (!result.isSuccess) throw new Error(result.message || "Не удалось загрузить аксессуары");
@@ -44,7 +44,7 @@ export default function AccessoriesTab() {
 
     async function fetchBikes() {
         try {
-            const response = await fetch("http://91.243.71.138:4000/bikes");
+            const response = await fetch("https://api.deli-bike.kz/bikes");
             if (!response.ok) throw new Error("Ошибка при получении велосипедов");
             const result = await response.json();
             if (result.isSuccess) {
@@ -84,7 +84,7 @@ export default function AccessoriesTab() {
     async function handleDeleteAccessory(id) {
         if (!confirm("Вы действительно хотите удалить этот аксессуар?")) return;
         try {
-            const response = await fetch(`http://91.243.71.138:4000/accessories/${id}`, { method: "DELETE" });
+            const response = await fetch(`https://api.deli-bike.kz/accessories/${id}`, { method: "DELETE" });
             if (!response.ok) throw new Error("Ошибка при удалении аксессуара");
             setAccessories((prev) => prev.filter((a) => a.id !== id));
         } catch (error) {
@@ -103,10 +103,10 @@ export default function AccessoriesTab() {
             price: Number(currentAccessory.price),
         };
 
-        let url = "http://91.243.71.138:4000/accessories";
+        let url = "https://api.deli-bike.kz/accessories";
         let method = "POST";
         if (isEditMode && currentAccessory.id) {
-            url = `http://91.243.71.138:4000/accessories/${currentAccessory.id}`;
+            url = `https://api.deli-bike.kz/accessories/${currentAccessory.id}`;
             method = "PUT";
         }
 

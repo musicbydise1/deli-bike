@@ -7,7 +7,7 @@ export default function NoActiveOrderTiles() {
     const [bikes, setBikes] = useState([]);
 
     useEffect(() => {
-        fetch("http://91.243.71.138:4000/bikes")
+        fetch("https://api.deli-bike.kz/bikes")
             .then((res) => res.json())
             .then((data) => {
                 if (data.isSuccess) {

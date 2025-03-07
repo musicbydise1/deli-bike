@@ -20,7 +20,7 @@ export default function Listings1() {
   useEffect(() => {
     const fetchBikes = async () => {
       try {
-        const response = await fetch("http://91.243.71.138:4000/bikes/");
+        const response = await fetch("https://api.deli-bike.kz/bikes/");
         const result = await response.json();
         console.log("Fetched bikes:", result);
         const bikesData = Array.isArray(result.data) ? result.data : [];

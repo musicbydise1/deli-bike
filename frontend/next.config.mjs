@@ -2,7 +2,7 @@
 const nextConfig = {
     // output: 'export',
     images: {
-        domains: ['localhost', '91.243.71.138'],
+        domains: ['localhost', 'api.deli-bike.kz'],
     },
 };
 

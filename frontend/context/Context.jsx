@@ -19,7 +19,7 @@ export default function Context({ children }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://91.243.71.138:4000/bikes/");
+        const res = await fetch("https://api.deli-bike.kz/bikes/");
         const json = await res.json();
         const data = Array.isArray(json.data) ? json.data : [];
         setProducts(data);

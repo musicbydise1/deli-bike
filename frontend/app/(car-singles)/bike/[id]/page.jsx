@@ -8,7 +8,7 @@ import Footer3 from "@/components/footers/Footer3";
  * статических страниц для всех значений динамического сегмента [id].
  */
 export async function generateStaticParams() {
-    const res = await fetch("http://91.243.71.138:4000/bikes", { cache: "no-store" });
+    const res = await fetch("https://api.deli-bike.kz/bikes", { cache: "no-store" });
     if (!res.ok) {
         return [];
     }
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }) {
     const { id } = params;
 
     // Делаем запрос на ваш сервер
-    const res = await fetch(`http://91.243.71.138:4000/bikes/${id}`, { cache: "no-store" });
+    const res = await fetch(`https://api.deli-bike.kz/bikes/${id}`, { cache: "no-store" });
 
     // Если получили ошибку — можно выбросить ее или вернуть дефолтные метаданные
     if (!res.ok) {
@@ -56,7 +56,7 @@ export default async function BikePage({ params }) {
     const { id } = params;
 
     // Запрос к вашему API, чтобы получить данные конкретного байка
-    const res = await fetch(`http://91.243.71.138:4000/bikes/${id}`, { cache: "no-store" });
+    const res = await fetch(`https://api.deli-bike.kz/bikes/${id}`, { cache: "no-store" });
     if (!res.ok) {
         throw new Error("Не удалось загрузить данные о байке");
     }
