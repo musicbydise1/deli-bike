@@ -1,4 +1,4 @@
-import { Country } from 'src/database/entities/country.entity';
+import { Country } from '../../entities/country.entity';
 import { Repository } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
 export declare class CountrySeeder implements SeederInterface {

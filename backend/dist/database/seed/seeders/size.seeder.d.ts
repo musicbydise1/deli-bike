@@ -1,4 +1,4 @@
-import { Size } from 'src/database/entities/size.entity';
+import { Size } from '../../entities/size.entity';
 import { Repository } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
 export declare class SizeSeeder implements SeederInterface {

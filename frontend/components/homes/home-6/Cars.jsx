@@ -19,7 +19,7 @@ export default function Cars() {
   useEffect(() => {
     const fetchBikes = async () => {
       try {
-        const response = await fetch("http://localhost:4000/bikes/");
+        const response = await fetch("http://91.243.71.138:4000/bikes/");
         if (!response.ok) {
           throw new Error("Ошибка при загрузке данных о байках");
         }

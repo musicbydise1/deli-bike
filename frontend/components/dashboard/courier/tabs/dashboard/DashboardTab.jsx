@@ -48,8 +48,8 @@ export default function DashboardTab({ setActiveTab }) {
         async function fetchData() {
             try {
                 const [activeRes, historyRes] = await Promise.all([
-                    fetch(`http://localhost:4000/rentals/user/${userId}`),
-                    fetch(`http://localhost:4000/rentals/user/${userId}/history`),
+                    fetch(`http://91.243.71.138:4000/rentals/user/${userId}`),
+                    fetch(`http://91.243.71.138:4000/rentals/user/${userId}/history`),
                 ]);
 
                 if (!activeRes.ok) {

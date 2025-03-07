@@ -36,7 +36,7 @@ export default function UsersTab() {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch("http://localhost:4000/admin/users");
+            const response = await fetch("http://91.243.71.138:4000/admin/users");
             if (!response.ok) {
                 throw new Error("Ошибка при получении списка пользователей");
             }
@@ -85,7 +85,7 @@ export default function UsersTab() {
         if (!confirm("Вы действительно хотите удалить пользователя?")) return;
 
         try {
-            const response = await fetch(`http://localhost:4000/admin/users/${id}`, {
+            const response = await fetch(`http://91.243.71.138:4000/admin/users/${id}`, {
                 method: "DELETE",
             });
             if (!response.ok) {
@@ -101,10 +101,10 @@ export default function UsersTab() {
     async function handleSaveUser(formData) {
         // formData уже содержит данные пользователя
         try {
-            let url = "http://localhost:4000/admin/users";
+            let url = "http://91.243.71.138:4000/admin/users";
             let method = "POST";
             if (isEditMode && currentUser.id) {
-                url = `http://localhost:4000/admin/users/${currentUser.id}`;
+                url = `http://91.243.71.138:4000/admin/users/${currentUser.id}`;
                 method = "PUT";
             }
             const response = await fetch(url, {

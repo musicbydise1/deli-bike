@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
-import { User } from 'src/database/entities/user.entity';
+import { User } from '../../../database/entities/user.entity';
 import { CreateUserDto } from '../dto/user.dto';
-import { Role } from 'src/database/entities/role.entity';
+import { Role } from '../../../database/entities/role.entity';
 export declare class UserService {
     private readonly repository;
     constructor(repository: Repository<User>);

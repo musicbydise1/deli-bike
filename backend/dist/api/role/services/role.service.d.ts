@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
-import { Role } from 'src/database/entities/role.entity';
+import { Role } from '../../../database/entities/role.entity';
 import { AssignRoleDto } from '../dto/role.dto';
-import { UserService } from 'src/api/user/services/user.service';
+import { UserService } from '../../user/services/user.service';
 export declare class RoleService {
     private readonly rolesRepository;
     private readonly userService;

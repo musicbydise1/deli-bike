@@ -1,4 +1,4 @@
-import { Color } from 'src/database/entities/color.entity';
+import { Color } from '../../entities/color.entity';
 import { Repository } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
 export declare class ColorSeeder implements SeederInterface {

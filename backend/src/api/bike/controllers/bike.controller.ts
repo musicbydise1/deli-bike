@@ -64,7 +64,7 @@ export class BikeController {
         console.log('Raw bikeData.prices:', bikeData.prices);
         if (files.photos && files.photos.length > 0) {
             bikeData.imageUrls = files.photos.map(
-                (file) => `http://localhost:4000/uploads/bikes/${file.filename}`,
+                (file) => `http://91.243.71.138:4000/uploads/bikes/${file.filename}`,
             );
         }
 

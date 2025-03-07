@@ -24,7 +24,7 @@ export default function OrdersTab() {
     useEffect(() => {
         async function fetchRentals() {
             try {
-                const response = await fetch("http://localhost:4000/rentals/");
+                const response = await fetch("http://91.243.71.138:4000/rentals/");
                 if (!response.ok) {
                     throw new Error("Не удалось загрузить данные об арендах");
                 }

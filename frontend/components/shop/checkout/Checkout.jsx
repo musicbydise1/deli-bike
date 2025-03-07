@@ -97,7 +97,7 @@ export default function Checkout() {
 
     try {
       // Создаем аренду
-      const rentalResponse = await fetch("http://localhost:4000/rentals/", {
+      const rentalResponse = await fetch("http://91.243.71.138:4000/rentals/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(rentalPayload),
@@ -116,7 +116,7 @@ export default function Checkout() {
         paymentMethod: selectedPaymentMethod,
         status: "pending",
       };
-      const paymentResponse = await fetch("http://localhost:4000/payments/", {
+      const paymentResponse = await fetch("http://91.243.71.138:4000/payments/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(paymentPayload),

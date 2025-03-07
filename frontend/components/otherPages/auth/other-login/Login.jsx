@@ -21,7 +21,7 @@ export default function CorporateLogin() {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:4000/auth/other-login", {
+            const response = await fetch("http://91.243.71.138:4000/auth/other-login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
@@ -37,7 +37,7 @@ export default function CorporateLogin() {
             // Сохраняем полученные данные в localStorage
             localStorage.setItem("accessToken", data.data.accessToken);
 
-            const userResponse = await fetch("http://localhost:4000/user/profile", {
+            const userResponse = await fetch("http://91.243.71.138:4000/user/profile", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

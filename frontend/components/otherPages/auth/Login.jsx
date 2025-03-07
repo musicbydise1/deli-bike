@@ -48,7 +48,7 @@ export default function Login() {
         const formattedPhone = phone.replace(/\D/g, "");
 
         try {
-            const response = await fetch("http://localhost:4000/auth/sendCode", {
+            const response = await fetch("http://91.243.71.138:4000/auth/sendCode", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ phoneNumber: formattedPhone }),
@@ -73,7 +73,7 @@ export default function Login() {
         setCode(codeStr);
         const formattedPhone = phone.replace(/\D/g, "");
         try {
-            const response = await fetch("http://localhost:4000/auth/login", {
+            const response = await fetch("http://91.243.71.138:4000/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ phoneNumber: formattedPhone, code: codeStr }),
@@ -98,7 +98,7 @@ export default function Login() {
                     localStorage.setItem("accessToken", data.data.accessToken);
 
                     // Дозапрашиваем профиль
-                    const userResponse = await fetch("http://localhost:4000/user/profile", {
+                    const userResponse = await fetch("http://91.243.71.138:4000/user/profile", {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
@@ -128,7 +128,7 @@ export default function Login() {
         const formattedPhone = phone.replace(/\D/g, "");
 
         try {
-            const response = await fetch("http://localhost:4000/auth/sendCode", {
+            const response = await fetch("http://91.243.71.138:4000/auth/sendCode", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ phoneNumber: formattedPhone }),
@@ -169,7 +169,7 @@ export default function Login() {
 
             console.log(body);
 
-            const response = await fetch("http://localhost:4000/auth/register", {
+            const response = await fetch("http://91.243.71.138:4000/auth/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body),
@@ -178,7 +178,7 @@ export default function Login() {
             localStorage.setItem("accessToken", data.data.accessToken);
 
             // Дозапрашиваем профиль
-            const userResponse = await fetch("http://localhost:4000/user/profile", {
+            const userResponse = await fetch("http://91.243.71.138:4000/user/profile", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

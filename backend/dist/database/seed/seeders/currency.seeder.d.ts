@@ -1,4 +1,4 @@
-import { Currency } from 'src/database/entities/currency.entity';
+import { Currency } from '../../entities/currency.entity';
 import { Repository } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
 export declare class CurrencySeeder implements SeederInterface {

@@ -1,4 +1,4 @@
-import { Category } from 'src/database/entities/category.entity';
+import { Category } from '../../entities/category.entity';
 import { Repository } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
 export declare class CategorySeeder implements SeederInterface {
