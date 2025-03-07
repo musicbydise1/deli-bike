@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import { SucessResponseInterceptor } from 'src/common/helper/sucess-response.interceptor';
+import { SucessResponseInterceptor } from '../common/helper/sucess-response.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { RoleModule } from './role/role.module';
@@ -11,7 +11,7 @@ import { NotificationModule } from './notification/notification.module';
 import { AdminModule } from "./admin/admin.module";
 import { ReviewModule } from "./review/review.module";
 import { MaintenanceModule } from "./maintenance/maintenance.module";
-import { ErrorsFilter } from 'src/errors/errors.filter';
+import { ErrorsFilter } from '../errors/errors.filter';
 import {BitrixModule} from "./bitrix/bitrix.module";
 import { PriceCategoryModule} from "./price-category/price-category.module";
 import {AccessoriesModule} from "./accessories/accessories.module";

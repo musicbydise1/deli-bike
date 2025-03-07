@@ -1,8 +1,8 @@
   import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { configuration } from 'src/config';
-import { TypeOrmConfigService } from 'src/database/typeorm/typeorm.service';
+import { configuration } from '../../../config';
+import { TypeOrmConfigService } from '../../../database/typeorm/typeorm.service';
 import { AuthModule } from '../../auth/auth.module';
 import { UserController } from './user.controller';
 import { User } from '../../../database/entities/user.entity';

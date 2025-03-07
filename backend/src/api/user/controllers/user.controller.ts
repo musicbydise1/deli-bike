@@ -1,9 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-import { Auth } from 'src/api/auth/guards/auth.decorator';
-import { CurrentUser } from 'src/api/auth/guards/user.decorator';
-import { Serialize } from 'src/common/helper/serialize.interceptor';
-import { User } from 'src/database/entities/user.entity';
-import { UserDto } from '../dto/user.dto';
+import { Auth } from '../../auth/guards/auth.decorator';
+import { CurrentUser } from '../../auth/guards/user.decorator';
 import { UserService } from '../services/user.service';
 
 @Controller('user')

@@ -7,10 +7,9 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { PayloadDto, RegisterDto } from '../dto/auth.dto';
-import { UserService } from 'src/api/user/services/user.service';
-import { errorMessages } from 'src/errors/custom';
-import { Role } from 'src/database/entities/role.entity';
-import { RoleService } from 'src/api/role/services/role.service';
+import { UserService } from '../../user/services/user.service';
+import { errorMessages } from '../../../errors/custom';
+import { RoleService } from '../../role/services/role.service';
 import * as TelegramBot from 'node-telegram-bot-api';
 
 
