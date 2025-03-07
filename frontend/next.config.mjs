@@ -2,7 +2,7 @@
 const nextConfig = {
     // output: 'export',
     images: {
-        domains: ['localhost'],
+        domains: ['localhost', '91.243.71.138'],
     },
 };
 
