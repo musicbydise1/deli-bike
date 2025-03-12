@@ -11,6 +11,7 @@ import ErrorMessage from "./ErrorMessage";
 
 export default function Login() {
     const router = useRouter();
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
         const userRole = localStorage.getItem("userRole");
@@ -48,7 +49,7 @@ export default function Login() {
         const formattedPhone = phone.replace(/\D/g, "");
 
         try {
-            const response = await fetch("https://api.deli-bike.kz/auth/sendCode", {
+            const response = await fetch(`${API_URL}/auth/sendCode`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ phoneNumber: formattedPhone }),
@@ -73,7 +74,7 @@ export default function Login() {
         setCode(codeStr);
         const formattedPhone = phone.replace(/\D/g, "");
         try {
-            const response = await fetch("https://api.deli-bike.kz/auth/login", {
+            const response = await fetch(`${API_URL}/auth/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ phoneNumber: formattedPhone, code: codeStr }),
@@ -98,7 +99,7 @@ export default function Login() {
                     localStorage.setItem("accessToken", data.data.accessToken);
 
                     // Дозапрашиваем профиль
-                    const userResponse = await fetch("https://api.deli-bike.kz/user/profile", {
+                    const userResponse = await fetch(`${API_URL}/user/profile`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
@@ -128,7 +129,7 @@ export default function Login() {
         const formattedPhone = phone.replace(/\D/g, "");
 
         try {
-            const response = await fetch("https://api.deli-bike.kz/auth/sendCode", {
+            const response = await fetch(`${API_URL}/auth/sendCode`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ phoneNumber: formattedPhone }),
@@ -169,7 +170,7 @@ export default function Login() {
 
             console.log(body);
 
-            const response = await fetch("https://api.deli-bike.kz/auth/register", {
+            const response = await fetch(`${API_URL}/auth/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body),
@@ -178,7 +179,7 @@ export default function Login() {
             localStorage.setItem("accessToken", data.data.accessToken);
 
             // Дозапрашиваем профиль
-            const userResponse = await fetch("https://api.deli-bike.kz/user/profile", {
+            const userResponse = await fetch(`${API_URL}/user/profile`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

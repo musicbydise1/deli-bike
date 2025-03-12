@@ -6,6 +6,7 @@ export const megaMenuData = [
   {
     links: [
       { href: "/bikes", label: "Электровелосипеды" },
+      { href: "/#service", label: "Сервис" },
     ],
   },
 ];

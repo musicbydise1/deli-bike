@@ -13,6 +13,7 @@ export default function BikesTab() {
     const [showModal, setShowModal] = useState(false);
     const [isEditMode, setIsEditMode] = useState(false);
     const [priceCategories, setPriceCategories] = useState([]);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     const [currentBike, setCurrentBike] = useState({
         id: null,
@@ -42,7 +43,7 @@ export default function BikesTab() {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch("https://api.deli-bike.kz/bikes/");
+            const response = await fetch(`${API_URL}/bikes/`);
             if (!response.ok) throw new Error("Ошибка при получении списка велосипедов");
             const result = await response.json();
             if (!result.isSuccess) throw new Error(result.message || "Не удалось загрузить велосипеды");
@@ -57,7 +58,7 @@ export default function BikesTab() {
 
     async function fetchPriceCategories() {
         try {
-            const res = await fetch("https://api.deli-bike.kz/price-categories");
+            const res = await fetch(`${API_URL}/price-categories`);
             const result = await res.json();
             if (result.isSuccess) setPriceCategories(result.data);
         } catch (err) {
@@ -114,7 +115,7 @@ export default function BikesTab() {
     async function handleDeleteBike(id) {
         if (!confirm("Вы действительно хотите удалить этот велосипед?")) return;
         try {
-            const response = await fetch(`https://api.deli-bike.kz/bikes/${id}`, { method: "DELETE" });
+            const response = await fetch(`${API_URL}/bikes/${id}`, { method: "DELETE" });
             if (!response.ok) throw new Error("Ошибка при удалении велосипеда");
             setBikes((prev) => prev.filter((b) => b.id !== id));
         } catch (error) {
@@ -155,10 +156,10 @@ export default function BikesTab() {
             }
         }
 
-        let url = "https://api.deli-bike.kz/bikes/";
+        let url = `${API_URL}/bikes/`;
         let method = "POST";
         if (isEditMode && currentBike.id) {
-            url = `https://api.deli-bike.kz/bikes/${currentBike.id}`;
+            url = `${API_URL}/bikes/${currentBike.id}`;
             method = "PUT";
         }
 

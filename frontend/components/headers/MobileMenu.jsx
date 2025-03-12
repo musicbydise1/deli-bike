@@ -3,6 +3,7 @@ import {
   blogLinks,
   homeLinks,
   megaMenuData,
+  AboutLinks,
   pages,
   shopLinks,
 } from "@/data/menu";
@@ -118,99 +119,87 @@ export default function MobileMenu() {
             >
               <div className="mm-navbar mm-navbar_sticky">
                 <a className="mm-navbar__title">
-                  <span>Menu</span>
+                  <span>Меню</span>
                 </a>
               </div>
               <ul className="navigation mm-listview">
                 <li
-                  className={`current-dropdown mm-listitem ${
-                    isMenuActive(homeLinks) ? "current" : ""
-                  }`}
+                    className={`mm-listitem ${
+                        pathname == "/" ? "current" : ""
+                    }`}
+                >
+                  <Link href={`/`} className="mm-listitem__text">
+                    Главная
+                  </Link>
+                </li>
+                <li
+                    className={`current-dropdown mm-listitem ${
+                        isMenuActive(AboutLinks) ? "current" : ""
+                    }`}
                 >
                   <a
-                    className="mm-btn mm-btn_next mm-listitem__btn mm-listitem__text"
-                    onClick={() => setMemuOpen((pre) => (pre == 1 ? -1 : 1))}
+                      className="mm-btn mm-btn_next mm-listitem__btn mm-listitem__text"
+                      onClick={() => setMemuOpen((pre) => (pre == 3 ? -1 : 3))}
                   >
-                    Home <i className="fa-solid fa-angle-down" />
+                    О нас <i className="fa-solid fa-angle-down"/>
                     <span className="mm-sronly">Open submenu</span>
                   </a>
                 </li>
                 <li
-                  className={`current-dropdown mm-listitem ${
-                    isMenuActive(megaMenuData) ? "current" : ""
-                  }`}
+                    className={`current-dropdown mm-listitem ${
+                        isMenuActive(megaMenuData) ? "current" : ""
+                    }`}
                 >
                   <a
-                    className="mm-btn mm-btn_next mm-listitem__btn mm-listitem__text"
-                    onClick={() => setMemuOpen((pre) => (pre == 2 ? -1 : 2))}
+                      className="mm-btn mm-btn_next mm-listitem__btn mm-listitem__text"
+                      onClick={() => setMemuOpen((pre) => (pre == 2 ? -1 : 2))}
                   >
-                    Inventory <i className="fa-solid fa-angle-down" />
+                    Сотрудничество <i className="fa-solid fa-angle-down"/>
                   </a>
                 </li>
                 <li
-                  className={`current-dropdown mm-listitem ${
-                    isMenuActive(blogLinks) ? "current" : ""
-                  }`}
-                >
-                  <a
-                    className="mm-btn mm-btn_next mm-listitem__btn mm-listitem__text"
-                    onClick={() => setMemuOpen((pre) => (pre == 3 ? -1 : 3))}
-                  >
-                    Blog <i className="fa-solid fa-angle-down" />
-                    <span className="mm-sronly">Open submenu</span>
-                  </a>
-                </li>
-                <li
-                  className={`current-dropdown mm-listitem ${
-                    isMenuActive(shopLinks) ? "current" : ""
-                  }`}
-                >
-                  <a
-                    className="mm-btn mm-btn_next mm-listitem__btn mm-listitem__text"
-                    onClick={() => setMemuOpen((pre) => (pre == 4 ? -1 : 4))}
-                  >
-                    Shop <i className="fa-solid fa-angle-down" />
-                    <span className="mm-sronly">Open submenu</span>
-                  </a>
-                </li>
-                <li
-                  className={`current-dropdown mm-listitem ${
-                    isMenuActive(pages) ? "current" : ""
-                  }`}
-                >
-                  <a
-                    className="mm-btn mm-btn_next mm-listitem__btn mm-listitem__text"
-                    onClick={() => setMemuOpen((pre) => (pre == 5 ? -1 : 5))}
-                  >
-                    Pages <i className="fa-solid fa-angle-down" />
-                    <span className="mm-sronly">Open submenu</span>
-                  </a>
-                </li>
-                <li
-                  className={`mm-listitem ${
-                    pathname == "/contact" ? "current" : ""
-                  }`}
+                    className={`mm-listitem ${
+                        pathname == "/contact" ? "current" : ""
+                    }`}
                 >
                   <Link href={`/contact`} className="mm-listitem__text">
-                    Contact
+                    Контакты
+                  </Link>
+                </li>
+                <li
+                    className={`mm-listitem ${
+                        pathname == "/contact" ? "current" : ""
+                    }`}
+                >
+                  <Link href={`/contact`} className="mm-listitem__text">
+                    Отзывы
+                  </Link>
+                </li>
+                <li
+                    className={`mm-listitem ${
+                        pathname == "/contact" ? "current" : ""
+                    }`}
+                >
+                  <Link href={`/contact`} className="mm-listitem__text">
+                    Вакансии
                   </Link>
                 </li>
               </ul>
             </div>
             <div
-              id="mm-1"
-              className={`mm-panel ${
-                memuOpen == 1 ? "mm-panel_opened" : "mm-hidden"
-              }`}
+                id="mm-1"
+                className={`mm-panel ${
+                    memuOpen == 1 ? "mm-panel_opened" : "mm-hidden"
+                }`}
             >
               <div
-                className="mm-navbar mm-navbar_sticky"
-                onClick={() => setMemuOpen((pre) => (pre == 1 ? -1 : 1))}
+                  className="mm-navbar mm-navbar_sticky"
+                  onClick={() => setMemuOpen((pre) => (pre == 1 ? -1 : 1))}
               >
                 <a
-                  className="mm-btn mm-btn_prev mm-navbar__btn"
-                  href="#navbar"
-                  aria-haspopup="true"
+                    className="mm-btn mm-btn_prev mm-navbar__btn"
+                    href="#navbar"
+                    aria-haspopup="true"
                   aria-owns="navbar"
                 >
                   <span className="mm-sronly">Close submenu</span>
@@ -298,7 +287,7 @@ export default function MobileMenu() {
                 </a>
               </div>
               <ul className="dropdown mm-listview">
-                {blogLinks.map((elm, i) => (
+                {AboutLinks.map((elm, i) => (
                   <li key={i} className="mm-listitem">
                     <Link
                       href={elm.href}

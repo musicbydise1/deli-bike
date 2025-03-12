@@ -5,9 +5,10 @@ import Button from "@/components/ui/button/Button";
 
 export default function NoActiveOrderTiles() {
     const [bikes, setBikes] = useState([]);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        fetch("https://api.deli-bike.kz/bikes")
+        fetch(`${API_URL}/bikes`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.isSuccess) {

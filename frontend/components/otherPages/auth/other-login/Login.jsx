@@ -9,6 +9,7 @@ export default function CorporateLogin() {
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     // useEffect(() => {
     //     const userRole = localStorage.getItem("userRole");
@@ -21,7 +22,7 @@ export default function CorporateLogin() {
         e.preventDefault();
 
         try {
-            const response = await fetch("https://api.deli-bike.kz/auth/other-login", {
+            const response = await fetch(`${API_URL}/auth/other-login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
@@ -37,7 +38,7 @@ export default function CorporateLogin() {
             // Сохраняем полученные данные в localStorage
             localStorage.setItem("accessToken", data.data.accessToken);
 
-            const userResponse = await fetch("https://api.deli-bike.kz/user/profile", {
+            const userResponse = await fetch(`${API_URL}/user/profile`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

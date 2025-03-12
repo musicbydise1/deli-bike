@@ -8,11 +8,13 @@ import { BillingDetails } from "./BillingDetails";
 import { OrderSummary } from "./OrderSummary";
 import { PaymentOptions } from "./PaymentOptions";
 import { useContextElement } from "@/context/Context";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export default function Checkout() {
   const { t } = useTranslation();
   const { cartProducts, totalPrice } = useContextElement();
   const router = useRouter();
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   // Состояние для выбранного метода оплаты
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("direct_bank_transfer");
@@ -97,7 +99,7 @@ export default function Checkout() {
 
     try {
       // Создаем аренду
-      const rentalResponse = await fetch("https://api.deli-bike.kz/rentals/", {
+      const rentalResponse = await fetch(`${API_URL}/rentals/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(rentalPayload),
@@ -116,7 +118,7 @@ export default function Checkout() {
         paymentMethod: selectedPaymentMethod,
         status: "pending",
       };
-      const paymentResponse = await fetch("https://api.deli-bike.kz/payments/", {
+      const paymentResponse = await fetch(`${API_URL}/payments/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(paymentPayload),

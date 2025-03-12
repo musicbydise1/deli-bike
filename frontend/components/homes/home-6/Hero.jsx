@@ -48,12 +48,18 @@ export default function Hero() {
                       </>
                   )}
                 </span>
-                  <div className="btn-box">
-                    <Button className="!ml-0" variant="primary">{t("home.hero.rent_bike")}</Button>
-                    <Button variant="primary-outline" onClick={() => {
-                      setIsModalOpen(prev => !prev);
-                      console.log("Toggled Modal");
-                    }}>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full hero-btn-box">
+                    <Button className="!ml-0 w-full sm:w-auto" variant="primary">
+                      {t("home.hero.rent_bike")}
+                    </Button>
+                    <Button
+                        className="w-full sm:w-auto !ml-0"
+                        variant="primary-outline"
+                        onClick={() => {
+                          setIsModalOpen(prev => !prev);
+                          console.log("Toggled Modal");
+                        }}
+                    >
                       {t("home.hero.get_consultation")}
                     </Button>
                   </div>

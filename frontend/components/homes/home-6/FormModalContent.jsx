@@ -12,6 +12,7 @@ export default function FormModalContent() {
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [error, setError] = useState("");
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     const handleChange = (e) => {
         setFormData((prev) => ({
@@ -25,7 +26,7 @@ export default function FormModalContent() {
         setError("");
 
         try {
-            const response = await fetch("https://api.deli-bike.kz/lead", {
+            const response = await fetch(`${API_URL}/lead`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -14,12 +14,13 @@ export default function Context({ children }) {
   const [totalPrice, setTotalPrice] = useState(0);
   // Состояние для продуктов, загруженных с API
   const [products, setProducts] = useState([]);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   // Загружаем продукты (велосипеды) с API
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("https://api.deli-bike.kz/bikes/");
+        const res = await fetch(`${API_URL}/bikes/`);
         const json = await res.json();
         const data = Array.isArray(json.data) ? json.data : [];
         setProducts(data);

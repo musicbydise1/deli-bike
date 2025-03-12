@@ -4412,7 +4412,6 @@ Main Header
 
 .header-style-v9 .header-inner .right-box {
   position: relative;
-  width: 35%;
 }
 
 .header-style-v7 .header-inner .right-box {
@@ -5456,10 +5455,23 @@ Sticky Header
   display: none;
   /* Large devices */
 }
+.mobile-box {
+  display: none;
+}
+
+.menu-burger-icon {
+  color: #000;
+}
 
 @media (max-width: 1199px) {
   .mobile-navigation {
     display: inline-block;
+  }
+  .nav-box {
+    display: none;
+  }
+  .mobile-box {
+    display: block;
   }
 }
 
@@ -29323,6 +29335,20 @@ Chat Widget
   right: 30px !important;
 }
 
+.hero-btn-box {
+  margin-bottom: 118px;
+}
+.pricing-img {
+  height: 390px !important;
+}
+
+.boxcar-pricing-box {
+  background: #fff;
+  height: 390px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px 0px rgba(0,0,0,.2);
+}
+
 @media only screen and (max-width: 1520px) {
   .hheader-style-v4 .header-inner .c-box .nav-out-bar {
     display: none;
@@ -29752,7 +29778,7 @@ Chat Widget
   }
 
   .boxcar-banner-section-six .content-column .inner-column {
-    padding: 100px 0 100px;
+    padding: 145px 0 40px;
   }
 
   .boxcar-pricing-section-four .content-column .inner-column {
@@ -31344,580 +31370,85 @@ Chat Widget
 
 /* Extra small devices */
 @media (max-width: 575px) {
-  .header-style-v1 .btn {
-    display: none;
-  }
-
-  .car-block-two .inner-box {
+  .boxcar-banner-section-six .content-column .inner-column {
     display: block;
   }
 
-  .car-block-two .inner-box .image-box {
-    width: 100%;
+  .left-banner {
+    width: 100% !important;
+  }
+  .right-banner {
+    width: 100% !important;
+    margin-top: 50px !important;
+  }
+  .right-banner-box {
+    display: flex;
   }
 
-  .car-block-two .inner-box .image-box .image img {
-    border-radius: 0;
-  }
-
-  .car-block-two .inner-box .content-box {
-    padding: 20px;
-  }
-
-  .cars-section {
-    padding: 90px 0;
-  }
-
-  .boxcar-testimonial-section .content-column .inner-column .text {
-    margin-right: 0;
-  }
-
-  .blog-section {
-    padding: 90px 0;
-  }
-
-  .header-style-v1.style-two {
-    padding: 20px 0;
-  }
-
-  .car-block-four .inner-box .content-box ul li {
-    margin-right: 0;
-    width: 33%;
-  }
-
-  .boxcar-service-section .content-column .inner-column .title {
-    font-size: 40px;
-    line-height: 50px;
-  }
-
-  .boxcar-banner-section-two
-    .banner-slider
-    .banner-slide
-    .right-box
-    .content-box
-    h1 {
-    font-size: 50px;
-    line-height: 60px;
-  }
-
-  header .user {
-    display: none;
-  }
-
-  header .btn {
-    display: none;
-  }
-
-  .car-block-six .inner-box {
+  .deli-hat-img {
+    width: 63%;
     display: block;
+    margin: 0 auto;
   }
 
-  .car-block-six .inner-box .image-box {
-    width: 100%;
+  .image-box {
+    display: flex;
+  }
+  .box-image {
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .second-text {
+    padding-bottom: 25px !important;
   }
 
-  .car-block-six .inner-box .content-box {
-    width: 100%;
-    padding: 20px;
+  .second-box.last-home-box-box {
+    height: 226px !important;
+    padding: 0 !important;
+    width: 47% !important;
   }
-
-  .car-block-six .inner-box .content-box ul,
-  .car-block-six .inner-box .content-box .text {
-    margin-bottom: 15px;
-  }
-
-  .car-block-six .inner-box .content-box ul li {
-    margin-bottom: 10px;
-  }
-
-  .hheader-style-v4.five {
-    padding: 25px 0;
-  }
-
-  .boxcar-banner-section-six .content-column .inner-column h1 {
-    font-size: 50px;
-    line-height: 60px;
-  }
-
-  .counter-block {
-    width: 50%;
-  }
-
-  .boxcar-inspiration-section-two .right-box .service-list li {
-    margin-right: 15px;
-    margin-bottom: 15px;
-  }
-
-  .boxcar-testimonial-section-four .right-box {
-    padding: 80px 15px;
-  }
-
-  .header-style-v7 .header-inner {
-    padding: 20px 0;
-  }
-
-  .team-block-three {
-    padding: 0 15px;
-    width: calc(50% - 0px);
-    margin-bottom: 30px;
-  }
-
-  .boxcar-team-section-three .right-box {
-    margin: 0 -15px;
-  }
-
-  .boxcar-service-section .content-column .inner-column .title br {
-    display: none;
-  }
-
-  .boxcar-brand-section-six .cars-block-six {
-    margin-right: 10px;
-    margin-bottom: 10px;
-  }
-
-  .cars-section-ten .right-box {
-    padding-top: 70px;
-  }
-
-  .news-letter-section .form-column .inner-column .boxcar-title h2 br {
-    display: none;
-  }
-
-  .team-block-four {
-    width: 100%;
-  }
-
-  .boxcar-title h2 {
-    font-size: 32px;
-  }
-
-  .footer-style-four .footer-top .right-box .top-left .btn-box {
+  .deli-rain-img {
+    width: 70% !important;
+    height: 46% !important;
     display: block;
+    margin: 0 auto;
   }
 
-  .footer-style-four .footer-top .right-box .top-left .btn-box .btn-two {
-    margin-right: 0;
-    width: 100%;
-    margin-bottom: 15px;
+  .car-block-three .inner-box .content-box ul li {
+    width: 100% !important;
   }
 
-  .footer-style-five .footer-top .right-box .subscribe-form .form-group input {
-    width: 100%;
+  .cars-home .boxcar-title h2 {
+    font-size: 36px !important;
+  }
+
+  .map-section .map-box {
+    position: static;
+    width: 100% !important;
+    padding: 30px !important;
+    margin: 50px 0;
   }
 
   .footer-style-five .footer-top .right-box .subscribe-form .form-group {
     width: 100%;
   }
-
-  .dashboard-widget .nav-tabs {
-    display: block;
-  }
-
-  .dashboard-widget .nav-tabs li {
-    margin-bottom: 15px;
-  }
-
-  .header-style-ten .header-inner .right-box .haeder-img {
-    display: none;
-  }
-
-  .header-style-ten .header-inner .c-box .nav-out-bar {
-    display: none;
-  }
-
-  .header-style-ten .header-inner .c-box .logo-inner {
-    width: 100%;
-  }
-
-  .header-style-ten .header-inner .c-box .logo-inner .logo {
-    margin-right: auto;
-  }
-
-  .header-style-ten .header-inner .c-box .btn-box .menu-btn .button {
-    margin-right: 0;
-    font-size: 30px;
-  }
-
-  .blog-section-five
-    .right-box-two
-    .social-section
-    .inner-column
-    .social-icons {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  .blog-section-five .right-box-two .social-section .inner-column {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  .blog-section-five
-    .right-box-two
-    .social-section
-    .inner-column
-    .social-icons {
-    margin-bottom: 15px;
-  }
-
-  .blog-section-five .right-box-two .social-section {
-    padding: 30px 0;
-  }
-
-  .blog-section-five .right-box-two .Reply-sec .right-box .rating-list.two {
-    margin-right: 0;
-  }
-
-  .blog-section-five .right-box-two .Reply-sec .right-box {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  .blog-section-five .right-box-two .list-sec-two .list-two li {
-    line-height: unset;
-  }
-
-  .cart-table {
-    padding-right: 0;
-  }
-
-  .cart-table table tr {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  .cart-table table tr td {
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    width: 100%;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .cart-table .shop-cart-product {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-
-  .cart-table .shop-cart-product .shop-product-cart-img {
-    margin-right: 0;
-  }
-
-  .shop-product-cart-info {
-    text-align: center;
-  }
-
-  .cart-table-bottom .coupan-form {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  .cart-table-bottom .coupan-form input {
-    margin-right: 0;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .theme-btn-web {
-    width: 100%;
-    text-align: center;
-  }
-
-  .cart-table table .number {
-    margin: 0 auto;
-  }
-
-  .cart-table table thead th {
-    width: 100%;
-    text-align: center;
-  }
-
-  .cart-table table thead th:last-child {
-    display: none;
-  }
-
-  .contact-us-section .ofice-section {
-    padding-top: 70px;
-  }
-
-  .dealer-ship-section-two .inner-column .brand-box .content-box .contact-list {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  .dealer-ship-section-two
-    .inner-column
-    .brand-box
-    .content-box
-    .contact-list
-    li {
-    margin-bottom: 20px;
-  }
-
-  .dealer-ship-section-two
-    .inner-column
-    .service-box
-    .list-sec
-    .service-list
-    .list-box
-    .list.two {
-    margin-right: 0;
-  }
-
-  .dealer-ship-section-two
-    .inner-column
-    .service-box
-    .list-sec
-    .service-list
-    .list-box {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  .cars-section-four .pagination-sec .pagination {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  .inventory-pager {
-    padding-bottom: 80px;
-  }
-
-  .inventory-section
-    .inspection-column
-    .inner-column
-    .Reply-sec
-    .right-box
-    .rating-list
-    .list-box {
-    display: block;
+  .footer-style-five .footer-top .right-box .subscribe-form .form-group input {
+    width: 100% !important;
   }
 
-  .inventory-section
-    .inspection-column
-    .inner-column
-    .Reply-sec
-    .right-box
-    .rating-list.two {
-    margin-right: 0;
+  .why-choose-home .choose-us-block-four .inner-box {
+    height: 100% !important;
   }
-
-  /* .inventory-section .boxcar-title-three .spectes-list li {
-    display: block;
-    margin-right: 0;
-    margin-bottom: 10px;
-  } */
-
-  .inventory-section .boxcar-title-three .spectes-list li span {
-    width: 100%;
-  }
-
-  .inventory-section .inspection-column .inner-column .image-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  .inventory-section .inspection-column .inner-column .image-box > img {
-    width: 20%;
-  }
-
-  .inventory-section
-    .gallery-sec
-    .image-column
-    .inner-column
-    .image-box
-    .content-box
-    .video-list
-    li
-    a {
-    font-size: 12px;
-  }
-
-  .inventory-section
-    .inspection-column
-    .inner-column
-    .contact-box-three
-    .content-box
-    .btn-box {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  .inventory-section
-    .inspection-column
-    .inner-column
-    .contact-box-three
-    .content-box
-    .btn-box
-    .side-btn {
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
-
-  .inventory-section
-    .inspection-column
-    .inner-column
-    .contact-list
-    .image-box
-    > img {
-    width: auto;
-  }
-
-  .inventory-section
-    .inspection-column
-    .inner-column
-    .contact-box-three
-    .content-box
-    .inner-box
-    .contact-list
-    li
-    a
-    .image-box {
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-  }
-
-  .cars-section-three {
-    padding-top: 80px;
-  }
-
-  .contact-block .inner-box {
-    padding: 50px 25px;
-  }
-
-  .login-section .inner-container {
-    padding: 0 15px;
-  }
-
-  .login-section .btn-box-two .social-btns {
-    display: block;
-  }
-
-  .login-section .btn-box-two .social-btns .fb-btn {
-    width: 100%;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-
-  .shop-cart.pt30 .container {
-    padding-top: 50px;
-  }
-
-  .boxcar-pricing-section-seven {
-    padding-top: 70px;
-  }
-
-  .boxcar-pricing-section-two .content-column .inner-column .boxcar-title h2 {
-    line-height: 40px;
-  }
-
-  .services-inner-section .why-choose-us-section.v3 .right-box {
-    padding-top: 80px;
-  }
-
-  .shop-single-thumbs-slider {
-    display: none;
-  }
-
-  .shop-single-product-slider {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .cars-section-fifteen
-    .content-sec
-    .content-column
-    .inner-column
-    .Reply-sec
-    .right-box {
-    display: block;
-  }
-
-  .boxcar-banner-section-two
-    .banner-slider
-    .banner-slide
-    .right-box
-    .content-box
-    ul {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  .wrap-fixed-sidebar .widget-sidebar-filter {
-    width: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  .boxcar-brand-section {
-    padding: 60px 0;
-  }
-
-  .blog-section-two {
-    padding-bottom: 90px;
-  }
-
-  .cars-section-four {
-    padding: 120px 0 40px;
-  }
-
-  .why-choose-us-section {
-    padding: 70px 0 64px;
-  }
-
-  .boxcar-customers-section {
-    padding: 60px 0;
-  }
-
-  .boxcar-customers-section .boxcar-title {
-    margin-bottom: 15px;
-  }
-
-  .boxcar-team-section {
-    padding: 60px 0;
-  }
-
-  .boxcar-inspiration-section {
-    padding-bottom: 60px;
-  }
-
-  .boxcar-service-section .content-column .inner-column .title {
-    font-size: 32px;
-    line-height: 42px;
-  }
-
-  .boxcar-service-section {
-    padding-bottom: 60px;
-  }
-
-  .brand-boxcar-banner-section .content-column .inner-column .title {
-    font-size: 40px;
-    line-height: 50px;
-  }
-
-  .brand-boxcar-banner-section {
-    padding: 60px 0;
+  .two.second-box-box {
+    width: 100% !important;
   }
 
-  .boxcar-banner-section-v1 {
-    background-position: top;
+  .about-home .exp-box .title {
+    font-size: 20px;
   }
-}
 
-/* Extra small devices */
-@media (max-width: 416px) {
   .header-style-v1 .header-inner .right-box > a {
     display: none;
   }
@@ -31928,10 +31459,94 @@ Chat Widget
     margin-right: 0;
   }
 
+  .boxcar-pricing-section-five .row {
+    background: transparent;
+  }
+
   .boxcar-pricing-section .content-column .inner-column .boxcar-title h2 {
     font-size: 30px;
     line-height: 40px;
     margin-bottom: 15px;
+  }
+
+
+  .boxcar-pricing-box {
+    height: 100%;
+  }
+
+  .pricing-img {
+    height: 197px !important;
+  }
+
+  .banner-text-box {
+    padding: 20px !important;
+  }
+
+  .work-box .nums {
+    width: 62px !important;
+    margin-right: 20px;
+  }
+
+  .categ p {
+    font-size: 16px;
+  }
+
+  .cars-section .nav-tabs {
+    flex-wrap: nowrap;
+  }
+
+  .tab-content {
+    overflow-x: auto;
+  }
+
+  .cars-section .nav-tabs {
+    margin-bottom: 0;
+  }
+
+  .textiominal-title h2 {
+    font-size: 28px !important;
+  }
+
+  .boxcar-testimonial-section-three .right-box {
+    padding: 50px 20px;
+  }
+
+
+  .about-inner-one .galler-section .exp-block .inner-box {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .comparison-table {
+    border-collapse: collapse;
+  }
+  .right-banner-box p {
+    padding: 50px 0px 34px 20px !important;
+    font-size: 15px !important;
+  }
+  .right-banner-box img {
+    width: 50%;
+  }
+  .boxcar-banner-section-six .content-column .inner-column .right-box .service-list li {
+    margin-right: 0;
+    width: 100%;
+  }
+  .boxcar-banner-section-six .content-column .inner-column .right-box .service-list li a {
+    text-align: center;
+    width: 100%;
+  }
+  .boxcar-banner-section-six .content-column .inner-column h1 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .overlay-text {
+    top: 45% !important;
+    left: 5% !important;
+  }
+
+  .boxcar-banner-section-six .content-column .inner-column span {
+    margin-bottom: 30px;
   }
 
   .choose-us-block .inner-box .content-box .text {
@@ -31971,7 +31586,549 @@ Chat Widget
   }
 
   .boxcar-title h2 {
+    font-size: 26px;
+  }
+
+  .choose-us-block .inner-box .content-box .title {
+    text-align: center;
+  }
+
+  .overlay-title {
+    font-size: 26px !important;
+    line-height: 32px
+  }
+
+  .overlay-subtitle {
+    font-size: 17px !important;
+    width: 70%;
+    line-height: 20px;
+  }
+
+  .blog-blockt-two .inner-box .title {
+    line-height: 36px;
+  }
+
+  .boxcar-banner-section-four
+  .banner-slider-v4
+  .banner-slide
+  .right-box
+  .content-box
+  h1 {
+    font-size: 50px;
+    line-height: 60px;
+  }
+
+  .calculater-section .content-column .inner-column {
+    padding: 40px;
+  }
+
+  .brand-block-four .inner-box {
+    /* width: 100%; */
+  }
+
+  .brand-block-four {
+    width: 100%;
+    /* margin-right: 0; */
+  }
+
+  .why-choose-us-section-three .right-box {
+    padding: 70px 30px 70px;
+  }
+
+  .boxcar-brand-section-three .right-box {
+    padding: 70px 30px;
+  }
+
+  .boxcar-banner-section-six .content-column .inner-column .btn-box {
+    display: block;
+    margin-bottom: 30px;
+  }
+  header {
+    padding: 0 !important;
+  }
+  .hero-btn-box {
+    margin-bottom: 50px;
+  }
+
+  .boxcar-banner-section-six .content-column .inner-column .btn-box .read-more {
+    margin-right: 0;
+    display: block;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .boxcar-pricing-section-four .content-column .inner-column .boxcar-title h2 {
+    line-height: 42px;
+  }
+
+  .boxcar-inspiration-section-two .right-box-two .uper-box .content-box {
+    padding-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .boxcar-inspiration-section-two .right-box-two .uper-box .content-box .icon {
+    position: static;
+  }
+
+  .boxcar-banner-section-seven
+  .banner-slider-v7
+  .banner-slide
+  .right-box
+  .content-box
+  h1 {
     font-size: 32px;
+    line-height: 40px;
+  }
+
+  .boxcar-service-section {
+    padding: 90px 0;
+  }
+
+  .cars-block-five {
+    width: 50%;
+  }
+
+  .cars-section-ten .nav-tabs .nav-link {
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .cars-section-ten .right-box {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .news-letter-section
+  .form-column
+  .inner-column
+  .subscribe-form
+  .form-group
+  button {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .boxcar-banner-section-nine .banner-content .content-box h2 {
+    font-size: 40px;
+  }
+
+  .boxcar-banner-section-nine .banner-content .content-box .btn-box {
+    display: block;
+  }
+
+  .boxcar-banner-section-nine .banner-content .content-box .btn-box .read-more {
+    margin-right: 0;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .blog-section-three {
+    padding-bottom: 80px;
+  }
+
+  .choose-us-block-five .inner-box .content-box .text {
+    padding-right: 0;
+  }
+
+  .boxcar-pricing-section-five .content-column .inner-column .boxcar-title h2 {
+    line-height: 40px;
+  }
+
+  .counter-block {
+    width: 100%;
+  }
+
+  .boxcar-pricing-section-six .content-column .inner-column .boxcar-title h2 {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  .boxcar-service-section-two .content-column .inner-column .title {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .boxcar-service-section-two .content-column .inner-column .store span {
+    line-height: 16px;
+    margin-bottom: 10px;
+  }
+
+  .boxcar-team-section-two {
+    padding-bottom: 80px;
+  }
+
+  .about-inner-one .faqs-section .widget-accordion .block .acc-btn {
+    font-size: 16px;
+  }
+
+  .dashboard-widget .content-column .inner-column .form-box form .form-column {
+    width: 100%;
+  }
+
+  .dashboard-widget
+  .content-column
+  .inner-column
+  .gallery-sec
+  .right-box-three
+  .gallery-box
+  .inner-box
+  .uplode-box {
+    width: 100%;
+  }
+
+  .inventory-section .inspection-column .inner-column .form-box .form-list {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .inventory-section .inspection-column .inner-column .form-box .form-list li {
+    margin-right: 0;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .inventory-section
+  .inspection-column
+  .inner-column
+  .form-box
+  .form-list
+  li
+  span {
+    margin-right: auto;
+  }
+
+  .inventory-section .inspection-column .inner-column .form-box .form-list li {
+    margin-bottom: 10px;
+  }
+
+  .inventory-section
+  .side-bar-column
+  .inner-column
+  .contact-box-two
+  .btn-box
+  .side-btn {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  .inventory-section
+  .gallery-sec
+  .image-column
+  .inner-column
+  .image-box
+  .content-box
+  .video-list {
+    display: none;
+  }
+
+  .inventory-section
+  .inspection-column
+  .inner-column
+  .description-sec
+  .des-list {
+    display: block;
+  }
+
+  .inventory-section
+  .inspection-column
+  .inner-column
+  .description-sec
+  .des-list
+  li {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .inventory-section
+  .inspection-column
+  .inner-column
+  .contact-box-three
+  .icon-box {
+    position: static;
+  }
+
+  .inventory-section
+  .inspection-column
+  .inner-column
+  .contact-box-three
+  .content-box
+  .inner-box {
+    padding-left: 0;
+    margin-top: 30px;
+  }
+
+  .inventory-section .side-bar-column.v3 .contact-box-two .btn-box {
+    display: block;
+  }
+
+  .inventory-section.v1 .description-sec.v2,
+  .inventory-section.v1 .features-sec.v2,
+  .inventory-section.v1 .faqs-section.v2,
+  .inventory-section.v1 .location-box.v2,
+  .inventory-section.v1 .form-box.v2,
+  .inventory-section.v1 .main-review-box,
+  .inventory-section.v1 .reply-c-box {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .text-box {
+    display: block;
+  }
+
+  .text-box .text {
+    margin-bottom: 15px;
+  }
+
+  .dashboard-widget-two
+  .content-column
+  .inner-column
+  .gallery-sec
+  .right-box-three
+  .gallery-box
+  .inner-box
+  .image-box {
+    width: 100%;
+  }
+
+  .dashboard-widget-two
+  .content-column
+  .inner-column
+  .gallery-sec
+  .right-box-three
+  .gallery-box
+  .inner-box
+  .image-box
+  img {
+    width: 100%;
+  }
+
+  .dashboard-widget-two
+  .content-column
+  .inner-column
+  .gallery-sec
+  .right-box-three
+  .gallery-box
+  .inner-box
+  .uplode-box {
+    width: 100%;
+  }
+
+  .services-inner-section .calculater-sec .content-column .inner-column {
+    padding: 30px 15px;
+  }
+
+  .cars-section-fifteen .shop-c-box .content-column .inner-column .btn-box {
+    display: block;
+  }
+
+  .cars-section-fifteen
+  .shop-c-box
+  .content-column
+  .inner-column
+  .btn-box
+  .number {
+    height: 50px;
+    margin-bottom: 20px;
+  }
+
+  .cars-section-fifteen
+  .content-sec
+  .content-column
+  .inner-column
+  .Reply-sec
+  .right-box
+  .rating-list
+  .list-box {
+    display: block;
+  }
+
+  .cars-section-fifteen .cars-section-fourteen.v1 {
+    padding-top: 60px;
+  }
+
+  .vehicles-section-three
+  .right-box
+  .auther-info-box
+  .inner-column
+  .auther-info
+  .content-box
+  .contact-info {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .vehicles-section-three
+  .right-box
+  .auther-info-box
+  .inner-column
+  .auther-info
+  .content-box
+  .contact-info
+  li {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 416px) {
+  .header-style-v1 .header-inner .right-box > a {
+    display: none;
+  }
+
+  .cars-section-three .nav-tabs .nav-link {
+    width: 100%;
+    /* margin-bottom: 15px; */
+    margin-right: 0;
+  }
+
+  .boxcar-pricing-section-five .row {
+    background: transparent;
+  }
+
+  .boxcar-pricing-section .content-column .inner-column .boxcar-title h2 {
+    font-size: 30px;
+    line-height: 40px;
+    margin-bottom: 15px;
+  }
+
+
+  .boxcar-pricing-box {
+    height: 100%;
+  }
+
+  .pricing-img {
+    height: 197px !important;
+  }
+
+  .banner-text-box {
+    padding: 20px !important;
+  }
+
+  .work-box .nums {
+    width: 62px !important;
+    margin-right: 20px;
+  }
+
+  .categ p {
+    font-size: 16px;
+  }
+
+  .cars-section .nav-tabs {
+    flex-wrap: nowrap;
+  }
+
+  .tab-content {
+    overflow-x: auto;
+  }
+
+  .cars-section .nav-tabs {
+    margin-bottom: 0;
+  }
+
+  .textiominal-title h2 {
+    font-size: 28px !important;
+  }
+
+  .boxcar-testimonial-section-three .right-box {
+    padding: 50px 20px;
+  }
+
+
+  .about-inner-one .galler-section .exp-block .inner-box {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .comparison-table {
+    border-collapse: collapse;
+  }
+  .right-banner-box p {
+    padding: 50px 0px 34px 20px !important;
+    font-size: 15px !important;
+  }
+  .right-banner-box img {
+    width: 50%;
+  }
+  .boxcar-banner-section-six .content-column .inner-column .right-box .service-list li {
+    margin-right: 0;
+    width: 100%;
+  }
+  .boxcar-banner-section-six .content-column .inner-column .right-box .service-list li a {
+    text-align: center;
+    width: 100%;
+  }
+  .boxcar-banner-section-six .content-column .inner-column h1 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .overlay-text {
+    top: 45% !important;
+    left: 5% !important;
+  }
+
+  .boxcar-banner-section-six .content-column .inner-column span {
+    margin-bottom: 30px;
+  }
+
+  .choose-us-block .inner-box .content-box .text {
+    padding-right: 0;
+  }
+
+  .blog-blockt-two .inner-box .hover-img {
+    display: none;
+  }
+
+  .blog-blockt-two .inner-box .title br {
+    display: none;
+  }
+
+  .cars-section-four .nav-tabs .nav-link {
+    width: 100%;
+  }
+
+  .boxcar-service-section .content-column .inner-column .title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .boxcar-service-section .content-column .inner-column .store span {
+    font-size: 11px;
+  }
+
+  .brand-boxcar-banner-section .content-column .inner-column .title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .brand-boxcar-banner-section .content-column .inner-column .btn {
+    padding: 0 30px;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  .boxcar-title h2 {
+    font-size: 26px;
+  }
+
+  .choose-us-block .inner-box .content-box .title {
+    text-align: center;
+  }
+
+  .overlay-title {
+    font-size: 26px !important;
+    line-height: 32px
+  }
+
+  .overlay-subtitle {
+    font-size: 17px !important;
+    width: 70%;
+    line-height: 20px;
   }
 
   .blog-blockt-two .inner-box .title {
@@ -32011,6 +32168,13 @@ Chat Widget
 
   .boxcar-banner-section-six .content-column .inner-column .btn-box {
     display: block;
+    margin-bottom: 30px;
+  }
+  header {
+    padding: 0 !important;
+  }
+  .hero-btn-box {
+    margin-bottom: 50px;
   }
 
   .boxcar-banner-section-six .content-column .inner-column .btn-box .read-more {
@@ -35088,7 +35252,8 @@ input[type="radio"] {
 .header-style-v9.fixed-header .nav-out-bar .icon-link,
 .header-style-v9.fixed-header .nav-out-bar .user-icon,
 .header-style-v9.fixed-header .cart-icon,
-.header-style-v9.fixed-header .user-info{
+.header-style-v9.fixed-header .user-info,
+.header-style-v9.fixed-header .menu-burger-icon{
   color: #fff !important;
 }
 

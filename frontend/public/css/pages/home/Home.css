@@ -190,7 +190,7 @@
 }
 
 .textiominal-title h2{
-    font-size: 48px !important;
+    font-size: 48px;
 }
 
 .textiominal-title .text {
@@ -297,7 +297,7 @@
 }
 
 .about-home .exp-box .title {
-    font-size: 24px !important;
+    font-size: 24px;
     font-weight: 700 !important;
     line-height: 36px;
     text-transform: uppercase;
@@ -325,7 +325,7 @@
     padding: 40px !important;
     border-radius: 10px !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    height: 335px !important;
+    height: 335px;
 }
 
 .why-choose-home .choose-us-block-four .inner-box .icon-box {
@@ -351,7 +351,7 @@
 
 
 .cars-home .boxcar-title h2 {
-    font-size: 64px !important;
+    font-size: 64px;
 }
 
 .cars-home .boxcar-title {

@@ -2,13 +2,16 @@ import Single1 from "@/components/carSingles/Single1";
 import Header6 from "@/components/headers/Header6";
 import Footer1 from "@/components/footers/Footer1";
 import Footer3 from "@/components/footers/Footer3";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 /**
  * Функция generateStaticParams возвращает список параметров для генерации
  * статических страниц для всех значений динамического сегмента [id].
  */
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export async function generateStaticParams() {
-    const res = await fetch("https://api.deli-bike.kz/bikes", { cache: "no-store" });
+    const res = await fetch(`${API_URL}/bikes`, { cache: "no-store" });
     if (!res.ok) {
         return [];
     }
@@ -26,7 +29,7 @@ export async function generateMetadata({ params }) {
     const { id } = params;
 
     // Делаем запрос на ваш сервер
-    const res = await fetch(`https://api.deli-bike.kz/bikes/${id}`, { cache: "no-store" });
+    const res = await fetch(`${API_URL}/bikes/${id}`, { cache: "no-store" });
 
     // Если получили ошибку — можно выбросить ее или вернуть дефолтные метаданные
     if (!res.ok) {
@@ -56,7 +59,7 @@ export default async function BikePage({ params }) {
     const { id } = params;
 
     // Запрос к вашему API, чтобы получить данные конкретного байка
-    const res = await fetch(`https://api.deli-bike.kz/bikes/${id}`, { cache: "no-store" });
+    const res = await fetch(`${API_URL}/bikes/${id}`, { cache: "no-store" });
     if (!res.ok) {
         throw new Error("Не удалось загрузить данные о байке");
     }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "../Modal";
 import AccessoriesTable from "./AccessoriesTable";
 import AccessoryForm from "./AccessoryForm";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export default function AccessoriesTab() {
     const [accessories, setAccessories] = useState([]);
@@ -11,6 +12,7 @@ export default function AccessoriesTab() {
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [isEditMode, setIsEditMode] = useState(false);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     const [currentAccessory, setCurrentAccessory] = useState({
         id: null,
@@ -29,7 +31,7 @@ export default function AccessoriesTab() {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch("https://api.deli-bike.kz/accessories");
+            const response = await fetch(`${API_URL}/accessories`);
             if (!response.ok) throw new Error("Ошибка при получении аксессуаров");
             const result = await response.json();
             if (!result.isSuccess) throw new Error(result.message || "Не удалось загрузить аксессуары");
@@ -44,7 +46,7 @@ export default function AccessoriesTab() {
 
     async function fetchBikes() {
         try {
-            const response = await fetch("https://api.deli-bike.kz/bikes");
+            const response = await fetch(`${API_URL}/bikes`);
             if (!response.ok) throw new Error("Ошибка при получении велосипедов");
             const result = await response.json();
             if (result.isSuccess) {
@@ -84,7 +86,7 @@ export default function AccessoriesTab() {
     async function handleDeleteAccessory(id) {
         if (!confirm("Вы действительно хотите удалить этот аксессуар?")) return;
         try {
-            const response = await fetch(`https://api.deli-bike.kz/accessories/${id}`, { method: "DELETE" });
+            const response = await fetch(`${API_URL}/accessories/${id}`, { method: "DELETE" });
             if (!response.ok) throw new Error("Ошибка при удалении аксессуара");
             setAccessories((prev) => prev.filter((a) => a.id !== id));
         } catch (error) {
@@ -103,10 +105,10 @@ export default function AccessoriesTab() {
             price: Number(currentAccessory.price),
         };
 
-        let url = "https://api.deli-bike.kz/accessories";
+        let url = `${API_URL}/accessories`;
         let method = "POST";
         if (isEditMode && currentAccessory.id) {
-            url = `https://api.deli-bike.kz/accessories/${currentAccessory.id}`;
+            url = `${API_URL}/accessories/${currentAccessory.id}`;
             method = "PUT";
         }
 

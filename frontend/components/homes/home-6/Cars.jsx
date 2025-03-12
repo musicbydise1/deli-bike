@@ -16,10 +16,12 @@ export default function Cars() {
   const [bikes, setBikes] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(buttons[0]);
   const [isLoading, setIsLoading] = useState(true);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   useEffect(() => {
     const fetchBikes = async () => {
       try {
-        const response = await fetch("https://api.deli-bike.kz/bikes/");
+        const response = await fetch(`${API_URL}/bikes/`);
         if (!response.ok) {
           throw new Error("Ошибка при загрузке данных о байках");
         }

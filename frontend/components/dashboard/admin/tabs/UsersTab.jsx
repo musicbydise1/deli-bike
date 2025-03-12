@@ -6,6 +6,7 @@ import Link from "next/link";
 import UsersTable from "./users/UsersTable";
 import UserModal from "./users/UserModal";
 import ErrorMessage from "./users/ErrorMessage";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 const AVAILABLE_ROLES = ["corporate", "admin", "courier"];
 
@@ -17,6 +18,7 @@ export default function UsersTab() {
     // Для модального окна
     const [showModal, setShowModal] = useState(false);
     const [isEditMode, setIsEditMode] = useState(false);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const [currentUser, setCurrentUser] = useState({
         id: null,
         firstName: "",
@@ -36,7 +38,7 @@ export default function UsersTab() {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch("https://api.deli-bike.kz/admin/users");
+            const response = await fetch(`${API_URL}/admin/users`);
             if (!response.ok) {
                 throw new Error("Ошибка при получении списка пользователей");
             }
@@ -85,7 +87,7 @@ export default function UsersTab() {
         if (!confirm("Вы действительно хотите удалить пользователя?")) return;
 
         try {
-            const response = await fetch(`https://api.deli-bike.kz/admin/users/${id}`, {
+            const response = await fetch(`${API_URL}/admin/users/${id}`, {
                 method: "DELETE",
             });
             if (!response.ok) {
@@ -101,10 +103,10 @@ export default function UsersTab() {
     async function handleSaveUser(formData) {
         // formData уже содержит данные пользователя
         try {
-            let url = "https://api.deli-bike.kz/admin/users";
+            let url = `${API_URL}/admin/users`;
             let method = "POST";
             if (isEditMode && currentUser.id) {
-                url = `https://api.deli-bike.kz/admin/users/${currentUser.id}`;
+                url = `${API_URL}/admin/users/${currentUser.id}`;
                 method = "PUT";
             }
             const response = await fetch(url, {

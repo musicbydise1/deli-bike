@@ -28,6 +28,7 @@ import {
     Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 // Регистрируем компоненты Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -59,13 +60,14 @@ export default function DashboardAdmin() {
 
     // Период для графика: "oneWeek", "twoWeeks", "oneMonth"
     const [selectedPeriod, setSelectedPeriod] = useState("oneWeek");
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     // useEffect для загрузки данных аналитики
     useEffect(() => {
         async function fetchAnalytics() {
             try {
                 const token = localStorage.getItem("accessToken");
-                const response = await fetch("https://api.deli-bike.kz/admin/analytics", {
+                const response = await fetch(`${API_URL}/admin/analytics`, {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,

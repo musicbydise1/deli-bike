@@ -3,6 +3,7 @@
 import React from "react";
 import Header6 from "@/components/headers/Header6";
 import OrderDetails from "@/components/orders/Orders";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 // Если используете metadata:
 export const metadata = {
@@ -11,9 +12,11 @@ export const metadata = {
 };
 
 // Обязательно экспортируем функцию с именем generateStaticParams
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export async function generateStaticParams() {
     // Пример запроса к API:
-    const res = await fetch("https://api.deli-bike.kz/rentals", { cache: "no-store" });
+    const res = await fetch(`${API_URL}/rentals`, { cache: "no-store" });
     if (!res.ok) {
         throw new Error("Ошибка при получении данных из API");
     }

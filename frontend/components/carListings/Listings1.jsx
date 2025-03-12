@@ -9,6 +9,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import Button from "@/components/ui/button/Button";
 // Импортируем контекст корзины
 import { useContextElement } from "@/context/Context";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export default function Listings1() {
   const { addProductToCart, isAddedToCartProducts } = useContextElement();
@@ -16,11 +17,12 @@ export default function Listings1() {
   const [loading, setLoading] = useState(true);
   // Состояние для выбранной цены для каждого велосипеда: { [bike.id]: selectedPrice }
   const [selectedPrice, setSelectedPrice] = useState({});
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const fetchBikes = async () => {
       try {
-        const response = await fetch("https://api.deli-bike.kz/bikes/");
+        const response = await fetch(`${API_URL}/bikes/`);
         const result = await response.json();
         console.log("Fetched bikes:", result);
         const bikesData = Array.isArray(result.data) ? result.data : [];

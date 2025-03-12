@@ -12,7 +12,7 @@ export default function Banner() {
   return (
     <section className="boxcar-pricing-section-five" id="service">
       <div className="boxcar-container">
-        <div className="row g-0" style={{background: "#fff", height: "390px", borderRadius: "10px", boxShadow: "0px 4px 12px 0px #00000012" }}>
+        <div className="row g-0 boxcar-pricing-box" style={{}}>
           {/* image-column */}
           <div className="image-column col-lg-6 col-md-6 col-sm-12" style={{maxHeight: "390px"}}>
             <div className="inner-column wow fadeInUp">
@@ -26,7 +26,7 @@ export default function Banner() {
                       src="/images/banner-work1.png"
                       width={700}
                       height={390}
-                      style={{height: "390px"}}
+                      className="pricing-img"
                   />
                 </figure>
                 <div className="overlay-text">
@@ -48,7 +48,7 @@ export default function Banner() {
 
           <div className="content-column col-lg-6 col-md-6 col-sm-12">
             <div
-                className="inner-column wow fadeInUp"
+                className="inner-column wow fadeInUp banner-text-box"
                 style={{
                   backgroundColor: "transparent",
                   padding: userRole === "courier" ? "40px 50px 40px 40px" : "40px 20px 40px 40px"

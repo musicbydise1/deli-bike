@@ -12,6 +12,7 @@ export default function DashboardTab({ setActiveTab }) {
     const [historyRentals, setHistoryRentals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     // Состояние для аккордеона
     const [openIndex, setOpenIndex] = useState(null);
@@ -48,8 +49,8 @@ export default function DashboardTab({ setActiveTab }) {
         async function fetchData() {
             try {
                 const [activeRes, historyRes] = await Promise.all([
-                    fetch(`https://api.deli-bike.kz/rentals/user/${userId}`),
-                    fetch(`https://api.deli-bike.kz/rentals/user/${userId}/history`),
+                    fetch(`${API_URL}/rentals/user/${userId}`),
+                    fetch(`${API_URL}/rentals/user/${userId}/history`),
                 ]);
 
                 if (!activeRes.ok) {

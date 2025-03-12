@@ -14,17 +14,19 @@ import {
     CircularProgress,
     Alert,
 } from "@mui/material";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export default function OrdersTab() {
     const [rentals, setRentals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     // Получаем данные об арендах с API при инициализации компонента
     useEffect(() => {
         async function fetchRentals() {
             try {
-                const response = await fetch("https://api.deli-bike.kz/rentals/");
+                const response = await fetch(`${API_URL}/rentals/`);
                 if (!response.ok) {
                     throw new Error("Не удалось загрузить данные об арендах");
                 }

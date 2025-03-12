@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import {FaChevronDown, FaUser} from "react-icons/fa";
-import { HiOutlineLogout, HiOutlineShoppingBag } from "react-icons/hi";
+import {HiOutlineLogout, HiOutlineMenuAlt3, HiOutlineShoppingBag} from "react-icons/hi";
 import { MdSettings } from "react-icons/md";
 import { IoGridSharp } from "react-icons/io5";
 import Button from "../ui/button/Button"
@@ -213,8 +213,8 @@ export default function Header6({  white = false}) {
               </div>
               {/*Nav Box*/}
               {/* Main Menu End*/}
-
-              <div className="right-box">
+              <div className="nav-box">
+                <div className="right-box">
                 {/* Location Switcher */}
                 <div className="location-switcher mt-2">
                   <div className="dropdown">
@@ -380,38 +380,16 @@ export default function Header6({  white = false}) {
                 )}
 
               </div>
-              {/*<div className="right-box">*/}
-              {/*  <div className="mobile-navigation">*/}
-              {/*    {white ? (*/}
-              {/*        <a href="#nav-mobile" title="">*/}
-              {/*          <svg*/}
-              {/*              width={22}*/}
-              {/*              height={11}*/}
-              {/*              viewBox="0 0 22 11"*/}
-              {/*              fill="none"*/}
-              {/*              xmlns="http://www.w3.org/2000/svg"*/}
-              {/*          >*/}
-              {/*            <rect width={22} height={2} fill="#050B20"/>*/}
-              {/*            <rect y={9} width={22} height={2} fill="#050B20"/>*/}
-              {/*          </svg>*/}
-              {/*        </a>*/}
-              {/*    ) : (*/}
-              {/*        <a href="#nav-mobile" title="">*/}
-              {/*          /!* <i className="fa fa-bars"></i> *!/*/}
-              {/*          <svg*/}
-              {/*              width={22}*/}
-              {/*              height={11}*/}
-              {/*              viewBox="0 0 22 11"*/}
-              {/*              fill="none"*/}
-              {/*              xmlns="http://www.w3.org/2000/svg"*/}
-              {/*          >*/}
-              {/*            <rect width={22} height={2} fill="white"/>*/}
-              {/*            <rect y={9} width={22} height={2} fill="white"/>*/}
-              {/*          </svg>*/}
-              {/*        </a>*/}
-              {/*    )}*/}
-              {/*  </div>*/}
-              {/*</div>*/}
+              </div>
+              <div className="mobile-box">
+                <div className="right-box">
+                  <div className="mobile-navigation">
+                    <a href="#nav-mobile" title="">
+                      <HiOutlineMenuAlt3 className="menu-burger-icon" />
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
             {/* Mobile Menu  */}
           </div>

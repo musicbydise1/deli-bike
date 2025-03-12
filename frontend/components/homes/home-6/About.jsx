@@ -33,6 +33,7 @@ export default function About() {
                                         src="/images/deli-hat.png"
                                         width={208}
                                         height={208}
+                                        className="deli-hat-img"
                                     />
                                 </div>
                                 <div className="image-box second-box">
@@ -57,6 +58,7 @@ export default function About() {
                                             width={567}
                                             height={530}
                                             src="/images/about-bike.png"
+                                            className="about-bike-img"
                                         />
                                     </div>
                             </div>
@@ -87,6 +89,7 @@ export default function About() {
                                                 src="/images/rain.png"
                                                 width={266}
                                                 height={208}
+                                                className="deli-rain-img"
                                             />
                                         </div>
                                     </div>

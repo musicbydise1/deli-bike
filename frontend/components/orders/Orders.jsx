@@ -10,12 +10,13 @@ export default function OrderDetails({ orderId }) {
     const [rental, setRental] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     // Загружаем один конкретный заказ
     useEffect(() => {
         async function fetchOrder() {
             try {
-                const response = await fetch(`https://api.deli-bike.kz/rentals/${orderId}`);
+                const response = await fetch(`${API_URL}/rentals/${orderId}`);
                 if (!response.ok) {
                     throw new Error("Не удалось загрузить данные о заказе");
                 }
