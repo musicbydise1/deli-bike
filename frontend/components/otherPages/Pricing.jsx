@@ -1,3 +1,4 @@
+"use client";
 import { pricingPlans } from "@/data/pricing";
 import ProSelect from "@/components/ui/selects/ProSelect";
 import React, { useState } from "react";
