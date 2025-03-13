@@ -160,7 +160,7 @@
 .client-title {
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 24px;
+    margin-bottom: 10px;
     text-transform: uppercase;
 
 }
@@ -190,7 +190,7 @@
 }
 
 .textiominal-title h2{
-    font-size: 48px;
+    font-size: 39px;
 }
 
 .textiominal-title .text {
@@ -351,7 +351,16 @@
 
 
 .cars-home .boxcar-title h2 {
-    font-size: 64px;
+    font-size: 58px;
+    text-align: center;
+}
+
+.cars-home .boxcar-title p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    text-align: center;
+    color: #949494;
 }
 
 .cars-home .boxcar-title {
@@ -520,4 +529,155 @@
 
 .cta-home {
     padding-top: 170px;
+}
+
+.hero-title-small-text {
+    color: #ff5500;
+    text-transform: uppercase;
+}
+
+.boxcar-banner-section-six
+.content-column
+.inner-column
+.right-box
+.service-list
+li {
+    margin-right: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6);
+    width: 280px;
+}
+
+.boxcar-banner-section-six
+.content-column
+.inner-column
+.right-box
+.service-list
+li h6 {
+    color: #2121216E;
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.boxcar-banner-section-six
+.content-column
+.inner-column
+.right-box
+.service-list
+li:last-child {
+    margin-right: 0;
+}
+
+.boxcar-banner-section-six
+.content-column
+.inner-column
+.right-box
+.service-list
+li p {
+    font-weight: 500;
+    color: var(--theme-color-dark);
+    font-size: 12px;
+    text-transform: uppercase;
+    display: inline-block;
+    cursor: default;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.boxcar-banner-section-six
+.content-column
+.inner-column
+.right-box
+.service-list
+li
+p
+.big-text {
+    font-size: 38px;
+    margin: 0px 8px;
+    line-height: 13.25px;
+    font-weight: 500;
+}
+
+
+.boxcar-banner-section-six
+.content-column
+.inner-column
+.right-box
+.service-list
+li
+p
+i {
+    color: #000;
+    font-size: 24px;
+    margin-right: 11px;
+    position: relative;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    top: 5px;
+}
+
+.boxcar-banner-section-six
+.content-column
+.inner-column
+.right-box
+.service-list
+li:hover {
+    background: var(--theme-color1);
+    color: #fff;
+    border-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.boxcar-banner-section-six
+.content-column
+.inner-column
+.right-box
+.service-list
+li:hover h6,
+.boxcar-banner-section-six
+.content-column
+.inner-column
+.right-box
+.service-list
+li:hover p,
+.boxcar-banner-section-six
+.content-column
+.inner-column
+.right-box
+.service-list
+li:hover .big-text {
+    transition: all 0.3s ease;
+    color: #fff;
+}
+
+.boxcar-banner-section-six
+.content-column
+.inner-column
+.right-box
+.service-list
+li:hover
+i {
+    color: #fff;
+}
+
+.pricing-title span {
+    color: #ff5500;
+}
+
+.pricing-title h2 {
+    margin: 0;
+}
+
+.pricing-title p {
+    font-size: 18px;
+    font-weight: 400;
+    color: #949494;
+}
+
+.orange {
+    color: #ff5500;
 }

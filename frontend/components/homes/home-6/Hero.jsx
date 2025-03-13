@@ -39,11 +39,11 @@ export default function Hero() {
                   </h1>
                   <span className="wow fadeInUp" data-wow-delay="100ms">
                   {userRole === "courier" ? (
-                      <>{t("home.hero.courier_text")}
+                      <>{t("home.hero.courier_text")} <br/>
                         <span style={{fontWeight: 500, marginBottom: 0}}>{t("home.hero.courier_text_second")}</span>
                       </>
                   ) : (
-                      <>{t("home.hero.business_text")}
+                      <>{t("home.hero.business_text")} <br />
                         <span style={{fontWeight: 500, marginBottom: 0}}>{t("home.hero.business_text_second")}</span>
                       </>
                   )}
@@ -66,34 +66,22 @@ export default function Hero() {
                   <div className="right-box wow fadeInUp" data-wow-delay="100ms">
                     <ul className="service-list">
                       <li>
-                        <a href="#">
-                          До <span className="big-text" style={{
-                          fontSize: "48px",
-                          margin: "0px 8px",
-                          lineHeight: "13.25px",
-                          verticalAlign: "text-top"
-                        }}>55</span> км/ч разгон
-                        </a>
+                        <h6>Скорость</h6>
+                        <p>
+                           <span className="big-text">№1</span> в городе
+                        </p>
                       </li>
                       <li>
-                        <a href="#">
-                          До <span style={{
-                          fontSize: "48px",
-                          margin: "0px 8px",
-                          lineHeight: "13.25px",
-                          verticalAlign: "text-top"
-                        }}>90</span> км запас хода
-                        </a>
+                        <h6>запас хода</h6>
+                        <p>
+                          До <span className="big-text">90</span> км на одном заряде
+                        </p>
                       </li>
                       <li>
-                        <a href="#">
-                          До <span style={{
-                          fontSize: "48px",
-                          margin: "0px 8px",
-                          lineHeight: "13.25px",
-                          verticalAlign: "text-top"
-                        }}>50</span> % экономии
-                        </a>
+                        <h6>экономия</h6>
+                        <p>
+                          До <span className="big-text">50%</span> км на одном заряде
+                        </p>
                       </li>
                     </ul>
                   </div>

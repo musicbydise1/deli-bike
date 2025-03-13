@@ -20,7 +20,7 @@ async function bootstrap() {
 
     // Включение CORS
     app.enableCors({
-        origin: ['https://deli-bike-j5k8.vercel.app'],
+        origin: ['https://deli-bike-j5k8.vercel.app', 'http://localhost:3000'],
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
     });

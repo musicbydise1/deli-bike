@@ -5,7 +5,7 @@ export default function Features2() {
       <section className="why-choose-us-section v2 pt-0">
         <div className="boxcar-container">
           <div className="boxcar-title text-center wow fadeInUp">
-            <h2 className="title">Почему выбирают нас?</h2>
+            <h2 className="title">Почему выбирают <span className="orange">Deli-Bike</span></h2>
           </div>
           <div className="row">
             {/* choose-us-block */}

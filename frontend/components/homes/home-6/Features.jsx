@@ -9,7 +9,7 @@ export default function Features() {
       <section className="why-choose-us-section-four why-choose-home" id="features">
         <div className="boxcar-container">
           <div className="boxcar-title wow fadeInUp">
-            <h2 className="title">Почему выбирают нас?</h2>
+            <h2 className="title">Почему выбирают <span className="orange">DELI-BIKE</span></h2>
           </div>
           <div className="row">
             {/* choose-us-block */}
@@ -21,7 +21,7 @@ export default function Features() {
                 <div className="content-box">
                   <h6 className="title">Экономия 60% </h6>
                   <div className="text">
-                    За счёт манёвренности и отсутствия пробок вы сокращаете время доставки вдвое
+                    Скорость, манёвренность, передвижение по тротуару, доставка по прямой, без <br /> пробок и АЗС.
                   </div>
                 </div>
               </div>
@@ -35,7 +35,8 @@ export default function Features() {
                 <div className="content-box">
                   <h6 className="title">Доход +40%</h6>
                   <div className="text">
-                    Вы делаете больше заказов за смену и повышаете свой доход в среднем на 40%
+                    Тратите меньше времени на заказ, больше заказов в день.
+                    Повышаете свой доход
                   </div>
                 </div>
               </div>
@@ -49,7 +50,7 @@ export default function Features() {
                 <div className="content-box">
                   <h6 className="title">Обслуживание −80%</h6>
                   <div className="text">
-                    Электровелосипед проще, чем мопед или авто: меньше поломок и трат на ремонт
+                    Нет затрат на бензин, штрафы, парковки, ремонт, страховку, техосмотр, шины зима-лета и т.д.
                   </div>
                 </div>
               </div>
@@ -61,9 +62,9 @@ export default function Features() {
                   <RiSpeedFill size={50} color="#ff5500" />
                 </div>
                 <div className="content-box">
-                  <h6 className="title">Время в пути −50%</h6>
+                  <h6 className="title">ЗАБОТА О ГОРОДЕ</h6>
                   <div className="text">
-                    За счёт манёвренности и отсутствия пробок вы сокращаете время доставки вдвое.
+                    Экологичный, транспорт будущего, не раздражает <br/> шумом и не нервирует автолюбителей на дорогах
                   </div>
                 </div>
               </div>

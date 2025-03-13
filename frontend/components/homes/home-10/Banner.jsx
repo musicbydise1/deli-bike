@@ -31,9 +31,7 @@ export default function Banner() {
                 </figure>
                 <div className="overlay-text">
                   <h2 className="overlay-title">
-                    {userRole === "courier"
-                        ? "КАК МЫ РАБОТАЕМ?"
-                        : "ВАРИАНТЫ СОТРУДНИЧЕСТВА"}
+                    КАК МЫ РАБОТАЕМ?
                   </h2>
                   <p className="overlay-subtitle">
                     {userRole === "courier"

@@ -147,7 +147,7 @@ export default function Header6({  white = false}) {
   useEffect(() => {
     const handleScroll = () => {
       // Если прокрутили страницу хотя бы на 50px, ставим флаг isScrolled в true
-      if (window.scrollY > 50) {
+      if (window.scrollY > 80) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -163,7 +163,7 @@ export default function Header6({  white = false}) {
   return (
       // >>> Добавляем класс "fixed-header", когда isScrolled === true <<<
       <header
-          className={`boxcar-header header-style-v9 ${isScrolled ? "fixed-header" : ""}`}
+          className={`boxcar-header header-style-v9 fixed-header`}
       >
         <div className="header-inner">
           <div className="inner-container">
@@ -191,14 +191,14 @@ export default function Header6({  white = false}) {
                         <Image
                             alt=""
                             title="DeliBike"
-                            src="/images/logo-deli-dark2.svg"  // <-- Логотип по умолчанию
+                            src="/images/logo-deli2.svg"  // <-- Логотип по умолчанию
                             width={111}
                             height={48}
                         />
                         <div style={{ lineHeight: "5px" }}>
-                          <span className="logo-text">Скорость</span>
-                          <span className="logo-text">Свобода</span>
-                          <span className="logo-text">Стиль</span>
+                          <span className="logo-text white-text">Скорость</span>
+                          <span className="logo-text white-text">Свобода</span>
+                          <span className="logo-text white-text">Стиль</span>
                         </div>
                       </div>
                   )}
@@ -294,7 +294,7 @@ export default function Header6({  white = false}) {
                           <CgShoppingCart
                               className="cart-icon"
                               size={20}
-                              style={{ color: "#080341", marginTop: "5px", marginLeft: "10px" }}
+                              style={{ color: "#fff", marginTop: "5px", marginLeft: "10px" }}
                           />
                           {cartQuantity > 0 && (
                               <span className="cart-badge">

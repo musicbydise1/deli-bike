@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function About() {
     return (
         <>
-            <section className="about-inner-one about-home layout-radius" style={{ marginTop: 50 }}>
+            <section className="about-inner-one about-home">
                 <div className="upper-box">
                     <div className="boxcar-container">
                         <div className="row wow fadeInUp">

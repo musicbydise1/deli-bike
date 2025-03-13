@@ -15,7 +15,7 @@ export default function Feature() {
     <section className="why-choose-us-section">
       <div className="boxcar-container">
         <div className="boxcar-title wow fadeInUp !mb-[30px]">
-          <h2 className="title">ПОЧЕМУ ВЫБИРАЮТ {userRole === "courier" ? "ЭЛЕКТРОВЕЛОСИПЕД" : "ЭЛЕКТРОВЕЛОСИПЕДЫ"}?</h2>
+          <h2 className="title">ПОЧЕМУ ВЫБИРАЮТ {userRole === "courier" ? "ЭЛЕКТРОВЕЛОСИПЕД" : "ЭЛЕКТРОВЕЛОСИПЕДЫ"} <span className="hero-title-small-text">Deli-Bike</span></h2>
         </div>
         <div className="row">
           {/* choose-us-block */}
