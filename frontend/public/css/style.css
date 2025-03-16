@@ -7956,7 +7956,6 @@ Section Title
 }
 
 .choose-us-block .inner-box .content-box .text {
-  padding-right: 75px;
   font-size: 14px;
   line-height: 22px;
 }
@@ -9503,7 +9502,7 @@ Section Title
 }
 
 .cars-section .nav-tabs {
-  margin-bottom: 34px;
+  margin-bottom: 20px;
   /* Small devices */
 }
 
@@ -15637,7 +15636,7 @@ Section Title
   box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.05);
   border-radius: 16px;
   width: 448px;
-  padding: 38px 50px 30px;
+  padding: 20px 50px 20px;
 }
 
 .map-section .map-box .title {
@@ -18542,7 +18541,7 @@ Section Title
 }
 
 .about-inner-one .galler-section .exp-block .inner-box .exp-box .title {
-  font-size: 52px;
+  /*font-size: 52px;*/
   font-weight: 500;
   color: var(--theme-color-light);
   margin-bottom: 9px;
@@ -29043,12 +29042,12 @@ Chat Widget
   margin-bottom: 55px;
 }
 .pricing-img {
-  height: 390px !important;
+  height: 500px !important;
 }
 
 .boxcar-pricing-box {
   background: #fff;
-  height: 390px;
+  height: 500px;
   border-radius: 10px;
   box-shadow: 0px 4px 12px 0px rgba(0,0,0,.2);
 }

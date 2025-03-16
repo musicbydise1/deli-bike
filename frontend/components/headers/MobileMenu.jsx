@@ -10,12 +10,36 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import {FaArrowRightToBracket} from "react-icons/fa6";
+import Button from "@/components/ui/button/Button";
+import {useTranslation} from "react-i18next";
 
 export default function MobileMenu() {
   const pathname = usePathname();
   const [memuOpen, setMemuOpen] = useState(-1);
   const [showMenu, setShowMenu] = useState(false);
+  const [userRole, setUserRole] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [hasAccessToken, setHasAccessToken] = useState(false);
+  const { i18n, t } = useTranslation();
+  // Функция для переключения роли
+  const toggleUserRole = () => {
+    const newRole = userRole === "courier" ? "corporate" : "courier";
+    setUserRole(newRole);
+    localStorage.setItem("userRole", newRole); // Сохраняем новую роль в localStorage
+    window.location.reload();
+  };
+
   useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    const role = localStorage.getItem("userRole");
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
+    setHasAccessToken(!!token);
+    setUserRole(role || "courier");
+
     setShowMenu(true);
     const mobileNavigation = document.querySelectorAll('[href="#nav-mobile"]');
     const mobileMenu = document.getElementById("nav-mobile");
@@ -142,7 +166,7 @@ export default function MobileMenu() {
                       onClick={() => setMemuOpen((pre) => (pre == 3 ? -1 : 3))}
                   >
                     О нас <i className="fa-solid fa-angle-down"/>
-                    <span className="mm-sronly">Open submenu</span>
+                    <span className="mm-sronly">Открыть</span>
                   </a>
                 </li>
                 <li
@@ -185,6 +209,9 @@ export default function MobileMenu() {
                   </Link>
                 </li>
               </ul>
+              <Button variant="primary" onClick={toggleUserRole}>
+                {userRole === "courier" ? t("for_corporate") : t("for_courier")} <FaArrowRightToBracket className="ml-2" />
+              </Button>
             </div>
             <div
                 id="mm-1"
@@ -205,7 +232,7 @@ export default function MobileMenu() {
                   <span className="mm-sronly">Close submenu</span>
                 </a>
                 <a className="mm-navbar__title" href="#navbar">
-                  <span>Home </span>
+                  <span> </span>
                 </a>
               </div>
               <ul className="dropdown mm-listview">
@@ -241,19 +268,19 @@ export default function MobileMenu() {
                   <span className="mm-sronly">Close submenu</span>
                 </a>
                 <a className="mm-navbar__title" href="#navbar">
-                  <span>Inventory </span>
+                  <span>Сотрудничество</span>
                 </a>
               </div>
               {megaMenuData.map((elm, i) => (
                 <div key={i} className="mega-column">
                   <h3>{elm.title}</h3>
-                  <ul>
+                  <ul className="dropdown mm-listview">
                     {elm.links.map((elm, i) => (
-                      <li key={i}>
+                      <li key={i} className="mm-listitem">
                         <Link
                           href={elm.href}
-                          className={` ${
-                            isMenuActive(elm) ? "menuActive" : ""
+                          className={`mm-listitem__text ${
+                              isMenuActive(elm) ? "menuActive" : ""
                           }`}
                           title=""
                         >
@@ -283,7 +310,7 @@ export default function MobileMenu() {
                   <span className="mm-sronly">Close submenu</span>
                 </a>
                 <a className="mm-navbar__title" href="#navbar">
-                  <span>Blog </span>
+                  <span>О нас</span>
                 </a>
               </div>
               <ul className="dropdown mm-listview">

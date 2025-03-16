@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import Modal from "@/components/homes/home-6/Modal";
 import FormModalContent from "@/components/homes/home-6/FormModalContent";
+import Link from "next/link";
 
 export default function Hero() {
   const [userRole, setUserRole] = useState(null);
@@ -49,9 +50,13 @@ export default function Hero() {
                   )}
                 </span>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full hero-btn-box">
+                    <Link
+                        href={`/#bikes`}
+                    >
                     <Button className="!ml-0 w-full sm:w-auto" variant="primary">
                       {t("home.hero.rent_bike")}
                     </Button>
+                    </Link>
                     <Button
                         className="w-full sm:w-auto !ml-0"
                         variant="primary-outline"

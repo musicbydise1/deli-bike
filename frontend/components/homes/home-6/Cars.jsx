@@ -54,7 +54,7 @@ export default function Cars() {
   };
 
   return (
-      <section className="cars-section-three cars-home">
+      <section id="bikes" className="cars-section-three cars-home">
         <div className="boxcar-container">
           <div className="boxcar-title wow fadeInUp">
             <h2>СТОИМОСТЬ АРЕНДЫ <span className="orange">Deli-Bike</span></h2>
@@ -232,21 +232,21 @@ export default function Cars() {
                                   {bike.name} - {bike.model}
                                 </Link>
                               </h6>
-                              <div
-                                  className="select-wrapper"
-                                  style={{ position: "relative" }}
-                              >
-                                <select className="car-select w-full mb-2">
-                                  {bike.prices.map((prices, i) => (
-                                      <option value={prices.price} key={i}>
-                                        {prices.priceCategory.name} -{" "}
-                                        {Math.round(prices.price).toLocaleString("ru-RU")}{" "}
-                                        ₸
-                                      </option>
-                                  ))}
-                                </select>
-                                <IoIosArrowDown className="icon" />
-                              </div>
+                              {/*<div*/}
+                              {/*    className="select-wrapper"*/}
+                              {/*    style={{ position: "relative" }}*/}
+                              {/*>*/}
+                                {/*<select className="car-select w-full mb-2">*/}
+                                {/*  {bike.prices.map((prices, i) => (*/}
+                                {/*      <option value={prices.price} key={i}>*/}
+                                {/*        {prices.priceCategory.name} -{" "}*/}
+                                {/*        {Math.round(prices.price).toLocaleString("ru-RU")}{" "}*/}
+                                {/*        ₸*/}
+                                {/*      </option>*/}
+                                {/*  ))}*/}
+                                {/*</select>*/}
+                                {/*<IoIosArrowDown className="icon" />*/}
+                              {/*</div>*/}
                               <ul className="specs-list">
                                 <li className="spec-item">
                                   <span className="spec-title">Макс. скорость</span>

@@ -16,6 +16,8 @@ import Banner from "@/components/homes/home-10/Banner";
 import Features3 from "@/components/homes/home-1/Features3";
 import About from "@/components/homes/home-6/About";
 import Testimonials2 from "@/components/homes/home-2/Testimonials";
+import Cooperation from "@/components/homes/home-6/Cooperation";
+import Promo from "@/components/homes/home-6/Promo";
 
 export default function HomePage6() {
     const [userRole, setUserRole] = useState(null);
@@ -32,6 +34,7 @@ export default function HomePage6() {
           <Hero />
           <Feature />
           <Banner />
+          <Cooperation />
           <Features3 />
           <Testimonials />
           {userRole === "corporate" ? (
@@ -46,6 +49,7 @@ export default function HomePage6() {
           <Features />
           <Cars />
           <Pricing />
+          <Promo />
           <Testimonials2 />
           <MapSection />
           <Footer3 parenttClass="boxcar-footer footer-style-five v6" />

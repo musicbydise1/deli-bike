@@ -34,9 +34,7 @@ export default function Banner() {
                     КАК МЫ РАБОТАЕМ?
                   </h2>
                   <p className="overlay-subtitle">
-                    {userRole === "courier"
-                        ? "Всего три шага — и вы на электровелосипеде."
-                        : "Легко внедрить в ваш бизнес – всего три шага"}
+                    Всего три шага — и вы на электровелосипеде.
                   </p>
                 </div>
               </div>
@@ -59,23 +57,15 @@ export default function Banner() {
                 </div>
                 <div>
                   <h2>
-                    {userRole === "courier"
-                        ? "Выбираете тариф на сайте"
-                        : "Депозитная модель"}
+                    Выбираете тариф на сайте
                   </h2>
-                  {userRole === "courier" ? (
-                      <p>
-                        Решаете, что вам ближе: аренда или покупка. Подбираете оптимальный план.
-                      </p>
-                  ) : (
-                      <ul className="corporate-banner-items">
-                        <li className="corporate-banner-item">Заключаем соглашение о сотрудничестве с компанией, которая
-                          оплачивает аренду;
-                        </li>
-                        <li className="corporate-banner-item">Заключаем договор с курьером;</li>
-                        <li className="corporate-banner-item">За транспорт отвечает курьер.</li>
-                      </ul>
-                  )}
+                  <ul className="corporate-banner-items">
+                    <li className="corporate-banner-item">Юрлицо или физлицо</li>
+                    <li className="corporate-banner-item">Выбираете модель сотрудничества (гарантийная, депозитная, тарифная)
+                    </li>
+                    <li className="corporate-banner-item">Подбираете оптимальный план аренды</li>
+                    <li className="corporate-banner-item">Согласуем скидку партнера</li>
+                  </ul>
                 </div>
               </div>
 
@@ -85,22 +75,13 @@ export default function Banner() {
                 </div>
                 <div>
                   <h2>
-                    {userRole === "courier"
-                        ? "Приезжаете к нам"
-                        : "Гарантийная модель"}
+                    Приезжаете к нам
                   </h2>
-                  {userRole === "courier" ? (
-                      <p>
-                        Оформляете договор и получаете полностью заряженный электровелосипед
-                      </p>
-                  ) : (
                       <ul className="corporate-banner-items">
-                        <li className="corporate-banner-item">Заключаем договор с компанией, которая оплачивает аренду;
-                        </li>
-                        <li className="corporate-banner-item">Мы доставляем транспорт бесплатно;</li>
-                        <li className="corporate-banner-item">За транспорт отвечает компания.</li>
+                        <li className="corporate-banner-item">Оформляем договор</li>
+                        <li className="corporate-banner-item">Подтверждаете оплату</li>
+                        <li className="corporate-banner-item">Забираете выбранный электровелосипед</li>
                       </ul>
-                  )}
                 </div>
               </div>
 
@@ -110,41 +91,29 @@ export default function Banner() {
                 </div>
                 <div>
                   <h2>
-                    {userRole === "courier"
-                        ? "Садитесь и едете"
-                        : "Тарифная модель"}
+                    Садитесь и едете
                   </h2>
-                  {userRole === "courier" ? (
-                      <p>
-                        Начинаете доставлять заказы, объезжать пробки и экономить на топливе
-                      </p>
-                  ) : (
                       <ul className="corporate-banner-items">
-                        <li className="corporate-banner-item">Заключаем договор с курьером, который оплачивает аренду;</li>
-                        <li className="corporate-banner-item">Мы предоставляем промо-матрериалы и скидки для компаний;</li>
-                        <li className="corporate-banner-item">За транспорт отвечает курьер.</li>
+                        <li className="corporate-banner-item">Можно сразу приступить к работе</li>
+                        <li className="corporate-banner-item">АКБ заряжены, электровелосипед подготовлен к работе</li>
                       </ul>
-                  )}
                 </div>
               </div>
-              {userRole === "courier" ? (
               <div className="boxcar-title work-box dark">
                 <div className="nums">
                   4
                 </div>
                 <div>
                   <h2>
-                    Обслуживание без проблем
+                    Сервис
                   </h2>
-                  <p>
-                    При необходимости приезжаете на сервис: мы быстро устраним любые неполадки
-                  </p>
+                  <ul className="corporate-banner-items">
+                    <li className="corporate-banner-item">Оперативно устраняем неполадки, чтобы вы не простаивали</li>
+                    <li className="corporate-banner-item">Возможна подмена электровелосипеда на время ремонта</li>
+                    <li className="corporate-banner-item">Предоставляем расширенные гарантии на детали</li>
+                  </ul>
                 </div>
               </div>
-                  ) : (
-                      <></>
-              )
-              }
             </div>
           </div>
         </div>

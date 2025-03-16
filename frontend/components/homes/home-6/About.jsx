@@ -30,7 +30,7 @@ export default function About() {
                                     <Image
                                         alt=""
                                         title="DeliBike"
-                                        src="/images/deli-hat.png"
+                                        src="/images/deli-hat2.png"
                                         width={208}
                                         height={208}
                                         className="deli-hat-img"
@@ -57,7 +57,7 @@ export default function About() {
                                             alt=""
                                             width={567}
                                             height={530}
-                                            src="/images/about-bike.png"
+                                            src="/images/about-bike2.png"
                                             className="about-bike-img"
                                         />
                                     </div>

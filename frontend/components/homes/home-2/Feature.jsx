@@ -20,54 +20,83 @@ export default function Feature() {
         <div className="row">
           {/* choose-us-block */}
           <div className="choose-us-block col-lg-3 col-md-6 col-sm-12">
-            <div className="inner-box wow fadeInUp">
-              <div className="content-box">
-                <h6 className="title">Экономия</h6>
-                <div className="text">
-                  {userRole === "courier"
-                      ? "Вы не тратите по 500–1000 тенге в день на бензин: все деньги остаются в вашем кармане"
-                      : "Меньше расходов на топливо и ремонт: используйте сэкономленные средства на рост бизнеса"}
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* choose-us-block */}
-          <div className="choose-us-block col-lg-3 col-md-6 col-sm-12">
             <div className="inner-box wow fadeInUp" data-wow-delay="100ms">
               <div className="content-box">
                 <h6 className="title">Скорость</h6>
                 <div className="text">
-                  {userRole === "courier"
-                      ? "До 55 км/ч, лёгкая управляемость и никакие пробки не задержат. Больше доставок за час и больше заработка за день"
-                      : "Скорость до 55 км/ч: больше заказов, меньше времени в пробках. Больше доставок за час и больше заработка за день"}
+                  Высокая скорость, манёвренность, <br/>
+                  передвижение по тротуару, доставка <br/>
+                  по прямой, без пробок и АЗС.
+                  <br/>
+                  <br/>
+                  <span className="orange font-bold">Больше заказов за час – <br/>
+                    больше заработок.</span>
                 </div>
               </div>
             </div>
           </div>
+
           {/* choose-us-block */}
-          <div className="choose-us-block col-lg-3 col-md-6 col-sm-12">
+          <div className="choose-us-block col-lg-2 col-md-6 col-sm-12">
+            <div className="inner-box wow fadeInUp">
+              <div className="content-box">
+                <h6 className="title">Экономия</h6>
+                <div className="text">
+                  Нет затрат на бензин,
+                  штрафы, парковки, техобслуживание,
+                  сервис, страхование.
+                  <br/>
+                  <br/>
+                  <span className="orange font-bold">Все деньги остаются в вашем кармане.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* choose-us-block */}
+          <div className="choose-us-block col-lg-2 col-md-6 col-sm-12">
             <div className="inner-box wow fadeInUp" data-wow-delay="200ms">
               <div className="content-box">
-                <h6 className="title">
-                  {userRole === "courier"
-                      ? "Ёмкость"
-                      : "Брендинг"}
-                </h6>
+                <h6 className="title">Ёмкость</h6>
                 <div className="text">
-                  {userRole === "courier"
-                      ? "Проезжаете до 90 км без поиска розеток. А если что — всегда есть запасной аккумулятор"
-                      : "Получите фирменный транспорт с вашим логотипом: лого на раме, аккумуляторе и на термоконтейнере"}
+                  Пробег до 90 км на одном заряде.
+                  Всегда есть запасной АКБ. Пока вы на доставке АКБ на зарядке, нет потери времени и денег на АЗС.
+                  <br/>
+                  <br/>
+                  <span className="orange font-bold">Растёт ваш доход.</span>
                 </div>
               </div>
             </div>
           </div>
+
           {/* choose-us-block */}
-          <div className="choose-us-block col-lg-3 col-md-6 col-sm-12">
+          <div className="choose-us-block col-lg-2 col-md-6 col-sm-12">
             <div className="inner-box wow fadeInUp" data-wow-delay="300ms">
               <div className="content-box">
                 <h6 className="title">Гарантия</h6>
                 <div className="text">
-                  Не переживаете о поломках: мы быстро решим любые технические вопросы с гарантией
+                  Наш сервис быстро решает любые технические вопросы, чтобы вы не простаивали.
+                  <br/>
+                  <br/>
+                  <span className="orange font-bold">Мы хотим, чтобы вы больше зарабатывали и делаем все для этого.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* choose-us-block */}
+          <div className="choose-us-block col-lg-3 col-md-6 col-sm-12">
+            <div className="inner-box wow fadeInUp" data-wow-delay="300ms">
+              <div className="content-box">
+                <h6 className="title">Экологичность</h6>
+                <div className="text">
+                  Стильный транспорт наступившего <br/>
+                  будущего, скоростной и бесшумный, <br/>
+                  не раздражает горожан, заботится <br/>
+                  об экологии.
+                  <br/>
+                  <br/>
+                  <span className="orange font-bold">Вклад в общее здоровье нации.</span>
                 </div>
               </div>
             </div>
