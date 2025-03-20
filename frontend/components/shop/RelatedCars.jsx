@@ -3,9 +3,9 @@ import Image from "next/image";
 import Slider from "react-slick";
 import Link from "next/link";
 import { products } from "@/data/products";
-import { useContextElement } from "@/context/Context";
+import { useCart } from "@/context/CartContext";
 export default function RelatedCars() {
-  const { addProductToCart, isAddedToCartProducts } = useContextElement();
+  const { addProductToCart, isAddedToCartProducts } = useCart();
   const sliceOptions = {
     infinite: false,
     slidesToShow: 4,

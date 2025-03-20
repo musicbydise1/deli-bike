@@ -90,7 +90,7 @@ export default function ProfileTab() {
                     <div>
                         <label className="block text-sm text-gray-500 mb-1">Telegram</label>
                         <div className="text-base text-gray-800">
-                            {userData.iin ? (
+                            {userData.telegramChatId ? (
                                 <div className="text-base text-green-600 flex items-center space-x-1">
                                     <span>Привязан</span>
                                     <FiCheck />

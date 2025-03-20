@@ -12,7 +12,8 @@ import Button from "../ui/button/Button"
 import '../../public/css/pages/header/Header.css'
 import {CgShoppingCart} from "react-icons/cg";
 import {FaArrowRightToBracket} from "react-icons/fa6";
-import { useContextElement } from "@/context/Context";
+import { useUser } from "@/context/UserContext";
+import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 
 export default function Header6({  white = false}) {
@@ -26,7 +27,8 @@ export default function Header6({  white = false}) {
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false); // Состояние для локации
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false); // Состояние для языка
   const [currentLocation, setCurrentLocation] = useState("Kazakhstan"); // Значение по умолчанию
-  const { cartProducts } = useContextElement();
+  const { location, setLocation } = useUser();
+  const { cartProducts } = useCart();
   const router = useRouter();
 
   const cartQuantity = cartProducts.reduce(
@@ -86,7 +88,7 @@ export default function Header6({  white = false}) {
   };
 
   const toggleLocationDropdown = () => {
-    setIsLocationDropdownOpen((prevState) => !prevState);
+    setIsLocationDropdownOpen((prev) => !prev);
     setIsLanguageDropdownOpen(false); // Закрыть другой дропдаун
   };
 
@@ -95,9 +97,9 @@ export default function Header6({  white = false}) {
     setIsLocationDropdownOpen(false); // Закрыть другой дропдаун
   };
 
-  const handleLocationChange = (location) => {
-    setCurrentLocation(location);
-    setIsLocationDropdownOpen(false); // Закрываем выпадающее меню после выбора
+  const handleLocationChange = (loc) => {
+    setLocation(loc);                // <-- вызываем setLocation из контекста
+    setIsLocationDropdownOpen(false);
   };
 
   useEffect(() => {
@@ -225,11 +227,11 @@ export default function Header6({  white = false}) {
                       {/* Отображение текущего флага */}
                       <Image
                           src={
-                            currentLocation === "Kazakhstan"
+                            location === "kz"
                                 ? "/images/kazakhstan-flag.svg"
                                 : "/images/belarus-flag.svg"
                           }
-                          alt={currentLocation}
+                          alt={location}
                           width={18}
                           height={13}
                           style={{ width: 'auto', height: 'auto' }}
@@ -240,24 +242,24 @@ export default function Header6({  white = false}) {
                     {isLocationDropdownOpen && (
                         <div className="dropdown-menuu">
                           {/* Опции выбора локации */}
-                          <button onClick={() => handleLocationChange("Kazakhstan")}>
+                          <button onClick={() => handleLocationChange("kz")}>
                             <Image
                                 src="/images/kazakhstan-flag.svg"
                                 alt="Kazakhstan"
                                 width={18}
                                 height={13}
-                                style={{ width: 'auto', height: 'auto' }}
+                                style={{width: 'auto', height: 'auto'}}
                                 className="flag-icon"
                             />
                             <span className="country-name">Казахстан</span>
                           </button>
-                          <button onClick={() => handleLocationChange("Belarus")}>
+                          <button onClick={() => handleLocationChange("by")}>
                             <Image
                                 src="/images/belarus-flag.svg"
                                 alt="Belarus"
                                 width={18}
                                 height={13}
-                                style={{ width: 'auto', height: 'auto' }}
+                                style={{width: 'auto', height: 'auto'}}
                                 className="flag-icon"
                             />
                             <span className="country-name">Беларусь</span>

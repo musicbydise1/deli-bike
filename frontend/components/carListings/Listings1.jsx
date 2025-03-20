@@ -8,11 +8,11 @@ import Slider from "react-slick";
 import { IoIosArrowDown } from "react-icons/io";
 import Button from "@/components/ui/button/Button";
 // Импортируем контекст корзины
-import { useContextElement } from "@/context/Context";
+import { useCart } from "@/context/CartContext";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export default function Listings1() {
-  const { addProductToCart, isAddedToCartProducts } = useContextElement();
+  const { addProductToCart, isAddedToCartProducts } = useCart();
   const [bikes, setBikes] = useState([]);
   const [loading, setLoading] = useState(true);
   // Состояние для выбранной цены для каждого велосипеда: { [bike.id]: selectedPrice }

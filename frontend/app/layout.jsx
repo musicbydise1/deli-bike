@@ -5,7 +5,7 @@ import "../public/main.scss";
 import "photoswipe/dist/photoswipe.css";
 import "rc-slider/assets/index.css";
 import MobileMenu from "@/components/headers/MobileMenu";
-import Context from "@/context/Context";
+import RootContext from "@/context/RootContext";
 import BackToTop from "@/components/common/BackToTop";
 import { usePathname } from "next/navigation"; // Import usePathname
 import { I18nextProvider } from "react-i18next";
@@ -99,11 +99,11 @@ export default function RootLayout({ children }) {
       </head>
       <body>
       <I18nextProvider i18n={i18n}>
-        <Context>
+        <RootContext>
           <MobileMenu/>
           <div className="boxcar-wrapper">{children}</div>
           <FilterSidebar/>
-        </Context>
+        </RootContext>
         <BackToTop/>
       </I18nextProvider>
       </body>

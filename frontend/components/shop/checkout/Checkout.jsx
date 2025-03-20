@@ -7,12 +7,12 @@ import { useRouter } from "next/navigation";
 import { BillingDetails } from "./BillingDetails";
 import { OrderSummary } from "./OrderSummary";
 import { PaymentOptions } from "./PaymentOptions";
-import { useContextElement } from "@/context/Context";
+import { useCart } from "@/context/CartContext";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export default function Checkout() {
   const { t } = useTranslation();
-  const { cartProducts, totalPrice } = useContextElement();
+  const { cartProducts, totalPrice } = useCart();
   const router = useRouter();
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 

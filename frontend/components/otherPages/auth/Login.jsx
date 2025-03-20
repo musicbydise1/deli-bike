@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import "../../../public/css/pages/login/Login.css";
+import { useUser } from "@/context/UserContext";
 
 // Компоненты шагов
 import PhoneStep from "./PhoneStep";
@@ -12,6 +13,7 @@ import ErrorMessage from "./ErrorMessage";
 export default function Login() {
     const router = useRouter();
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const { setUserRole } = useUser();
 
     useEffect(() => {
         const userRole = localStorage.getItem("userRole");
@@ -111,6 +113,8 @@ export default function Login() {
 
                     localStorage.setItem("userData", JSON.stringify(userData.data));
                     localStorage.setItem("userRole", userData.data.roles[0].name);
+                    const userRoleName = userData.data.roles[0].name;
+                    setUserRole(userRoleName);
 
                     router.push("/dashboard");
                 }
@@ -191,6 +195,8 @@ export default function Login() {
 
             localStorage.setItem("userData", JSON.stringify(userData.data));
             localStorage.setItem("userRole", userData.data.roles[0].name);
+            const userRoleName = userData.data.roles[0].name;
+            setUserRole(userRoleName);
 
             router.push("/dashboard");
         } catch (error) {

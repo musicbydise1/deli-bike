@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { useContextElement } from "@/context/Context";
+import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import {BiTrashAlt} from "react-icons/bi";
@@ -9,7 +9,7 @@ import Button from "@/components/ui/button/Button"; // Предположим, �
 
 export default function Cart() {
   const { t } = useTranslation(); // Хук для получения перевода
-  const { cartProducts, setCartProducts, totalPrice } = useContextElement();
+  const { cartProducts, setCartProducts, totalPrice } = useCart();
   console.log(cartProducts);
 
   const setQuantity = (id, quantity) => {

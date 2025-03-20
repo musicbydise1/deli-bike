@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useContextElement } from "@/context/Context";
+import { useCart } from "@/context/CartContext";
 
 export default function Invoice() {
-  const { cartProducts, totalPrice } = useContextElement();
+  const { cartProducts, totalPrice } = useCart();
 
   // Локальный стейт для хранения данных пользователя
   const [userData, setUserData] = useState(null);

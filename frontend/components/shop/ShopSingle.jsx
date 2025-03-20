@@ -7,7 +7,7 @@ import Review from "./sections/Review";
 import Ratings from "./sections/Ratings";
 import Replay from "./sections/Replay";
 import CommentForm from "./sections/CommentForm";
-import { useContextElement } from "@/context/Context";
+import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 export default function ShopSingle({ product }) {
   const [value, setValue] = useState(1);
@@ -39,7 +39,7 @@ export default function ShopSingle({ product }) {
     fade: false,
     dots: false,
   };
-  const { cartProducts, setCartProducts } = useContextElement();
+  const { cartProducts, setCartProducts } = useCart();
   const [quantity, setQuantity] = useState(1);
 
   const isIncludeCard = () => {

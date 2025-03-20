@@ -1,45 +1,48 @@
 "use client";
 import { pricingPlans } from "@/data/pricing";
-import ProSelect from "@/components/ui/selects/ProSelect";
-import React, { useState } from "react";
+// import ProSelect from "@/components/ui/selects/ProSelect";
+import React from "react";
 import Button from "@/components/ui/button/Button";
+import { useTariff } from "@/context/TariffContext"; // Импорт контекста
 
 export default function Pricing() {
+    const {
+        selectedWarranty,
+        setSelectedWarranty,
+        // selectedOptions,
+        // setSelectedOptions,
+        extendedWarrantyStates,
+        setExtendedWarrantyStates,
+    } = useTariff();
 
-    // Массив состояний для выбранных опций селекта для каждого тарифа
-    const [selectedOptions, setSelectedOptions] = useState(
-        pricingPlans.map(() => null)
-    );
+    // Обработка изменения выбранной опции для тарифа
+    // const handleSelectChange = (planValue, option) => {
+    //     // Здесь можно использовать planValue как ключ
+    //     const newSelectedOptions = { ...selectedOptions };
+    //     newSelectedOptions[planValue] = option;
+    //     setSelectedOptions(newSelectedOptions);
+    // };
 
-    // Состояние для выбранного тарифного блока (индекс) по умолчанию первый блок выбран
-    const [selectedPlanIndex, setSelectedPlanIndex] = useState(0);
-
-    // Состояние для чекбокса расширенной гарантии
-    const [warrantyChecked, setWarrantyChecked] = useState(
-        pricingPlans.map(() => false)
-    );
-
-    const handleSelectChange = (index, option) => {
-        const newSelectedOptions = [...selectedOptions];
-        newSelectedOptions[index] = option;
-        setSelectedOptions(newSelectedOptions);
+    // Обработка клика по тарифу — сохраняем выбранный тариф (объект или его уникальное значение)
+    const handlePlanClick = (plan) => {
+        setSelectedWarranty(plan);
     };
 
-    const handleBlockClick = (index) => {
-        setSelectedPlanIndex(index);
-    };
-
-    const handleCheckboxChange = (index) => {
-        const newWarrantyChecked = [...warrantyChecked];
-        newWarrantyChecked[index] = !newWarrantyChecked[index];
-        setWarrantyChecked(newWarrantyChecked);
+    // Обработка чекбокса для расширенной гарантии для конкретного тарифа
+    const handleCheckboxChange = (plan) => {
+        setExtendedWarrantyStates((prev) => ({
+            ...prev,
+            [plan.value]: !prev[plan.value],
+        }));
     };
 
     return (
         <section className="boxcar-pricing-section-seven">
             <div className="boxcar-container">
                 <div className="boxcar-title text-center pricing-title">
-                    <h2>Тарифы <span>Deli-Bike</span></h2>
+                    <h2>
+                        Тарифы <span>Deli-Bike</span>
+                    </h2>
                     <p>гарантийному обслуживанию и сервису</p>
                 </div>
                 <div className="row">
@@ -47,23 +50,27 @@ export default function Pricing() {
                         <div
                             key={index}
                             className={`pricing-block-seven col-lg-6 col-md-6 col-sm-12 ${
-                                selectedPlanIndex === index ? "selected" : ""
+                                selectedWarranty?.value === plan.value ? "selected" : ""
                             }`}
                         >
-                            <div className="inner-box" onClick={() => handleBlockClick(index)}>
+                            <div
+                                className="inner-box"
+                                onClick={() => handlePlanClick(plan)}
+                            >
                                 <h6 className="title">{plan.plan}</h6>
                                 <span className="plan"></span>
                                 <div className="text">{plan.description}</div>
-                                {/* Отображаем селект только если plan.type === true */}
-                                {plan.type && (
-                                    <ProSelect
-                                        options={plan.price}
-                                        value={selectedOptions[index]}
-                                        onChange={(option) => handleSelectChange(index, option)}
-                                        placeholder="Выберите опцию"
-                                        maxQuantity={plan.quantity} // передаем максимальное количество из тарифа
-                                    />
-                                )}
+
+                                {/*{plan.type && (*/}
+                                {/*    <ProSelect*/}
+                                {/*        options={plan.price}*/}
+                                {/*        // Используем plan.value в качестве ключа для выбранной опции*/}
+                                {/*        value={selectedOptions[plan.value]}*/}
+                                {/*        onChange={(option) => handleSelectChange(plan.value, option)}*/}
+                                {/*        placeholder="Выберите опцию"*/}
+                                {/*        maxQuantity={plan.quantity}*/}
+                                {/*    />*/}
+                                {/*)}*/}
 
                                 <ul className="pricing-list">
                                     {plan.features.map((feature, idx) => (
@@ -74,21 +81,24 @@ export default function Pricing() {
                                     ))}
                                 </ul>
 
-                                {/* Новый чекбокс «Расширенная гарантия» */}
+                                {/* Чекбокс для расширенной гарантии */}
                                 <div className="form-check mb-3">
                                     <input
                                         className="form-check-input custom-checkbox"
                                         type="checkbox"
-                                        id={`extendedWarranty-${index}`}
-                                        checked={warrantyChecked[index]}
+                                        id={`extendedWarranty-${plan.value}`}
+                                        checked={extendedWarrantyStates[plan.value] || false}
                                         onChange={(e) => {
                                             e.stopPropagation();
-                                            handleCheckboxChange(index);
+                                            setExtendedWarrantyStates((prev) => ({
+                                                ...prev,
+                                                [plan.value]: !prev[plan.value],
+                                            }));
                                         }}
                                     />
                                     <label
                                         className="form-check-label"
-                                        htmlFor={`extendedWarranty-${index}`}
+                                        htmlFor={`extendedWarranty-${plan.value}`}
                                     >
                                         Расширенная гарантия
                                     </label>
@@ -99,10 +109,10 @@ export default function Pricing() {
                                     className="w-full !ml-0"
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        handleBlockClick(index);
+                                        handlePlanClick(plan);
                                     }}
                                 >
-                                    {selectedPlanIndex === index ? (
+                                    {selectedWarranty?.value === plan.value ? (
                                         <span className="orange">Выбран</span>
                                     ) : (
                                         "Выбрать"

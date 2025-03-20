@@ -4,11 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import SelectComponent from "../common/SelectComponent";
 import { products } from "@/data/products";
-import { useContextElement } from "@/context/Context";
+import { useCart } from "@/context/CartContext";
 import Pagination from "../common/Pagination";
 import Slider from "rc-slider";
 export default function ShopList() {
-  const { addProductToCart, isAddedToCartProducts } = useContextElement();
+  const { addProductToCart, isAddedToCartProducts } = useCart();
   const [price, setPrice] = useState([5000, 35000]);
   const handlePrice = (value) => {
     setPrice(value);
