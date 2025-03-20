@@ -3,7 +3,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import RelatedCars from "./RelatedCars";
 
-import Overview from "./sections/Overview";
+import Overview from "./sections/Overview/Overview";
 import Description from "./sections/Description";
 import Features from "./sections/Features";
 import Faqs from "./sections/Faqs";
