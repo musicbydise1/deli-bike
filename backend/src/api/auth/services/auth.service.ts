@@ -144,7 +144,7 @@ export class AuthService {
           const response = await axios.get(fileLink, { responseType: 'arraybuffer' });
           fs.writeFileSync(localPath, response.data);
           // Сохраняем URL, который потом пойдёт в БД
-          state.photoIdFront = `http://localhost:4000/uploads/users/${uniqueName}`;
+          state.photoIdFront = `https://api.deli-bike.kz/uploads/users/${uniqueName}`;
         } catch (err) {
           console.error('Ошибка скачивания файла:', err.message);
           await this.telegramBot.sendMessage(chatId, 'Произошла ошибка при скачивании файла. Попробуйте ещё раз.');
@@ -171,7 +171,7 @@ export class AuthService {
         try {
           const response = await axios.get(fileLink, { responseType: 'arraybuffer' });
           fs.writeFileSync(localPath, response.data);
-          state.photoIdBack = `http://localhost:4000/uploads/users/${uniqueName}`;
+          state.photoIdBack = `https://api.deli-bike.kz/uploads/users/${uniqueName}`;
         } catch (err) {
           console.error('Ошибка скачивания файла:', err.message);
           await this.telegramBot.sendMessage(chatId, 'Произошла ошибка при скачивании файла. Попробуйте ещё раз.');

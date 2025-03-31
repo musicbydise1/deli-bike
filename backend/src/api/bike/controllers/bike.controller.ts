@@ -65,7 +65,7 @@ export class BikeController {
 
         if (files.photos && files.photos.length > 0) {
             bikeData.imageUrls = files.photos.map(
-                (file) => `http://localhost:4000/uploads/bikes/${file.filename}`,
+                (file) => `https://api.deli-bike.kz/uploads/bikes/${file.filename}`,
             );
         }
 
