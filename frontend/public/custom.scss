@@ -110,7 +110,7 @@
 .add-input-image .uploaded-img {
   height: 150px;
   object-fit: cover;
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     height: auto;
     max-width: 300px;
     max-height: 300px;

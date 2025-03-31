@@ -11,8 +11,8 @@ async function bootstrap() {
     // Включение глобальной валидации
     app.useGlobalPipes(
         new ValidationPipe({
-            transform: true,
-            whitelist: true,
+            transform: false,
+            whitelist: false,
             // forbidNonWhitelisted: false,
             // transformOptions: { enableImplicitConversion: true }, // excludeExtraneousValues не указываем
         }),
@@ -20,7 +20,7 @@ async function bootstrap() {
 
     // Включение CORS
     app.enableCors({
-        origin: ['https://deli-bike-j5k8.vercel.app', 'http://localhost:3000'],
+        origin: ['https://deli-bike-test.vercel.app', 'https://deli-bike.kz', 'http://84.252.157.215', 'http://localhost:3000'],
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
     });

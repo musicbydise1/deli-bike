@@ -24,13 +24,13 @@ export class CreateUserDto {
   password?: string;
 
   @IsOptional()
-  photoIdFront?: string;
+  idCardFrontImage?: string;
 
   @IsOptional()
-  photoIdBack?: string;
+  idCardBackImage?: string;
 
   @IsNotEmpty()
-  iin: string;
+  telegramChatId: string;
 }
 
 export class UserDto {
@@ -57,7 +57,7 @@ export class UserDto {
   public companyName?: string;
 
   @Expose()
-  public iin?: string;
+  public telegramChatId?: string;
 
   @Expose()
   public idCardNumber?: string;
@@ -85,9 +85,6 @@ export class UserDto {
 
   @Expose()
   public subscriptionType?: string;
-
-  @Expose()
-  public preferredCurrency: string;
 
   @Expose()
   public createdAt: Date;

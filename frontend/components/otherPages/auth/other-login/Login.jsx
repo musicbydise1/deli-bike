@@ -1,22 +1,15 @@
 "use client";
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/ui/button/Button";
 import Link from "next/link";
-import "../../../../public/css/pages/login/Login.css"
+import "../../../../public/css/pages/login/Login.css";
 
 export default function CorporateLogin() {
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-    // useEffect(() => {
-    //     const userRole = localStorage.getItem("userRole");
-    //     if (userRole !== "admin" || userRole !== "corporate") {
-    //         router.push("/login");
-    //     }
-    // }, [router]);
 
     const handleCorporateLogin = async (e) => {
         e.preventDefault();
@@ -33,11 +26,10 @@ export default function CorporateLogin() {
                 throw new Error(data.message || "Ошибка авторизации");
             }
 
-
-
-            // Сохраняем полученные данные в localStorage
+            // Сохраняем accessToken в localStorage
             localStorage.setItem("accessToken", data.data.accessToken);
 
+            // Получаем профиль пользователя
             const userResponse = await fetch(`${API_URL}/user/profile`, {
                 method: "GET",
                 headers: {
@@ -48,7 +40,10 @@ export default function CorporateLogin() {
 
             const userData = await userResponse.json();
             localStorage.setItem("userData", JSON.stringify(userData.data));
-            localStorage.setItem("userRole", userData.data.roles[0].name);
+
+            // Сохраняем userRole в cookies вместо localStorage
+            const userRoleName = userData.data.roles[0].name;
+            document.cookie = `userRole=${userRoleName}; path=/; max-age=31536000`;
 
             // Перенаправляем на корпоративную панель
             router.push("/dashboard");
@@ -62,7 +57,6 @@ export default function CorporateLogin() {
             <div className="inner-container">
                 <div className="right-box">
                     <div className="form-sec">
-                        {/* Вывод ошибки, если есть */}
                         <div className="login-text mb-4">
                             <h2>Вход для корпоративных клиентов</h2>
                         </div>

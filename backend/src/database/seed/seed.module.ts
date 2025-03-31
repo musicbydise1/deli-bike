@@ -2,22 +2,14 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { configuration } from '../../config';
-import { Category } from '../entities/category.entity';
 import { Role } from '../entities/role.entity';
 import { User } from '../entities/user.entity';
 import { TypeOrmConfigService } from '../typeorm/typeorm.service';
-import { Color } from '../entities/color.entity';
-import { Country } from '../entities/country.entity';
-import { Currency } from '../entities/currency.entity';
-import { Size } from '../entities/size.entity';
 import { SeedService } from './seed.service';
 import { AdminSeeder } from './seeders/admin.seeder';
-import { CategorySeeder } from './seeders/category.seeder';
-import { ColorSeeder } from './seeders/color.seeder';
-import { CountrySeeder } from './seeders/country.seeder';
-import { CurrencySeeder } from './seeders/currency.seeder';
+// import { CurrencySeeder } from './seeders/currency.seeder';
 import { RolesSeeder } from './seeders/role.seeder';
-import { SizeSeeder } from './seeders/size.seeder';
+import {Currency} from "../../api/currency/entities/currency.entity";
 
 @Module({
   imports: [
@@ -25,10 +17,6 @@ import { SizeSeeder } from './seeders/size.seeder';
     TypeOrmModule.forFeature([
       Role,
       User,
-      Category,
-      Size,
-      Color,
-      Country,
       Currency,
     ]),
     ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
@@ -38,11 +26,7 @@ import { SizeSeeder } from './seeders/size.seeder';
     SeedService,
     RolesSeeder,
     AdminSeeder,
-    CategorySeeder,
-    SizeSeeder,
-    ColorSeeder,
-    CountrySeeder,
-    CurrencySeeder,
+    // CurrencySeeder,
   ],
 })
 export class SeedModule {}

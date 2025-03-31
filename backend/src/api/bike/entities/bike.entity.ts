@@ -4,9 +4,8 @@ import {
     Column,
     CreateDateColumn,
     UpdateDateColumn,
-    OneToMany, ManyToMany
+    OneToMany,
 } from 'typeorm';
-
 import { BikePrice } from './bike_price.entity';
 import { Accessory } from '../../accessories/entities/accessory.entity';
 import { Tariff } from '../../tariffs/entities/tariff.entity';
@@ -16,14 +15,11 @@ export class Bike {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar', length: 255, nullable: false })
     name: string;
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar', length: 255, nullable: false })
     model: string;
-
-    @Column({ type: 'text', nullable: true })
-    description?: string;
 
     @Column({
         name: 'availability_status',
@@ -33,49 +29,55 @@ export class Bike {
     })
     availability_status: 'available' | 'unavailable' | 'rented' | 'maintenance';
 
-    @Column({ name: 'max_speed', type: 'decimal', precision: 10, scale: 2, nullable: true })
-    maxSpeed?: number;
+    @Column({ name: 'stock', type: 'integer', default: 0 })
+    stock: number;
 
-    @Column({ name: 'range_per_charge', type: 'decimal', precision: 10, scale: 2, nullable: true })
-    rangePerCharge?: number;
+    @Column({ name: 'max_speed', type: 'decimal', precision: 10, scale: 2 })
+    max_speed: number;
 
-    @Column({ name: 'charge_time', type: 'varchar', length: 255, nullable: true })
-    chargeTime?: string;
+    @Column({ name: 'range_per_charge', type: 'varchar', length: 255 })
+    range_per_charge: string;
 
-    @Column({ name: 'max_load', type: 'decimal', precision: 10, scale: 2, nullable: true })
-    maxLoad?: number;
+    @Column({ name: 'charge_time', type: 'varchar', length: 255 })
+    charge_time: string;
 
-    @Column({ name: 'weight', type: 'decimal', precision: 10, scale: 2, nullable: true })
-    weight?: number;
+    @Column({ name: 'max_load', type: 'decimal', precision: 10, scale: 2 })
+    max_load: number;
 
-    @Column({ name: 'power', type: 'varchar', length: 255, nullable: true })
-    power?: string;
+    @Column({ name: 'weight', type: 'decimal', precision: 10, scale: 2 })
+    weight: number;
 
-    @Column({ name: 'suspension', type: 'varchar', length: 255, nullable: true })
-    suspension?: string;
+    @Column({ name: 'power', type: 'varchar', length: 255 })
+    power: string;
+
+    @Column({ name: 'suspension', type: 'varchar', length: 255 })
+    suspension: string;
+
+    @Column({ name: 'brakes', type: 'varchar', length: 255 })
+    brakes: string;
 
     @Column({ name: 'image_urls', type: 'text', array: true, default: '{}' })
     imageUrls: string[];
 
-    @Column({ name: 'stock', type: 'integer', nullable: true })
-    stock?: number;
-
     @Column({ name: 'tags', type: 'text', array: true, default: '{}' })
     tags: string[];
-
-    @OneToMany(() => BikePrice, (bikePrice) => bikePrice.bike, { cascade: true })
-    prices: BikePrice[];
-
-    @OneToMany(() => Accessory, (accessory) => accessory.bike)
-    accessories: Accessory[];
-
-    @OneToMany(() => Tariff, tariff => tariff.bike)
-    tariffs: Tariff[];
-
 
     @CreateDateColumn({ name: 'createdAt', type: 'timestamp' })
     createdAt: Date;
 
     @UpdateDateColumn({ name: 'updatedAt', type: 'timestamp' })
     updatedAt: Date;
+
+    // Ниже — связи, не влияющие на структуру столбцов "bike", но позволяющие
+    // удобно загружать связанные данные (bike_price, accessories, tariffs).
+    // Если хотите, их можно убрать — миграция "bike" не описывает прямых внешних ключей.
+
+    @OneToMany(() => BikePrice, (bikePrice) => bikePrice.bike, { cascade: true })
+    prices: BikePrice[];
+
+    @OneToMany(() => Accessory, (accessory) => accessory.bike, { cascade: true })
+    accessories: Accessory[];
+
+    @OneToMany(() => Tariff, (tariff) => tariff.bike, { cascade: true })
+    tariffs: Tariff[];
 }

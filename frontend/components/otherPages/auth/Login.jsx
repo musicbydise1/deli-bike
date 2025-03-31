@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import "../../../public/css/pages/login/Login.css";
-import { useUser } from "@/context/UserContext";
 
 // Компоненты шагов
 import PhoneStep from "./PhoneStep";
@@ -13,11 +12,13 @@ import ErrorMessage from "./ErrorMessage";
 export default function Login() {
     const router = useRouter();
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
-    const { setUserRole } = useUser();
 
+    // При загрузке страницы читаем userRole из cookies
     useEffect(() => {
-        const userRole = localStorage.getItem("userRole");
-        if (userRole === "admin" || userRole === "corporate") {
+        const cookies = document.cookie.split(";").map(cookie => cookie.trim());
+        const roleCookie = cookies.find(cookie => cookie.startsWith("userRole="));
+        const userRoleFromCookie = roleCookie ? roleCookie.split("=")[1] : null;
+        if (userRoleFromCookie === "admin" || userRoleFromCookie === "corporate") {
             router.push("/other-login");
         }
     }, [router]);
@@ -112,9 +113,9 @@ export default function Login() {
                     const userData = await userResponse.json();
 
                     localStorage.setItem("userData", JSON.stringify(userData.data));
-                    localStorage.setItem("userRole", userData.data.roles[0].name);
+                    // Сохраняем userRole в cookies вместо localStorage
                     const userRoleName = userData.data.roles[0].name;
-                    setUserRole(userRoleName);
+                    document.cookie = `userRole=${userRoleName}; path=/; max-age=31536000`;
 
                     router.push("/dashboard");
                 }
@@ -194,9 +195,9 @@ export default function Login() {
             const userData = await userResponse.json();
 
             localStorage.setItem("userData", JSON.stringify(userData.data));
-            localStorage.setItem("userRole", userData.data.roles[0].name);
+            // Сохраняем userRole в cookies вместо localStorage
             const userRoleName = userData.data.roles[0].name;
-            setUserRole(userRoleName);
+            document.cookie = `userRole=${userRoleName}; path=/; max-age=31536000`;
 
             router.push("/dashboard");
         } catch (error) {

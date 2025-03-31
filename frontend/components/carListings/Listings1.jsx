@@ -76,7 +76,7 @@ export default function Listings1() {
             {bikes.map((bike, index) => (
                 <div
                     key={index}
-                    className="box-car car-block-three style-2 col-lg-3 col-md-6 col-sm-12"
+                    className="box-car car-block-three style-2 col-lg-4 col-md-6 col-sm-12"
                 >
                   <div className="inner-box">
                     <div
@@ -118,83 +118,45 @@ export default function Listings1() {
                           {bike.name} - {bike.model}
                         </Link>
                       </h6>
-                      <div
-                          className="select-wrapper"
-                          style={{ position: "relative" }}
-                      >
-                        <select
-                            className="car-select w-full mb-2"
-                            value={selectedPrice[bike.id]}
-                            onChange={(e) =>
-                                setSelectedPrice({
-                                  ...selectedPrice,
-                                  [bike.id]: Number(e.target.value),
-                                })
-                            }
-                        >
-                          {bike.prices.map((priceItem, i) => (
-                              <option value={priceItem.price} key={i}>
-                                {priceItem.priceCategory.name} - {Math.round(priceItem.price).toLocaleString("ru-RU")} ₸
-                              </option>
-                          ))}
-                        </select>
-                        {/* Иконка стрелки */}
-                        <IoIosArrowDown className="icon" />
-                      </div>
                       <ul className="specs-list">
                         <li className="spec-item">
                           <span className="spec-title">Макс. скорость</span>
-                          <span className="spec-value">{bike.maxSpeed}</span>
+                          <span className="spec-value">Ограничена до {Math.round(bike.max_speed)} км/ч</span>
                         </li>
                         <li className="spec-item">
                           <span className="spec-title">Пробег на 1 заряде:</span>
-                          <span className="spec-value">{bike.rangePerCharge}</span>
+                          <span className="spec-value">{bike.range_per_charge} км (зависит от АКБ)</span>
                         </li>
                         <li className="spec-item">
                           <span className="spec-title">Время зарядки</span>
-                          <span className="spec-value">{bike.chargeTime}</span>
+                          <span className="spec-value">{bike.charge_time} ч</span>
                         </li>
                         <li className="spec-item">
                           <span className="spec-title">Макс. нагрузка</span>
-                          <span className="spec-value">{bike.maxLoad}</span>
+                          <span className="spec-value">до {Math.round(bike.max_load)} кг</span>
                         </li>
                         <li className="spec-item">
                           <span className="spec-title">Вес</span>
-                          <span className="spec-value">{bike.weight}</span>
-                        </li>
-                        <li className="spec-item">
-                          <span className="spec-title">Мощность</span>
-                          <span className="spec-value">{bike.power}</span>
+                          <span className="spec-value">{Math.round(bike.weight)} кг</span>
                         </li>
                         <li className="spec-item">
                           <span className="spec-title">Подвеска</span>
                           <span className="spec-value">{bike.suspension}</span>
                         </li>
+                        <li className="spec-item">
+                          <span className="spec-title">Тормоза</span>
+                          <span className="spec-value">{bike.brakes}</span>
+                        </li>
                       </ul>
                       <div className="btn-box">
-                        <Link
-                            href={`/bike/${bike.id}`}
-                            className="details"
-                        >
-                          <Button className="w-full mb-2 !ml-0" variant="secondary">
-                            Подробнее
+                        <Link href={`/bike/${bike.id}`}>
+                          <Button
+                              className="w-full mb-4 !ml-0"
+                              variant="primary-outline"
+                          >
+                            Арендовать
                           </Button>
                         </Link>
-                        <Button
-                            className="w-full mb-4 !ml-0"
-                            variant="primary-outline"
-                            onClick={() =>
-                                addProductToCart(
-                                    bike.id,
-                                    1,
-                                    selectedPrice[bike.id] || bike.prices[0].price
-                                )
-                            }
-                        >
-                          {isAddedToCartProducts(bike.id)
-                              ? "Уже добавлено"
-                              : "Арендовать"}
-                        </Button>
                       </div>
                     </div>
                   </div>
@@ -206,7 +168,7 @@ export default function Listings1() {
               <ul className="pagination">
                 <Pagination />
               </ul>
-              <div className="text">Показаны результаты 1–30 из 1 415</div>
+              <div className="text">Показаны результаты 1 из 1</div>
             </nav>
           </div>
         </div>

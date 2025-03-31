@@ -31,7 +31,7 @@ export class RegisterDto {
   public companyName?: string;
 
   @IsOptional()
-  public iin?: string;
+  public telegramChatId?: string;
 
   @IsOptional()
   public idCardNumber?: string;

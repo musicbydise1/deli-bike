@@ -1,9 +1,9 @@
 export const navItems = [
   { name: "О нас", link: "/about" },
-  { name: "Преимущества", link: "/about" },
-  { name: "Новости", link: "blog-list-01" },
-  { name: "Сотрудничество", link: "/faq" },
-  { name: "ТермоБокс", link: "/loan-calculator" },
+  { name: "Преимущества", link: "/#features" },
+  { name: "Сервис", link: "/#service" },
+  { name: "Отзывы", link: "/#reviews" },
+  { name: "Вакансии", link: "/vacancy" },
   { name: "Контакты", link: "/contact" },
 ];
 
@@ -26,19 +26,13 @@ export const carBrands = [
 ];
 
 export const vehicleTypes = [
-  { name: "Pickup", link: "/inventory-list-01" },
-  { name: "Coup", link: "/inventory-list-01" },
-  { name: "Family MPV", link: "/inventory-list-01" },
-  { name: "Sedan", link: "/inventory-list-01" },
-  { name: "SUVs", link: "/inventory-list-01" },
-  { name: "Sport Coupe", link: "/inventory-list-01" },
-  { name: "Convertible", link: "/inventory-list-01" },
-  { name: "Wagon", link: "/inventory-list-01" },
+  { name: "Deli-Monster", link: "/bike/21" },
+  { name: "Deli-Monster XL", link: "/inventory-list-01" },
+  { name: "Deli-Lux", link: "/inventory-list-01" },
 ];
 
 export const socialMediaLinks = [
-  { iconClass: "fab fa-facebook-f", link: "#" },
-  { iconClass: "fab fa-twitter", link: "#" },
-  { iconClass: "fab fa-instagram", link: "#" },
-  { iconClass: "fab fa-linkedin-in", link: "#" },
+  { iconClass: "fab fa-whatsapp", link: "https://wa.me/+77088892879" },
+  { iconClass: "fab fa-telegram", link: "https://t.me/+77088892879" },
+  { iconClass: "fab fa-instagram", link: "https://instagram.com/deli_bikes" },
 ];

@@ -14,13 +14,14 @@ export class BitrixService {
 
     /**
      * Создание лида в Битрикс24.
-     * @param leadData Данные лида, например: { title, name, phone, email, comment }
+     * @param leadData Данные лида, например: { title, name, phone, email, companyName, comment }
      */
     async createLead(leadData: {
         title: string;
         name: string;
         phone: string;
         email: string;
+        companyName?: string;
         comment?: string;
     }): Promise<any> {
         const url = `${this.webhookUrl}/crm.lead.add.json`;
@@ -33,7 +34,8 @@ export class BitrixService {
                 PHONE: [{ VALUE: leadData.phone, VALUE_TYPE: 'WORK' }],
                 EMAIL: [{ VALUE: leadData.email, VALUE_TYPE: 'WORK' }],
                 COMMENTS: leadData.comment || '',
-                // можно добавить дополнительные поля, если требуется
+                // Если companyName передан, добавляем его в поля лида
+                ...(leadData.companyName && { COMPANY_TITLE: leadData.companyName }),
             },
             params: { REGISTER_SONET_EVENT: 'Y' },
         };

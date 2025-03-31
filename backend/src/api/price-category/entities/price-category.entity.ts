@@ -14,6 +14,9 @@ export class PriceCategory {
     @Column({ type: 'varchar', length: 255, unique: true })
     name: string;
 
+    @Column({ name: 'rental_duration', type: 'decimal'})
+    rental_duration: number;
+
     @CreateDateColumn({ name: 'createdAt', type: 'timestamp' })
     createdAt: Date;
 

@@ -4,6 +4,7 @@ import Link from "next/link";
 import InteractiveBike from "@/components/ui/interactive/InteractiveBike";
 import {MdSunny} from "react-icons/md";
 import {FaTenge} from "react-icons/fa";
+import Button from "@/components/ui/button/Button";
 export default function Cta() {
   return (
     <section className="boxcar-pricing-section-two home-cta pt-0 pb-0">
@@ -14,7 +15,7 @@ export default function Cta() {
             <div className="inner-column wow fadeInUp">
               <div className="boxcar-title">
                 <h2>
-                  <span style={{ color:"#ff5500" }}>БРЕНДИРОВАНИЕ</span>. Получите фирменный транспорт с вашим логотипом
+                  Брендирование для <span className="orange">ПАРТНЕРА DELI-BIKE</span>
                 </h2>
                 <div className="desc-boxes">
                   <div className="desc-box">
@@ -47,6 +48,9 @@ export default function Cta() {
                       </div>
                     </div>
                   </div>
+                  <div className="desc-btn ml-0! mt-[70px]">
+                    <Button variant="primary">Оставить заявку</Button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -56,6 +60,8 @@ export default function Cta() {
             <div className="inner-column wow fadeInUp">
               <div className="image-box">
                 <InteractiveBike/>
+
+                <h4 className="text-center mt-3">Места для вашего логотипа</h4>
               </div>
             </div>
           </div>

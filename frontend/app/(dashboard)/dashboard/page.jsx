@@ -1,5 +1,4 @@
 "use client";
-
 import Footer1 from "@/components/footers/Footer1";
 import HeaderDashboard from "@/components/headers/HeaderDashboard";
 import React, { useEffect, useState } from "react";
@@ -15,7 +14,7 @@ export default function DashboardPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Проверка наличия accessToken в localStorage
+    // Проверяем наличие accessToken в localStorage
     const accessToken = localStorage.getItem("accessToken");
 
     if (!accessToken) {
@@ -24,15 +23,11 @@ export default function DashboardPage() {
       return;
     }
 
-    // Если токен есть, проверяем данные пользователя
-    const userData = localStorage.getItem("userData");
-
-    if (userData) {
-      const parsedData = JSON.parse(userData);
-      const roleName = parsedData.roles?.[0]?.name || null;
-
-      setUserRole(roleName);
-    }
+    // Получаем роль пользователя из cookies
+    const cookies = document.cookie.split(";").map(cookie => cookie.trim());
+    const roleCookie = cookies.find(cookie => cookie.startsWith("userRole="));
+    const roleName = roleCookie ? roleCookie.split("=")[1] : null;
+    setUserRole(roleName);
 
     // Устанавливаем флаг загрузки как завершённый
     setLoading(false);
@@ -52,7 +47,6 @@ export default function DashboardPage() {
       <>
         <div style={{ background: "var(--theme-color-dark)" }}>
           <Header6 />
-
           {/* Условный рендеринг компонентов в зависимости от роли */}
           {userRole === "courier" && <DashboardCourier />}
           {userRole === "corporate" && <DashboardCorporate />}

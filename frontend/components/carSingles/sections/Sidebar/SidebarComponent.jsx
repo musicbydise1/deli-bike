@@ -1,6 +1,5 @@
-// src/components/Sidebar/SidebarComponent.jsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@/components/ui/button/Button";
 import { useUser } from "@/context/UserContext";
 import { useTariff } from "@/context/TariffContext";
@@ -19,7 +18,19 @@ import {
 import { proWarrantyPricing, depositPricing } from "@/data/pricing";
 
 const SidebarComponent = ({ product }) => {
-    const { userRole, location } = useUser();
+    // Читаем location из контекста, а роль пользователя определяем по cookies
+    const { location } = useUser();
+    const [roleCookie, setRoleCookie] = useState("courier");
+
+    useEffect(() => {
+        const cookies = document.cookie.split(";").map(cookie => cookie.trim());
+        const roleCookieFound = cookies.find(cookie => cookie.startsWith("userRole="));
+        if (roleCookieFound) {
+            const role = roleCookieFound.split("=")[1];
+            setRoleCookie(role);
+        }
+    }, []);
+
     const { addProductToCart } = useCart();
     const {
         rentalPeriod,
@@ -37,7 +48,7 @@ const SidebarComponent = ({ product }) => {
     const days = getDaysForRentalPeriod(rentalValue);
 
     // 1) Цена тарифа (Стандарт/Премиум)
-    const warrantyPrice = getPlanPrice(selectedWarranty, days, userRole, location);
+    const warrantyPrice = getPlanPrice(selectedWarranty, days, roleCookie, location);
 
     // 2) Цена аренды
     const rentalPrice = rentalPeriod ? Number(rentalPeriod.price) : 0;
@@ -52,18 +63,17 @@ const SidebarComponent = ({ product }) => {
     const batteryCost = getBatteryPrice(selectedBattery, days);
 
     // 5) Депозит (динамический)
-    const deposit = getDepositPrice(days, userRole, location, depositPricing);
+    const deposit = getDepositPrice(days, roleCookie, location, depositPricing);
 
     // 6) Расширенная гарантия
-    // Здесь важно: если extendedWarrantyStates – массив, обновляем для выбранного тарифа
     const extendedWarranty =
         Array.isArray(extendedWarrantyStates) && extendedWarrantyStates.length
-            ? extendedWarrantyStates[0] // или используйте индекс выбранного тарифа
+            ? extendedWarrantyStates[0]
             : extendedWarrantyStates;
     const extendedWarrantyPrice = getExtendedWarrantyPrice(
         extendedWarranty,
         days,
-        userRole,
+        roleCookie,
         location,
         proWarrantyPricing
     );
@@ -99,11 +109,11 @@ const SidebarComponent = ({ product }) => {
                 selectedBattery={selectedBattery}
                 batteryCost={batteryCost}
                 totalAmount={totalAmount}
-                userRole={userRole}
+                userRole={roleCookie}
                 location={location}
             />
 
-            {userRole === "corporate" && (
+            {roleCookie === "corporate" && (
                 <QuantityControl quantity={quantity} setQuantity={setQuantity} />
             )}
 

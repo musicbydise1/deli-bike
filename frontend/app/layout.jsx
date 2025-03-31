@@ -19,6 +19,18 @@ export default function RootLayout({ children }) {
   });
   const pathname = usePathname(); // Get pathname directly
 
+  // При первом монтировании проверяем наличие cookie для userRole,
+  // если её нет – устанавливаем значение "courier"
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      const cookies = document.cookie.split(";").map(cookie => cookie.trim());
+      const userRoleCookie = cookies.find(cookie => cookie.startsWith("userRole="));
+      if (!userRoleCookie) {
+        document.cookie = "userRole=courier; path=/; max-age=31536000"; // cookie на 1 год
+      }
+    }
+  }, []);
+
   useEffect(() => {
     // Check for `private` in localStorage
     if (typeof window !== "undefined") {
@@ -91,20 +103,25 @@ export default function RootLayout({ children }) {
   return (
       <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+        />
         <link
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,87.5,100..900;1,87.5,100..900&display=swap"
-            rel="stylesheet"/>
+            rel="stylesheet"
+        />
       </head>
       <body>
       <I18nextProvider i18n={i18n}>
         <RootContext>
-          <MobileMenu/>
+          <MobileMenu />
           <div className="boxcar-wrapper">{children}</div>
-          <FilterSidebar/>
+          <FilterSidebar />
         </RootContext>
-        <BackToTop/>
+        <BackToTop />
       </I18nextProvider>
       </body>
       </html>

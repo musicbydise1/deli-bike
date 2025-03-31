@@ -79,7 +79,7 @@ export class UserService {
     }
 
     // Обновляем поле telegramChatId
-    user.iin = chatId;
+    user.telegramChatId = chatId;
     await this.repository.save(user);
   }
 }

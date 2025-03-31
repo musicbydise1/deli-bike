@@ -24,18 +24,21 @@ export default function Single1({ carItem }) {
   const {
     name,
     model,
-    maxSpeed,
-    rangePerCharge,
+    max_speed,
+    range_per_charge,
     imageUrls,
     prices,
     accessories,
     tags,
+      translations,
   } = carItem || {};
 
   // Из контекста достаём location, чтобы знать, какая валюта
   const { location } = useUser();
 
+
   const [isOpen, setOpen] = useState(false);
+
 
   // 1. Состояние срока аренды
   const [selectedRentalOption, setSelectedRentalOption] = useState(
@@ -93,13 +96,13 @@ export default function Single1({ carItem }) {
                 <li>
                 <span>
                   <FiInfo size={20} className="mr-2 align-[-4px]" />
-                  Скорость {Math.round(maxSpeed)} км / ч
+                  Скорость ограничена до {Math.round(max_speed)} км/ч
                 </span>
                 </li>
                 <li>
                 <span>
                   <FiInfo size={20} className="mr-2 align-[-4px]" />
-                  {Math.round(rangePerCharge)} км на одном заряде
+                  {range_per_charge} км на одном заряде
                 </span>
                 </li>
               </ul>

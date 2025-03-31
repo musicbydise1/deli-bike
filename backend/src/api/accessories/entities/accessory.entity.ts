@@ -5,9 +5,10 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     ManyToOne,
-    JoinColumn,
+    JoinColumn, OneToMany,
 } from 'typeorm';
 import { Bike } from '../../bike/entities/bike.entity';
+import {AccessoriesPrice} from "./accessories_price.entity";
 
 @Entity('accessories')
 export class Accessory {
@@ -23,9 +24,6 @@ export class Accessory {
     @Column({ type: 'text', nullable: true })
     description: string;
 
-    @Column({ type: 'decimal', precision: 10, scale: 2 })
-    price: number;
-
     @CreateDateColumn({ type: 'timestamp' })
     createdAt: Date;
 
@@ -35,4 +33,7 @@ export class Accessory {
     @ManyToOne(() => Bike, (bike) => bike.accessories, { nullable: false })
     @JoinColumn({ name: 'bikeId' })
     bike: Bike;
+
+    @OneToMany(() => AccessoriesPrice, (accessories) => accessories.accessory, { cascade: true })
+    prices: AccessoriesPrice[];
 }

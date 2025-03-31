@@ -60,6 +60,32 @@
     }
 }
 
+@media (max-width: 1300px) {
+    .main-menu .navigation {
+        margin-left: 70px;
+    }
+    .boxcar-banner-section-six .content-column .inner-column span {
+        margin-bottom: 50px;
+    }
+    .right-banner {
+        margin-top: 0 !important;
+        width: 30% !important;
+    }
+}
+
+.choose-us-blocks {
+    justify-content: space-between;
+}
+
+.choose-us-blocks .col-lg-2 {
+    width: 20%;
+}
+
+
+@media (max-width: 1024px) {
+
+}
+
 @media (max-width: 1399.98px) {
     .header-style-v3 .header-inner .c-box .nav-out-bar .nav {
         display: unset;
@@ -433,7 +459,6 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        background: var(--theme-color-dark);
     }
 
     .boxcar-pricing-section-six .content-column .inner-column {
@@ -657,7 +682,7 @@
     }
 
     .boxcar-banner-section-six .content-column .inner-column {
-        padding: 145px 0 40px;
+        padding: 145px 0 0;
     }
 
     .boxcar-pricing-section-four .content-column .inner-column {
@@ -1591,7 +1616,7 @@
 }
 
 /* Small devices */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .image a {
         display: block;
         height: 100%;
@@ -1794,7 +1819,7 @@
     }
 
     .boxcar-title .text {
-        display: none;
+        text-align:center;
     }
 
     .boxcar-team-section-three .right-box {
@@ -2272,7 +2297,6 @@
     }
 
     .image-box {
-        display: flex;
     }
     .box-image {
         margin-top: 0;
@@ -2285,7 +2309,6 @@
     }
 
     .second-box.last-home-box-box {
-        height: 226px !important;
         padding: 0 !important;
         width: 47% !important;
     }
@@ -2294,6 +2317,9 @@
         height: 46% !important;
         display: block;
         margin: 0 auto;
+    }
+    .deli-phone-img {
+        margin-top: -15px !important;
     }
 
     .car-block-three .inner-box .content-box ul li {
@@ -2355,7 +2381,7 @@
     }
 
     .pricing-img {
-        height: 197px !important;
+        height: 197px;
     }
 
     .banner-text-box {
@@ -2363,8 +2389,12 @@
     }
 
     .work-box .nums {
-        width: 62px !important;
-        margin-right: 20px;
+        width: 36px !important;
+        margin-right: 10px;
+    }
+
+    .testimonial-block-three:first-child {
+        margin-bottom: 20px;
     }
 
     .categ p {
@@ -2423,12 +2453,62 @@
         left: 5% !important;
     }
 
+    .desc-btn {
+        display: flex;
+        justify-content: center;
+    }
+    .cta-home-text .desc-boxes .icon-box {
+        width: 100%;
+    }
+
+    .cta-home {
+        padding-top: 0 !important;
+    }
+
+    .termo-photo {
+        width: 30% !important;
+        height: 30% !important;
+    }
+
+    .customer-block {
+        margin: 0 !important;
+    }
+
+    .boxcar-customers-section .car-slider-three .slick-prev {
+        left: 10px !important;
+    }
+    .boxcar-customers-section .car-slider-three .slick-prev, .boxcar-customers-section .car-slider-three .slick-next {
+        top: 100% !important;
+    }
+
+    .language-switcher .dropdown-togglee {
+        color: #000 !important;
+    }
+    .arrow-icon {
+        color: #000 !important;
+    }
+
+    .language-switcher .dropdown-menuu button {
+        color: #000 !important;
+    }
+
+    .boxcar-customers-section .car-slider-three .slick-next {
+        left: 60px !important;
+    }
+
+    .fancy-promo:last-child {
+        margin-bottom: 30px;
+    }
+
     .boxcar-banner-section-six .content-column .inner-column span {
         margin-bottom: 30px;
     }
 
     .choose-us-block .inner-box .content-box .text {
         padding-right: 0;
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
     }
 
     .blog-blockt-two .inner-box .hover-img {
@@ -2465,6 +2545,10 @@
 
     .boxcar-title h2 {
         font-size: 26px;
+    }
+
+    .choose-us-blocks .col-lg-2 {
+        width: 100% !important;
     }
 
     .choose-us-block .inner-box .content-box .title {
@@ -2880,7 +2964,7 @@
     }
 
     .pricing-img {
-        height: 197px !important;
+        height: 197px;
     }
 
     .banner-text-box {
@@ -2888,8 +2972,8 @@
     }
 
     .work-box .nums {
-        width: 62px !important;
-        margin-right: 20px;
+        width: 36px !important;
+        margin-right: 10px;
     }
 
     .categ p {
@@ -3375,4 +3459,115 @@
         margin-right: 0;
         margin-bottom: 20px;
     }
+}
+
+@media (max-width: 1024px) {
+    .left-banner {
+        width: 100% !important;
+    }
+    .right-banner {
+        width: 100% !important;
+        margin-top: 50px !important;
+    }
+    .boxcar-banner-section-six .content-column .inner-column {
+        display: block;
+    }
+    .right-banner-box {
+        display: flex;
+    }
+    .right-banner-box img {
+        width: 40%;
+    }
+    .right-banner-box p {
+        padding: 20px 0px 34px 20px !important;
+        align-content: center;
+    }
+
+    .boxcar-banner-section-six .content-column .inner-column .right-box .service-list li {
+        width: 100% !important;
+    }
+    .boxcar-banner-section-six .content-column .inner-column .right-box .service-list li p {
+        text-align: center;
+    }
+    .why-choose-us-section {
+        padding-top: 100px !important;
+    }
+    .overlay-text {
+        top: 25%;
+        left: 4%;
+    }
+    .work-box .nums {
+        margin-right: 15px !important;
+        padding: 15px;
+    }
+
+    .cooperation-section .cooperation-main-block .content-box {
+        width: 80% !important;
+    }
+}
+
+.choose-us-blocks .content-box .text span{
+    display: block;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .choose-us-blocks .col-lg-2 {
+        width: 50%;
+    }
+
+    .choose-us-blocks .content-box {
+        margin-bottom: 40px;
+    }
+
+    .choose-us-block:last-child .content-box {
+        margin-bottom: 0;
+    }
+
+    .choose-us-blocks .content-box .text span{
+        margin-top: 5px;
+    }
+    .pricing-img {
+        height: 350px;
+    }
+
+    .table-images {
+        display: block;
+        padding-top: 20px;
+        margin: 0 auto;
+    }
+    .testiominals-img {
+        width: 50%;
+        margin: 0 auto;
+        display: block;
+    }
+    .boxcar-testimonial-section-three .content-column .inner-column .boxcar-title h2 {
+        text-align: center;
+    }
+    .boxcar-testimonial-section-three .right-box {
+        padding: 40px 30px;
+    }
+    .testimonial-block-three .inner-box {
+        margin-bottom: 0;
+    }
+
+    .cta-home-text .desc-box {
+        display: block !important;
+    }
+
+    .cta-home-text .desc-boxes .icon-box {
+        width: 28%;
+        margin: 0 auto !important;
+    }
+
+    .cta-home-text .texxt-box {
+        padding: 0 !important;
+    }
+
+
+    .boxcar-pricing-section-two .content-column .inner-column .boxcar-title h2 {
+        text-align: center;
+        margin-top: 20px;
+    }
+
 }

@@ -594,7 +594,7 @@ Scroll To Top style
 =======================*/
 .scroll-to-top {
   position: fixed;
-  right: 20px;
+  left: 20px;
   bottom: 20px;
   width: 40px;
   font-size: 16px;
@@ -1896,7 +1896,7 @@ Main Header
 
 .main-menu .navigation {
   position: relative;
-  margin-left: 180px
+  margin-left: 150px
 }
 
 .main-menu .navigation > li {
@@ -4735,7 +4735,7 @@ Sticky Header
 }
 
 /* Small devices */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .search-btn {
     display: none;
   }
@@ -5384,7 +5384,7 @@ Section Title
   /* Small devices */
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .boxcar-banner-section-v1 {
     height: unset;
     padding: 50px 0;
@@ -5410,7 +5410,7 @@ Section Title
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .boxcar-banner-section-v1 .banner-content {
     -webkit-transform: unset;
     transform: unset;
@@ -5443,7 +5443,7 @@ Section Title
   /* Small devices */
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .boxcar-banner-section-v1 .banner-content h2 {
     font-size: 46px;
     line-height: 58px;
@@ -5514,7 +5514,7 @@ Section Title
   /* Small devices */
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .boxcar-banner-section-v1 .banner-content .form-tab-pane form {
     display: block;
     height: unset;
@@ -5529,7 +5529,7 @@ Section Title
   /* Small devices */
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .boxcar-banner-section-v1 .banner-content .form-tab-pane form .form_boxes {
     width: 100%;
   }
@@ -5549,7 +5549,7 @@ Section Title
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .boxcar-banner-section-v1 .banner-content .form-submit {
     width: 100%;
     right: 0;
@@ -5574,7 +5574,7 @@ Section Title
   top: 2px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .boxcar-banner-section-v1 .banner-content .form-submit button {
     width: 100%;
     border-radius: 0;
@@ -6600,7 +6600,6 @@ Section Title
 }
 
 .boxcar-banner-section-six .content-column .inner-column span {
-  color: var(--theme-color-dark);
   margin-bottom: 100px;
   display: inline-block;
 }
@@ -8123,7 +8122,7 @@ Section Title
 }
 
 /* Small devices */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .blog-blockt-two {
     margin-bottom: 25px;
   }
@@ -8404,6 +8403,7 @@ Section Title
 ***/
 .boxcar-testimonial-section-three {
   position: relative;
+  margin-bottom: 100px;
 }
 
 .boxcar-testimonial-section-three .right-box {
@@ -8723,7 +8723,7 @@ Section Title
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .boxcar-pricing-section .content-column .inner-column {
     padding: 40px;
   }
@@ -8813,7 +8813,7 @@ Section Title
 }
 
 .boxcar-pricing-section-two .content-column .inner-column {
-  padding: 150px 0px 119px;
+  padding: 100px 0 0;
   height: 100%;
 }
 
@@ -9181,7 +9181,6 @@ Section Title
 
 .boxcar-pricing-section-five .image-column .inner-column .image-box .image img {
   width: 100%;
-  height: 600px;
   -o-object-fit: cover;
   object-fit: cover;
 }
@@ -9506,9 +9505,8 @@ Section Title
   /* Small devices */
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .cars-section .nav-tabs li {
-    width: 100%;
     margin-bottom: 15px;
   }
 
@@ -9551,7 +9549,7 @@ Section Title
   /* Small devices */
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .shop-cars {
     display: block;
   }
@@ -9680,7 +9678,7 @@ Section Title
   object-fit: cover;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .car-block-two .inner-box .image-box .image img {
     width: 100%;
   }
@@ -16517,7 +16515,7 @@ Section Title
   /* Small devices */
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .boxcar-title .btn-title {
     display: none;
   }
@@ -18496,7 +18494,7 @@ Section Title
 
 ***/
 .about-inner-one {
-  padding: 100px 0 120px;
+  padding: 0px 0 120px;
   margin: 0;
 }
 
@@ -18545,6 +18543,7 @@ Section Title
   font-weight: 500;
   color: var(--theme-color-light);
   margin-bottom: 9px;
+  line-height: 27px;
 }
 
 .about-inner-one .galler-section .exp-block .inner-box .exp-box .text {
@@ -18571,23 +18570,8 @@ Section Title
     margin-bottom: 30px;
   }
 
-  .about-inner-one .galler-section .exp-block .inner-box .exp-box,
-  .about-inner-one .galler-section .exp-block .inner-box .image-box {
-    flex-grow: 1;
-  }
 
-  .about-inner-one .galler-section .exp-block .inner-box .image-box img,
-  .about-inner-one .galler-section .image-block.style-center img,
-  .about-inner-one .galler-section .image-box.two img,
-  .about-inner-one .galler-section .box-double-img .image-block img {
-    width: 100%;
-  }
 
-  .about-inner-one .galler-section .box-double-img .image-box,
-  .about-inner-one .galler-section .box-double-img .image,
-  .about-inner-one .galler-section .box-double-img .image-block img {
-    height: 100%;
-  }
 
   .about-inner-one .galler-section .image-block.style-center {
     margin-bottom: 30px;
@@ -27028,11 +27012,12 @@ Chat Widget
   }
 }
 
-.footer-bottom .copyright-text a {
+.footer-bottom .copyright-text p {
   color: inherit;
+  margin: 0;
 }
 
-.footer-bottom .copyright-text a:hover {
+.footer-bottom .copyright-text p:hover {
   color: #ffffff;
 }
 
@@ -27076,11 +27061,11 @@ Chat Widget
 }
 
 .footer-bottom .footer-nav li a {
-  color: inherit;
+  color: #fff;
 }
 
 .footer-bottom .footer-nav li a:hover {
-  color: var(--theme-color-light);
+  color: #ff5500;
 }
 
 .footer-style-one {
@@ -28120,7 +28105,7 @@ Chat Widget
 .footer-style-five .footer-top .right-box {
   text-align: center;
   border-bottom: 1px solid #e1e1e1;
-  padding: 60px 0 60px;
+  padding: 40px 0 40px;
 }
 
 .footer-style-five .footer-top .right-box .top-left {
@@ -28368,7 +28353,7 @@ Chat Widget
 }
 
 .footer-style-five .footer-bottom .inner-container .footer-nav li a {
-  color: var(--theme-color-dark);
+  color: #fff;
 }
 
 .footer-style-five .footer-bottom .inner-container .copyright-text {
@@ -28399,6 +28384,7 @@ Chat Widget
 
 .footer-style-five.v6 .widget-title {
   color: var(--theme-color-light);
+  text-transform: uppercase;
 }
 
 .footer-style-five.v6 .links-widget .user-links li a {
@@ -28427,7 +28413,10 @@ Chat Widget
 }
 
 .footer-style-five.v6 .footer-bottom .inner-container .footer-nav li a {
-  color: var(--theme-color-light);
+  color: #fff;
+}
+.footer-style-five.v6 .footer-bottom .inner-container .footer-nav li a:hover {
+  color: #ff5500;
 }
 
 /*** 
@@ -29042,12 +29031,12 @@ Chat Widget
   margin-bottom: 55px;
 }
 .pricing-img {
-  height: 500px !important;
+  height: 500px;
 }
 
 .boxcar-pricing-box {
   background: #fff;
-  height: 500px;
+  height: 100%;
   border-radius: 10px;
   box-shadow: 0px 4px 12px 0px rgba(0,0,0,.2);
 }
@@ -31467,7 +31456,7 @@ li.nav-sub.mm-listitem .mm-listitem__btn {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .slider-thumb a img {
     width: 100%;
   }
@@ -31776,19 +31765,56 @@ input[type="radio"] {
     width: 0px;
   }
 }
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-/* Пример, как можно стилизовать «залипающий» хедер */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.header-style-v9.unfixed-header {
+  animation: slideUp 0.7s ease-out;
+}
+
+/* Пример стилей для «залипающего» хедера */
 .header-style-v9.fixed-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 9999; /* чтобы хедер был поверх других элементов */
-  background-color: var(--theme-color-dark); /* или любой другой цвет, если нужно */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* пример тени */
-  transition: all 1s ease;
+  background-color: var(--theme-color-dark);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Сначала плавно появляется, затем с задержкой выполняется bounce */
+  animation: fadeInDown 0.7s ease-out, bounce 1.5s ease 0.3s;
 }
-
 .cart-icon {
   color: #080341;
   margin-top: 5px;
@@ -31826,3 +31852,30 @@ svg {
   border: 1px solid #e1e1e1;
   border-radius: 8px;
 }
+
+.about-list, .about-list li {
+  list-style: inside;
+}
+
+.deli-hat-img {
+  width: 60%;
+  display: block;
+  margin: 0 auto;
+}
+
+.deli-zamok-img {
+  width: 50%;
+  display: block;
+  margin: 12px auto;
+}
+
+.deli-rain-img {
+  width: 67%;
+  display: block;
+  margin: 0 auto;
+}
+
+.deli-phone-img {
+  margin-top: 15px;
+}
+

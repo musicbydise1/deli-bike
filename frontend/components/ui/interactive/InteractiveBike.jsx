@@ -35,7 +35,7 @@ export default function InteractiveBike() {
     };
 
     return (
-        <div style={{ position: "relative", width: "500px" }}>
+        <div style={{ position: "relative"}}>
             {/* Основное изображение в ЧБ */}
             <img
                 src="/images/int-bike.png"

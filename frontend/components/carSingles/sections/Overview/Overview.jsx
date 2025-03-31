@@ -6,13 +6,154 @@ import ExtendedWarrantyToggle from "./ExtendedWarrantyToggle";
 import DepositInfo from "./DepositInfo";
 import AdditionalOptionsSelector from "./AdditionalOptionsSelector";
 import BatterySelector from "./BatterySelector";
-import { useUser } from "@/context/UserContext";
 import { useTariff } from "@/context/TariffContext";
 import { getDaysForRentalPeriod, getDepositPrice } from "@/utils/pricingUtils";
 import { depositPricing } from "@/data/pricing";
+import {useUser} from "@/context/UserContext";
 
 export default function Overview({ price, accessories, warrantyOptions }) {
-  const { userRole, location } = useUser();
+  // Читаем роль из cookies
+  const [roleCookie, setRoleCookie] = useState("courier");
+  // Читаем location из cookies (по умолчанию "kz")
+  const { location, language } = useUser()
+  const [locationCookie, setLocationCookie] = useState();
+
+  useEffect(() => {
+    const cookies = document.cookie.split(";").map(cookie => cookie.trim());
+    const roleCookieFound = cookies.find(cookie => cookie.startsWith("userRole="));
+    if (roleCookieFound) {
+      const role = roleCookieFound.split("=")[1];
+      setRoleCookie(role);
+    }
+  }, []);
+
+  useEffect(() => {
+    const cookies = document.cookie.split(";").map(cookie => cookie.trim());
+    const locCookie = cookies.find(cookie => cookie.startsWith("location="));
+    if (locCookie) {
+      const loc = locCookie.split("=")[1];
+      setLocationCookie(loc);
+    }
+  }, [])
+
+  useEffect(() => {
+    // console.log("Updated currency:", location);
+  }, [location]);
+
+  useEffect(() => {
+    // console.log("Updated language:", language);
+  }, [language]);
+
+
+
+  const role = roleCookie;
+  const currency = location || "kz";
+
+
+  // Вычисляем варианты аренды
+  const pricesArr = Array.isArray(price) ? price : price?.prices || [];
+
+  let myRoleId = 0;
+  let myCurrencyId = 0;
+  if (roleCookie === "courier") {
+    myRoleId = 1;
+  } else { myRoleId = 2; }
+
+  if (currency === "kz") {
+    myCurrencyId = 1;
+  } else { myCurrencyId = 2; }
+
+  const computedRentalPeriodOptions = pricesArr
+      // Фильтруем записи по совпадению role.id с roleCookie
+      .filter(item => {
+        return item.role && item.currency && String(item.role.id) === String(myRoleId) && String(item.currency.id) === String(myCurrencyId);
+      })
+      .map(item => {
+        const priceCategory = item.priceCategory;
+        // Значение по умолчанию – оригинальное название
+        let translatedName = priceCategory.name;
+
+        // Если есть переводы, ищем перевод с нужным языком и полем "name"
+        if (priceCategory.translations && Array.isArray(priceCategory.translations)) {
+          const translationObj = priceCategory.translations.find(
+              t => t.language === language && t.field === "name"
+          );
+          if (translationObj) {
+            translatedName = translationObj.translation;
+          }
+        }
+
+        return {
+          label: `${translatedName} – ${Math.round(item.price).toLocaleString("ru-RU")} ${
+              currency === "by" ? "руб" : "₸"
+          }`,
+          value: priceCategory.rental_duration,
+          price: item.price,
+          categoryName: translatedName,
+        };
+      });
+
+  // console.log(computedRentalPeriodOptions);
+
+  const accessoriesArr = Array.isArray(accessories)
+      ? accessories
+      : accessories?.accessories || [];
+
+
+  const computedAccessoriesPeriodOptions = accessoriesArr
+      .map(item => {
+        // Фильтруем цены аксессуара по нужным критериям
+        const validPrices = item.prices.filter(price => {
+          // Если у цены нет role или currency – считаем её валидной
+          if (!price.role || !price.currency) return true;
+          return String(price.role.id) === String(myRoleId) &&
+              String(price.currency.id) === String(myCurrencyId);
+        });
+
+        // Если ни одна цена не соответствует (если это необходимо), исключаем аксессуар
+        if (validPrices.length === 0) return null;
+
+        // Например, выбираем первую подходящую цену
+        const chosenPrice = validPrices[0];
+
+        // Определяем название аксессуара – если есть переводы, берем перевод с нужным языком и полем "name"
+        let translatedName = item.name;
+        if (item.translations && Array.isArray(item.translations)) {
+          const translationObj = item.translations.find(
+              t => t.language === language && t.field === "name"
+          );
+          if (translationObj) {
+            translatedName = translationObj.translation;
+          }
+        }
+
+        return {
+          label: `${translatedName}`,
+          value: item.id,
+          price: `${Math.round(chosenPrice.price).toLocaleString("ru-RU")} ${
+              currency === "by" ? "руб" : "₸"
+          }`,
+          accessoryName: translatedName,
+        };
+      })
+      .filter(item => item !== null);
+
+  // console.log("Accessories: ", computedAccessoriesPeriodOptions);
+  // console.log("accessories: ", accessoriesArr);
+
+  // Загрузка списка аккумуляторов
+  const [batteryList, setBatteryList] = useState([]);
+  useEffect(() => {
+    import("@/data/pricing")
+        .then(module => {
+          const batteryData = module.batteryPricing.find(item => item.role === role);
+          const currencyArr = batteryData ? batteryData.price[currency] || [] : [];
+          setBatteryList(currencyArr);
+        })
+        .catch(() => setBatteryList([]));
+  }, [role, currency]);
+
+  // Извлекаем данные из контекста тарифа
   const {
     rentalPeriod,
     setRentalPeriod,
@@ -22,34 +163,9 @@ export default function Overview({ price, accessories, warrantyOptions }) {
     setSelectedAdditional,
     selectedBattery,
     setSelectedBattery,
-    selectedPlanIndex,
     extendedWarrantyStates,
     setExtendedWarrantyStates,
   } = useTariff();
-
-  const role = userRole || "courier";
-  const currency = location || "kz";
-
-  // Вычисляем варианты аренды
-  const pricesArr = Array.isArray(price) ? price : price?.prices || [];
-  const computedRentalPeriodOptions = pricesArr.map(item => ({
-    label: `${item.priceCategory.name} – ${item.price.toLocaleString("ru-RU")} ${currency === "by" ? "руб" : "₸"}`,
-    value: item.priceCategory.id,
-    price: item.price,
-    categoryName: item.priceCategory.name,
-  }));
-
-  const accessoriesArr = Array.isArray(accessories) ? accessories : accessories?.accessories || [];
-
-  // Загрузка списка аккумуляторов
-  const [batteryList, setBatteryList] = useState([]);
-  useEffect(() => {
-    import("@/data/pricing").then(module => {
-      const batteryData = module.batteryPricing.find(item => item.role === role);
-      const currencyArr = batteryData ? batteryData.price[currency] || [] : [];
-      setBatteryList(currencyArr);
-    }).catch(() => setBatteryList([]));
-  }, [role, currency]);
 
   // Если срок аренды не выбран, устанавливаем первый вариант
   useEffect(() => {
@@ -102,7 +218,6 @@ export default function Overview({ price, accessories, warrantyOptions }) {
           />
 
           <ExtendedWarrantyToggle
-              // Если выбран тариф, используем его значение; иначе false
               extendedWarranty={selectedWarranty ? extendedWarrantyStates[selectedWarranty.value] : false}
               onToggle={(checked) =>
                   setExtendedWarrantyStates((prev) => ({
@@ -119,7 +234,7 @@ export default function Overview({ price, accessories, warrantyOptions }) {
         </div>
 
         <AdditionalOptionsSelector
-            accessories={accessoriesArr}
+            accessories={computedAccessoriesPeriodOptions}
             selectedAdditional={selectedAdditional}
             onToggleOption={toggleAdditionalOption}
             currency={currency}

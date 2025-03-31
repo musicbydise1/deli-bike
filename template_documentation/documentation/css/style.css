@@ -1715,7 +1715,7 @@ button:focus {
   bottom: 165px;
   z-index: 3;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .people-image {
     height: 280px;
   }

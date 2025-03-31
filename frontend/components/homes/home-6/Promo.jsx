@@ -1,21 +1,29 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Button from "@/components/ui/button/Button";
-
+import Modal from "@/components/homes/home-6/Modal";
+import FormModalContent from "@/components/homes/home-6/FormModalContent";
+import Image from "next/image";
 // Импортируем нужные иконки
 import { FaUserFriends, FaHandsHelping, FaMoneyCheckAlt, FaBoxOpen } from "react-icons/fa";
 
 export default function Promo() {
     // Локальное состояние для роли пользователя
-    const [userRole, setUserRole] = useState(null);
+    const [userRole, setUserRole] = useState("courier");
 
-    // Получаем роль из localStorage
+    // Получаем роль из cookies вместо localStorage
     useEffect(() => {
         if (typeof window !== "undefined") {
-            const role = localStorage.getItem("userRole"); // например, "courier" или "corporate"
+            const cookies = document.cookie.split(";").map(cookie => cookie.trim());
+            const roleCookie = cookies.find(cookie => cookie.startsWith("userRole="));
+            const role = roleCookie ? roleCookie.split("=")[1] : "courier";
             setUserRole(role);
         }
     }, []);
+
+    // Состояние для открытия/закрытия модального окна
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const toggleModal = () => setIsModalOpen(prev => !prev);
 
     return (
         <section className="boxcar-promo-section-seven">
@@ -30,7 +38,7 @@ export default function Promo() {
 
                 <div className="row">
                     {/* Левая колонка: инфоблоки/предложения */}
-                    <div className="col-md-7">
+                    <div className="col-md-8">
                         <div className="promo-info-list">
                             {/* 1. Блок всегда виден: «Уже сотрудничаете с нами?» */}
                             <div className="fancy-promo">
@@ -68,7 +76,7 @@ export default function Promo() {
                                     </div>
                                     <div>
                                         <h4>Аренда с выкупом</h4>
-                                        <p>(6–12 мес, без скрытых платежей)</p>
+                                        <p>12, 18 и 24 месяца</p>
                                     </div>
                                 </div>
                             )}
@@ -105,15 +113,17 @@ export default function Promo() {
                     </div>
 
                     {/* Правая колонка: баннер/изображение + текст/кнопка */}
-                    <div className="col-md-5">
+                    <div className="col-md-4">
                         <div className="promo-image-container position-relative">
-                            <img
-                                src="/images/vacancy.jpg"
+                            <Image
+                                src="/images/promo.png"
                                 alt="Deli-Bike Promo"
                                 className="img-fluid w-100"
+                                width={1200}
+                                height={600}
                             />
                             <div className="promo-overlay position-absolute">
-                                <Button variant="primary" className="mt-2">
+                                <Button variant="primary" className="mt-2" onClick={toggleModal}>
                                     Отправить заявку
                                 </Button>
                             </div>
@@ -121,6 +131,11 @@ export default function Promo() {
                     </div>
                 </div>
             </div>
+
+            {/* Модальное окно с формой */}
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <FormModalContent />
+            </Modal>
 
             {/* Стили можно вынести в отдельный CSS/SCSS файл */}
             <style jsx>{`
@@ -133,14 +148,14 @@ export default function Promo() {
         /* Общий стиль заголовков в блоках */
         .fancy-promo h4 {
           color: #fff;
-            text-transform: uppercase;
+          text-transform: uppercase;
           margin-bottom: 0.2rem;
           font-weight: 600;
         }
 
         /* Общий стиль описания */
         .fancy-promo p {
-            color: #fff;
+          color: #fff;
           margin: 0;
           font-size: 1rem;
           line-height: 1.4;
@@ -172,8 +187,8 @@ export default function Promo() {
           width: 48px;
           height: 48px;
           border-radius: 50%;
-            color: #ff5500;
-            font-size: 1.5rem;
+          color: #ff5500;
+          font-size: 1.5rem;
           background-color: #fff;
         }
 
@@ -190,7 +205,7 @@ export default function Promo() {
           margin-top: 2rem;
         }
         .termo-photo {
-            margin-top: 2rem;
+          margin-top: 2rem;
           width: 170px;
           height: 170px;
           object-fit: cover;
@@ -208,21 +223,21 @@ export default function Promo() {
           transform: translate(-50%, -50%);
           color: #fff;
           text-align: center;
-            width: 100%;
-            padding-bottom: 30px;
+          width: 100%;
+          padding-bottom: 30px;
         }
         .promo-overlay h3 {
           font-size: 1.5rem;
           font-weight: 700;
           margin-bottom: 0.5rem;
           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-            color: #ff5500;
+          color: #ff5500;
         }
         .promo-overlay p {
           font-size: 1.2rem;
           margin-bottom: 1rem;
           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-            color: #ff5500;
+          color: #ff5500;
         }
       `}</style>
         </section>

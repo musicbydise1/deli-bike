@@ -11,12 +11,12 @@ export default function AdditionalOptionsSelector({ accessories, selectedAdditio
             <div className="options-grid">
                 {accessories.map(option => (
                     <button
-                        key={option.id}
-                        className={`option-button ${selectedAdditional.some(item => item.id === option.id) ? "selected" : ""}`}
+                        key={option.value}
+                        className={`option-button ${selectedAdditional.some(item => item.value === option.value) ? "selected" : ""}`}
                         onClick={() => onToggleOption(option)}
                     >
-                        <span className="section-btn-label">{option.name}</span>
-                        <span>+ {formatPrice(Math.round(Number(option.price)), currency)}</span>
+                        <span className="section-btn-label">{option.label}</span>
+                        <span>{ option.price }</span>
                     </button>
                 ))}
             </div>

@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { BikeService } from '../services/bike.service';
 import { Bike } from '../entities/bike.entity';
-import { CreateBikeDto } from '../dto/create-bike.dto';
+import {CreateBikeDto, CreateBikeTranslationDto} from '../dto/create-bike.dto';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -56,36 +56,60 @@ export class BikeController {
         }),
     )
     async createBike(
-
         @UploadedFiles() files: { photos?: MulterFile[] },
         @Body() bikeData: CreateBikeDto,
     ): Promise<Bike> {
-        console.log('Raw bikeData:', bikeData);
-        console.log('Raw bikeData.prices:', bikeData.prices);
+        // Смотрим, что пришло в body до любой трансформации
+        console.log('--- Raw bikeData (before manual parse) ---');
+        console.log(JSON.stringify(bikeData, null, 2));
+
         if (files.photos && files.photos.length > 0) {
             bikeData.imageUrls = files.photos.map(
-                (file) => `https://api.deli-bike.kz/uploads/bikes/${file.filename}`,
+                (file) => `http://localhost:4000/uploads/bikes/${file.filename}`,
             );
         }
 
-        console.log('BikeController, bikeData:', bikeData);
-        if (bikeData.prices) {
-            console.log('BikeController, prices:', bikeData.prices);
-        }
+        // Логируем bikeData.prices и bikeData.translations, чтобы понять, что там
+        console.log('bikeData.prices:', bikeData.prices);
+        console.log('bikeData.translations:', bikeData.translations);
 
+        // Если prices строка — парсим
         if (typeof bikeData.prices === 'string') {
+            console.log('prices is string, try parse JSON');
             try {
                 const parsed = JSON.parse(bikeData.prices);
+                console.log('prices parsed:', parsed);
                 bikeData.prices = plainToInstance(BikePriceDto, Array.isArray(parsed) ? parsed : [parsed], {
                     excludeExtraneousValues: true,
                 });
             } catch (e) {
+                console.log('Error parsing prices JSON:', e);
                 bikeData.prices = [];
             }
         }
 
-        return this.bikeService.createBike(bikeData);
+        // Если translations строка — парсим
+        if (typeof bikeData.translations === 'string') {
+            console.log('translations is string, try parse JSON');
+            try {
+                const parsed = JSON.parse(bikeData.translations);
+                console.log('translations parsed:', parsed);
+                bikeData.translations = plainToInstance(
+                    CreateBikeTranslationDto,
+                    Array.isArray(parsed) ? parsed : [parsed],
+                    { excludeExtraneousValues: true },
+                );
+            } catch (e) {
+                console.log('Error parsing translations JSON:', e);
+                bikeData.translations = [];
+            }
+        }
 
+        // После парсинга смотрим, что в bikeData
+        console.log('--- bikeData after manual parse ---');
+        console.log(JSON.stringify(bikeData, null, 2));
+
+        return this.bikeService.createBike(bikeData);
     }
 
 

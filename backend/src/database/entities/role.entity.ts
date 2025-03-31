@@ -4,9 +4,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryColumn,
-  ManyToMany,
+  ManyToMany, OneToMany,
 } from 'typeorm';
 import { User } from './user.entity';
+import {BikePrice} from "../../api/bike/entities/bike_price.entity";
 
 @Entity()
 export class Role {
@@ -24,4 +25,7 @@ export class Role {
 
   @UpdateDateColumn({ type: 'timestamp' })
   public updatedAt!: Date;
+
+  @OneToMany(() => BikePrice, (bikePrice) => bikePrice.role)
+  bikePrices: BikePrice[];
 }

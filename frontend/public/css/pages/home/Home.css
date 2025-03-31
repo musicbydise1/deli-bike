@@ -131,10 +131,47 @@
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
+    font-weight: bold;
+}
+
+.comparison-table td span {
+    line-height: 100%;
+}
+
+.comparison-table tr:last-child td:nth-child(3) span {
+    display: inline-block;
+    border: 2px solid #ac2318;
+    border-radius: 100%;
+    padding: 10px 15px;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+}
+
+
+
+
+.comparison-table tr:nth-child(odd) td {
+    background: #f3d8cf;
+}
+.comparison-table tr:nth-child(even) td {
+    background: #f9ede9; /* фон для чётных рядов */
+}
+
+.comparison-table th:nth-child(2),
+.comparison-table th:nth-child(3),
+.comparison-table td:nth-child(2),
+.comparison-table td:nth-child(3) {
+    text-align: center;
 }
 
 .comparison-table th {
-    background-color: #f5f5f5;
+    background-color: #de8444;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
     font-weight: bold;
 }
 
@@ -238,6 +275,10 @@
     padding: 25px 25px 0px;
 }
 
+.black {
+    color: #000;
+}
+
 .last-home-box .ext-text-box {
     padding: 25px 25px 10px;
 }
@@ -251,10 +292,10 @@
     background: #fff !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px !important;
-    height: 215px;
+    height: 100%;
 }
 .second-box.last-home-box-box {
-    height: 323px ;
+    height: 100% ;
 }
 .second-box-box {
     background: #fff !important;
@@ -269,7 +310,7 @@
 .second-text .title {
     font-size: 24px !important;
     font-weight: 700 !important;
-    line-height: 36px !important;
+    line-height: 27px !important;
     margin-bottom: 9px !important;
     text-transform: uppercase;
 }
@@ -297,7 +338,7 @@
 .about-home .exp-box .title {
     font-size: 24px;
     font-weight: 700 !important;
-    line-height: 36px;
+    line-height: 27px;
     text-transform: uppercase;
 }
 
@@ -308,7 +349,6 @@
 }
 
 .box-image {
-    margin-top: 35px;
 }
 
 .two.second-box-box {
@@ -343,7 +383,7 @@
 .why-choose-home .inner-box .text {
     text-align: left;
     font-weight: 400;
-    font-size: 16px !important;
+    font-size: 15px !important;
     line-height: 28px !important;
 }
 
@@ -484,7 +524,7 @@
 }
 
 .home-cta {
-    padding-top: 30px !important;
+    margin-bottom: 100px;
 }
 
 .cta-home-text .boxcar-title h2 {
@@ -520,13 +560,13 @@
 .cta-home-text .desc-boxes .icon-box {
     background: #fff;
     padding: 20px;
-    margin: 0 30px;
+    margin: 0 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cta-home {
-    padding-top: 170px;
+    padding-top: 100px;
 }
 
 .hero-title-small-text {
@@ -688,6 +728,7 @@ i {
     background: #fff;
     padding: 30px;
     border-radius: 10px;
+    margin-top: 30px;
 }
 
 .cooperation-block .content-box .title {
@@ -698,11 +739,34 @@ i {
     margin-bottom: 24px;
 }
 
+.cooperation-section .cooperation-main-block .content-box {
+    background: #ff5500;
+    padding: 10px;
+    border-radius: 10px;
+    width: 25%;
+    margin: 0 auto;
+}
+
+.cooperation-main-block .content-box .title {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 0;
+}
+
 .cooperation-block .content-box .text {
     font-weight: 400;
     font-size: 14px;
     line-height: 100%;
     color: #6A6A6A;
+}
+
+.tariffs {
+    margin-top: 50px;
+    justify-content: space-between;
 }
 
 .boxcar-title p {
@@ -722,6 +786,23 @@ i {
 .cooperation-section .cooperation-block .content-box:hover .title {
     transition: all 0.3s ease;
     color: #fff;
+}
+
+.garrantue .content-box {
+    margin-top: 0 !important;
+}
+
+.garrantue h6 {
+    margin-top: 25px;
+}
+
+.tariff-title h5 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 600;
+    color: #ff5500;
+    line-height: 45px;
 }
 
 .table-images {

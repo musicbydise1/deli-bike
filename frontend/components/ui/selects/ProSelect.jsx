@@ -16,9 +16,11 @@ const ProSelect = ({
     const [quantities, setQuantities] = useState({});
     const [nestedOpen, setNestedOpen] = useState({}); // состояние для вложенных селектов
 
-    // Получаем роль пользователя из localStorage
+    // Получаем роль пользователя из cookies вместо localStorage
     useEffect(() => {
-        const role = localStorage.getItem("userRole");
+        const cookies = document.cookie.split(";").map((cookie) => cookie.trim());
+        const roleCookie = cookies.find((cookie) => cookie.startsWith("userRole="));
+        const role = roleCookie ? roleCookie.split("=")[1] : null;
         setIsCorporate(role === "corporate");
     }, []);
 
@@ -72,8 +74,7 @@ const ProSelect = ({
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
-        return () =>
-            document.removeEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     // В главном отображении выводим выбранную опцию, а для корпоративного пользователя – и количество

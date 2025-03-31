@@ -69,7 +69,7 @@ export default function Features3() {
             >
               <div className="row">
                 {/* Левая часть с таблицей */}
-                <div className="col-md-9">
+                <div className="col-lg-9 col-md-12 col-sm-12">
                   <table className="comparison-table">
                     <thead>
                     <tr>
@@ -82,7 +82,7 @@ export default function Features3() {
                     <tr>
                       <td>Скорость (в городе)</td>
                       <td>Медленно</td>
-                      <td>+54%</td>
+                      <td>На +54% быстрее</td>
                     </tr>
                     <tr>
                       <td>Бензин, день</td>
@@ -96,7 +96,7 @@ export default function Features3() {
                     </tr>
                     <tr>
                       <td>Пробег за день, км</td>
-                      <td>Ограничен</td>
+                      <td><span>Ограничен <br /> (до 25 км)</span></td>
                       <td>До 90 км на 1 АКБ</td>
                     </tr>
                     <tr>
@@ -106,17 +106,17 @@ export default function Features3() {
                     </tr>
                     <tr>
                       <td>Доход в месяц</td>
-                      <td>Ограничен / фиксирован</td>
-                      <td>В 3–4 раза выше</td>
+                      <td style={{ color: "#ac2318" }}>Ограничен / фиксирован</td>
+                      <td><span>+300% доход</span></td>
                     </tr>
                     </tbody>
                   </table>
                 </div>
                 {/* Правая часть с изображением */}
-                <div className="col-md-3 d-flex align-items-center">
+                <div className="col-lg-3 col-md-12 col-sm-12 d-flex align-items-center">
                   {/* Укажите свои пути, ширину и высоту */}
                   <Image
-                      src="/images/foot.jpg"
+                      src="/images/foot1.jpg"
                       alt="Пешком"
                       width={350}      // ваша ширина
                       height={350}     // ваша высота
@@ -135,7 +135,7 @@ export default function Features3() {
             >
               <div className="row">
                 {/* Левая часть с таблицей */}
-                <div className="col-md-9">
+                <div className="col-lg-9 col-md-12 col-sm-12">
                   <table className="comparison-table">
                     <thead>
                     <tr>
@@ -147,8 +147,8 @@ export default function Features3() {
                     <tbody>
                     <tr>
                       <td>Скорость (в городе)</td>
-                      <td>Сопоставима (40–60 км/ч)</td>
-                      <td>Сопоставима (40–55 км/ч)</td>
+                      <td>Сопоставима</td>
+                      <td>Сопоставима</td>
                     </tr>
                     <tr>
                       <td>Бензин, день</td>
@@ -168,21 +168,21 @@ export default function Features3() {
                     <tr>
                       <td>Количество заказов в день</td>
                       <td>Ограничено пробками</td>
-                      <td>~+24% заказов</td>
+                      <td>Больше ~+24% заказов</td>
                     </tr>
                     <tr>
                       <td>Доход в месяц</td>
                       <td>
-                        Ниже на 40 000–60 000 тенге <br />
-                        (без учёта аренды)
+                        <span style={{ color: "#ac2318" }}>Ниже на 40 000–60 000 тенге <br />
+                        (без учёта аренды)</span>
                       </td>
-                      <td>В 2–3 раза выше</td>
+                      <td><span>+250% доход</span></td>
                     </tr>
                     </tbody>
                   </table>
                 </div>
                 {/* Правая часть с изображением */}
-                <div className="col-md-3 d-flex align-items-center">
+                <div className="col-lg-3 col-md-12 col-sm-12 d-flex align-items-center">
                   <Image
                       src="/images/moped.jpg"
                       alt="Мопед"
@@ -203,7 +203,7 @@ export default function Features3() {
             >
               <div className="row">
                 {/* Левая часть с таблицей */}
-                <div className="col-md-9">
+                <div className="col-lg-9 col-md-12 col-sm-12">
                   <table className="comparison-table">
                     <thead>
                     <tr>
@@ -236,21 +236,21 @@ export default function Features3() {
                     <tr>
                       <td>Количество заказов в день</td>
                       <td>Ограничено пробками</td>
-                      <td>~+37% заказов</td>
+                      <td>Больше на ~+37% заказов</td>
                     </tr>
                     <tr>
                       <td>Доход в месяц</td>
                       <td>
-                        Ниже на 80 000–150 000 тенге <br />
-                        (без учёта аренды авто)
+                       <span style={{color: "#ac2318"}}> Ниже на 80 000–150 000 тенге <br />
+                         (без учёта аренды авто) </span>
                       </td>
-                      <td>В 2,5–3,5 раза выше</td>
+                      <td> <span>+300% доход</span></td>
                     </tr>
                     </tbody>
                   </table>
                 </div>
                 {/* Правая часть с изображением */}
-                <div className="col-md-3 d-flex align-items-center">
+                <div className="col-lg-3 col-md-12 col-sm-12 d-flex align-items-center">
                   <Image
                       src="/images/car.jpg"
                       alt="Автомобиль"

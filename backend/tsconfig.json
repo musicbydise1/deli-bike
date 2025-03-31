@@ -21,7 +21,7 @@
   "include": [
     "src/**/*"
   ],
-  "files": [
-    "src/database/migration/history/1740727593705-AddAccessoriesVacanciesTariffs.ts"
-  ]
+//  "files": [
+//    "src/database/migration/history/1740727593705-AddAccessoriesVacanciesTariffs.ts"
+//  ]
 }

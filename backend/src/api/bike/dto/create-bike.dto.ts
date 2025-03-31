@@ -4,13 +4,30 @@ import {
     IsArray,
     ValidateNested,
     IsNumber,
-    IsEnum,
+    IsEnum, IsString,
 } from 'class-validator';
 import { Type, Transform, Expose } from 'class-transformer';
 
 export enum AvailabilityStatus {
     AVAILABLE = 'available',
     UNAVAILABLE = 'unavailable',
+}
+
+export class CreateBikeTranslationDto {
+    @Expose()
+    @IsNotEmpty()
+    @IsString()
+    field: string;       // "name" | "description" и т.д.
+
+    @Expose()
+    @IsNotEmpty()
+    @IsString()
+    language: string;    // "ru", "en", ...
+
+    @Expose()
+    @IsNotEmpty()
+    @IsString()
+    translation: string; // Текст перевода
 }
 
 export class BikePriceDto {
@@ -23,6 +40,14 @@ export class BikePriceDto {
     @IsNumber()
     @Type(() => Number)
     price: number;
+
+    @Expose()
+    @IsNotEmpty()
+    roleId: number;
+
+    @Expose()
+    @IsNotEmpty()
+    currencyId: number;
 }
 
 export class CreateBikeDto {
@@ -33,10 +58,6 @@ export class CreateBikeDto {
     @Expose()
     @IsNotEmpty()
     model: string;
-
-    @Expose()
-    @IsOptional()
-    description?: string;
 
     @Expose()
     @IsOptional()
@@ -59,23 +80,27 @@ export class CreateBikeDto {
     @IsOptional()
     @IsNumber()
     @Type(() => Number)
-    maxSpeed?: number;
+    stock?: number;
 
     @Expose()
     @IsOptional()
     @IsNumber()
     @Type(() => Number)
-    rangePerCharge?: number;
+    max_speed?: number;
 
     @Expose()
     @IsOptional()
-    chargeTime?: string;
+    range_per_charge?: string;
+
+    @Expose()
+    @IsOptional()
+    charge_time?: string;
 
     @Expose()
     @IsOptional()
     @IsNumber()
     @Type(() => Number)
-    maxLoad?: number;
+    max_load?: number;
 
     @Expose()
     @IsOptional()
@@ -90,6 +115,10 @@ export class CreateBikeDto {
     @Expose()
     @IsOptional()
     suspension?: string;
+
+    @Expose()
+    @IsOptional()
+    brakes?: string;
 
     @Expose()
     @IsOptional()
@@ -120,4 +149,8 @@ export class CreateBikeDto {
     // @ValidateNested({ each: true })
     @Type(() => BikePriceDto)
     prices: BikePriceDto[];
+
+    @IsOptional()
+    @Type(() => CreateBikeTranslationDto)
+    translations?: CreateBikeTranslationDto[];
 }
