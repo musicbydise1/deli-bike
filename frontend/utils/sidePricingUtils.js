@@ -7,15 +7,15 @@ export function formatPrice(value, currency) {
 
 export function getDaysForRentalPeriod(rentalValue) {
     switch (rentalValue) {
-        case 1:
+        case 7:
             return 7;
-        case 2:
+        case 14:
             return 14;
-        case 3:
+        case 90:
             return 90;
-        case 4:
+        case 60:
             return 60;
-        case 5:
+        case 30:
             return 30;
         default:
             return 0;

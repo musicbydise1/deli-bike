@@ -10,6 +10,7 @@ import { useTariff } from "@/context/TariffContext";
 import { getDaysForRentalPeriod, getDepositPrice } from "@/utils/pricingUtils";
 import { depositPricing } from "@/data/pricing";
 import {useUser} from "@/context/UserContext";
+import {formatPrice} from "@/utils/sidePricingUtils";
 
 export default function Overview({ price, accessories, warrantyOptions }) {
   // Читаем роль из cookies
@@ -130,9 +131,7 @@ export default function Overview({ price, accessories, warrantyOptions }) {
         return {
           label: `${translatedName}`,
           value: item.id,
-          price: `${Math.round(chosenPrice.price).toLocaleString("ru-RU")} ${
-              currency === "by" ? "руб" : "₸"
-          }`,
+          price: chosenPrice.price,
           accessoryName: translatedName,
         };
       })
@@ -195,6 +194,8 @@ export default function Overview({ price, accessories, warrantyOptions }) {
       setSelectedBattery(batteryItem);
     }
   };
+
+  const format = (val) => formatPrice(val, currency);
 
   return (
       <div className="rental-container">

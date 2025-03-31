@@ -38,7 +38,7 @@ const SidebarSummary = ({
                 {selectedAdditional?.length > 0 &&
                     selectedAdditional.map((opt) => (
                         <li className="summary-item" key={opt.id}>
-                            <span>{opt.name}</span>
+                            <span>{opt.label}</span>
                             <span>{format(Number(opt.price))}</span>
                         </li>
                     ))}

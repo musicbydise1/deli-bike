@@ -40,12 +40,15 @@ const SidebarComponent = ({ product }) => {
         extendedWarrantyStates,
     } = useTariff();
 
+
+
     const [quantity, setQuantity] = useState(1);
     const [isAdded, setIsAdded] = useState(false);
 
     // Определяем срок аренды в днях
     const rentalValue = rentalPeriod ? rentalPeriod.value : 0;
     const days = getDaysForRentalPeriod(rentalValue);
+
 
     // 1) Цена тарифа (Стандарт/Премиум)
     const warrantyPrice = getPlanPrice(selectedWarranty, days, roleCookie, location);
@@ -94,6 +97,7 @@ const SidebarComponent = ({ product }) => {
         }
         console.log(product.id);
     };
+
 
     return (
         <div className="sidebar-container">
