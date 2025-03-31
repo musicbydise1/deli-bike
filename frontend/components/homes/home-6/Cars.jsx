@@ -27,11 +27,13 @@ export default function Cars() {
           throw new Error("Ошибка при загрузке данных о байках");
         }
         const result = await response.json();
-        setBikes(result.data); // Извлекаем массив байков из `data`
+        // Сортируем байки по id
+        const sortedBikes = result.data.sort((a, b) => a.id - b.id);
+        setBikes(sortedBikes);
       } catch (error) {
         console.error("Ошибка:", error);
       } finally {
-        setIsLoading(false); // Завершаем загрузку
+        setIsLoading(false);
       }
     };
 
