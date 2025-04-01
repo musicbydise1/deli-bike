@@ -1618,6 +1618,10 @@
     }
 }
 
+.cars-home .slick-dots li button:before {
+    font-size: 1px;
+}
+
 /* Small devices */
 @media (max-width: 768px) {
     .image a {
