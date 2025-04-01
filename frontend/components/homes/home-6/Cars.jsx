@@ -125,53 +125,38 @@ export default function Cars() {
                                   {bike.name} - {bike.model}
                                 </Link>
                               </h6>
-                              <div
-                                  className="select-wrapper"
-                                  style={{ position: "relative" }}
-                              >
-                                <select className="car-select w-full mb-2">
-                                  {bike.prices.map((prices, i) => (
-                                      <option value={prices.price} key={i}>
-                                        {prices.priceCategory.name} -{" "}
-                                        {Math.round(prices.price).toLocaleString("ru-RU")}{" "}
-                                        ₸
-                                      </option>
-                                  ))}
-                                </select>
-                                <IoIosArrowDown className="icon" />
-                              </div>
                               <ul className="specs-list">
                                 <li className="spec-item">
                                   <span className="spec-title">Макс. скорость</span>
-                                  <span className="spec-value">{bike.maxSpeed}</span>
+                                  <span className="spec-value"><span className="text-[12px]">Ограничена до</span> {Math.round(bike.max_speed)} км/ч</span>
                                 </li>
                                 <li className="spec-item">
                             <span className="spec-title">
                               Пробег на 1 заряде:
                             </span>
                                   <span className="spec-value">
-                              {bike.rangePerCharge}
+                              {bike.range_per_charge} км <span className="text-[12px]">(зависит от АКБ)</span>
                             </span>
                                 </li>
                                 <li className="spec-item">
                                   <span className="spec-title">Время зарядки</span>
-                                  <span className="spec-value">{bike.chargeTime}</span>
+                                  <span className="spec-value">{bike.charge_time} ч</span>
                                 </li>
                                 <li className="spec-item">
                                   <span className="spec-title">Макс. нагрузка</span>
-                                  <span className="spec-value">{bike.maxLoad}</span>
+                                  <span className="spec-value"><span className="text-[12px]">до</span> {Math.round(bike.max_load)} кг</span>
                                 </li>
                                 <li className="spec-item">
                                   <span className="spec-title">Вес</span>
-                                  <span className="spec-value">{bike.weight}</span>
-                                </li>
-                                <li className="spec-item">
-                                  <span className="spec-title">Мощность</span>
-                                  <span className="spec-value">{bike.power}</span>
+                                  <span className="spec-value">{Math.round(bike.weight)} кг</span>
                                 </li>
                                 <li className="spec-item">
                                   <span className="spec-title">Подвеска</span>
                                   <span className="spec-value">{bike.suspension}</span>
+                                </li>
+                                <li className="spec-item">
+                                  <span className="spec-title">Тормоза</span>
+                                  <span className="spec-value">{bike.brakes}</span>
                                 </li>
                               </ul>
                               <div className="btn-box">
@@ -280,7 +265,7 @@ export default function Cars() {
                                 </li>
                                 <li className="spec-item">
                                   <span className="spec-title">Тормоза</span>
-                                  <span className="spec-value">Дисковые</span>
+                                  <span className="spec-value">{bike.brakes}</span>
                                 </li>
                               </ul>
                               <div className="btn-box">
