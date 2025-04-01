@@ -13,6 +13,9 @@ export default function Dealer() {
               <Link href={`/`}>Главная</Link>
             </li>
             <li>
+              <span>/</span>
+            </li>
+            <li>
               <span>Вакансии</span>
             </li>
           </ul>

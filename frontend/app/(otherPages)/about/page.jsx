@@ -17,6 +17,9 @@ export default function AboutPage() {
                             <Link href={`/`}>Главная</Link>
                         </li>
                         <li>
+                            <span>/</span>
+                        </li>
+                        <li>
                             <span>О нас</span>
                         </li>
                     </ul>

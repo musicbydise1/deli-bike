@@ -22,13 +22,16 @@ export default function ShopList() {
               <Link href={`/`}>Home</Link>
             </li>
             <li>
+              <span>/</span>
+            </li>
+            <li>
               <span>Cars for Sale</span>
             </li>
           </ul>
           <h2>Shop List</h2>
         </div>
         <div className="row">
-          <div className="col-lg-3 col-md-12 col-sm-12">
+        <div className="col-lg-3 col-md-12 col-sm-12">
             <div className="side-bar">
               <div className="categories-box">
                 <h6 className="title">Categories</h6>

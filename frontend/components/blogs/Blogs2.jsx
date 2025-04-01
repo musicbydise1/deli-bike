@@ -12,13 +12,16 @@ export default function Blogs2() {
               <Link href={`/`}>Home</Link>
             </li>
             <li>
+              <span>/</span>
+            </li>
+            <li>
               <span>Cars for Sale</span>
             </li>
           </ul>
           <h2>Blog List</h2>
         </div>
         <div className="row">
-          <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12">
+        <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12">
             <div className="inner-column-two">
               {blogPosts4.map((post, index) => (
                 <div key={index} className="blog-block-four">

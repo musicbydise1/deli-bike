@@ -100,7 +100,7 @@ export default function About() {
                                         <div className="exp-box">
                                             <div className="ext-text-box">
                                                 <h2 className="title">Дождевик <br /> <span className="black">Deli-bike</span></h2>
-                                                <div className="text">Работайте в комфорте в <br />
+                                                <div className="text">Работайте с комфортом в <br />
                                                     любую погоду.</div>
                                             </div>
                                             <Image

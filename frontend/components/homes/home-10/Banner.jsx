@@ -69,7 +69,7 @@ export default function Banner() {
                     <ul className="corporate-banner-items">
                       <li className="corporate-banner-item">Оформляем договор</li>
                       <li className="corporate-banner-item">Подтверждаете оплату</li>
-                      <li className="corporate-banner-item">Забираете выбранный электровелосипед</li>
+                      <li className="corporate-banner-item">Забираете электровелосипед</li>
                     </ul>
                   </div>
                 </div>

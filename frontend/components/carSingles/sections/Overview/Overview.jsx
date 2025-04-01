@@ -179,9 +179,12 @@ export default function Overview({ price, accessories, warrantyOptions }) {
 
   const toggleAdditionalOption = (option) => {
     let updated;
-    if (selectedAdditional.some(item => item.id === option.id)) {
-      updated = selectedAdditional.filter(item => item.id !== option.id);
+    // Сравниваем по .value
+    if (selectedAdditional.some(item => item.value === option.value)) {
+      // Если уже есть — убираем
+      updated = selectedAdditional.filter(item => item.value !== option.value);
     } else {
+      // Если нет — добавляем
       updated = [...selectedAdditional, option];
     }
     setSelectedAdditional(updated);

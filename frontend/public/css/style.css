@@ -1135,12 +1135,6 @@ Scroll To Top style
   position: relative;
 }
 
-.boxcar-title-three .breadcrumb li::before {
-  content: "/";
-  position: absolute;
-  top: 0;
-  right: -14px;
-}
 
 .boxcar-title-three .breadcrumb li:last-child {
   margin-right: 0;
@@ -15862,13 +15856,6 @@ Section Title
   position: relative;
 }
 
-.vehicles-section-three .boxcar-title .breadcrumb li::before {
-  content: "/";
-  position: absolute;
-  top: 0;
-  right: -14px;
-}
-
 .vehicles-section-three .boxcar-title .breadcrumb li:last-child {
   margin-right: 0;
 }
@@ -16141,13 +16128,6 @@ Section Title
   font-size: 15px;
   margin-right: 21px;
   position: relative;
-}
-
-.boxcar-team-section .boxcar-title .breadcrumb li::before {
-  content: "/";
-  position: absolute;
-  top: 0;
-  right: -14px;
 }
 
 .boxcar-team-section .boxcar-title .breadcrumb li:last-child {
@@ -18637,16 +18617,14 @@ Section Title
 
 .breadcrumb li {
   font-size: 15px;
-  margin-right: 21px;
+  margin-right: 10px;
   position: relative;
 }
 
-.breadcrumb li::before {
-  content: "/";
-  position: absolute;
-  top: 0;
-  right: -14px;
+.breadcrumb li:first-child {
+  margin-right: 10px;
 }
+
 
 .breadcrumb li:last-child {
   margin-right: 0;

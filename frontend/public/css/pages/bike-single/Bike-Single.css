@@ -8,7 +8,7 @@
 .single-bike-container {
     border-radius: 10px !important;
     background: #fff !important;
-    padding: 30px 40px !important;
+    padding: 30px 40px;
 }
 
 .single-title {

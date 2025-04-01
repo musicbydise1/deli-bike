@@ -254,6 +254,12 @@
     }
 }
 
+.info-icons {
+    font-size: 20px;
+    vertical-align: -4px;
+    margin-right: 0.5rem;
+}
+
 
 @media only screen and (max-width: 1520px) {
     .hheader-style-v4 .header-inner .c-box .nav-out-bar {
@@ -1552,9 +1558,6 @@
         margin-bottom: 30px;
     }
 
-    .boxcar-pricing-section-seven {
-        padding-bottom: 90px;
-    }
 
     .dashboard-widget-two .right-box {
         display: block;
@@ -2496,8 +2499,45 @@
         left: 60px !important;
     }
 
+    .single-bike-container {
+        padding: 0 15px !important;
+    }
+    .rental-container {
+        padding: 0 !important;
+    }
+
+    .section-btn-label {
+        font-size: 13px !important;
+    }
+
+    .options-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+        gap: 5px !important;
+    }
+
     .fancy-promo:last-child {
         margin-bottom: 30px;
+    }
+
+    .sidebar-container {
+        padding-left: 0 !important;
+        border-left: none !important;
+    }
+
+    .inventory-section .boxcar-title-three .spectes-list li span {
+        padding: 3px 7px 3px;
+        font-size: 12px;
+    }
+    .section-title {
+        margin-top: 30px;
+    }
+
+    .map-section .goole-iframe iframe {
+        height: 300px;
+    }
+
+    .inventory-section .boxcar-title-three .content-box .title {
+        margin-bottom: 0;
     }
 
     .boxcar-banner-section-six .content-column .inner-column span {
@@ -2718,6 +2758,12 @@
 
     .boxcar-team-section-two {
         padding-bottom: 80px;
+    }
+
+    .info-icons {
+        font-size: 14px;
+        vertical-align: -2px;
+        margin-right: 0.2rem;
     }
 
     .about-inner-one .faqs-section .widget-accordion .block .acc-btn {

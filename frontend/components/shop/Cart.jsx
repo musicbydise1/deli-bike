@@ -36,6 +36,9 @@ export default function Cart() {
                 <Link href={`/`}>{t("breadcrumb.home")}</Link>
               </li>
               <li>
+                <span>/</span>
+              </li>
+              <li>
                 <span>{t("breadcrumb.cart")}</span>
               </li>
             </ul>

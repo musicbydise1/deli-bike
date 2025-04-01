@@ -15,6 +15,9 @@ export default function Contact() {
                 <Link href={`/`}>Главная</Link>
               </li>
               <li>
+                <span>/</span>
+              </li>
+              <li>
                 <span>Контакты</span>
               </li>
             </ul>

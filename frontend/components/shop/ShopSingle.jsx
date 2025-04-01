@@ -78,6 +78,9 @@ export default function ShopSingle({ product }) {
                 <Link href={`/`}>Home</Link>
               </li>
               <li>
+                <span>/</span>
+              </li>
+              <li>
                 <span>Cars for Sale</span>
               </li>
             </ul>

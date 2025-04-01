@@ -11,6 +11,9 @@ export default function Terms() {
                 <Link href={`/`}>Главная</Link>
               </li>
               <li>
+                <span>/</span>
+              </li>
+              <li>
                 <span>Условия и положения</span>
               </li>
             </ul>

@@ -26,9 +26,9 @@ export const carBrands = [
 ];
 
 export const vehicleTypes = [
-  { name: "Deli-Monster", link: "/bike/21" },
-  { name: "Deli-Monster XL", link: "/inventory-list-01" },
-  { name: "Deli-Lux", link: "/inventory-list-01" },
+  { name: "Deli-Monster", link: "/bike/2" },
+  { name: "Deli-Monster XL", link: "/bike/3" },
+  { name: "Deli-Lux", link: "/bike/4" },
 ];
 
 export const socialMediaLinks = [

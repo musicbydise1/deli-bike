@@ -58,6 +58,9 @@ export default function Listings1() {
                 <Link href={`/`}>Главная</Link>
               </li>
               <li>
+                <span>/</span>
+              </li>
+              <li>
                 <span>Каталог электровелосипедов</span>
               </li>
             </ul>

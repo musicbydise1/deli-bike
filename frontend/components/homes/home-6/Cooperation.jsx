@@ -40,7 +40,7 @@ export default function Cooperation() {
                             <div className="content-box">
                                 <h6 className="title">Депозитная Модель</h6>
                                 <div className="text">
-                                    Соглашение о сотрудничестве с компанией, оплачивающей аренду; договор с курьером; за транспорт отвечает курьер
+                                    Соглашение о сотрудничестве с компанией, оплачивающей аренду; договор с курьером; за транспорт отвечает курьер.
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@ export default function Cooperation() {
                             <div className="content-box">
                                 <h6 className="title">Гарантийная Модель</h6>
                                 <div className="text">
-                                    Договор с компанией, оплачивающей аренду; за транспорт отвечает компания
+                                    Договор с компанией, оплачивающей аренду; за транспорт отвечает компания.
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@ export default function Cooperation() {
                                     <div className="content-box">
                                         <h6 className="title">премиум</h6>
                                         <div className="text">
-                                            Аренда с бесплатным сервисным обслуживанием некоторых элементов Оборудования
+                                            Аренда с бесплатным сервисным обслуживанием определенных элементов Оборудования
                                         </div>
                                     </div>
                                 </div>

@@ -197,7 +197,7 @@ export default function Header6({ white = false }) {
                   {isScrolled ? (
                       <div>
                         <Image
-                            alt=""
+                            alt="Logo"
                             title="DeliBike"
                             src="/images/logo-deli2.svg"
                             width={111}
@@ -212,7 +212,7 @@ export default function Header6({ white = false }) {
                   ) : (
                       <div>
                         <Image
-                            alt=""
+                            alt="Logo"
                             title="DeliBike"
                             src="/images/logo-deli2.svg"
                             width={111}
@@ -247,7 +247,7 @@ export default function Header6({ white = false }) {
                                   ? "/images/kazakhstan-flag.svg"
                                   : "/images/belarus-flag.svg"
                             }
-                            alt={location}
+                            alt={location === "kz" ? "Flag of Kazakhstan" : "Flag of Belarus"}
                             width={18}
                             height={13}
                             style={{ width: "auto", height: "auto" }}

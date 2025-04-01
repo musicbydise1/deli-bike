@@ -69,13 +69,13 @@ export class AuthController {
     if (files.photoIdFront && files.photoIdFront.length > 0) {
       const fileFront = files.photoIdFront[0];
       // Формируем URL для хранения пути к файлу в БД
-      user.idCardFrontImage = `https://api.deli-bike.kz/uploads/users/${fileFront.filename}`;
+      user.idCardFrontImage = `http://localhost:4000/uploads/users/${fileFront.filename}`;
     }
 
     // Если загружена задняя сторона удостоверения
     if (files.photoIdBack && files.photoIdBack.length > 0) {
       const fileBack = files.photoIdBack[0];
-      user.idCardBackImage = `https://api.deli-bike.kz/uploads/users/${fileBack.filename}`;
+      user.idCardBackImage = `http://localhost:4000/uploads/users/${fileBack.filename}`;
     }
 
     return this.authService.register(user);

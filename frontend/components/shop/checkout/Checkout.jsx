@@ -153,6 +153,9 @@ export default function Checkout() {
                 <Link href={`/cart`}>{t("breadcrumb.cart")}</Link>
               </li>
               <li>
+                <span>/</span>
+              </li>
+              <li>
                 <span>Оформление заказа</span>
               </li>
             </ul>

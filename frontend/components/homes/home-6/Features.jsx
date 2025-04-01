@@ -1,6 +1,6 @@
 import React from "react";
 import {IoStatsChart} from "react-icons/io5";
-import {FaTenge} from "react-icons/fa";
+import {FaDollarSign, FaTenge} from "react-icons/fa";
 import {HiMiniWrenchScrewdriver} from "react-icons/hi2";
 import {RiSpeedFill} from "react-icons/ri";
 import {MdEco} from "react-icons/md";
@@ -31,13 +31,13 @@ export default function Features() {
             <div className="choose-us-block-four col-lg-3 col-md-6 col-sm-12">
               <div className="inner-box wow fadeInUp" data-wow-delay="100ms">
                 <div className="icon-box">
-                  <FaTenge size={50} color="#ff5500" />
+                  <FaDollarSign size={50} color="#ff5500" />
                 </div>
                 <div className="content-box">
                   <h6 className="title">Доход +40%</h6>
                   <div className="text">
-                    Тратите меньше времени на заказ, больше заказов в день.
-                    Повышаете свой доход
+                    Меньше времени на заказ, больше заказов в день.
+                    Повышаете свой доход.
                   </div>
                 </div>
               </div>
@@ -49,7 +49,7 @@ export default function Features() {
                   <HiMiniWrenchScrewdriver size={50} color="#ff5500" />
                 </div>
                 <div className="content-box">
-                  <h6 className="title">Обслуживание −80%</h6>
+                  <h6 className="title">Обслуживание − 80%</h6>
                   <div className="text">
                     Нет затрат на бензин, штрафы, парковки, ремонт, страховку, техосмотр, шины зима-лета и т.д.
                   </div>
@@ -67,9 +67,8 @@ export default function Features() {
                   <div className="text">
                     Экологичный и стильный
                     транспорт наступившего
-                    будущего, бесшумный и не
-                    нервирует автолюбителей на
-                    дорогах
+                    будущего, бесшумный, не
+                    нервирует автолюбителей
                   </div>
                 </div>
               </div>

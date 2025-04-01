@@ -17,6 +17,7 @@ export default function Cars() {
   const [selectedCategory, setSelectedCategory] = useState(buttons[0]);
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [isInnerTouchActive, setIsInnerTouchActive] = useState(false);
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
@@ -39,35 +40,41 @@ export default function Cars() {
 
     fetchBikes();
 
-    // Определяем, мобильное ли устройство
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    handleResize(); // первоначальная проверка
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [API_URL]);
 
-  // Настройки для слайдера на мобильных устройствах
+  // Базовые настройки для внешнего слайдера
   const mobileSliderSettings = {
     slidesToScroll: 1,
     slidesToShow: 1,
     arrows: true,
   };
 
+  // Если внутренний слайдер активен, выключаем свайп/драг у внешнего
+  const mobileSliderSettingsModified = {
+    ...mobileSliderSettings,
+    swipe: !isInnerTouchActive,
+    draggable: !isInnerTouchActive,
+  };
+
   return (
       <section id="bikes" className="cars-section-three cars-home">
         <div className="boxcar-container">
           <div className="boxcar-title wow fadeInUp">
-            <h2>СТОИМОСТЬ АРЕНДЫ <span className="orange">Deli-Bike</span></h2>
-            <p>Цены указаны без учёта партнёрских скидок. Скидки согласуются и предоставляются индивидуально.</p>
+            <h2>
+              СТОИМОСТЬ АРЕНДЫ <span className="orange">Deli-Bike</span>
+            </h2>
+            <p>
+              Цены указаны без учёта партнёрских скидок. Скидки согласуются и предоставляются индивидуально.
+            </p>
           </div>
 
-          <div
-              className="tab-content wow fadeInUp"
-              data-wow-delay="200ms"
-              id="nav-tabContent"
-          >
+          <div className="tab-content wow fadeInUp" data-wow-delay="200ms" id="nav-tabContent">
             <div
                 className="tab-pane fade show active"
                 id="nav-home"
@@ -76,7 +83,7 @@ export default function Cars() {
             >
               {isMobile ? (
                   <Slider
-                      {...mobileSliderSettings}
+                      {...mobileSliderSettingsModified}
                       className="row car-slider-three"
                       data-preview="4.8"
                   >
@@ -87,14 +94,34 @@ export default function Cars() {
                         >
                           <div className="inner-box">
                             <div
-                                className={`image-box ${
-                                    bike.tags[0] === "Great Price" ? "two" : ""
-                                }`}
+                                className={`image-box ${bike.tags[0] === "Great Price" ? "two" : ""}`}
+
+                                // События - версия capture + stopImmediatePropagation
+                                onTouchStartCapture={(e) => {
+                                  e.stopPropagation();
+                                  e.nativeEvent.stopImmediatePropagation();
+                                  setIsInnerTouchActive(true);
+                                }}
+                                onTouchMoveCapture={(e) => {
+                                  e.stopPropagation();
+                                  e.nativeEvent.stopImmediatePropagation();
+                                  setIsInnerTouchActive(true);
+                                }}
+                                onTouchEndCapture={(e) => {
+                                  e.stopPropagation();
+                                  e.nativeEvent.stopImmediatePropagation();
+                                  setIsInnerTouchActive(false);
+                                }}
+                                onTouchCancelCapture={(e) => {
+                                  e.stopPropagation();
+                                  e.nativeEvent.stopImmediatePropagation();
+                                  setIsInnerTouchActive(false);
+                                }}
                             >
                               <Slider
                                   dots
                                   slidesToShow={1}
-                                  infinite={false} // отключаем бесконечное пролистывание
+                                  infinite={false}
                                   key={bike.id}
                                   className="slider-thumb"
                               >
@@ -119,6 +146,7 @@ export default function Cars() {
                               </Slider>
                               {bike.tags && <span>{bike.tags[0]}</span>}
                             </div>
+
                             <div className="content-box">
                               <h6 className="title">
                                 <Link href={`/bike/${bike.id}`}>
@@ -128,12 +156,12 @@ export default function Cars() {
                               <ul className="specs-list">
                                 <li className="spec-item">
                                   <span className="spec-title">Макс. скорость</span>
-                                  <span className="spec-value"><span className="text-[12px]">Ограничена до</span> {Math.round(bike.max_speed)} км/ч</span>
+                                  <span className="spec-value">
+                              <span className="text-[12px]">Ограничена до</span> {Math.round(bike.max_speed)} км/ч
+                            </span>
                                 </li>
                                 <li className="spec-item">
-                            <span className="spec-title">
-                              Пробег на 1 заряде:
-                            </span>
+                                  <span className="spec-title">Пробег на 1 заряде:</span>
                                   <span className="spec-value">
                               {bike.range_per_charge} км <span className="text-[12px]">(зависит от АКБ)</span>
                             </span>
@@ -144,7 +172,9 @@ export default function Cars() {
                                 </li>
                                 <li className="spec-item">
                                   <span className="spec-title">Макс. нагрузка</span>
-                                  <span className="spec-value"><span className="text-[12px]">до</span> {Math.round(bike.max_load)} кг</span>
+                                  <span className="spec-value">
+                              <span className="text-[12px]">до</span> {Math.round(bike.max_load)} кг
+                            </span>
                                 </li>
                                 <li className="spec-item">
                                   <span className="spec-title">Вес</span>
@@ -160,12 +190,11 @@ export default function Cars() {
                                 </li>
                               </ul>
                               <div className="btn-box">
-                                <Button
-                                    className="w-full mb-4 !ml-0"
-                                    variant="primary-outline"
-                                >
-                                  Арендовать
-                                </Button>
+                                <Link href={`/bike/${bike.id}`}>
+                                  <Button className="w-full mb-4 !ml-0" variant="primary-outline">
+                                    Арендовать
+                                  </Button>
+                                </Link>
                               </div>
                             </div>
                           </div>
@@ -181,14 +210,16 @@ export default function Cars() {
                         >
                           <div className="inner-box">
                             <div
-                                className={`image-box ${
-                                    bike.tags[0] === "Great Price" ? "two" : ""
-                                }`}
+                                className={`image-box ${bike.tags[0] === "Great Price" ? "two" : ""}`}
+
+                                // Для десктопа можно оставить простые события
+                                onTouchStart={(e) => e.stopPropagation()}
+                                onTouchMove={(e) => e.stopPropagation()}
                             >
                               <Slider
                                   dots
                                   slidesToShow={1}
-                                  infinite={false} // отключаем бесконечное пролистывание
+                                  infinite={false}
                                   key={bike.id}
                                   className="slider-thumb"
                               >
@@ -213,36 +244,22 @@ export default function Cars() {
                               </Slider>
                               {bike.tags && <span>{bike.tags[0]}</span>}
                             </div>
+
                             <div className="content-box">
                               <h6 className="title">
                                 <Link href={`/bike/${bike.id}`}>
                                   {bike.name} - {bike.model}
                                 </Link>
                               </h6>
-                              {/*<div*/}
-                              {/*    className="select-wrapper"*/}
-                              {/*    style={{ position: "relative" }}*/}
-                              {/*>*/}
-                                {/*<select className="car-select w-full mb-2">*/}
-                                {/*  {bike.prices.map((prices, i) => (*/}
-                                {/*      <option value={prices.price} key={i}>*/}
-                                {/*        {prices.priceCategory.name} -{" "}*/}
-                                {/*        {Math.round(prices.price).toLocaleString("ru-RU")}{" "}*/}
-                                {/*        ₸*/}
-                                {/*      </option>*/}
-                                {/*  ))}*/}
-                                {/*</select>*/}
-                                {/*<IoIosArrowDown className="icon" />*/}
-                              {/*</div>*/}
                               <ul className="specs-list">
                                 <li className="spec-item">
                                   <span className="spec-title">Макс. скорость</span>
-                                  <span className="spec-value">Ограничена до {Math.round(bike.max_speed)} км/ч</span>
+                                  <span className="spec-value">
+                              Ограничена до {Math.round(bike.max_speed)} км/ч
+                            </span>
                                 </li>
                                 <li className="spec-item">
-                            <span className="spec-title">
-                              Пробег на 1 заряде:
-                            </span>
+                                  <span className="spec-title">Пробег на 1 заряде:</span>
                                   <span className="spec-value">
                               {bike.range_per_charge} км (зависит от АКБ)
                             </span>
@@ -253,11 +270,15 @@ export default function Cars() {
                                 </li>
                                 <li className="spec-item">
                                   <span className="spec-title">Макс. нагрузка</span>
-                                  <span className="spec-value">до {Math.round(bike.max_load)} кг</span>
+                                  <span className="spec-value">
+                              до {Math.round(bike.max_load)} кг
+                            </span>
                                 </li>
                                 <li className="spec-item">
                                   <span className="spec-title">Вес</span>
-                                  <span className="spec-value">{Math.round(bike.weight)} кг</span>
+                                  <span className="spec-value">
+                              {Math.round(bike.weight)} кг
+                            </span>
                                 </li>
                                 <li className="spec-item">
                                   <span className="spec-title">Подвеска</span>
@@ -270,10 +291,7 @@ export default function Cars() {
                               </ul>
                               <div className="btn-box">
                                 <Link href={`/bike/${bike.id}`}>
-                                  <Button
-                                      className="w-full mb-4 !ml-0"
-                                      variant="primary-outline"
-                                  >
+                                  <Button className="w-full mb-4 !ml-0" variant="primary-outline">
                                     Арендовать
                                   </Button>
                                 </Link>

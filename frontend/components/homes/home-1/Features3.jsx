@@ -82,7 +82,7 @@ export default function Features3() {
                     <tr>
                       <td>Скорость (в городе)</td>
                       <td>Медленно</td>
-                      <td>На +54% быстрее</td>
+                      <td>На +300% быстрее</td>
                     </tr>
                     <tr>
                       <td>Бензин, день</td>
@@ -96,8 +96,8 @@ export default function Features3() {
                     </tr>
                     <tr>
                       <td>Пробег за день, км</td>
-                      <td><span>Ограничен <br /> (до 25 км)</span></td>
-                      <td>До 90 км на 1 АКБ</td>
+                      <td><span>Ограничен <br /> (до 20-30 км)</span></td>
+                      <td>До 150-200 км</td>
                     </tr>
                     <tr>
                       <td>Количество заказов в день</td>
@@ -162,8 +162,8 @@ export default function Features3() {
                     </tr>
                     <tr>
                       <td>Пробег за день</td>
-                      <td>Неограничен (зависит от бака)</td>
-                      <td>До 90 км (запасной АКБ)</td>
+                      <td>Сопоставим</td>
+                      <td>Сопоставим</td>
                     </tr>
                     <tr>
                       <td>Количество заказов в день</td>
@@ -173,8 +173,8 @@ export default function Features3() {
                     <tr>
                       <td>Доход в месяц</td>
                       <td>
-                        <span style={{ color: "#ac2318" }}>Ниже на 40 000–60 000 тенге <br />
-                        (без учёта аренды)</span>
+                        <span style={{ color: "#ac2318" }}>Потери ~50 тыс. тенге <br />
+                        (без аренды)</span>
                       </td>
                       <td><span>+250% доход</span></td>
                     </tr>
@@ -241,8 +241,8 @@ export default function Features3() {
                     <tr>
                       <td>Доход в месяц</td>
                       <td>
-                       <span style={{color: "#ac2318"}}> Ниже на 80 000–150 000 тенге <br />
-                         (без учёта аренды авто) </span>
+                       <span style={{color: "#ac2318"}}> Потери ~120 тыс. тенге <br />
+                         (без аренды) </span>
                       </td>
                       <td> <span>+300% доход</span></td>
                     </tr>

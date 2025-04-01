@@ -30,6 +30,9 @@ export default function Blogs1() {
               <Link href={`/`}>Home</Link>
             </li>
             <li>
+              <span>/</span>
+            </li>
+            <li>
               <span>Cars for Sale</span>
             </li>
           </ul>

@@ -29,7 +29,7 @@ export default function Footer3({ parenttClass = "boxcar-footer footer-style-fiv
                 <div className="top-left wow fadeInUp">
                   <div className="mb-4">
                     <Image
-                        alt=""
+                        alt="Logo"
                         title="DeliBike"
                         src="/images/logo-deli2.svg"
                         width={111}
@@ -128,7 +128,7 @@ export default function Footer3({ parenttClass = "boxcar-footer footer-style-fiv
             <div className="boxcar-container">
               <div className="inner-container">
                 <div className="copyright-text wow fadeInUp">
-                  <p>© 2025 <span class="uppercase orange">Deli-Bike</span>. Все права защищены.</p>
+                  <p>© 2025 <span className="uppercase orange">Deli-Bike</span>. Все права защищены.</p>
                 </div>
                 <ul className="footer-nav wow fadeInUp" data-wow-delay="100ms">
                   <li>
