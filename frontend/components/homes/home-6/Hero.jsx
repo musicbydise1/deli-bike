@@ -50,7 +50,8 @@ export default function Hero() {
                     {userRoleCookie === "courier" ? t("for_courier") : t("for_business")}
                   </span>
                   </h1>
-                  <span className="wow fadeInUp" data-wow-delay="100ms">
+                  <div className="hero-little-text">
+                    <span className="wow fadeInUp" data-wow-delay="100ms">
                   {userRoleCookie === "courier" ? (
                       <>
                         {t("home.hero.courier_text")} <br />
@@ -67,6 +68,7 @@ export default function Hero() {
                       </>
                   )}
                 </span>
+                  </div>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full hero-btn-box">
                     <Link href="/#bikes">
                       <Button className="!ml-0 w-full sm:w-auto" variant="primary">

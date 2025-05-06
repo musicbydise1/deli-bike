@@ -6,11 +6,10 @@ import HistoryOrders from "./HistoryOrders";
 import SupportAccordion from "./SupportAccordion";
 
 export default function DashboardTab({ setActiveTab }) {
-    const userId = 1; // пример: берем из контекста/авторизации
-
+    const [userId, setUserId] = useState(null);
     const [activeRentals, setActiveRentals] = useState([]);
     const [historyRentals, setHistoryRentals] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -44,8 +43,26 @@ export default function DashboardTab({ setActiveTab }) {
         },
     ];
 
-    // Загрузка активных заказов и истории
+    // Считываем userId из localStorage
     useEffect(() => {
+        const raw = localStorage.getItem("userData");
+        if (raw) {
+            try {
+                const user = JSON.parse(raw);
+                setUserId(user.id);
+            } catch (err) {
+                console.error("Не удалось распарсить userData:", err);
+            }
+        } else {
+            console.warn("userData нет в localStorage");
+        }
+    }, []);
+
+    // Загрузка активных заказов и истории после получения userId
+    useEffect(() => {
+        if (userId === null) return;
+
+        setLoading(true);
         async function fetchData() {
             try {
                 const [activeRes, historyRes] = await Promise.all([
@@ -66,13 +83,13 @@ export default function DashboardTab({ setActiveTab }) {
                 setActiveRentals(activeData.data || []);
                 setHistoryRentals(historyData.data || []);
             } catch (err) {
-                setError(err.message);
+                setError(err.message || "Ошибка при загрузке данных");
             } finally {
                 setLoading(false);
             }
         }
         fetchData();
-    }, [userId]);
+    }, [userId, API_URL]);
 
     if (loading) {
         return <p className="p-4">Загрузка данных об арендах...</p>;
@@ -82,10 +99,12 @@ export default function DashboardTab({ setActiveTab }) {
         return <p className="p-4 text-red-500">Ошибка: {error}</p>;
     }
 
-    // Ищем заказ со статусом 'active'
-    const activeOrder = activeRentals.find((r) => r.status === "active" || r.status === "on_payment");
+    // Ищем заказ со статусом 'active' или 'on_payment'
+    const activeOrder = activeRentals.find(
+        (r) => r.status === "active" || r.status === "on_payment"
+    );
 
-    // Если НЕТ активного заказа — показываем плитки
+    // Если нет активного заказа — показываем плитки
     if (!activeOrder) {
         return (
             <>
@@ -103,7 +122,9 @@ export default function DashboardTab({ setActiveTab }) {
     return (
         <div className="">
             <h1 className="text-2xl font-bold mb-1">Личный кабинет</h1>
-            <p className="text-gray-600 mb-6">Персональный центр управления вашей арендой</p>
+            <p className="text-gray-600 mb-6">
+                Персональный центр управления вашей арендой
+            </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Левая часть: активный заказ */}
@@ -112,7 +133,10 @@ export default function DashboardTab({ setActiveTab }) {
                 </div>
 
                 {/* Правая часть: история */}
-                <HistoryOrders historyRentals={historyRentals} setActiveTab={setActiveTab} />
+                <HistoryOrders
+                    historyRentals={historyRentals}
+                    setActiveTab={setActiveTab}
+                />
             </div>
 
             <SupportAccordion

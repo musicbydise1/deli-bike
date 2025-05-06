@@ -17,7 +17,7 @@ export function TariffProvider({ children }) {
 
     // Новые глобальные состояния
     const [rentalPeriod, setRentalPeriod] = useState(null);
-    const [selectedWarranty, setSelectedWarranty] = useState(null);
+    const [selectedWarranty, setSelectedWarranty] = useState(pricingPlans[0]);
     const [selectedAdditional, setSelectedAdditional] = useState([]);
     const [selectedBattery, setSelectedBattery] = useState(null);
 

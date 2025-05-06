@@ -22,6 +22,7 @@ const SidebarSummary = ({
     const warrantyLabel = selectedWarranty?.value === "premium" ? "Премиум" : "Стандартная гарантия";
     const currency = location;
     const format = (val) => formatPrice(val, currency);
+    console.log("Extended Warranty", extendedWarranty);
 
     return (
         <div className="summary">

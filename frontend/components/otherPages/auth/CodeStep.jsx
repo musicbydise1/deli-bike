@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { AiOutlineLoading } from "react-icons/ai";
 
 export default function CodeStep({ handleCodeSubmit, handleResendCode }) {
     // Массив для хранения 4 цифр кода
@@ -8,100 +9,95 @@ export default function CodeStep({ handleCodeSubmit, handleResendCode }) {
 
     // Таймер для повторной отправки кода (60 секунд)
     const [counter, setCounter] = useState(60);
+    // Состояние загрузки при отправке кода
+    const [isLoading, setIsLoading] = useState(false);
 
     // Запускаем обратный отсчёт
     useEffect(() => {
-        if (counter <= 0) return; // Если время вышло, ничего не делаем
+        if (counter <= 0) return;
         const timerId = setTimeout(() => {
             setCounter(counter - 1);
         }, 1000);
         return () => clearTimeout(timerId);
     }, [counter]);
 
+    // Асинхронная отправка кода с отображением загрузки
+    const submitCode = async (code) => {
+        setIsLoading(true);
+        try {
+            await handleCodeSubmit(code);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     // Проверка, заполнены ли все поля, и автоматическое подтверждение
     const checkAndSubmit = (newOtp) => {
         if (newOtp.every((digit) => digit !== "")) {
-            handleCodeSubmit(newOtp.join(""));
+            submitCode(newOtp.join(""));
         }
     };
 
     // Обработка ввода в инпут
     const handleChange = (value, index) => {
-        // Убираем нецифровые символы
+        if (isLoading) return;
         const cleaned = value.replace(/\D/g, "");
-
-        // Если введено сразу несколько цифр – обрабатываем как вставку
         if (cleaned.length > 1) {
             handlePaste(cleaned, index);
             return;
         }
-
         const newOtp = [...otp];
         newOtp[index] = cleaned;
         setOtp(newOtp);
 
-        // Добавляем или убираем класс 'filled' у текущего инпута
         const inputEl = inputRefs.current[index];
-        if (cleaned) {
-            inputEl.classList.add("filled");
-        } else {
-            inputEl.classList.remove("filled");
+        if (inputEl) {
+            cleaned ? inputEl.classList.add("filled") : inputEl.classList.remove("filled");
         }
-
-        // Если введена цифра и не последний инпут – переводим фокус на следующий
         if (cleaned && index < 3) {
             inputRefs.current[index + 1].focus();
         }
-
         checkAndSubmit(newOtp);
     };
 
-    // Обработка нажатия клавиши Backspace:
-    // Если поле пустое, переводим фокус на предыдущее
+    // Обработка нажатия клавиши Backspace
     const handleKeyDown = (e, index) => {
+        if (isLoading) return;
         if (e.key === "Backspace" && !otp[index] && index > 0) {
             inputRefs.current[index - 1].focus();
         }
     };
 
-    // Функция обработки вставки кода (paste)
-    // pastedValue — строка с цифрами, index — с какого инпута начинать вставку
+    // Функция обработки вставки кода
     const handlePaste = (pastedValue, index) => {
-        // Оставляем только цифры
+        if (isLoading) return;
         const cleanedData = pastedValue.replace(/\D/g, "");
         if (!cleanedData) return;
-
         const newOtp = [...otp];
-        // Заполняем инпуты начиная с index
-        for (let i = 0; i < cleanedData.length; i++) {
+        cleanedData.split("").forEach((digit, i) => {
             if (index + i < 4) {
-                newOtp[index + i] = cleanedData[i];
+                newOtp[index + i] = digit;
                 const inputEl = inputRefs.current[index + i];
-                if (inputEl) {
-                    inputEl.classList.add("filled");
-                }
+                if (inputEl) inputEl.classList.add("filled");
             }
-        }
+        });
         setOtp(newOtp);
-
-        // Если есть незаполненное поле – переводим фокус на него
         const nextEmpty = newOtp.findIndex((digit) => digit === "");
-        if (nextEmpty !== -1) {
-            inputRefs.current[nextEmpty].focus();
-        }
-
+        if (nextEmpty !== -1) inputRefs.current[nextEmpty].focus();
         checkAndSubmit(newOtp);
     };
 
     // Обработчик события paste для инпута
     const onPaste = (e, index) => {
         e.preventDefault();
-        const pastedData = e.clipboardData.getData("Text");
-        handlePaste(pastedData, index);
+        handlePaste(e.clipboardData.getData("Text"), index);
     };
 
     // Обёртка для вызова handleResendCode и сброса таймера
     const onResendClick = () => {
+        if (isLoading) return;
         handleResendCode();
         setCounter(60);
     };
@@ -109,67 +105,75 @@ export default function CodeStep({ handleCodeSubmit, handleResendCode }) {
     return (
         <div className="form-box">
             <h2 className="code-step-title">Введите смс код</h2>
-            <p className="code-step-subtitle">
-                SMS с кодом отправлено. Если не получите сообщение в течение 2&nbsp;минут,
-                вам позвонит наш робот. Последние 4&nbsp;цифры номера будут кодом для входа.
-                Не нужно отвечать на звонок.
-            </p>
-
-            {/* Оборачиваем в форму для семантики, но сабмит не нужен */}
-            <form onSubmit={(e) => e.preventDefault()}>
-                <div className="otp-container">
-                    {[0, 1, 2, 3].map((i) => (
-                        <input
-                            key={i}
-                            type="text"
-                            maxLength={1}
-                            className="otp-input"
-                            value={otp[i]}
-                            onChange={(e) => handleChange(e.target.value, i)}
-                            onKeyDown={(e) => handleKeyDown(e, i)}
-                            onPaste={(e) => onPaste(e, i)}
-                            ref={(el) => (inputRefs.current[i] = el)}
-                        />
-                    ))}
+            {isLoading ? (
+                <div
+                    className="loading-wrapper"
+                    style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "200px" }}
+                >
+                    <AiOutlineLoading size={70} className="animate-spin" />
                 </div>
+            ) : (
+                <>
+                    <p className="code-step-subtitle">
+                        SMS с кодом отправлено. Если не получите сообщение в течение 2 минут,
+                        вам позвонит наш робот. Последние 4 цифры номера будут кодом для входа.
+                        Не нужно отвечать на звонок.
+                    </p>
 
-                {/* Обёртка для кнопки и текстового сообщения с таймером */}
-                <div className="resend-wrapper" style={{position: "relative", height: "2rem"}}>
-                    {/* Кнопка "Выслать новый код" */}
-                    <button
-                        type="button"
-                        className="resend-button"
-                        onClick={onResendClick}
-                        disabled={counter > 0}
-                        style={{
-                            opacity: counter === 0 ? 1 : 0,
-                            pointerEvents: counter === 0 ? "auto" : "none",
-                            display: counter > 0 ? "none" : "block",
-                            transition: "opacity 1s ease-in-out",
-                            position: "absolute",
-                            width: "100%",
-                        }}
-                    >
-                        Выслать новый код
-                    </button>
+                    <form onSubmit={(e) => e.preventDefault()}>
+                        <div className="otp-container">
+                            {[0, 1, 2, 3].map((i) => (
+                                <input
+                                    key={i}
+                                    type="text"
+                                    maxLength={1}
+                                    className="otp-input"
+                                    value={otp[i]}
+                                    onChange={(e) => handleChange(e.target.value, i)}
+                                    onKeyDown={(e) => handleKeyDown(e, i)}
+                                    onPaste={(e) => onPaste(e, i)}
+                                    ref={(el) => (inputRefs.current[i] = el)}
+                                    disabled={isLoading}
+                                />
+                            ))}
+                        </div>
 
-                    {/* Текст с оставшимся временем */}
-                    <div
-                        className="resend-timer"
-                        style={{
-                            opacity: counter > 0 ? 1 : 0,
-                            display: counter > 0 ? "block" : "none",
-                            transition: "opacity 1s ease-in-out",
-                            position: "absolute",
-                            width: "100%",
-                            textAlign: "center",
-                            lineHeight: "2rem",
-                        }}
-                    >
-                        Получить новый код можно через {counter} секунд
-                    </div>
-                </div>
-            </form>
+                        <div className="resend-wrapper" style={{ position: "relative", height: "2rem" }}>
+                            <button
+                                type="button"
+                                className="resend-button"
+                                onClick={onResendClick}
+                                disabled={counter > 0 || isLoading}
+                                style={{
+                                    opacity: counter === 0 ? 1 : 0,
+                                    pointerEvents: counter === 0 ? "auto" : "none",
+                                    display: counter > 0 ? "none" : "block",
+                                    transition: "opacity 1s ease-in-out",
+                                    position: "absolute",
+                                    width: "100%",
+                                }}
+                            >
+                                Выслать новый код
+                            </button>
+
+                            <div
+                                className="resend-timer"
+                                style={{
+                                    opacity: counter > 0 ? 1 : 0,
+                                    display: counter > 0 ? "block" : "none",
+                                    transition: "opacity 1s ease-in-out",
+                                    position: "absolute",
+                                    width: "100%",
+                                    textAlign: "center",
+                                    lineHeight: "2rem",
+                                }}
+                            >
+                                Получить новый код можно через {counter} секунд
+                            </div>
+                        </div>
+                    </form>
+                </>
+            )}
         </div>
     );
 }

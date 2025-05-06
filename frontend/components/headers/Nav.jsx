@@ -69,7 +69,7 @@ export default function Nav() {
           {/*</li>*/}
           <li className="current-dropdown">
         <span className={isMenuActive(AboutLinks) ? "menuActive" : ""}>
-         {t("menu.about")} <i className="fa-solid fa-angle-down"/>
+         О нас <i className="fa-solid fa-angle-down"/>
         </span>
               <ul className="dropdown">
                   {AboutLinks.map((link, index) => (

@@ -3,6 +3,13 @@ import React, { useEffect, useState } from "react";
 import Modal from "../Modal";
 import { BikesTable } from "./BikesTable";
 import { BikeForm } from "./BikeForm";
+import {
+    Box,
+    Typography,
+    Button,
+    CircularProgress,
+    Alert,
+} from "@mui/material";
 
 const AVAILABLE_STATUSES = ["available", "unavailable", "in maintenance"];
 
@@ -66,26 +73,28 @@ export default function BikesTab() {
         }
     }
 
+    const resetCurrentBike = () => setCurrentBike({
+        id: null,
+        name: "",
+        model: "",
+        description: "",
+        availability_status: "available",
+        maxSpeed: "",
+        rangePerCharge: "",
+        chargeTime: "",
+        maxLoad: "",
+        weight: "",
+        power: "",
+        suspension: "",
+        imageUrls: [],
+        tags: [],
+        prices: [],
+        files: null,
+    });
+
     const handleAddBike = () => {
         setIsEditMode(false);
-        setCurrentBike({
-            id: null,
-            name: "",
-            model: "",
-            description: "",
-            availability_status: "available",
-            maxSpeed: "",
-            rangePerCharge: "",
-            chargeTime: "",
-            maxLoad: "",
-            weight: "",
-            power: "",
-            suspension: "",
-            imageUrls: [],
-            tags: [],
-            prices: [],
-            files: null,
-        });
+        resetCurrentBike();
         setShowModal(true);
     };
 
@@ -113,47 +122,46 @@ export default function BikesTab() {
     };
 
     async function handleDeleteBike(id) {
-        if (!confirm("Вы действительно хотите удалить этот велосипед?")) return;
+        if (!window.confirm("Вы действительно хотите удалить этот велосипед?")) return;
         try {
             const response = await fetch(`${API_URL}/bikes/${id}`, { method: "DELETE" });
             if (!response.ok) throw new Error("Ошибка при удалении велосипеда");
             setBikes((prev) => prev.filter((b) => b.id !== id));
-        } catch (error) {
-            console.error(error);
+        } catch (err) {
+            console.error(err);
             alert("Не удалось удалить велосипед!");
         }
     }
 
-    function handleFileChange(acceptedFiles) {
-        console.log("Selected files:", acceptedFiles);
+    const handleFileChange = (acceptedFiles) => {
         if (acceptedFiles && acceptedFiles.length > 0) {
             setCurrentBike((prev) => ({ ...prev, files: acceptedFiles }));
         }
-    }
+    };
 
     async function handleSaveBike(e) {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("name", currentBike.name);
-        formData.append("model", currentBike.model);
-        formData.append("description", currentBike.description || "");
-        formData.append("availability_status", currentBike.availability_status);
-        formData.append("maxSpeed", currentBike.maxSpeed);
-        formData.append("rangePerCharge", currentBike.rangePerCharge);
-        formData.append("chargeTime", currentBike.chargeTime || "");
-        formData.append("maxLoad", currentBike.maxLoad);
-        formData.append("weight", currentBike.weight);
-        formData.append("power", currentBike.power || "");
-        formData.append("suspension", currentBike.suspension || "");
-        formData.append("prices", JSON.stringify(currentBike.prices));
-        formData.append("tags", currentBike.tags.join(","));
-        formData.append("imageUrls", JSON.stringify(currentBike.imageUrls));
+        Object.entries({
+            name: currentBike.name,
+            model: currentBike.model,
+            description: currentBike.description,
+            availability_status: currentBike.availability_status,
+            maxSpeed: currentBike.maxSpeed,
+            rangePerCharge: currentBike.rangePerCharge,
+            chargeTime: currentBike.chargeTime,
+            maxLoad: currentBike.maxLoad,
+            weight: currentBike.weight,
+            power: currentBike.power,
+            suspension: currentBike.suspension,
+            prices: JSON.stringify(currentBike.prices),
+            tags: currentBike.tags.join(","),
+            imageUrls: JSON.stringify(currentBike.imageUrls),
+        }).forEach(([key, value]) => formData.append(key, value));
 
         if (currentBike.files) {
-            for (let i = 0; i < currentBike.files.length; i++) {
-                formData.append("photos", currentBike.files[i]);
-            }
+            currentBike.files.forEach((file) => formData.append("photos", file));
         }
 
         let url = `${API_URL}/bikes/`;
@@ -165,13 +173,10 @@ export default function BikesTab() {
 
         try {
             const response = await fetch(url, { method, body: formData });
-            if (!response.ok) {
-                throw new Error(isEditMode ? "Ошибка при обновлении велосипеда" : "Ошибка при создании велосипеда");
-            }
+            if (!response.ok) throw new Error(isEditMode ? "Ошибка при обновлении велосипеда" : "Ошибка при создании велосипеда");
             const result = await response.json();
-            if (!result.isSuccess) {
-                throw new Error(result.message || "Операция с велосипедом не удалась");
-            }
+            if (!result.isSuccess) throw new Error(result.message || "Операция не удалась");
+
             setShowModal(false);
             if (isEditMode) {
                 setBikes((prev) => prev.map((b) => (b.id === currentBike.id ? { ...b, ...result.data } : b)));
@@ -184,37 +189,61 @@ export default function BikesTab() {
         }
     }
 
-    if (loading) return <p className="text-gray-600">Загрузка велосипедов...</p>;
-    if (error) return <p className="text-red-500">Ошибка: {error}</p>;
+    if (loading) {
+        return (
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '200px' }}>
+                <CircularProgress />
+                <Typography variant="body2" sx={{ ml: 2 }}>
+                    Загрузка велосипедов...
+                </Typography>
+            </Box>
+        );
+    }
+
+    if (error) {
+        return (
+            <Box sx={{ p: 4 }}>
+                <Alert severity="error">Ошибка: {error}</Alert>
+            </Box>
+        );
+    }
 
     return (
-        <div className="px-4 py-4">
-            <h2 className="text-2xl font-bold mb-4">Управление велосипедами</h2>
-            <div className="mb-4">
-                <button
-                    onClick={handleAddBike}
-                    className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded"
-                >
+        <Box sx={{ p: 4 }}>
+            <Typography variant="h5" gutterBottom>
+                Управление велосипедами
+            </Typography>
+
+            <Box sx={{ mb: 2 }}>
+                <Button variant="contained" color="success" onClick={handleAddBike}>
                     Добавить велосипед
-                </button>
-            </div>
+                </Button>
+            </Box>
+
             {bikes.length === 0 ? (
-                <p className="text-gray-600">Пока нет велосипедов.</p>
+                <Typography variant="body2" color="text.secondary">
+                    Пока нет велосипедов.
+                </Typography>
             ) : (
                 <BikesTable bikes={bikes} onEdit={handleEditBike} onDelete={handleDeleteBike} />
             )}
-            <Modal show={showModal} onClose={() => setShowModal(false)} title={isEditMode ? "Редактировать велосипед" : "Добавить велосипед"}>
+
+            <Modal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                title={isEditMode ? "Редактировать велосипед" : "Добавить велосипед"}
+            >
                 <BikeForm
                     currentBike={currentBike}
                     onChange={(field, value) => setCurrentBike((prev) => ({ ...prev, [field]: value }))}
                     onFileChange={handleFileChange}
-                    onSave={handleSaveBike}
+                    onSubmit={handleSaveBike}
                     onCancel={() => setShowModal(false)}
                     availableStatuses={AVAILABLE_STATUSES}
                     isEditMode={isEditMode}
                     priceCategories={priceCategories}
                 />
             </Modal>
-        </div>
+        </Box>
     );
 }

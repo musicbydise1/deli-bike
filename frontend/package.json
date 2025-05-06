@@ -12,10 +12,13 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@mantine/core": "^7.17.5",
+    "@mantine/hooks": "^7.17.5",
     "@mui/icons-material": "^6.4.6",
     "@mui/material": "^6.4.6",
     "@popperjs/core": "^2.11.8",
     "@react-google-maps/api": "^2.19.3",
+    "@tabler/icons-react": "^3.31.0",
     "autoprefixer": "^10.4.20",
     "bootstrap": "^5.0.2",
     "chart.js": "^4.4.8",

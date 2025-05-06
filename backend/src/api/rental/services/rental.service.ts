@@ -15,7 +15,7 @@ export class RentalService {
     ) {}
 
     async createRental(createRentalDto: CreateRentalDto): Promise<Rental> {
-        const { userId, bikeId, startDate, endDate, totalPrice } = createRentalDto;
+        const { userId, roleId, bikeId, priceCategoryId, currency_id, startDate, endDate, totalPrice } = createRentalDto;
 
         const bike = await this.bikeRepository.findOne({ where: { id: bikeId } });
         if (!bike || bike.stock <= 0) {
@@ -34,6 +34,9 @@ export class RentalService {
         const rental = this.rentalRepository.create({
             user: { id: userId },
             bike: { id: bikeId },
+            role: { id: roleId },
+            currency: { id: currency_id },
+            priceCategory: { id: priceCategoryId },
             startDate,
             endDate,
             totalPrice,

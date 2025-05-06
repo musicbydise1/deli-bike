@@ -1,111 +1,120 @@
 "use client";
 
 import React, { useState } from "react";
-import Pagination from "../../..//Pagination";
+import {
+    Box,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    IconButton,
+    Tooltip,
+    TablePagination,
+    Typography,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function UsersTable({ users, onEdit, onDelete }) {
-    // Пагинация
-    const [currentPage, setCurrentPage] = useState(1);
+    const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const totalPages = Math.ceil(users.length / rowsPerPage);
 
-    const currentUsers = users.slice(
-        (currentPage - 1) * rowsPerPage,
-        currentPage * rowsPerPage
+    const handleChangePage = (_, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
+    const emptyRows =
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - users.length) : 0;
+
+    const paginatedUsers = users.slice(
+        page * rowsPerPage,
+        page * rowsPerPage + rowsPerPage
     );
 
     return (
-        <div>
-            <table className="users-table">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Имя</th>
-                    <th>Фамилия</th>
-                    <th>Телефон</th>
-                    <th>Email</th>
-                    <th>Роль</th>
-                    <th>Действия</th>
-                </tr>
-                </thead>
-                <tbody>
-                {currentUsers.map((user) => (
-                    <tr key={user.id}>
-                        <td>{user.id}</td>
-                        <td>{user.firstName}</td>
-                        <td>{user.lastName}</td>
-                        <td>{user.phoneNumber || "—"}</td>
-                        <td>{user.email}</td>
-                        <td>{user.role || "—"}</td>
-                        <td>
-                            <button className="action-btn edit" onClick={() => onEdit(user)}>
-                                Редактировать
-                            </button>
-                            <button
-                                className="action-btn delete"
-                                onClick={() => onDelete(user.id)}
-                            >
-                                Удалить
-                            </button>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+        <Box>
+            <TableContainer component={Paper} sx={{ maxHeight: 440, mb: 2 }}>
+                <Table stickyHeader size="small">
+                    <TableHead>
+                        <TableRow sx={{ backgroundColor: 'background.default' }}>
+                            {[
+                                'ID',
+                                'Имя',
+                                'Фамилия',
+                                'Телефон',
+                                'Email',
+                                'Роль',
+                                'Действия',
+                            ].map((head) => (
+                                <TableCell key={head}>{head}</TableCell>
+                            ))}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {paginatedUsers.map((user) => (
+                            <TableRow hover key={user.id}>
+                                <TableCell>{user.id}</TableCell>
+                                <TableCell>{user.firstName}</TableCell>
+                                <TableCell>{user.lastName}</TableCell>
+                                <TableCell>
+                                    {user.phoneNumber ? (
+                                        user.phoneNumber
+                                    ) : (
+                                        <Typography color="text.secondary">—</Typography>
+                                    )}
+                                </TableCell>
+                                <TableCell>{user.email}</TableCell>
+                                <TableCell>
+                                    {user.role ? user.role : <Typography color="text.secondary">—</Typography>}
+                                </TableCell>
+                                <TableCell align="center">
+                                    <Tooltip title="Редактировать">
+                                        <IconButton
+                                            size="small"
+                                            onClick={() => onEdit(user)}
+                                            color="primary"
+                                        >
+                                            <EditIcon fontSize="small" />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Удалить">
+                                        <IconButton
+                                            size="small"
+                                            onClick={() => onDelete(user.id)}
+                                            color="error"
+                                        >
+                                            <DeleteIcon fontSize="small" />
+                                        </IconButton>
+                                    </Tooltip>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                        {emptyRows > 0 && (
+                            <TableRow style={{ height: 33 * emptyRows }}>
+                                <TableCell colSpan={7} />
+                            </TableRow>
+                        )}
+                    </TableBody>
+                </Table>
+            </TableContainer>
 
-            <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
+            <TablePagination
+                component="div"
+                count={users.length}
+                page={page}
+                onPageChange={handleChangePage}
                 rowsPerPage={rowsPerPage}
-                onRowsPerPageChange={(value) => {
-                    setRowsPerPage(value);
-                    setCurrentPage(1); // сброс на первую страницу при изменении количества строк
-                }}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                rowsPerPageOptions={[5, 10, 25, 50]}
             />
-
-            <style jsx>{`
-        .users-table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-top: 1rem;
-          font-size: 0.9rem;
-        }
-        .users-table th,
-        .users-table td {
-          padding: 0.75rem;
-          text-align: left;
-          border-bottom: 1px solid #e0e0e0;
-        }
-        .users-table th {
-          background: #f7f7f7;
-          font-weight: 600;
-        }
-        .users-table tr:hover {
-          background: #f1f1f1;
-        }
-        .action-btn {
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 0.25rem 0.5rem;
-          margin-right: 0.5rem;
-          border-radius: 4px;
-          transition: background 0.3s ease;
-        }
-        .action-btn.edit {
-          color: #0070f3;
-        }
-        .action-btn.edit:hover {
-          background: #e0f0ff;
-        }
-        .action-btn.delete {
-          color: #ff3b30;
-        }
-        .action-btn.delete:hover {
-          background: #ffecec;
-        }
-      `}</style>
-        </div>
+        </Box>
     );
 }

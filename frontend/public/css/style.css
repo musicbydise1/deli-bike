@@ -6593,9 +6593,8 @@ Section Title
   display: flex;
 }
 
-.boxcar-banner-section-six .content-column .inner-column span {
+.boxcar-banner-section-six .content-column .inner-column .hero-little-text  {
   margin-bottom: 100px;
-  display: inline-block;
 }
 
 .boxcar-banner-section-six .content-column .inner-column h1 {

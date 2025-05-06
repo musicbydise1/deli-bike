@@ -1,26 +1,29 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Modal from "../Modal";
 import AccessoriesTable from "./AccessoriesTable";
 import AccessoryForm from "./AccessoryForm";
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import { Box, Typography, Button, CircularProgress } from "@mui/material";
+import Alert from '@mui/material/Alert';
 
 export default function AccessoriesTab() {
     const [accessories, setAccessories] = useState([]);
-    const [bikes, setBikes] = useState([]); // Состояние для списка велосипедов
+    const [bikes, setBikes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [isEditMode, setIsEditMode] = useState(false);
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     const [currentAccessory, setCurrentAccessory] = useState({
         id: null,
-        bikeId: [], // Инициализируем как пустой массив
+        bikeId: [],
         name: "",
         description: "",
         price: "",
     });
+
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
         fetchAccessories();
@@ -28,9 +31,9 @@ export default function AccessoriesTab() {
     }, []);
 
     async function fetchAccessories() {
+        setLoading(true);
+        setError(null);
         try {
-            setLoading(true);
-            setError(null);
             const response = await fetch(`${API_URL}/accessories`);
             if (!response.ok) throw new Error("Ошибка при получении аксессуаров");
             const result = await response.json();
@@ -49,11 +52,7 @@ export default function AccessoriesTab() {
             const response = await fetch(`${API_URL}/bikes`);
             if (!response.ok) throw new Error("Ошибка при получении велосипедов");
             const result = await response.json();
-            if (result.isSuccess) {
-                setBikes(result.data || []);
-            } else {
-                console.error("Не удалось загрузить велосипеды:", result.message);
-            }
+            if (result.isSuccess) setBikes(result.data || []);
         } catch (err) {
             console.error(err);
         }
@@ -61,13 +60,7 @@ export default function AccessoriesTab() {
 
     const handleAddAccessory = () => {
         setIsEditMode(false);
-        setCurrentAccessory({
-            id: null,
-            bikeId: [], // пустой массив
-            name: "",
-            description: "",
-            price: "",
-        });
+        setCurrentAccessory({ id: null, bikeId: [], name: "", description: "", price: "" });
         setShowModal(true);
     };
 
@@ -75,7 +68,7 @@ export default function AccessoriesTab() {
         setIsEditMode(true);
         setCurrentAccessory({
             id: accessory.id,
-            bikeId: accessory.bikeId, // предполагается, что на бэкенде bikeId хранится как массив чисел
+            bikeId: accessory.bikeId || [],
             name: accessory.name,
             description: accessory.description,
             price: accessory.price,
@@ -83,90 +76,99 @@ export default function AccessoriesTab() {
         setShowModal(true);
     };
 
-    async function handleDeleteAccessory(id) {
-        if (!confirm("Вы действительно хотите удалить этот аксессуар?")) return;
+    const handleDeleteAccessory = async (id) => {
+        if (!window.confirm("Вы действительно хотите удалить этот аксессуар?")) return;
         try {
             const response = await fetch(`${API_URL}/accessories/${id}`, { method: "DELETE" });
             if (!response.ok) throw new Error("Ошибка при удалении аксессуара");
-            setAccessories((prev) => prev.filter((a) => a.id !== id));
-        } catch (error) {
-            console.error(error);
-            alert("Не удалось удалить аксессуар!");
+            setAccessories(prev => prev.filter(a => a.id !== id));
+        } catch (err) {
+            console.error(err);
+            setError(err.message);
         }
-    }
+    };
 
-    async function handleSaveAccessory(e) {
+    const handleSaveAccessory = async (e) => {
         e.preventDefault();
-
         const accessoryData = {
-            bikeId: currentAccessory.bikeId, // Массив чисел
+            bikeId: currentAccessory.bikeId,
             name: currentAccessory.name,
             description: currentAccessory.description,
             price: Number(currentAccessory.price),
         };
-
         let url = `${API_URL}/accessories`;
         let method = "POST";
         if (isEditMode && currentAccessory.id) {
             url = `${API_URL}/accessories/${currentAccessory.id}`;
             method = "PUT";
         }
-
         try {
             const response = await fetch(url, {
                 method,
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(accessoryData),
             });
-            if (!response.ok) {
-                throw new Error(isEditMode ? "Ошибка при обновлении аксессуара" : "Ошибка при создании аксессуара");
-            }
+            if (!response.ok) throw new Error(isEditMode ? "Ошибка при обновлении аксессуара" : "Ошибка при создании аксессуара");
             const result = await response.json();
-            if (!result.isSuccess) {
-                throw new Error(result.message || "Операция не удалась");
-            }
+            if (!result.isSuccess) throw new Error(result.message || "Операция не удалась");
             setShowModal(false);
             if (isEditMode) {
-                setAccessories((prev) =>
-                    prev.map((a) => (a.id === currentAccessory.id ? { ...a, ...result.data } : a))
-                );
+                setAccessories(prev => prev.map(a => a.id === currentAccessory.id ? result.data : a));
             } else {
-                setAccessories((prev) => [...prev, result.data]);
+                setAccessories(prev => [...prev, result.data]);
             }
         } catch (err) {
             console.error(err);
-            alert(err.message || "Ошибка при сохранении аксессуара");
+            setError(err.message);
         }
+    };
+
+    if (loading) {
+        return (
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 200 }}>
+                <CircularProgress />
+                <Typography variant="body2" sx={{ ml: 2 }}>
+                    Загрузка аксессуаров...
+                </Typography>
+            </Box>
+        );
     }
 
-    if (loading) return <p className="text-gray-600">Загрузка аксессуаров...</p>;
-    if (error) return <p className="text-red-500">Ошибка: {error}</p>;
-
     return (
-        <div className="px-4 py-4">
-            <h2 className="text-2xl font-bold mb-4">Управление аксессуарами</h2>
-            <div className="mb-4">
-                <button
-                    className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded"
-                    onClick={handleAddAccessory}
-                >
+        <Box sx={{ p: 4 }}>
+            <Typography variant="h5" gutterBottom>
+                Управление аксессуарами
+            </Typography>
+            {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+            <Box sx={{ mb: 2 }}>
+                <Button variant="contained" color="success" onClick={handleAddAccessory}>
                     Добавить аксессуар
-                </button>
-            </div>
-            {accessories.length === 0 ? (
-                <p className="text-gray-600">Пока нет аксессуаров.</p>
+                </Button>
+            </Box>
+            {accessories.length > 0 ? (
+                <AccessoriesTable
+                    accessories={accessories}
+                    onEdit={handleEditAccessory}
+                    onDelete={handleDeleteAccessory}
+                />
             ) : (
-                <AccessoriesTable accessories={accessories} onEdit={handleEditAccessory} onDelete={handleDeleteAccessory} />
+                <Typography variant="body2" color="text.secondary">
+                    Пока нет аксессуаров.
+                </Typography>
             )}
-            <Modal show={showModal} onClose={() => setShowModal(false)} title={isEditMode ? "Редактировать аксессуар" : "Добавить аксессуар"}>
+            <Modal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                title={isEditMode ? "Редактировать аксессуар" : "Добавить аксессуар"}
+            >
                 <AccessoryForm
                     currentAccessory={currentAccessory}
-                    onChange={(field, value) => setCurrentAccessory((prev) => ({ ...prev, [field]: value }))}
+                    onChange={(field, value) => setCurrentAccessory(prev => ({ ...prev, [field]: value }))}
                     onSave={handleSaveAccessory}
                     onCancel={() => setShowModal(false)}
                     bikes={bikes}
                 />
             </Modal>
-        </div>
+        </Box>
     );
 }

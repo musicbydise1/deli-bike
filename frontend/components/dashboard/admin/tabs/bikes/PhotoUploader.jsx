@@ -1,11 +1,15 @@
+"use client";
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { Box, Typography, Grid, Paper } from '@mui/material';
 
 export function PhotoUploader({ onFilesChange, existingUrls = [] }) {
-    const onDrop = useCallback((acceptedFiles) => {
-        // Передаём выбранные файлы родительскому компоненту
-        onFilesChange(acceptedFiles);
-    }, [onFilesChange]);
+    const onDrop = useCallback(
+        (acceptedFiles) => {
+            onFilesChange(acceptedFiles);
+        },
+        [onFilesChange]
+    );
 
     const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({
         onDrop,
@@ -13,7 +17,6 @@ export function PhotoUploader({ onFilesChange, existingUrls = [] }) {
         multiple: true,
     });
 
-    // Для предпросмотра файлов (это временные URL)
     const filePreviews = acceptedFiles.map((file) =>
         Object.assign(file, {
             preview: URL.createObjectURL(file),
@@ -21,36 +24,49 @@ export function PhotoUploader({ onFilesChange, existingUrls = [] }) {
     );
 
     return (
-        <div>
-            <div
+        <Box>
+            <Paper
+                variant="outlined"
                 {...getRootProps()}
-                className="border-dashed border-2 p-4 text-center cursor-pointer"
+                sx={{
+                    borderStyle: 'dashed',
+                    borderWidth: 2,
+                    p: 2,
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                }}
             >
                 <input {...getInputProps()} />
                 {isDragActive ? (
-                    <p>Отпустите файлы, чтобы загрузить их</p>
+                    <Typography>Отпустите файлы, чтобы загрузить их</Typography>
                 ) : (
-                    <p>Перетащите файлы сюда или кликните для выбора</p>
+                    <Typography>Перетащите файлы сюда или кликните для выбора</Typography>
                 )}
-            </div>
-            <div className="mt-2 flex flex-wrap gap-2">
+            </Paper>
+
+            <Grid container spacing={1} sx={{ mt: 1 }}>
                 {existingUrls.map((url, index) => (
-                    <img
-                        key={index}
-                        src={url}
-                        alt={`Uploaded ${index}`}
-                        className="w-20 h-20 object-cover rounded"
-                    />
+                    <Grid item key={`existing-${index}`}>
+                        <Box
+                            component="img"
+                            src={url}
+                            alt={`Uploaded ${index}`}
+                            sx={{ width: 80, height: 80, objectFit: 'cover', borderRadius: 1 }}
+                        />
+                    </Grid>
                 ))}
+
                 {filePreviews.map((file, index) => (
-                    <img
-                        key={index}
-                        src={file.preview}
-                        alt={`Preview ${index}`}
-                        className="w-20 h-20 object-cover rounded"
-                    />
+                    <Grid item key={`preview-${index}`}>
+                        <Box
+                            component="img"
+                            src={file.preview}
+                            alt={`Preview ${index}`}
+                            sx={{ width: 80, height: 80, objectFit: 'cover', borderRadius: 1 }}
+                        />
+                    </Grid>
                 ))}
-            </div>
-        </div>
+            </Grid>
+        </Box>
     );
 }

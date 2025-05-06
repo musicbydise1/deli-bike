@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Link from "next/link";
 
 const CookieBanner = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -22,11 +23,12 @@ const CookieBanner = () => {
     return (
         <>
             <div
-                className="fixed inset-x-0 bottom-0 bg-gray-900 bg-opacity-95 backdrop-blur-sm text-white py-4 px-6 flex items-center justify-center space-x-4 z-50 shadow-lg"
+                className="fixed bottom-6 left-0 rounded-3xl right-0 mx-auto w-[50%] bg-gray-900 bg-opacity-95 backdrop-blur-sm text-white
+             py-4 px-6 flex items-center justify-center space-x-4 z-50 shadow-lg"
                 style={{ animation: 'slideUp 0.5s ease-out forwards' }}
             >
                 <p className="text-sm sm:text-base text-white m-0">
-                    Этот сайт использует cookies для улучшения вашего опыта.
+                    Этот сайт использует <Link href="/terms" className="text-[#ff5500] underline">cookies</Link> для улучшения вашего опыта.
                 </p>
                 <button
                     onClick={handleAccept}

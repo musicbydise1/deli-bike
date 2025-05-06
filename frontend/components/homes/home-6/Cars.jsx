@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Button from "@/components/ui/button/Button";
 import { IoIosArrowDown } from "react-icons/io";
+import { AiOutlineLoading } from "react-icons/ai";
+import { useRouter } from "next/navigation";
 
 const buttons = [
   { label: "New cars", isActive: true },
@@ -13,11 +15,13 @@ const buttons = [
 ];
 
 export default function Cars() {
+  const router = useRouter();
   const [bikes, setBikes] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(buttons[0]);
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [isInnerTouchActive, setIsInnerTouchActive] = useState(false);
+  const [rentingBikeId, setRentingBikeId] = useState(null);
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
@@ -47,6 +51,11 @@ export default function Cars() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [API_URL]);
+
+  const handleRentClick = (bikeId) => {
+    setRentingBikeId(bikeId);
+    router.push(`/bike/${bikeId}`);
+  };
 
   // Базовые настройки для внешнего слайдера
   const mobileSliderSettings = {
@@ -95,8 +104,6 @@ export default function Cars() {
                           <div className="inner-box">
                             <div
                                 className={`image-box ${bike.tags[0] === "Great Price" ? "two" : ""}`}
-
-                                // События - версия capture + stopImmediatePropagation
                                 onTouchStartCapture={(e) => {
                                   e.stopPropagation();
                                   e.nativeEvent.stopImmediatePropagation();
@@ -190,11 +197,18 @@ export default function Cars() {
                                 </li>
                               </ul>
                               <div className="btn-box">
-                                <Link href={`/bike/${bike.id}`}>
-                                  <Button className="w-full mb-4 !ml-0" variant="primary-outline">
-                                    Арендовать
-                                  </Button>
-                                </Link>
+                                <Button
+                                    className="w-full mb-4 !ml-0"
+                                    variant="primary-outline"
+                                    onClick={() => handleRentClick(bike.id)}
+                                    disabled={rentingBikeId === bike.id}
+                                >
+                                  {rentingBikeId === bike.id ? (
+                                      <AiOutlineLoading className="animate-spin" />
+                                  ) : (
+                                      "Арендовать"
+                                  )}
+                                </Button>
                               </div>
                             </div>
                           </div>
@@ -211,8 +225,6 @@ export default function Cars() {
                           <div className="inner-box">
                             <div
                                 className={`image-box ${bike.tags[0] === "Great Price" ? "two" : ""}`}
-
-                                // Для десктопа можно оставить простые события
                                 onTouchStart={(e) => e.stopPropagation()}
                                 onTouchMove={(e) => e.stopPropagation()}
                             >
@@ -290,11 +302,18 @@ export default function Cars() {
                                 </li>
                               </ul>
                               <div className="btn-box">
-                                <Link href={`/bike/${bike.id}`}>
-                                  <Button className="w-full mb-4 !ml-0" variant="primary-outline">
-                                    Арендовать
-                                  </Button>
-                                </Link>
+                                <Button
+                                    className="w-full mb-4 !ml-0"
+                                    variant="primary-outline"
+                                    onClick={() => handleRentClick(bike.id)}
+                                    disabled={rentingBikeId === bike.id}
+                                >
+                                  {rentingBikeId === bike.id ? (
+                                      <AiOutlineLoading className="animate-spin" />
+                                  ) : (
+                                      "Арендовать"
+                                  )}
+                                </Button>
                               </div>
                             </div>
                           </div>

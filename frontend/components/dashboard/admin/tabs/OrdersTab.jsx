@@ -1,9 +1,11 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
+
+import React, { useEffect, useState } from "react";
+import NextLink from "next/link";
 import {
-    Paper,
+    Box,
     Typography,
+    Paper,
     TableContainer,
     Table,
     TableHead,
@@ -13,8 +15,11 @@ import {
     Button,
     CircularProgress,
     Alert,
+    Chip,
+    IconButton,
+    Tooltip,
 } from "@mui/material";
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import InfoIcon from '@mui/icons-material/Info';
 
 export default function OrdersTab() {
     const [rentals, setRentals] = useState([]);
@@ -22,98 +27,108 @@ export default function OrdersTab() {
     const [error, setError] = useState(null);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-    // Получаем данные об арендах с API при инициализации компонента
     useEffect(() => {
-        async function fetchRentals() {
+        (async () => {
             try {
                 const response = await fetch(`${API_URL}/rentals/`);
-                if (!response.ok) {
-                    throw new Error("Не удалось загрузить данные об арендах");
-                }
+                if (!response.ok) throw new Error("Не удалось загрузить данные об арендах");
                 const data = await response.json();
-                // Ожидаем, что данные приходят в виде { isSuccess, message, data: [...] }
-                setRentals(data.data);
+                setRentals(data.data || []);
             } catch (err) {
+                console.error(err);
                 setError(err.message);
             } finally {
                 setLoading(false);
             }
-        }
-        fetchRentals();
-    }, []);
+        })();
+    }, [API_URL]);
 
-    if (loading)
+    if (loading) {
         return (
-            <div style={{ display: "flex", justifyContent: "center", padding: "20px" }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
                 <CircularProgress />
-            </div>
+            </Box>
         );
-    if (error)
+    }
+
+    if (error) {
         return (
-            <Alert severity="error" sx={{ textAlign: "center", margin: "20px" }}>
+            <Alert severity="error" sx={{ my: 2 }}>
                 Ошибка: {error}
             </Alert>
         );
+    }
 
     return (
-        <Paper sx={{borderRadius: 2, boxShadow: "none" }}>
+        <Box sx={{ p: 4 }}>
             <Typography variant="h4" gutterBottom>
                 Управление заказами
             </Typography>
-            <Typography variant="body1" sx={{ mb: 3, color: "text.secondary" }}>
-                Здесь отображаются все заказы. Вы можете изменять статус заказов и просматривать их
-                детали.
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+                Здесь отображаются все заказы. Вы можете изменять статус заказов и просматривать их детали.
             </Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="Таблица заказов">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>ID</TableCell>
-                            <TableCell>Дата начала</TableCell>
-                            <TableCell>Дата окончания</TableCell>
-                            <TableCell>Общая стоимость</TableCell>
-                            <TableCell>Статус</TableCell>
-                            <TableCell>Создано</TableCell>
-                            <TableCell>Велосипед</TableCell>
-                            <TableCell>Клиент</TableCell>
-                            <TableCell align="center">Действия</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rentals.map((rental) => (
-                            <TableRow key={rental.id} hover>
-                                <TableCell>{rental.id}</TableCell>
-                                <TableCell>
-                                    {new Date(rental.startDate).toLocaleDateString("ru-RU")}
-                                </TableCell>
-                                <TableCell>
-                                    {new Date(rental.endDate).toLocaleDateString("ru-RU")}
-                                </TableCell>
-                                <TableCell>{rental.totalPrice}</TableCell>
-                                <TableCell>{rental.status}</TableCell>
-                                <TableCell>
-                                    {new Date(rental.createdAt).toLocaleString("ru-RU")}
-                                </TableCell>
-                                <TableCell>
-                                    {rental.bike ? `${rental.bike.name} ${rental.bike.model}` : "Н/Д"}
-                                </TableCell>
-                                <TableCell>
-                                    {rental.user
-                                        ? `${rental.user.firstName} ${rental.user.lastName}`
-                                        : "Н/Д"}
-                                </TableCell>
-                                <TableCell align="center">
-                                    <Link href={`/admin-orders/${rental.id}`} passHref legacyBehavior>
-                                        <Button variant="contained" color="primary">
-                                            Подробнее
-                                        </Button>
-                                    </Link>
-                                </TableCell>
+
+            {rentals.length === 0 ? (
+                <Alert severity="info">Заказов пока нет.</Alert>
+            ) : (
+                <TableContainer component={Paper} sx={{ maxHeight: 600 }}>
+                    <Table stickyHeader size="small">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>ID</TableCell>
+                                <TableCell>Дата начала</TableCell>
+                                <TableCell>Дата окончания</TableCell>
+                                <TableCell>Общая стоимость</TableCell>
+                                <TableCell>Статус</TableCell>
+                                <TableCell>Создано</TableCell>
+                                <TableCell>Велосипед</TableCell>
+                                <TableCell>Клиент</TableCell>
+                                <TableCell align="center">Действия</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Paper>
+                        </TableHead>
+                        <TableBody>
+                            {rentals.map((r) => (
+                                <TableRow hover key={r.id}>
+                                    <TableCell>{r.id}</TableCell>
+                                    <TableCell>
+                                        {new Date(r.startDate).toLocaleDateString('ru-RU')}
+                                    </TableCell>
+                                    <TableCell>
+                                        {new Date(r.endDate).toLocaleDateString('ru-RU')}
+                                    </TableCell>
+                                    <TableCell>{r.totalPrice} ₸</TableCell>
+                                    <TableCell>
+                                        <Chip label={r.status} size="small" />
+                                    </TableCell>
+                                    <TableCell>
+                                        {new Date(r.createdAt).toLocaleString('ru-RU')}
+                                    </TableCell>
+                                    <TableCell>
+                                        {r.bike ? `${r.bike.name} ${r.bike.model}` : 'Н/Д'}
+                                    </TableCell>
+                                    <TableCell>
+                                        {r.user
+                                            ? `${r.user.firstName} ${r.user.lastName}`
+                                            : 'Н/Д'}
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        <Tooltip title="Подробнее">
+                                            <IconButton
+                                                component={NextLink}
+                                                href={`/admin-orders/${r.id}`}
+                                                size="small"
+                                                color="primary"
+                                            >
+                                                <InfoIcon fontSize="small" />
+                                            </IconButton>
+                                        </Tooltip>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            )}
+        </Box>
     );
 }

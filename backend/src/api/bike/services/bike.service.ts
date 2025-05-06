@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Bike } from '../entities/bike.entity';
 import { BikePrice } from '../entities/bike_price.entity';
-import { CreateBikeDto } from '../dto/create-bike.dto';
+import {BikePriceDto, CreateBikeDto, CreateBikeTranslationDto} from '../dto/create-bike.dto';
 import {TranslationsService} from "../../translations/service/translations.service";
 import {Translation} from "../../translations/entity/translations.entity";
 
@@ -39,7 +39,7 @@ export class BikeService {
         });
 
         if (!bikes || bikes.length === 0) {
-            throw new NotFoundException('No bikes found');
+            return [];
         }
 
         // Загружаем переводы параллельно для каждого байка и его связанных сущностей
@@ -157,66 +157,89 @@ export class BikeService {
 
     async updateBike(
         id: number,
-        bikeData: Partial<CreateBikeDto & { prices?: { categoryId: number; price: number }[] }>,
+        bikeData: Partial<CreateBikeDto & {
+            prices?: BikePriceDto[];
+            translations?: CreateBikeTranslationDto[];
+            imageUrls?: string[];
+        }>,
     ): Promise<Bike> {
-        const { prices, ...bikeDetails } = bikeData;
+        // 1) Извлекаем prices, translations и imageUrls, всё остальное пойдёт в bikeDetails
+        const { prices, translations, imageUrls, ...bikeDetails } = bikeData;
 
-        // Обновляем данные байка
+        // 2) Обновляем основные поля велосипеда
         await this.bikeRepository.update(id, bikeDetails);
 
+        // 3) Обновляем imageUrls (если пришли новые URL-ы картинок)
+        if (imageUrls && imageUrls.length > 0) {
+            // Предположим, в вашей сущности Bike есть колонка imageUrls: string[]
+            await this.bikeRepository.update(id, { imageUrls });
+        }
+
+        // 4) Работаем с ценами (ваш существующий код)
         if (prices) {
-            // Получаем текущие цены для байка
             const currentPrices = await this.bikePriceRepository.find({
                 where: { bike: { id } },
-                relations: ['priceCategory'], // Загрузка связанных категорий
+                relations: ['priceCategory'],
             });
 
-            // Удаляем цены, которых больше нет в новых данных
-            // const currentPriceIds = currentPrices.map((price) => price.priceCategory.id);
-            const newPriceIds = prices.map((price) => price.categoryId);
-            const pricesToDelete = currentPrices.filter(
-                (price) => !newPriceIds.includes(price.priceCategory.id),
-            );
-
-            if (pricesToDelete.length > 0) {
-                const deletePriceIds = pricesToDelete.map((price) => price.id);
-                await this.bikePriceRepository.delete(deletePriceIds);
+            const newPriceIds = prices.map(p => p.categoryId);
+            const toDelete = currentPrices.filter(cp => !newPriceIds.includes(cp.priceCategory.id));
+            if (toDelete.length) {
+                await this.bikePriceRepository.delete(toDelete.map(p => p.id));
             }
 
-            // Обновляем существующие цены или создаем новые
-            for (const price of prices) {
-                const existingPrice = currentPrices.find(
-                    (currentPrice) => currentPrice.priceCategory.id === price.categoryId
-                );
-
-                if (existingPrice) {
-                    // Обновляем существующую цену. При необходимости обновляем также role и currency:
-                    await this.bikePriceRepository.update(existingPrice.id, {
-                        price: price.price,
-                        role: { id: price.roleId },
-                        currency: { id: price.currencyId },
+            for (const p of prices) {
+                const exist = currentPrices.find(cp => cp.priceCategory.id === p.categoryId);
+                if (exist) {
+                    await this.bikePriceRepository.update(exist.id, {
+                        price: p.price,
+                        role: { id: p.roleId },
+                        currency: { id: p.currencyId },
                     });
                 } else {
-                    // Добавляем новую цену
                     await this.bikePriceRepository.save(
                         this.bikePriceRepository.create({
                             bike: { id },
-                            priceCategory: { id: price.categoryId },
-                            price: price.price,
-                            role: { id: price.roleId },
-                            currency: { id: price.currencyId },
+                            priceCategory: { id: p.categoryId },
+                            price: p.price,
+                            role: { id: p.roleId },
+                            currency: { id: p.currencyId },
                         })
                     );
                 }
             }
         }
 
-        // Возвращаем обновленный байк с ценами и категориями
-        return this.bikeRepository.findOne({
+        // 5) Работаем с переводами
+        if (translations && translations.length > 0) {
+            for (const t of translations) {
+                await this.translationsService.createOrUpdateTranslation({
+                    entityType: 'bike',
+                    entityId: id,
+                    field: t.field,
+                    language: t.language,
+                    translation: t.translation,
+                });
+            }
+        }
+
+        // 6) Вернуть полностью «свежий» объект
+        return this.bikeRepository.findOneOrFail({
             where: { id },
-            relations: ['prices', 'prices.priceCategory'],
+            relations: [
+                'prices',
+                'prices.priceCategory',
+                'prices.role',
+                'prices.currency',
+                'accessories',
+                'accessories.prices',
+                'accessories.prices.priceCategory',
+                'accessories.prices.role',
+                'accessories.prices.currency',
+            ],
         });
     }
+
 
     async deleteBike(id: number): Promise<void> {
         // Удаление байка автоматически удаляет связанные цены (ON DELETE CASCADE)

@@ -1,32 +1,76 @@
 "use client";
 import React from "react";
+import {
+    Paper,
+    Box,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    TextField,
+    IconButton,
+    Tooltip,
+    InputAdornment,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export function PriceField({ index, price, priceCategories, onPriceChange, onRemove }) {
     return (
-        <div className="flex items-center space-x-2">
-            <select
-                value={price.categoryId || ""}
-                onChange={(e) => onPriceChange(index, "categoryId", e.target.value)}
-                className="border p-2 rounded"
-            >
-                <option value="">Выберите категорию</option>
-                {priceCategories.map((cat) => (
-                    <option key={cat.id} value={cat.id}>
-                        {cat.name}
-                    </option>
-                ))}
-            </select>
-            <input
+        <Paper
+            variant="outlined"
+            sx={{
+                p: 2,
+                mb: 1,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2,
+                bgcolor: 'background.paper',
+            }}
+        >
+            <FormControl size="small" variant="outlined" sx={{ minWidth: 150 }}>
+                <InputLabel id={`price-category-label-${index}`}>Категория</InputLabel>
+                <Select
+                    labelId={`price-category-label-${index}`}
+                    label="Категория"
+                    value={price.categoryId || ''}
+                    onChange={(e) => onPriceChange(index, 'categoryId', e.target.value)}
+                >
+                    <MenuItem value="">
+                        <em>Выберите категорию</em>
+                    </MenuItem>
+                    {priceCategories.map((cat) => (
+                        <MenuItem key={cat.id} value={cat.id}>
+                            {cat.name}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+
+            <TextField
+                size="small"
+                variant="outlined"
+                label="Цена"
                 type="number"
-                step="0.01"
-                value={price.price || ""}
-                onChange={(e) => onPriceChange(index, "price", e.target.value)}
-                placeholder="Цена"
-                className="border p-2 rounded"
+                placeholder="0.00"
+                value={price.price || ''}
+                onChange={(e) => onPriceChange(index, 'price', e.target.value)}
+                inputProps={{
+                    step: 0.01,
+                    style: { textAlign: 'right' },
+                }}
+                InputProps={{
+                    endAdornment: <InputAdornment position="end">₸</InputAdornment>,
+                }}
+                sx={{ width: 120 }}
             />
-            <button type="button" onClick={() => onRemove(index)} className="text-red-500">
-                Удалить
-            </button>
-        </div>
+
+            <Box sx={{ flexGrow: 1 }} />
+
+            <Tooltip title="Удалить цену">
+                <IconButton size="small" onClick={() => onRemove(index)} color="error">
+                    <DeleteIcon fontSize="small" />
+                </IconButton>
+            </Tooltip>
+        </Paper>
     );
 }

@@ -166,6 +166,8 @@ export default function Overview({ price, accessories, warrantyOptions }) {
     setExtendedWarrantyStates,
   } = useTariff();
 
+  const [selectedRentalIndex, setSelectedRentalIndex] = useState(0);
+
   // Если срок аренды не выбран, устанавливаем первый вариант
   useEffect(() => {
     if (computedRentalPeriodOptions.length > 0 && !rentalPeriod) {
@@ -208,8 +210,9 @@ export default function Overview({ price, accessories, warrantyOptions }) {
           </h4>
           <RentalPeriodDropdown
               options={computedRentalPeriodOptions}
-              selectedOption={rentalPeriod}
-              onSelect={setRentalPeriod}
+              selectedOption={computedRentalPeriodOptions[selectedRentalIndex]}
+              // onSelect теперь обновляет индекс
+              onSelect={(option) => setRentalPeriod(option)}
           />
 
           <WarrantyDropdown

@@ -26,6 +26,10 @@
     "migration:revert": "npm run typeorm migration:revert"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mantine/core": "^7.17.5",
+    "@mantine/hooks": "^7.17.5",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.0.0",
@@ -33,6 +37,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.4.3",
     "@nestjs/typeorm": "^9.0.1",
+    "@tabler/icons-react": "^3.31.0",
     "@types/bcrypt": "^5.0.0",
     "@types/bluebird": "^3.5.38",
     "aws-sdk": "^2.1692.0",

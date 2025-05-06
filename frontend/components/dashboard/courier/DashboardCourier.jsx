@@ -1,9 +1,9 @@
+// components/DashboardCourier.jsx
 "use client";
-
 import React, { useState } from "react";
 import SidebarCourier from "./SidebarCourier";
+import MobileBottomMenu from "./MobileBottomMenu";
 
-// Импортируем наши табы
 import DashboardTab from "./tabs/dashboard/DashboardTab";
 import RentTab from "./tabs/RentTab";
 import ProfileTab from "./tabs/ProfileTab";
@@ -15,14 +15,12 @@ import SupportTab from "./tabs/support/SupportTab";
 export default function DashboardCourier() {
   const [activeTab, setActiveTab] = useState("dashboard");
 
-  // Логика выхода
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
-    window.location.href = "/login"; // Или router.push("/login")
+    window.location.href = "/login";
   };
 
-  // Определяем, что рендерить в зависимости от activeTab
-  const renderActiveTabContent = () => {
+  const renderContent = () => {
     switch (activeTab) {
       case "dashboard":
         return <DashboardTab setActiveTab={setActiveTab} />;
@@ -52,10 +50,13 @@ export default function DashboardCourier() {
               onLogout={handleLogout}
           />
           <div className="content-column">
-            <div className="inner-column">
-              {renderActiveTabContent()}
-            </div>
+            <div className="inner-column">{renderContent()}</div>
           </div>
+          <MobileBottomMenu
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              onLogout={handleLogout}
+          />
         </div>
       </section>
   );

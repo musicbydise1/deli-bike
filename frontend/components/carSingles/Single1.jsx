@@ -12,11 +12,10 @@ import SidebarComponent from "@/components/carSingles/sections/Sidebar/SidebarCo
 import { FiInfo } from "react-icons/fi";
 import { CiShare1 } from "react-icons/ci";
 import { pricingPlans } from "@/data/pricing";
-import { useUser } from "@/context/UserContext"; // <-- ваш контекст пользователя
+import { useUser } from "@/context/UserContext";
+import { useTariff } from "@/context/TariffContext";
 
-// Функция форматирования цены
 function formatPrice(value, currency) {
-  // Если currency === "by", используем "руб", иначе "₸"
   const symbol = currency === "by" ? "руб" : "₸";
   return `${Math.round(value).toLocaleString("ru-RU")} ${symbol}`;
 }
@@ -31,48 +30,60 @@ export default function Single1({ carItem }) {
     prices,
     accessories,
     tags,
-    translations,
   } = carItem || {};
 
-  // Из контекста достаём location, чтобы знать, какая валюта
   const { location } = useUser();
-
-  // Локальное состояние
   const [isOpen, setOpen] = useState(false);
 
-  // 1. Состояние срока аренды
-  const [selectedRentalOption, setSelectedRentalOption] = useState(
-      prices && prices.length > 0
-          ? { price: prices[0].price, categoryName: prices[0].priceCategory.name }
-          : { price: 0, categoryName: "" }
-  );
+  // Получаем глобальное состояние для срока аренды из контекста
+  const { rentalPeriod, setRentalPeriod } = useTariff();
 
-  // 2. Состояние гарантии (Стандарт/Премиум)
+  // Вычисляем массив опций на основе данных, полученных с API (prices)
+  const computedRentalOptions =
+      prices && prices.length > 0
+          ? prices.map((item) => ({
+            label: `${item.priceCategory.name} – ${Math.round(item.price).toLocaleString("ru-RU")} ${
+                location === "by" ? "руб" : "₸"
+            }`,
+            value: item.priceCategory.rental_duration,
+            price: item.price,
+            categoryName: item.priceCategory.name,
+          }))
+          : [];
+
+  console.log("Computed Rental Options:", computedRentalOptions);
+
+  useEffect(() => {
+    console.log("rentalPeriod from context:", rentalPeriod);
+  }, [rentalPeriod]);
+
+  // Если данные с API загружены и в контексте ещё не установлен выбранный срок, ставим по умолчанию первый элемент
+  useEffect(() => {
+    if (computedRentalOptions.length > 0 && !rentalPeriod) {
+      setRentalPeriod(computedRentalOptions[0]);
+      console.log("Setting default rentalPeriod:", computedRentalOptions[0]);
+    }
+  }, [computedRentalOptions, rentalPeriod, setRentalPeriod]);
+
+  // Остальные состояния
   const [selectedWarranty, setSelectedWarranty] = useState(
       pricingPlans && pricingPlans.length > 0
           ? pricingPlans[0]
           : { plan: "Стандартная гарантия", price: "0", value: "standard" }
   );
-
-  // 3. Состояние доп. опций и АКБ
   const [selectedAdditional, setSelectedAdditional] = useState([]);
   const [selectedBattery, setSelectedBattery] = useState(null);
-
-  // 4. Состояние «Расширенной гарантии» (чекбокс)
   const [extendedWarrantyChecked, setExtendedWarrantyChecked] = useState(false);
 
   // Определяем, мобильное ли устройство
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Настройки слайдера для мобильной галереи
   const mobileSliderSettings = {
     dots: true,
     arrows: true,
@@ -109,20 +120,17 @@ export default function Single1({ carItem }) {
               <ul className="spectes-list">
                 <li>
                 <span>
-                  <FiInfo className="info-icons" />
-                  {tags?.[0]}
+                  <FiInfo className="info-icons" /> {tags?.[0]}
                 </span>
                 </li>
                 <li>
                 <span>
-                  <FiInfo className="info-icons" />
-                  Скорость ограничена до {Math.round(max_speed)} км/ч
+                  <FiInfo className="info-icons" /> Скорость ограничена до {Math.round(max_speed)} км/ч
                 </span>
                 </li>
                 <li>
                 <span>
-                  <FiInfo className="info-icons" />
-                  {range_per_charge} км на одном заряде
+                  <FiInfo className="info-icons" /> {range_per_charge} км на одном заряде
                 </span>
                 </li>
               </ul>
@@ -141,29 +149,26 @@ export default function Single1({ carItem }) {
                     </Link>
                   </div>
                 </div>
-
-                <h3 className="title">
-                  {formatPrice(selectedRentalOption.price, location)}
-                </h3>
-                <span className="price-type">
-                Стоимость аренды за {selectedRentalOption.categoryName}
-              </span>
+                {rentalPeriod ? (
+                    <>
+                      <h3 className="title">
+                        {formatPrice(rentalPeriod.price, location)}
+                      </h3>
+                      <span className="price-type">Стоимость аренды за {rentalPeriod.categoryName}</span>
+                    </>
+                ) : (
+                    <p>Загрузка...</p>
+                )}
               </div>
             </div>
 
-            {/* Галерея: если mobile — показываем Slider, иначе сетку */}
+            {/* Галерея */}
             <Gallery>
               {isMobile ? (
-                  // ----- МОБИЛЬНАЯ ВЕРСИЯ (СЛАЙДЕР) -----
                   <Slider {...mobileSliderSettings} className="mobile-gallery-slider">
                     {imageUrls?.map((url, idx) => (
                         <div key={idx}>
-                          <Item
-                              original={url}
-                              thumbnail={url}
-                              width={805}
-                              height={550}
-                          >
+                          <Item original={url} thumbnail={url} width={805} height={550}>
                             {({ ref, open }) => (
                                 <a onClick={open}>
                                   <Image
@@ -186,20 +191,13 @@ export default function Single1({ carItem }) {
                     ))}
                   </Slider>
               ) : (
-                  // ----- ДЕСКТОПНАЯ ВЕРСИЯ (СЕТКА) -----
                   <div className="gallery-sec">
                     <div className="row">
-                      {/* Первая большая картинка */}
                       <div className="image-column item1 col-lg-7 col-md-12 col-sm-12">
                         <div className="inner-column">
                           <div className="image-box">
                             <figure className="image">
-                              <Item
-                                  original={imageUrls?.[0]}
-                                  thumbnail={imageUrls?.[0]}
-                                  width={805}
-                                  height={550}
-                              >
+                              <Item original={imageUrls?.[0]} thumbnail={imageUrls?.[0]} width={805} height={550}>
                                 {({ ref, open }) => (
                                     <a onClick={open}>
                                       <Image
@@ -222,24 +220,14 @@ export default function Single1({ carItem }) {
                           </div>
                         </div>
                       </div>
-
-                      {/* Остальные картинки меньшего размера */}
                       <div className="col-lg-5 col-md-12 col-sm-12">
                         <div className="row">
                           {imageUrls?.slice(1).map((url, idx) => (
-                              <div
-                                  key={idx}
-                                  className={`image-column-two item${idx + 2} col-6`}
-                              >
+                              <div key={idx} className={`image-column-two item${idx + 2} col-6`}>
                                 <div className="inner-column">
                                   <div className="image-box">
                                     <figure className="image">
-                                      <Item
-                                          original={url}
-                                          thumbnail={url}
-                                          width={285}
-                                          height={269}
-                                      >
+                                      <Item original={url} thumbnail={url} width={285} height={269}>
                                         {({ ref, open }) => (
                                             <a onClick={open} className="fancybox">
                                               <Image
@@ -283,7 +271,6 @@ export default function Single1({ carItem }) {
                   </div>
                 </div>
               </div>
-
               <div className="side-bar-column style-1 col-lg-4 col-md-12 col-sm-12">
                 <div className="inner-column">
                   <SidebarComponent product={carItem} />
@@ -292,8 +279,6 @@ export default function Single1({ carItem }) {
             </div>
           </div>
         </section>
-
-        {/* Модальное видео (пример, оставляем без изменений) */}
         <ModalVideo
             channel="youtube"
             youtube={{ mute: 0, autoplay: 0 }}

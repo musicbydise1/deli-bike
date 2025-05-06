@@ -1,26 +1,48 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Button from "@/components/ui/button/Button";
+import { AiOutlineLoading } from "react-icons/ai";
 
 export default function NoActiveOrderTiles() {
     const [bikes, setBikes] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadingBikeId, setLoadingBikeId] = useState(null);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const router = useRouter();
 
     useEffect(() => {
-        fetch(`${API_URL}/bikes`)
-            .then((res) => res.json())
-            .then((data) => {
+        const fetchBikes = async () => {
+            setIsLoading(true);
+            try {
+                const res = await fetch(`${API_URL}/bikes`);
+                const data = await res.json();
                 if (data.isSuccess) {
                     setBikes(data.data);
                 } else {
                     console.error("Произошла ошибка при получении байков:", data);
                 }
-            })
-            .catch((error) => {
+            } catch (error) {
                 console.error("Произошла ошибка при загрузке:", error);
-            });
-    }, []);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchBikes();
+    }, [API_URL]);
+
+    const handleRent = (id) => {
+        setLoadingBikeId(id);
+        router.push(`/bike/${id}`);
+    };
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-40">
+                <AiOutlineLoading size={50} className="animate-spin" />
+            </div>
+        );
+    }
 
     return (
         <div className="p-4 md:p-6 lg:p-8">
@@ -52,12 +74,20 @@ export default function NoActiveOrderTiles() {
                                 {bike.name} - {bike.model}
                             </h2>
 
-                            {/* Ссылка на страницу /bike/[id] */}
-                            <Link href={`/bike/${bike.id}`} className="block w-full">
-                                <Button variant="primary" className="w-full ml-0">
-                                    Арендовать
+                            <div className="w-full">
+                                <Button
+                                    variant="primary"
+                                    className="w-full"
+                                    onClick={() => handleRent(bike.id)}
+                                    disabled={loadingBikeId === bike.id}
+                                >
+                                    {loadingBikeId === bike.id ? (
+                                        <AiOutlineLoading className="animate-spin" />
+                                    ) : (
+                                        "Арендовать"
+                                    )}
                                 </Button>
-                            </Link>
+                            </div>
                         </div>
                     ))
                 )}

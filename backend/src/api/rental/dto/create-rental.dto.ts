@@ -8,7 +8,19 @@ export class CreateRentalDto {
 
     @IsNotEmpty()
     @IsNumber()
+    roleId: number;
+
+    @IsNotEmpty()
+    @IsNumber()
     bikeId: number;
+
+    @IsNotEmpty()
+    @IsNumber()
+    priceCategoryId: number;
+
+    @IsNotEmpty()
+    @IsNumber()
+    currency_id: number;
 
     @IsNotEmpty()
     @Transform(({ value }) => new Date(value)) // Преобразует строку в дату

@@ -2,6 +2,20 @@
 import React from "react";
 import { PriceField } from "./PriceField";
 import { PhotoUploader } from "./PhotoUploader";
+import {
+    Box,
+    Grid,
+    TextField,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    Typography,
+    Button,
+    Paper,
+    Autocomplete,
+    Chip,
+} from "@mui/material";
 
 export function BikeForm({
                              currentBike,
@@ -13,7 +27,6 @@ export function BikeForm({
                              isEditMode,
                              priceCategories,
                          }) {
-    // Функция для работы с изменениями цены
     const handlePriceChange = (index, field, value) => {
         const newPrices = [...(currentBike.prices || [])];
         newPrices[index] = { ...newPrices[index], [field]: value };
@@ -33,151 +46,122 @@ export function BikeForm({
     };
 
     return (
-        <form onSubmit={onSave} className="space-y-4">
-            {/* Название */}
-            <div className="flex flex-col">
-                <label className="font-medium mb-1">Название:</label>
-                <input
-                    type="text"
-                    className="border p-2 rounded"
-                    value={currentBike.name}
-                    onChange={(e) => onChange("name", e.target.value)}
-                    required
-                />
-            </div>
-            {/* Модель */}
-            <div className="flex flex-col">
-                <label className="font-medium mb-1">Модель:</label>
-                <input
-                    type="text"
-                    className="border p-2 rounded"
-                    value={currentBike.model}
-                    onChange={(e) => onChange("model", e.target.value)}
-                    required
-                />
-            </div>
-            {/* Описание */}
-            <div className="flex flex-col">
-                <label className="font-medium mb-1">Описание:</label>
-                <textarea
-                    rows={3}
-                    className="border p-2 rounded"
-                    value={currentBike.description}
-                    onChange={(e) => onChange("description", e.target.value)}
-                />
-            </div>
-            {/* Статус доступности */}
-            <div className="flex flex-col">
-                <label className="font-medium mb-1">Статус доступности:</label>
-                <select
-                    className="border p-2 rounded"
-                    value={currentBike.availability_status}
-                    onChange={(e) => onChange("availability_status", e.target.value)}
-                >
-                    {availableStatuses.map((status) => (
-                        <option key={status} value={status}>
-                            {status}
-                        </option>
+        <Box component="form" onSubmit={onSave} sx={{ display: 'flex', flexDirection: 'column', gap: 3, p: 2 }}>
+            <Typography variant="h6">Информация о велосипеде</Typography>
+            <Paper variant="outlined" sx={{ p: 2, bgcolor: 'background.paper' }}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            label="Название"
+                            value={currentBike.name}
+                            onChange={(e) => onChange("name", e.target.value)}
+                            required
+                            fullWidth
+                            size="small"
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            label="Модель"
+                            value={currentBike.model}
+                            onChange={(e) => onChange("model", e.target.value)}
+                            required
+                            fullWidth
+                            size="small"
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            label="Описание"
+                            value={currentBike.description}
+                            onChange={(e) => onChange("description", e.target.value)}
+                            multiline
+                            rows={3}
+                            fullWidth
+                            size="small"
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <FormControl fullWidth size="small">
+                            <InputLabel id="availability-status-label">Статус доступности</InputLabel>
+                            <Select
+                                labelId="availability-status-label"
+                                label="Статус доступности"
+                                value={currentBike.availability_status}
+                                onChange={(e) => onChange("availability_status", e.target.value)}
+                            >
+                                {availableStatuses.map((status) => (
+                                    <MenuItem key={status} value={status}>
+                                        {status}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                </Grid>
+            </Paper>
+
+            <Typography variant="h6">Технические характеристики</Typography>
+            <Paper variant="outlined" sx={{ p: 2, bgcolor: 'background.paper' }}>
+                <Grid container spacing={2}>
+                    {[
+                        { label: 'Макс. скорость (км/ч)', field: 'maxSpeed', type: 'number', step: 0.1 },
+                        { label: 'Пробег на заряде (км)', field: 'rangePerCharge', type: 'number', step: 0.1 },
+                        { label: 'Время зарядки', field: 'chargeTime', type: 'text' },
+                        { label: 'Макс. нагрузка (кг)', field: 'maxLoad', type: 'number', step: 0.1 },
+                        { label: 'Вес (кг)', field: 'weight', type: 'number', step: 0.1 },
+                        { label: 'Мощность (Вт)', field: 'power', type: 'text' },
+                        { label: 'Подвеска', field: 'suspension', type: 'text' },
+                    ].map(({ label, field, type, step }, idx) => (
+                        <Grid item xs={12} sm={idx < 2 ? 6 : 12} md={idx < 4 ? 6 : 4} key={field}>
+                            <TextField
+                                label={label}
+                                type={type}
+                                inputProps={step ? { step } : undefined}
+                                value={currentBike[field]}
+                                onChange={(e) => onChange(field, e.target.value)}
+                                fullWidth
+                                size="small"
+                            />
+                        </Grid>
                     ))}
-                </select>
-            </div>
-            {/* Параметры */}
-            <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col">
-                    <label className="font-medium mb-1">Макс. скорость (км/ч):</label>
-                    <input
-                        type="number"
-                        step="0.1"
-                        className="border p-2 rounded"
-                        value={currentBike.maxSpeed}
-                        onChange={(e) => onChange("maxSpeed", e.target.value)}
-                    />
-                </div>
-                <div className="flex flex-col">
-                    <label className="font-medium mb-1">Пробег на заряде (км):</label>
-                    <input
-                        type="number"
-                        step="0.1"
-                        className="border p-2 rounded"
-                        value={currentBike.rangePerCharge}
-                        onChange={(e) => onChange("rangePerCharge", e.target.value)}
-                    />
-                </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col">
-                    <label className="font-medium mb-1">Время зарядки:</label>
-                    <input
-                        type="text"
-                        className="border p-2 rounded"
-                        value={currentBike.chargeTime}
-                        onChange={(e) => onChange("chargeTime", e.target.value)}
-                    />
-                </div>
-                <div className="flex flex-col">
-                    <label className="font-medium mb-1">Макс. нагрузка (кг):</label>
-                    <input
-                        type="number"
-                        step="0.1"
-                        className="border p-2 rounded"
-                        value={currentBike.maxLoad}
-                        onChange={(e) => onChange("maxLoad", e.target.value)}
-                    />
-                </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col">
-                    <label className="font-medium mb-1">Вес (кг):</label>
-                    <input
-                        type="number"
-                        step="0.1"
-                        className="border p-2 rounded"
-                        value={currentBike.weight}
-                        onChange={(e) => onChange("weight", e.target.value)}
-                    />
-                </div>
-                <div className="flex flex-col">
-                    <label className="font-medium mb-1">Мощность (Вт):</label>
-                    <input
-                        type="text"
-                        className="border p-2 rounded"
-                        value={currentBike.power}
-                        onChange={(e) => onChange("power", e.target.value)}
-                    />
-                </div>
-            </div>
-            <div className="flex flex-col">
-                <label className="font-medium mb-1">Подвеска:</label>
-                <input
-                    type="text"
-                    className="border p-2 rounded"
-                    value={currentBike.suspension}
-                    onChange={(e) => onChange("suspension", e.target.value)}
-                />
-            </div>
-            {/* Поле для загрузки файлов */}
-            <div className="flex flex-col">
-                <label className="font-medium mb-1">Загрузить фотографии:</label>
-                <PhotoUploader
-                    onFilesChange={onFileChange}
-                    existingUrls={currentBike.imageUrls}
-                />
-            </div>
-            {/* Теги */}
-            <div className="flex flex-col">
-                <label className="font-medium mb-1">Теги (через запятую):</label>
-                <input
-                    type="text"
-                    className="border p-2 rounded"
-                    value={Array.isArray(currentBike.tags) ? currentBike.tags.join(", ") : ""}
-                    onChange={(e) =>
-                        onChange("tags", e.target.value.split(",").map((t) => t.trim()))
+                </Grid>
+            </Paper>
+
+            <Typography variant="h6">Фото и теги</Typography>
+            <Paper variant="outlined" sx={{ p: 2, bgcolor: 'background.paper' }}>
+                <Box sx={{ mb: 2 }}>
+                    <PhotoUploader onFilesChange={onFileChange} existingUrls={currentBike.imageUrls} />
+                </Box>
+                <Autocomplete
+                    multiple
+                    freeSolo
+                    options={[]}
+                    value={Array.isArray(currentBike.tags) ? currentBike.tags : []}
+                    onChange={(_, value) => onChange('tags', value)}
+                    renderTags={(value, getTagProps) =>
+                        value.map((option, idx) => (
+                            <Chip
+                                variant="outlined"
+                                label={option}
+                                size="small"
+                                {...getTagProps({ index: idx })}
+                            />
+                        ))
                     }
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="Теги"
+                            placeholder="Добавить тег"
+                            size="small"
+                        />
+                    )}
                 />
-            </div>
-            {/* Блок для ввода цен */}
-            <div className="flex flex-col">
-                <label className="font-medium mb-1">Цены:</label>
+            </Paper>
+
+            <Typography variant="h6">Цены</Typography>
+            <Paper variant="outlined" sx={{ p: 2, bgcolor: 'background.paper' }}>
                 {currentBike.prices && currentBike.prices.length > 0 ? (
                     currentBike.prices.map((price, index) => (
                         <PriceField
@@ -190,29 +174,23 @@ export function BikeForm({
                         />
                     ))
                 ) : (
-                    <p className="text-gray-500">Нет добавленных цен</p>
+                    <Typography color="textSecondary">Нет добавленных цен</Typography>
                 )}
-                <button
-                    type="button"
-                    onClick={addPriceField}
-                    className="mt-2 px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded"
-                >
-                    Добавить цену
-                </button>
-            </div>
-            {/* Кнопки действий */}
-            <div className="flex space-x-2 mt-4">
-                <button type="submit" className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">
-                    {isEditMode ? "Сохранить изменения" : "Добавить"}
-                </button>
-                <button
-                    type="button"
-                    onClick={onCancel}
-                    className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded"
-                >
+                <Box sx={{ mt: 1 }}>
+                    <Button variant="contained" onClick={addPriceField} size="small">
+                        Добавить цену
+                    </Button>
+                </Box>
+            </Paper>
+
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1, mt: 2 }}>
+                <Button type="submit" variant="contained" color="primary">
+                    {isEditMode ? 'Сохранить' : 'Добавить'}
+                </Button>
+                <Button variant="outlined" onClick={onCancel} size="small">
                     Отмена
-                </button>
-            </div>
-        </form>
+                </Button>
+            </Box>
+        </Box>
     );
 }

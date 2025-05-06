@@ -2,13 +2,18 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Accessory } from '../entities/accessory.entity';
-import { CreateAccessoryDto, UpdateAccessoryDto } from '../dto/accessory.dto';
+import {
+    AccessoriesPriceDto,
+    CreateAccessoryDto,
+    CreateAccessoryTranslationDto,
+    UpdateAccessoryDto
+} from '../dto/accessory.dto';
 import { Bike } from '../../bike/entities/bike.entity';
 import { AccessoriesPrice } from '../entities/accessories_price.entity';
 import { PriceCategory } from '../../price-category/entities/price-category.entity';
 import { Role } from '../../../database/entities/role.entity';
 import { Currency } from '../../currency/entities/currency.entity';
-import { TranslationsService } from '../../translations/service/translations.service'; // <-- Инжектируем
+import { TranslationsService } from '../../translations/service/translations.service';
 
 @Injectable()
 export class AccessoriesService {
@@ -16,26 +21,29 @@ export class AccessoriesService {
         @InjectRepository(Accessory)
         private readonly accessoryRepository: Repository<Accessory>,
 
-        private readonly translationsService: TranslationsService, // <-- добавили
+        @InjectRepository(AccessoriesPrice)
+        private readonly accessoriesPriceRepo: Repository<AccessoriesPrice>,
+
+        private readonly translationsService: TranslationsService,
     ) {}
 
     async findAll(): Promise<Accessory[]> {
-        // 1. Получаем аксессуары с ценами и т.д.
         const accessories = await this.accessoryRepository.find({
             relations: ['bike', 'prices', 'prices.priceCategory', 'prices.role', 'prices.currency'],
         });
 
-        // 2. Для каждого аксессуара подтягиваем переводы (entityType='accessory', entityId=accessory.id)
         for (const accessory of accessories) {
-            const translations = await this.translationsService.findAllForEntity('accessory', accessory.id);
-            accessory['translations'] = translations; // дописываем «виртуальное» поле
+            const translations = await this.translationsService.findAllForEntity(
+                'accessory',
+                accessory.id,
+            );
+            (accessory as any).translations = translations;
         }
 
         return accessories;
     }
 
     async findById(id: number): Promise<Accessory> {
-        // 1. Получаем аксессуар
         const accessory = await this.accessoryRepository.findOne({
             where: { id },
             relations: ['bike', 'prices', 'prices.priceCategory', 'prices.role', 'prices.currency'],
@@ -44,51 +52,46 @@ export class AccessoriesService {
             throw new NotFoundException(`Accessory with ID ${id} not found`);
         }
 
-        // 2. Подгружаем переводы
-        const translations = await this.translationsService.findAllForEntity('accessory', accessory.id);
-        accessory['translations'] = translations;
+        const translations = await this.translationsService.findAllForEntity(
+            'accessory',
+            accessory.id,
+        );
+        (accessory as any).translations = translations;
 
         return accessory;
     }
 
-    /**
-     * Создаёт аксессуар(ы) для одного или нескольких bikeId.
-     * Каждый аксессуар может содержать массив цен (prices) и переводы (translations).
-     */
     async createAccessory(dto: CreateAccessoryDto): Promise<Accessory[]> {
-        const accessories: Accessory[] = [];
+        const created: Accessory[] = [];
 
         for (const bikeId of dto.bikeId) {
-            // Создаём аксессуар
             const accessory = new Accessory();
             accessory.name = dto.name;
             accessory.description = dto.description;
-            accessory.bikeId = bikeId;
             accessory.bike = { id: bikeId } as Bike;
+            accessory.bikeId = bikeId;
 
-            // Преобразуем prices из DTO в объекты AccessoriesPrice
-            if (dto.prices && dto.prices.length > 0) {
-                accessory.prices = dto.prices.map((priceDto) => {
-                    const accessoryPrice = new AccessoriesPrice();
-                    accessoryPrice.priceCategory = { id: priceDto.categoryId } as PriceCategory;
-                    accessoryPrice.role = { id: priceDto.roleId } as Role;
-                    accessoryPrice.currency = { id: priceDto.currencyId } as Currency;
-                    accessoryPrice.price = priceDto.price;
-                    return accessoryPrice;
+            // prices
+            if (dto.prices?.length) {
+                accessory.prices = dto.prices.map(prDto => {
+                    const ap = new AccessoriesPrice();
+                    ap.priceCategory = { id: prDto.categoryId } as PriceCategory;
+                    ap.role = { id: prDto.roleId } as Role;
+                    ap.currency = { id: prDto.currencyId } as Currency;
+                    ap.price = prDto.price;
+                    return ap;
                 });
             } else {
                 accessory.prices = [];
             }
 
-            // Сохраняем аксессуар
-            const savedAccessory = await this.accessoryRepository.save(accessory);
+            const saved = await this.accessoryRepository.save(accessory);
 
-            // Если есть переводы, создаём их (entityType='accessory', entityId=savedAccessory.id)
-            if (dto.translations && dto.translations.length > 0) {
+            if (dto.translations?.length) {
                 for (const t of dto.translations) {
                     await this.translationsService.createOrUpdateTranslation({
                         entityType: 'accessory',
-                        entityId: savedAccessory.id,
+                        entityId: saved.id,
                         field: t.field,
                         language: t.language,
                         translation: t.translation,
@@ -96,17 +99,52 @@ export class AccessoriesService {
                 }
             }
 
-            accessories.push(savedAccessory);
+            created.push(saved);
         }
 
-        return accessories;
+        return created;
     }
 
-    async updateAccessory(id: number, dto: UpdateAccessoryDto): Promise<Accessory> {
+    async updateAccessory(
+        id: number,
+        dto: UpdateAccessoryDto & {
+            prices?: AccessoriesPriceDto[];
+            translations?: CreateAccessoryTranslationDto[];
+        },
+    ): Promise<Accessory> {
+        // 1) Загрузить существующую сущность (с bikeId внутри)
         const accessory = await this.findById(id);
-        Object.assign(accessory, dto);
+
+        // 2) Мутируем только нужные поля
+        if (dto.name !== undefined) {
+            accessory.name = dto.name;
+        }
+        if (dto.description !== undefined) {
+            accessory.description = dto.description;
+        }
+
+        // 3) Обновляем цены (примерно как раньше)
+        if (dto.prices) {
+            // … ваш код для удаления/обновления/добавления prices …
+        }
+
+        // 4) Обновляем переводы
+        if (dto.translations) {
+            for (const t of dto.translations) {
+                await this.translationsService.createOrUpdateTranslation({
+                    entityType: 'accessory',
+                    entityId: id,
+                    field: t.field,
+                    language: t.language,
+                    translation: t.translation,
+                });
+            }
+        }
+
+        // 5) Сохраняем всю сущность вместе с тем же bikeId
         return this.accessoryRepository.save(accessory);
     }
+
 
     async deleteAccessory(id: number): Promise<void> {
         await this.accessoryRepository.delete(id);

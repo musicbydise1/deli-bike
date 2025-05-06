@@ -114,10 +114,72 @@ export class BikeController {
 
 
     @Put(':id')
+    @UseInterceptors(
+        FileFieldsInterceptor(
+            [{ name: 'photos', maxCount: 5 }],
+            {
+                storage: diskStorage({
+                    destination: './uploads/bikes',
+                    filename: (req, file, cb) => {
+                        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+                        cb(null, `bike-${uniqueSuffix}${extname(file.originalname)}`);
+                    },
+                }),
+                fileFilter: (_, file, cb) => {
+                    if (!file.mimetype.match(/\/(jpg|jpeg|png)$/)) {
+                        cb(new Error('Only image files are allowed!'), false);
+                    } else {
+                        cb(null, true);
+                    }
+                },
+            },
+        ),
+    )
     async updateBike(
         @Param('id') id: number,
+        @UploadedFiles() files: { photos?: MulterFile[] },
         @Body() bikeData: Partial<CreateBikeDto>,
     ): Promise<Bike> {
+        // если пришли новые фото — дописываем их к imageUrls
+        if (files.photos?.length) {
+            const urls = files.photos.map(
+                f => `http://localhost:4000/uploads/bikes/${f.filename}`,
+            );
+            bikeData.imageUrls = [
+                ...(bikeData.imageUrls as string[] || []),
+                ...urls,
+            ];
+        }
+
+        // парсим prices из строки, если нужно
+        if (typeof bikeData.prices === 'string') {
+            try {
+                const parsed = JSON.parse(bikeData.prices);
+                bikeData.prices = plainToInstance(
+                    BikePriceDto,
+                    Array.isArray(parsed) ? parsed : [parsed],
+                    { excludeExtraneousValues: true },
+                );
+            } catch {
+                bikeData.prices = [];
+            }
+        }
+
+        // парсим translations из строки, если нужно
+        if (typeof bikeData.translations === 'string') {
+            try {
+                const parsed = JSON.parse(bikeData.translations);
+                bikeData.translations = plainToInstance(
+                    CreateBikeTranslationDto,
+                    Array.isArray(parsed) ? parsed : [parsed],
+                    { excludeExtraneousValues: true },
+                );
+            } catch {
+                bikeData.translations = [];
+            }
+        }
+
+        // теперь обновляем
         return this.bikeService.updateBike(id, bikeData);
     }
 
