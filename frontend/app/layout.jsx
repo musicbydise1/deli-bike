@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { MantineProvider } from "@mantine/core";
 import FilterSidebar from "@/components/common/FilterSidebar";
 import "../public/main.scss";
 import "photoswipe/dist/photoswipe.css";
@@ -28,7 +27,6 @@ export default function RootLayout({ children }) {
         </head>
         <body>
         {/* Добавили MantineProvider */}
-        <MantineProvider withGlobalStyles withNormalizeCSS>
             <I18nextProvider i18n={i18n}>
                 <RootContext>
                     <MobileMenu />
@@ -37,7 +35,6 @@ export default function RootLayout({ children }) {
                 </RootContext>
                 <BackToTop />
             </I18nextProvider>
-        </MantineProvider>
         </body>
         </html>
     );
