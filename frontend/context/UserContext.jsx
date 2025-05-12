@@ -8,33 +8,50 @@ export function useUser() {
 }
 
 export function UserProvider({ children }) {
-    // userRole: admin / corporate / courier / ...
     const [userRole, setUserRole] = useState();
-    // location: "kz" / "by" и т.д.
     const [location, setLocation] = useState();
-
     const [language, setLanguage] = useState();
 
-    // При монтировании читаем location из cookies, если он есть
+    // 1) При монтировании — читаем из cookie или определяем по домену
     useEffect(() => {
-        const cookies = document.cookie.split(";").map(cookie => cookie.trim());
-        const locationCookie = cookies.find(cookie => cookie.startsWith("location="));
-        if (locationCookie) {
-            const loc = locationCookie.split("=")[1];
-            setLocation(loc);
+        // попробуем достать из cookie
+        const cookies = document.cookie
+            .split(";")
+            .map((c) => c.trim());
+        const locCookie = cookies.find((c) => c.startsWith("location="));
+        let initialLoc = locCookie
+            ? locCookie.split("=")[1]
+            : undefined;
+
+        // если в куках нет — определяем по hostname
+        if (!initialLoc) {
+            const host = window.location.hostname.toLowerCase();
+            if (host.endsWith(".kz")) initialLoc = "kz";
+            else if (host.endsWith(".by")) initialLoc = "by";
+            else initialLoc = "kz"; // дефолт, если домен неизвестен
         }
+
+        setLocation(initialLoc);
     }, []);
 
+    // 2) При изменении location пишем куку на год
     useEffect(() => {
-        const cookies = document.cookie.split(";").map(cookie => cookie.trim());
-        const languageCookie = cookies.find(cookie => cookie.startsWith("lang="));
-        if (languageCookie) {
-            const lang = languageCookie.split("=")[1];
-            setLanguage(lang);
+        if (!location) return;
+        // max-age в секундах: 365 дней
+        const maxAge = 60 * 60 * 24 * 365;
+        document.cookie = `location=${location}; max-age=${maxAge}; path=/`;
+    }, [location]);
+
+    // 3) При монтировании читаем lang из cookie (как раньше)
+    useEffect(() => {
+        const cookies = document.cookie
+            .split(";")
+            .map((c) => c.trim());
+        const langCookie = cookies.find((c) => c.startsWith("lang="));
+        if (langCookie) {
+            setLanguage(langCookie.split("=")[1]);
         }
     }, []);
-
-    // При изменении location обновляем cookie (с max-age на год)
 
     const value = {
         userRole,
@@ -45,5 +62,9 @@ export function UserProvider({ children }) {
         setLanguage,
     };
 
-    return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+    return (
+        <UserContext.Provider value={value}>
+            {children}
+        </UserContext.Provider>
+    );
 }
