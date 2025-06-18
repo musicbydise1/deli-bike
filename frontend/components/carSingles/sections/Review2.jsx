@@ -1,10 +1,10 @@
 const reviewData = [
-  { title: "Comfort", rating: 5.0, remark: "Excellent" },
-  { title: "Performance", rating: 5.0, remark: "Excellent" },
-  { title: "Exterior styling", rating: 5.0, remark: "Excellent" },
-  { title: "Interior design", rating: 5.0, remark: "Excellent" },
-  { title: "Value for the money", rating: 5.0, remark: "Excellent" },
-  { title: "Reliability", rating: 5.0, remark: "Excellent" },
+  { title: 'Comfort', rating: 5.0, remark: 'Excellent' },
+  { title: 'Performance', rating: 5.0, remark: 'Excellent' },
+  { title: 'Exterior styling', rating: 5.0, remark: 'Excellent' },
+  { title: 'Interior design', rating: 5.0, remark: 'Excellent' },
+  { title: 'Value for the money', rating: 5.0, remark: 'Excellent' },
+  { title: 'Reliability', rating: 5.0, remark: 'Excellent' },
 ];
 const firstThreeReviews = reviewData.slice(0, 3);
 const lastThreeReviews = reviewData.slice(3);

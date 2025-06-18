@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Slider from "react-slick";
-import Image from "next/image";
-import { testimonials4 } from "@/data/testimonials";
+import Slider from 'react-slick';
+import Image from 'next/image';
+import { testimonials4 } from '@/data/testimonials';
 export default function Testimonials() {
   const slickOption = {
     infinite: true,
@@ -48,16 +48,12 @@ export default function Testimonials() {
           <div className="boxcar-title">
             <h2>What our customers say</h2>
             <div className="text">
-              Rated 4.7 / 5 based on 28,370 reviews Showing our 4 &amp; 5 star
-              reviews
+              Rated 4.7 / 5 based on 28,370 reviews Showing our 4 &amp; 5 star reviews
             </div>
           </div>
           <Slider {...slickOption} className="row stories-slider inner-slide">
             {testimonials4.map((testimonial, index) => (
-              <div
-                key={index}
-                className="testimonial-block-four col-lg-4 col-md-6 col-sm-12"
-              >
+              <div key={index} className="testimonial-block-four col-lg-4 col-md-6 col-sm-12">
                 <div className="inner-box">
                   <figure className="icon">
                     <a href="#">

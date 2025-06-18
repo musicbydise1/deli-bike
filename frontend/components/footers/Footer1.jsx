@@ -1,17 +1,15 @@
-"use client";
-import React from "react";
-import Image from "next/image";
+'use client';
+import React from 'react';
+import Image from 'next/image';
 import {
   carBrands,
   contactItems,
   navItems,
   socialMediaLinks,
   vehicleTypes,
-} from "@/data/footerLinks";
-import Link from "next/link";
-export default function Footer1({
-  parentClass = "boxcar-footer footer-style-one cus-st-1",
-}) {
+} from '@/data/footerLinks';
+import Link from 'next/link';
+export default function Footer1({ parentClass = 'boxcar-footer footer-style-one cus-st-1' }) {
   return (
     <footer className={parentClass}>
       <div className="footer-top">
@@ -24,11 +22,7 @@ export default function Footer1({
               </div>
             </div>
             <div className="subscribe-form wow fadeInUp" data-wow-delay="100ms">
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                method="post"
-                action="#"
-              >
+              <form onSubmit={e => e.preventDefault()} method="post" action="#">
                 <div className="form-group">
                   <input
                     type="email"
@@ -38,10 +32,7 @@ export default function Footer1({
                     placeholder="Ваш email"
                     required
                   />
-                  <button
-                    type="button"
-                    className="theme-btn btn-style-one hover-light"
-                  >
+                  <button type="button" className="theme-btn btn-style-one hover-light">
                     <span className="btn-title">Зарегистрироваться</span>
                   </button>
                 </div>

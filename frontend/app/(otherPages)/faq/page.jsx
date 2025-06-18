@@ -1,12 +1,12 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import Faq2 from "@/components/otherPages/Faq2";
+import Footer1 from '@/components/footers/Footer1';
+import Header1 from '@/components/headers/Header1';
+import Faq2 from '@/components/otherPages/Faq2';
 
-import React from "react";
+import React from 'react';
 
 export const metadata = {
-  title: "Faq || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
+  title: 'Faq || Boxcar - React Nextjs Car Template',
+  description: 'Boxcar - React Nextjs Car Template',
 };
 export default function FaqPage() {
   return (

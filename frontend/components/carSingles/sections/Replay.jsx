@@ -1,28 +1,28 @@
 const ratings = [
   {
-    title: "Interior Design",
+    title: 'Interior Design',
     stars: 5,
   },
   {
-    title: "Value For The Money",
+    title: 'Value For The Money',
     stars: 5,
   },
   {
-    title: "Reliability",
+    title: 'Reliability',
     stars: 5,
   },
 ];
 const ratings2 = [
   {
-    title: "Comfort",
+    title: 'Comfort',
     stars: 5,
   },
   {
-    title: "Exterior Styling",
+    title: 'Exterior Styling',
     stars: 5,
   },
   {
-    title: "Performance",
+    title: 'Performance',
     stars: 5,
   },
 ];
@@ -30,7 +30,7 @@ const ratings2 = [
 export default function Replay() {
   return (
     <>
-      {" "}
+      {' '}
       <h6 className="title">Leave a Reply</h6>
       <div className="text">
         Your email address will not be published. Required fields are marked *

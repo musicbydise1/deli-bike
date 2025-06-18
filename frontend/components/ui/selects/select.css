@@ -1,73 +1,73 @@
 .custom-select-container {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 .custom-select-display {
-    padding: 10px;
-    border: 1px solid #f6f6f6;
-    border-radius: 8px;
-    background-color: #f6f6f6;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    user-select: none;
+  padding: 10px;
+  border: 1px solid #f6f6f6;
+  border-radius: 8px;
+  background-color: #f6f6f6;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
 }
 
 .custom-select-icon {
-    font-size: 14px;
-    color: #999;
+  font-size: 14px;
+  color: #999;
 }
 
 .custom-select-options {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #f6f6f6;
-    border: 1px solid #f6f6f6;
-    border-radius: 8px;
-    z-index: 10;
-    list-style: none;
-    padding: 0;
-    margin: 5px 0 0;
-    max-height: 200px; /* Ограничиваем высоту для длинных списков */
-    overflow-y: auto;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #f6f6f6;
+  border: 1px solid #f6f6f6;
+  border-radius: 8px;
+  z-index: 10;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0;
+  max-height: 200px; /* Ограничиваем высоту для длинных списков */
+  overflow-y: auto;
 }
 
 .custom-select-options li {
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .custom-select-options li:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 .custom-select-options li.selected {
-    background-color: #e0e0e0;
+  background-color: #e0e0e0;
 }
 
 /* Стили для вложенного селекта количества, стилизуем его так же, как основной */
 .nested-quantity-select {
-    margin-left: 10px;
-    padding: 10px;
-    border: 1px solid #f6f6f6;
-    border-radius: 8px;
-    background-color: #f6f6f6;
-    font-size: 14px;
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    /* Добавляем иконку стрелки, аналогичную основной */
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='10'%20height='10'%20viewBox='0%200%2010%2010'%3E%3Cpath%20fill='%23999'%20d='M0,0%20L5,5%20L10,0'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
+  margin-left: 10px;
+  padding: 10px;
+  border: 1px solid #f6f6f6;
+  border-radius: 8px;
+  background-color: #f6f6f6;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Добавляем иконку стрелки, аналогичную основной */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='10'%20height='10'%20viewBox='0%200%2010%2010'%3E%3Cpath%20fill='%23999'%20d='M0,0%20L5,5%20L10,0'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
 }

@@ -1,9 +1,9 @@
-"use client";
-import SelectComponent from "@/components/common/SelectComponent";
-import Link from "next/link";
+'use client';
+import SelectComponent from '@/components/common/SelectComponent';
+import Link from 'next/link';
 
-import React, { useState } from "react";
-const categories = ["All", "New", "Used"];
+import React, { useState } from 'react';
+const categories = ['All', 'New', 'Used'];
 
 export default function HomeFilter() {
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
@@ -14,9 +14,7 @@ export default function HomeFilter() {
           <div className="nav nav-tabs search-nav-tab">
             {categories.map((category, index) => (
               <li
-                className={
-                  selectedCategory == category ? "nav-link active" : "nav-link"
-                }
+                className={selectedCategory == category ? 'nav-link active' : 'nav-link'}
                 onClick={() => setSelectedCategory(category)}
                 key={index}
               >
@@ -26,24 +24,21 @@ export default function HomeFilter() {
           </div>
           <div className="tab-content wow fadeInUp" data-wow-delay="200ms">
             <div className="tab-pane fade show active">
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="form-filter-search"
-              >
+              <form onSubmit={e => e.preventDefault()} className="form-filter-search">
                 <div className="form_boxes">
                   <label htmlFor="">Select Makes</label>
 
-                  <SelectComponent options={["Audi", "Honda"]} />
+                  <SelectComponent options={['Audi', 'Honda']} />
                 </div>
                 <div className="form_boxes">
                   <label htmlFor="">Select Models</label>
 
-                  <SelectComponent options={["Q7", "Q8"]} />
+                  <SelectComponent options={['Q7', 'Q8']} />
                 </div>
                 <div className="form_boxes">
                   <label htmlFor="">Select Year</label>
 
-                  <SelectComponent options={["2023", "2024"]} />
+                  <SelectComponent options={['2023', '2024']} />
                 </div>
                 <div className="form_boxes">
                   <label htmlFor="">Select Price</label>

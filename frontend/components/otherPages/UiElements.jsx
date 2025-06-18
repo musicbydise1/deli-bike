@@ -1,25 +1,19 @@
-"use client";
+'use client';
 
-import Slider from "rc-slider";
-import { useState } from "react";
+import Slider from 'rc-slider';
+import { useState } from 'react';
 
-const categories = [
-  "Banking",
-  "Digital & Creative",
-  "Retail",
-  "Designer",
-  "Developer",
-];
+const categories = ['Banking', 'Digital & Creative', 'Retail', 'Designer', 'Developer'];
 
 export default function UiElements() {
-  const [searchQuery1, setsearchQuery1] = useState("");
-  const [searchQuery2, setsearchQuery2] = useState("");
-  const [searchQuery3, setsearchQuery3] = useState("");
+  const [searchQuery1, setsearchQuery1] = useState('');
+  const [searchQuery2, setsearchQuery2] = useState('');
+  const [searchQuery3, setsearchQuery3] = useState('');
   const [activeValue1, setActiveValue1] = useState(categories[0]);
   const [activeValue2, setActiveValue2] = useState(categories[1]);
   const [activeValue3, setActiveValue3] = useState(categories[2]);
   const [price, setPrice] = useState([5000, 35000]);
-  const handlePrice = (value) => {
+  const handlePrice = value => {
     setPrice(value);
   };
   return (
@@ -40,10 +34,7 @@ export default function UiElements() {
           <div className="col-lg-6">
             <div className="title-element">Accordions</div>
             <div className="box-accordion">
-              <div
-                className="accordion accordion-flush"
-                id="accordionFlushExample"
-              >
+              <div className="accordion accordion-flush" id="accordionFlushExample">
                 <div className="accordion-item">
                   <div
                     className="accordion-button"
@@ -74,10 +65,7 @@ export default function UiElements() {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path d="M0 7H16V9H0V7Z" fill="#222222" />
-                        <path
-                          d="M7 16L7 8.74224e-08L9 0L9 16H7Z"
-                          fill="#222222"
-                        />
+                        <path d="M7 16L7 8.74224e-08L9 0L9 16H7Z" fill="#222222" />
                       </svg>
                     </span>
                   </div>
@@ -88,9 +76,9 @@ export default function UiElements() {
                     data-bs-parent="#accordionFlushExample"
                   >
                     <div className="accordion-body">
-                      Cras vitae ac nunc orci. Purus amet tortor non at
-                      phasellus ultricies hendrerit. Eget a, sit morbi nunc sit
-                      id massa. Metus, scelerisque volutpat nec sit vel donec.
+                      Cras vitae ac nunc orci. Purus amet tortor non at phasellus ultricies
+                      hendrerit. Eget a, sit morbi nunc sit id massa. Metus, scelerisque volutpat
+                      nec sit vel donec.
                     </div>
                   </div>
                 </div>
@@ -124,10 +112,7 @@ export default function UiElements() {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path d="M0 7H16V9H0V7Z" fill="#222222" />
-                        <path
-                          d="M7 16L7 8.74224e-08L9 0L9 16H7Z"
-                          fill="#222222"
-                        />
+                        <path d="M7 16L7 8.74224e-08L9 0L9 16H7Z" fill="#222222" />
                       </svg>
                     </span>
                   </div>
@@ -138,9 +123,9 @@ export default function UiElements() {
                     data-bs-parent="#accordionFlushExample"
                   >
                     <div className="accordion-body">
-                      Cras vitae ac nunc orci. Purus amet tortor non at
-                      phasellus ultricies hendrerit. Eget a, sit morbi nunc sit
-                      id massa. Metus, scelerisque volutpat nec sit vel donec.
+                      Cras vitae ac nunc orci. Purus amet tortor non at phasellus ultricies
+                      hendrerit. Eget a, sit morbi nunc sit id massa. Metus, scelerisque volutpat
+                      nec sit vel donec.
                     </div>
                   </div>
                 </div>
@@ -174,10 +159,7 @@ export default function UiElements() {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path d="M0 7H16V9H0V7Z" fill="#222222" />
-                        <path
-                          d="M7 16L7 8.74224e-08L9 0L9 16H7Z"
-                          fill="#222222"
-                        />
+                        <path d="M7 16L7 8.74224e-08L9 0L9 16H7Z" fill="#222222" />
                       </svg>
                     </span>
                   </div>
@@ -188,9 +170,9 @@ export default function UiElements() {
                     data-bs-parent="#accordionFlushExample"
                   >
                     <div className="accordion-body">
-                      Cras vitae ac nunc orci. Purus amet tortor non at
-                      phasellus ultricies hendrerit. Eget a, sit morbi nunc sit
-                      id massa. Metus, scelerisque volutpat nec sit vel donec.
+                      Cras vitae ac nunc orci. Purus amet tortor non at phasellus ultricies
+                      hendrerit. Eget a, sit morbi nunc sit id massa. Metus, scelerisque volutpat
+                      nec sit vel donec.
                     </div>
                   </div>
                 </div>
@@ -224,10 +206,7 @@ export default function UiElements() {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path d="M0 7H16V9H0V7Z" fill="#222222" />
-                        <path
-                          d="M7 16L7 8.74224e-08L9 0L9 16H7Z"
-                          fill="#222222"
-                        />
+                        <path d="M7 16L7 8.74224e-08L9 0L9 16H7Z" fill="#222222" />
                       </svg>
                     </span>
                   </div>
@@ -238,9 +217,9 @@ export default function UiElements() {
                     data-bs-parent="#accordionFlushExample"
                   >
                     <div className="accordion-body">
-                      Cras vitae ac nunc orci. Purus amet tortor non at
-                      phasellus ultricies hendrerit. Eget a, sit morbi nunc sit
-                      id massa. Metus, scelerisque volutpat nec sit vel donec.
+                      Cras vitae ac nunc orci. Purus amet tortor non at phasellus ultricies
+                      hendrerit. Eget a, sit morbi nunc sit id massa. Metus, scelerisque volutpat
+                      nec sit vel donec.
                     </div>
                   </div>
                 </div>
@@ -274,10 +253,7 @@ export default function UiElements() {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path d="M0 7H16V9H0V7Z" fill="#222222" />
-                        <path
-                          d="M7 16L7 8.74224e-08L9 0L9 16H7Z"
-                          fill="#222222"
-                        />
+                        <path d="M7 16L7 8.74224e-08L9 0L9 16H7Z" fill="#222222" />
                       </svg>
                     </span>
                   </div>
@@ -288,9 +264,9 @@ export default function UiElements() {
                     data-bs-parent="#accordionFlushExample"
                   >
                     <div className="accordion-body">
-                      Cras vitae ac nunc orci. Purus amet tortor non at
-                      phasellus ultricies hendrerit. Eget a, sit morbi nunc sit
-                      id massa. Metus, scelerisque volutpat nec sit vel donec.
+                      Cras vitae ac nunc orci. Purus amet tortor non at phasellus ultricies
+                      hendrerit. Eget a, sit morbi nunc sit id massa. Metus, scelerisque volutpat
+                      nec sit vel donec.
                     </div>
                   </div>
                 </div>
@@ -300,11 +276,7 @@ export default function UiElements() {
           <div className="col-lg-6">
             <div className="title-element">Tabs</div>
             <div className="box-tabs-element">
-              <ul
-                className="nav nav-pills nav-tab-el1"
-                id="pills-tab"
-                role="tablist"
-              >
+              <ul className="nav nav-pills nav-tab-el1" id="pills-tab" role="tablist">
                 <li className="nav-item" role="presentation">
                   <button
                     className="nav-link active"
@@ -356,11 +328,10 @@ export default function UiElements() {
                   aria-labelledby="development-tab"
                 >
                   <p>
-                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris
-                    pellentesque nec nibh sed et, vel diam, massa. Placerat quis
-                    vel fames interdum urna lobortis sagittis sed pretium.
-                    Aliquam eget posuere sit enim elementum nulla vulputate
-                    magna. Morbi sed arcu proin quis tortor non risus.{" "}
+                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris pellentesque nec nibh
+                    sed et, vel diam, massa. Placerat quis vel fames interdum urna lobortis sagittis
+                    sed pretium. Aliquam eget posuere sit enim elementum nulla vulputate magna.
+                    Morbi sed arcu proin quis tortor non risus.{' '}
                   </p>
                 </div>
                 <div
@@ -370,11 +341,10 @@ export default function UiElements() {
                   aria-labelledby="design-tab"
                 >
                   <p>
-                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris
-                    pellentesque nec nibh sed et, vel diam, massa. Placerat quis
-                    vel fames interdum urna lobortis sagittis sed pretium.
-                    Aliquam eget posuere sit enim elementum nulla vulputate
-                    magna. Morbi sed arcu proin quis tortor non risus.{" "}
+                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris pellentesque nec nibh
+                    sed et, vel diam, massa. Placerat quis vel fames interdum urna lobortis sagittis
+                    sed pretium. Aliquam eget posuere sit enim elementum nulla vulputate magna.
+                    Morbi sed arcu proin quis tortor non risus.{' '}
                   </p>
                 </div>
                 <div
@@ -384,21 +354,16 @@ export default function UiElements() {
                   aria-labelledby="digital-tab"
                 >
                   <p>
-                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris
-                    pellentesque nec nibh sed et, vel diam, massa. Placerat quis
-                    vel fames interdum urna lobortis sagittis sed pretium.
-                    Aliquam eget posuere sit enim elementum nulla vulputate
-                    magna. Morbi sed arcu proin quis tortor non risus.{" "}
+                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris pellentesque nec nibh
+                    sed et, vel diam, massa. Placerat quis vel fames interdum urna lobortis sagittis
+                    sed pretium. Aliquam eget posuere sit enim elementum nulla vulputate magna.
+                    Morbi sed arcu proin quis tortor non risus.{' '}
                   </p>
                 </div>
               </div>
             </div>
             <div className="box-tabs-element box-tabs-element-2">
-              <ul
-                className="nav nav-pills nav-tab-el2"
-                id="pills-tab"
-                role="tablist"
-              >
+              <ul className="nav nav-pills nav-tab-el2" id="pills-tab" role="tablist">
                 <li className="nav-item" role="presentation">
                   <button
                     className="nav-link active"
@@ -450,11 +415,10 @@ export default function UiElements() {
                   aria-labelledby="item1-tab"
                 >
                   <p>
-                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris
-                    pellentesque nec nibh sed et, vel diam, massa. Placerat quis
-                    vel fames interdum urna lobortis sagittis sed pretium.
-                    Aliquam eget posuere sit enim elementum nulla vulputate
-                    magna. Morbi sed arcu proin quis tortor non risus.{" "}
+                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris pellentesque nec nibh
+                    sed et, vel diam, massa. Placerat quis vel fames interdum urna lobortis sagittis
+                    sed pretium. Aliquam eget posuere sit enim elementum nulla vulputate magna.
+                    Morbi sed arcu proin quis tortor non risus.{' '}
                   </p>
                 </div>
                 <div
@@ -464,11 +428,10 @@ export default function UiElements() {
                   aria-labelledby="item2-tab"
                 >
                   <p>
-                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris
-                    pellentesque nec nibh sed et, vel diam, massa. Placerat quis
-                    vel fames interdum urna lobortis sagittis sed pretium.
-                    Aliquam eget posuere sit enim elementum nulla vulputate
-                    magna. Morbi sed arcu proin quis tortor non risus.{" "}
+                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris pellentesque nec nibh
+                    sed et, vel diam, massa. Placerat quis vel fames interdum urna lobortis sagittis
+                    sed pretium. Aliquam eget posuere sit enim elementum nulla vulputate magna.
+                    Morbi sed arcu proin quis tortor non risus.{' '}
                   </p>
                 </div>
                 <div
@@ -478,11 +441,10 @@ export default function UiElements() {
                   aria-labelledby="item3-tab"
                 >
                   <p>
-                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris
-                    pellentesque nec nibh sed et, vel diam, massa. Placerat quis
-                    vel fames interdum urna lobortis sagittis sed pretium.
-                    Aliquam eget posuere sit enim elementum nulla vulputate
-                    magna. Morbi sed arcu proin quis tortor non risus.{" "}
+                    Pharetra nulla ullamcorper sit lectus. Fermentum mauris pellentesque nec nibh
+                    sed et, vel diam, massa. Placerat quis vel fames interdum urna lobortis sagittis
+                    sed pretium. Aliquam eget posuere sit enim elementum nulla vulputate magna.
+                    Morbi sed arcu proin quis tortor non risus.{' '}
                   </p>
                 </div>
               </div>
@@ -784,7 +746,7 @@ export default function UiElements() {
                         type="text"
                         placeholder="Search"
                         className="search-field"
-                        onChange={(e) => setsearchQuery1(e.target.value)}
+                        onChange={e => setsearchQuery1(e.target.value)}
                       />
                       <span className="icon">
                         <svg
@@ -814,15 +776,11 @@ export default function UiElements() {
                     </div>
                     <ul className="box-search-select">
                       {categories
-                        .filter((elm) =>
-                          elm.toLowerCase().includes(searchQuery1)
-                        )
+                        .filter(elm => elm.toLowerCase().includes(searchQuery1))
                         .map((elm, i) => (
                           <li
                             key={i}
-                            className={`search-result-item ${
-                              activeValue1 == elm ? "active" : ""
-                            }`}
+                            className={`search-result-item ${activeValue1 == elm ? 'active' : ''}`}
                             onClick={() => setActiveValue1(elm)}
                           >
                             {elm}
@@ -834,7 +792,7 @@ export default function UiElements() {
               </div>
               <div className="box-textarea">
                 <label htmlFor="">Textarea</label>
-                <textarea defaultValue={"Lorem Ipsum Dolar Sit Amet"} />
+                <textarea defaultValue={'Lorem Ipsum Dolar Sit Amet'} />
               </div>
               <div className="wrap-booltip-el">
                 <div className="title-element">Tooltips</div>
@@ -886,7 +844,7 @@ export default function UiElements() {
                     max={50000}
                     min={0}
                     defaultValue={price}
-                    onChange={(value) => handlePrice(value)}
+                    onChange={value => handlePrice(value)}
                     id="slider"
                   />
                   <div className="box-val-range-el">
@@ -935,7 +893,7 @@ export default function UiElements() {
                         type="text"
                         placeholder="Search"
                         className="search-field"
-                        onChange={(e) => setsearchQuery2(e.target.value)}
+                        onChange={e => setsearchQuery2(e.target.value)}
                       />
                       <span className="icon">
                         <svg
@@ -965,15 +923,11 @@ export default function UiElements() {
                     </div>
                     <ul className="box-search-select">
                       {categories
-                        .filter((elm) =>
-                          elm.toLowerCase().includes(searchQuery2)
-                        )
+                        .filter(elm => elm.toLowerCase().includes(searchQuery2))
                         .map((elm, i) => (
                           <li
                             key={i}
-                            className={`search-result-item ${
-                              activeValue2 == elm ? "active" : ""
-                            }`}
+                            className={`search-result-item ${activeValue2 == elm ? 'active' : ''}`}
                             onClick={() => setActiveValue2(elm)}
                           >
                             {elm}
@@ -1012,9 +966,7 @@ export default function UiElements() {
                   <div className="select-body">
                     <ul className="box-check-el">
                       {categories
-                        .filter((elm) =>
-                          elm.toLowerCase().includes(searchQuery3)
-                        )
+                        .filter(elm => elm.toLowerCase().includes(searchQuery3))
                         .map((elm, i) => (
                           <li
                             key={i}
@@ -1028,10 +980,7 @@ export default function UiElements() {
                               readOnly
                               checked={activeValue3 == elm}
                             />
-                            <label
-                              htmlFor="radioCheck1"
-                              className="check-val-item"
-                            >
+                            <label htmlFor="radioCheck1" className="check-val-item">
                               {elm}
                             </label>
                           </li>
@@ -1045,21 +994,11 @@ export default function UiElements() {
                   <p>Radiobox</p>
                   <ul className="box-check-el style2">
                     <li>
-                      <input
-                        className="tf-check circle"
-                        type="radio"
-                        name="radio2"
-                        id="rad1"
-                      />
+                      <input className="tf-check circle" type="radio" name="radio2" id="rad1" />
                       <label htmlFor="rad1">Items</label>
                     </li>
                     <li>
-                      <input
-                        className="tf-check circle"
-                        type="radio"
-                        name="radio2"
-                        id="rad2"
-                      />
+                      <input className="tf-check circle" type="radio" name="radio2" id="rad2" />
                       <label htmlFor="rad2">Items</label>
                     </li>
                     <li>
@@ -1073,12 +1012,7 @@ export default function UiElements() {
                       <label htmlFor="rad3">Items</label>
                     </li>
                     <li>
-                      <input
-                        className="tf-check circle"
-                        type="radio"
-                        name="radio2"
-                        id="rad4"
-                      />
+                      <input className="tf-check circle" type="radio" name="radio2" id="rad4" />
                       <label htmlFor="rad4">Items</label>
                     </li>
                   </ul>
@@ -1095,12 +1029,7 @@ export default function UiElements() {
                       <label htmlFor="cb2">Items</label>
                     </li>
                     <li>
-                      <input
-                        className="tf-check"
-                        type="checkbox"
-                        id="cb3"
-                        defaultChecked=""
-                      />
+                      <input className="tf-check" type="checkbox" id="cb3" defaultChecked="" />
                       <label htmlFor="cb3">Items</label>
                     </li>
                     <li>
@@ -1113,11 +1042,7 @@ export default function UiElements() {
                   <p>Switch</p>
                   <ul className="box-check-el">
                     <li>
-                      <input
-                        className="tf-switch-check"
-                        type="checkbox"
-                        id="sw1"
-                      />
+                      <input className="tf-switch-check" type="checkbox" id="sw1" />
                       <label htmlFor="sw1">Items</label>
                     </li>
                     <li>
@@ -1139,7 +1064,7 @@ export default function UiElements() {
                     <div
                       className="progress-bar"
                       role="progressbar"
-                      style={{ width: "90%" }}
+                      style={{ width: '90%' }}
                       aria-valuenow={90}
                       aria-valuemin={0}
                       aria-valuemax={100}
@@ -1151,7 +1076,7 @@ export default function UiElements() {
                     <div
                       className="progress-bar"
                       role="progressbar"
-                      style={{ width: "50%" }}
+                      style={{ width: '50%' }}
                       aria-valuenow={50}
                       aria-valuemin={0}
                       aria-valuemax={100}
@@ -1163,7 +1088,7 @@ export default function UiElements() {
                     <div
                       className="progress-bar"
                       role="progressbar"
-                      style={{ width: "40%" }}
+                      style={{ width: '40%' }}
                       aria-valuenow={40}
                       aria-valuemin={0}
                       aria-valuemax={100}
@@ -1178,40 +1103,34 @@ export default function UiElements() {
           <div className="col-xl-8">
             <div className="wrap-typo">
               <div className="title-element">Typography</div>
-              <div className="title-typo">
-                Bringing the culture of sharing to everyone
-              </div>
+              <div className="title-typo">Bringing the culture of sharing to everyone</div>
               <div className="box-p">
                 <p>
-                  Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan
-                  nec. Quisque bibendum orci ac nibh facilisis, at malesuada
-                  orci congue. Nullam tempus sollicitudin cursus. Ut et
-                  adipiscing erat. Curabitur this is a text link libero tempus
-                  congue.
+                  Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec. Quisque
+                  bibendum orci ac nibh facilisis, at malesuada orci congue. Nullam tempus
+                  sollicitudin cursus. Ut et adipiscing erat. Curabitur this is a text link libero
+                  tempus congue.
                 </p>
                 <p>
-                  Duis mattis laoreet neque, et ornare neque sollicitudin at.
-                  Proin sagittis dolor sed mi elementum pretium. Donec et justo
-                  ante. Vivamus egestas sodales est, eu rhoncus urna semper eu.
-                  Cum sociis natoque penatibus et magnis dis parturient montes,
-                  nascetur ridiculus mus. Integer tristique elit lobortis purus
-                  bibendum, quis dictum metus mattis. Phasellus posuere felis
-                  sed eros porttitor mattis. Curabitur massa magna, tempor in
-                  blandit id, porta in ligula. Aliquam laoreet nisl massa, at
-                  interdum mauris sollicitudin et.
+                  Duis mattis laoreet neque, et ornare neque sollicitudin at. Proin sagittis dolor
+                  sed mi elementum pretium. Donec et justo ante. Vivamus egestas sodales est, eu
+                  rhoncus urna semper eu. Cum sociis natoque penatibus et magnis dis parturient
+                  montes, nascetur ridiculus mus. Integer tristique elit lobortis purus bibendum,
+                  quis dictum metus mattis. Phasellus posuere felis sed eros porttitor mattis.
+                  Curabitur massa magna, tempor in blandit id, porta in ligula. Aliquam laoreet nisl
+                  massa, at interdum mauris sollicitudin et.
                 </p>
               </div>
               <div className="box-quote">
                 <blockquote className="quote">
-                  Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan
-                  nec. Quisque bibendum orci ac nibh facilisis, at malesuada
-                  orci congue.
+                  Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec. Quisque
+                  bibendum orci ac nibh facilisis, at malesuada orci congue.
                 </blockquote>
                 <cite className="author">Luis Pickford</cite>
               </div>
             </div>
             <div className="wrap-listview">
-              <div className="title-listview">What you'll learn</div>
+              <div className="title-listview">What youll learn</div>
               <div className="box-listview">
                 <ul>
                   <li className="listview-item">

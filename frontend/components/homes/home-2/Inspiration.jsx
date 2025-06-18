@@ -1,5 +1,5 @@
-import { carCategories } from "@/data/categories";
-import React from "react";
+import { carCategories } from '@/data/categories';
+import React from 'react';
 
 export default function Inspiration() {
   return (

@@ -1,13 +1,13 @@
-"use client";
-import Sidebar from "./Sidebar";
-import Image from "next/image";
-import SelectComponent from "../common/SelectComponent";
-import { useState } from "react";
+'use client';
+import Sidebar from './Sidebar';
+import Image from 'next/image';
+import SelectComponent from '../common/SelectComponent';
+import { useState } from 'react';
 export default function AddListings() {
   const [images, setImages] = useState([
-    "/images/resource/list2-1.png",
-    "/images/resource/list2-2.png",
-    "/images/resource/list2-3.png",
+    '/images/resource/list2-1.png',
+    '/images/resource/list2-2.png',
+    '/images/resource/list2-3.png',
   ]);
 
   const handleImageChange = (e, index) => {
@@ -22,14 +22,14 @@ export default function AddListings() {
       reader.readAsDataURL(file);
     }
   };
-  const handleDelete = (index) => {
+  const handleDelete = index => {
     const newImages = images.filter((_, imgIndex) => imgIndex !== index);
     setImages(newImages);
   };
   const [images2, setImages2] = useState([
-    "/images/resource/list2-1.png",
-    "/images/resource/list2-2.png",
-    "/images/resource/list2-3.png",
+    '/images/resource/list2-1.png',
+    '/images/resource/list2-2.png',
+    '/images/resource/list2-3.png',
   ]);
 
   const handleImageChange2 = (e, index) => {
@@ -44,7 +44,7 @@ export default function AddListings() {
       reader.readAsDataURL(file);
     }
   };
-  const handleDelete2 = (index) => {
+  const handleDelete2 = index => {
     const newImages = images2.filter((_, imgIndex) => imgIndex !== index);
     setImages2(newImages);
   };
@@ -56,9 +56,7 @@ export default function AddListings() {
           <div className="inner-column">
             <div className="list-title">
               <h3 className="title">Add Listings</h3>
-              <div className="text">
-                Lorem ipsum dolor sit amet, consectetur.
-              </div>
+              <div className="text">Lorem ipsum dolor sit amet, consectetur.</div>
             </div>
             <div className="form-box">
               <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -140,21 +138,19 @@ export default function AddListings() {
                   role="tabpanel"
                   aria-labelledby="home-tab"
                 >
-                  <form onSubmit={(e) => e.preventDefault()} className="row">
+                  <form onSubmit={e => e.preventDefault()} className="row">
                     <div className="form-column col-lg-4">
                       <div className="form_boxes">
                         <label>Listing Title</label>
 
-                        <SelectComponent
-                          options={["Ali Tufan", "Ali Tufan", "Ali Tufan"]}
-                        />
+                        <SelectComponent options={['Ali Tufan', 'Ali Tufan', 'Ali Tufan']} />
                       </div>
                     </div>
                     <div className="form-column col-lg-4">
                       <div className="form_boxes">
                         <label>Category</label>
 
-                        <SelectComponent options={["Cars", "Cars", "Cars"]} />
+                        <SelectComponent options={['Cars', 'Cars', 'Cars']} />
                       </div>
                     </div>
                     <div className="form-column col-lg-4">
@@ -162,11 +158,7 @@ export default function AddListings() {
                         <label>Label</label>
 
                         <SelectComponent
-                          options={[
-                            "Select Label",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['Select Label', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -174,18 +166,14 @@ export default function AddListings() {
                       <div className="form_boxes">
                         <label>Condition</label>
 
-                        <SelectComponent
-                          options={["New", "Select Label", "Select Label"]}
-                        />
+                        <SelectComponent options={['New', 'Select Label', 'Select Label']} />
                       </div>
                     </div>
                     <div className="form-column col-lg-4">
                       <div className="form_boxes">
                         <label>Type</label>
 
-                        <SelectComponent
-                          options={["Sedan", "Select Label", "Select Label"]}
-                        />
+                        <SelectComponent options={['Sedan', 'Select Label', 'Select Label']} />
                       </div>
                     </div>
                     <div className="form-column col-lg-4">
@@ -193,11 +181,7 @@ export default function AddListings() {
                         <label>Make</label>
 
                         <SelectComponent
-                          options={[
-                            "Select Make",
-                            "Select Label",
-                            "Select Lable",
-                          ]}
+                          options={['Select Make', 'Select Label', 'Select Lable']}
                         />
                       </div>
                     </div>
@@ -206,11 +190,7 @@ export default function AddListings() {
                         <label>Model</label>
 
                         <SelectComponent
-                          options={[
-                            "Select Model",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['Select Model', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -219,11 +199,7 @@ export default function AddListings() {
                         <label>Year</label>
 
                         <SelectComponent
-                          options={[
-                            "Select Year",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['Select Year', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -232,11 +208,7 @@ export default function AddListings() {
                         <label>Offer Type</label>
 
                         <SelectComponent
-                          options={[
-                            "Select Offer",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['Select Offer', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -245,11 +217,7 @@ export default function AddListings() {
                         <label>Drive Type</label>
 
                         <SelectComponent
-                          options={[
-                            "Select Type",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['Select Type', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -258,11 +226,7 @@ export default function AddListings() {
                         <label>Transmission</label>
 
                         <SelectComponent
-                          options={[
-                            "Select Transmission",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['Select Transmission', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -271,11 +235,7 @@ export default function AddListings() {
                         <label>Fuel Type</label>
 
                         <SelectComponent
-                          options={[
-                            "Select Fuel",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['Select Fuel', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -283,9 +243,7 @@ export default function AddListings() {
                       <div className="form_boxes">
                         <label>Mileage</label>
 
-                        <SelectComponent
-                          options={["75,000", "Select Label", "Select Label"]}
-                        />
+                        <SelectComponent options={['75,000', 'Select Label', 'Select Label']} />
                       </div>
                     </div>
                     <div className="form-column col-lg-4">
@@ -293,11 +251,7 @@ export default function AddListings() {
                         <label>Engine Size</label>
 
                         <SelectComponent
-                          options={[
-                            "Engine Size",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['Engine Size', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -306,11 +260,7 @@ export default function AddListings() {
                         <label>Cylinder</label>
 
                         <SelectComponent
-                          options={[
-                            "Select Cylinder",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['Select Cylinder', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -319,11 +269,7 @@ export default function AddListings() {
                         <label>Color</label>
 
                         <SelectComponent
-                          options={[
-                            "Select Color",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['Select Color', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -332,11 +278,7 @@ export default function AddListings() {
                         <label>Door</label>
 
                         <SelectComponent
-                          options={[
-                            "Select Door",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['Select Door', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -345,11 +287,7 @@ export default function AddListings() {
                         <label>VIN</label>
 
                         <SelectComponent
-                          options={[
-                            "05034................",
-                            "Select Label",
-                            "Select Label",
-                          ]}
+                          options={['05034................', 'Select Label', 'Select Label']}
                         />
                       </div>
                     </div>
@@ -360,7 +298,7 @@ export default function AddListings() {
                           <textarea
                             name="message"
                             placeholder="Lorem Ipsum Dolar Sit Amet"
-                            defaultValue={""}
+                            defaultValue={''}
                           />
                         </div>
                       </div>
@@ -399,14 +337,12 @@ export default function AddListings() {
                   role="tabpanel"
                   aria-labelledby="profile-tab"
                 >
-                  <form onSubmit={(e) => e.preventDefault()} className="row">
+                  <form onSubmit={e => e.preventDefault()} className="row">
                     <div className="col-lg-12">
                       <div className="form_boxes v2">
                         <label>Price ($)</label>
 
-                        <SelectComponent
-                          options={["e.g. 1000", "e.g. 1000", "e.g. 1000"]}
-                        />
+                        <SelectComponent options={['e.g. 1000', 'e.g. 1000', 'e.g. 1000']} />
                       </div>
                     </div>
                     <div className="col-lg-12">
@@ -414,13 +350,9 @@ export default function AddListings() {
                         <div className="form_boxes">
                           <label>Price Prefix</label>
 
-                          <SelectComponent
-                            options={["e.g. 1000", "e.g. 1000", "e.g. 1000"]}
-                          />
+                          <SelectComponent options={['e.g. 1000', 'e.g. 1000', 'e.g. 1000']} />
                         </div>
-                        <div className="text">
-                          Any text shown before price (for example: from).
-                        </div>
+                        <div className="text">Any text shown before price (for example: from).</div>
                       </div>
                     </div>
                     <div className="col-lg-12">
@@ -428,9 +360,7 @@ export default function AddListings() {
                         <div className="form_boxes">
                           <label>Price Suffix</label>
 
-                          <SelectComponent
-                            options={["e.g. 1000", "e.g. 1000", "e.g. 1000"]}
-                          />
+                          <SelectComponent options={['e.g. 1000', 'e.g. 1000', 'e.g. 1000']} />
                         </div>
                         <div className="text">
                           Any text shown after price (for example: per night).
@@ -443,19 +373,12 @@ export default function AddListings() {
                           <label>Price Custom</label>
 
                           <SelectComponent
-                            options={[
-                              "e.g. 1000",
-                              "e.g. 1000",
-                              "e.g. 1000",
-                              "",
-                              "",
-                              "",
-                            ]}
+                            options={['e.g. 1000', 'e.g. 1000', 'e.g. 1000', '', '', '']}
                           />
                         </div>
                         <div className="text">
-                          Any text instead of price (for example: by agreement).
-                          Prefix and Suffix will be ignored.
+                          Any text instead of price (for example: by agreement). Prefix and Suffix
+                          will be ignored.
                         </div>
                       </div>
                     </div>
@@ -687,10 +610,8 @@ export default function AddListings() {
                                     id={`file-upload-${index}`}
                                     type="file"
                                     accept="image/*"
-                                    onChange={(e) =>
-                                      handleImageChange(e, index)
-                                    }
-                                    style={{ display: "none" }}
+                                    onChange={e => handleImageChange(e, index)}
+                                    style={{ display: 'none' }}
                                   />
                                 </li>
                               </ul>
@@ -714,17 +635,15 @@ export default function AddListings() {
                               id="upload-new"
                               type="file"
                               accept="image/*"
-                              style={{ display: "none" }}
-                              onChange={(e) =>
-                                handleImageChange(e, images.length)
-                              }
+                              style={{ display: 'none' }}
+                              onChange={e => handleImageChange(e, images.length)}
                             />
                           </div>
                         </div>
                       </div>
                       <div className="text">
-                        Max file size is 1MB, Minimum dimension: 330x300 And
-                        Suitable files are .jpg &amp; .png
+                        Max file size is 1MB, Minimum dimension: 330x300 And Suitable files are .jpg
+                        &amp; .png
                       </div>
                     </form>
                   </div>
@@ -760,8 +679,8 @@ export default function AddListings() {
                               <input
                                 id={`file-upload2-${index}`}
                                 type="file"
-                                onChange={(e) => handleImageChange2(e, index)}
-                                style={{ display: "none" }}
+                                onChange={e => handleImageChange2(e, index)}
+                                style={{ display: 'none' }}
                               />
                             </li>
                           </ul>
@@ -783,34 +702,28 @@ export default function AddListings() {
                           <input
                             id="upload-new2"
                             type="file"
-                            style={{ display: "none" }}
-                            onChange={(e) =>
-                              handleImageChange2(e, images.length)
-                            }
+                            style={{ display: 'none' }}
+                            onChange={e => handleImageChange2(e, images.length)}
                           />
                         </div>
                       </div>
                     </form>
                     <div className="text">
-                      Max file size is 1MB, Minimum dimension: 330x300 And
-                      Suitable files are .jpg &amp; .png
+                      Max file size is 1MB, Minimum dimension: 330x300 And Suitable files are .jpg
+                      &amp; .png
                     </div>
                   </div>
                   <div className="form-sec">
                     <h6 className="title">Video link</h6>
-                    <form onSubmit={(e) => e.preventDefault()} className="row">
+                    <form onSubmit={e => e.preventDefault()} className="row">
                       <div className="form-column col-lg-12">
                         <div className="inner-box">
                           <div className="form_boxes">
                             <label>Video Link</label>
 
-                            <SelectComponent
-                              options={["#", "#", "#", "#", "#", "#"]}
-                            />
+                            <SelectComponent options={['#', '#', '#', '#', '#', '#']} />
                           </div>
-                          <div className="text">
-                            Enter Youtube or Vimeo url.
-                          </div>
+                          <div className="text">Enter Youtube or Vimeo url.</div>
                         </div>
                       </div>
                       <div className="form-submit">
@@ -846,14 +759,12 @@ export default function AddListings() {
                   role="tabpanel"
                   aria-labelledby="location-tab"
                 >
-                  <form onSubmit={(e) => e.preventDefault()} className="row">
+                  <form onSubmit={e => e.preventDefault()} className="row">
                     <div className="col-lg-6">
                       <div className="form_boxes">
                         <label>Friendly Address</label>
 
-                        <SelectComponent
-                          options={["Ali Tufan", "Ali Tufan", "Ali Tufan"]}
-                        />
+                        <SelectComponent options={['Ali Tufan', 'Ali Tufan', 'Ali Tufan']} />
                       </div>
                     </div>
                     <div className="col-lg-6">
@@ -862,12 +773,12 @@ export default function AddListings() {
 
                         <SelectComponent
                           options={[
-                            "e.g. lincoln park",
-                            "e.g. lincoln park",
-                            "e.g. lincoln park",
-                            "",
-                            "",
-                            "",
+                            'e.g. lincoln park',
+                            'e.g. lincoln park',
+                            'e.g. lincoln park',
+                            '',
+                            '',
+                            '',
                           ]}
                         />
                       </div>
@@ -881,14 +792,14 @@ export default function AddListings() {
                       <div className="form_boxes">
                         <label>Longitude</label>
 
-                        <SelectComponent options={["33", "33", "33"]} />
+                        <SelectComponent options={['33', '33', '33']} />
                       </div>
                     </div>
                     <div className="col-lg-6">
                       <div className="form_boxes">
                         <label>Video Link</label>
 
-                        <SelectComponent options={["#", "#", "#"]} />
+                        <SelectComponent options={['#', '#', '#']} />
                       </div>
                     </div>
                     <div className="col-lg-12">

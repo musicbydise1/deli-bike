@@ -1,15 +1,15 @@
-"use client";
-import React, { useState } from "react";
-import Image from "next/image";
-import SelectComponent from "../common/SelectComponent";
-import { cars } from "@/data/cars";
-import Link from "next/link";
-import Pagination from "../common/Pagination";
-import Slider from "rc-slider";
+'use client';
+import React, { useState } from 'react';
+import Image from 'next/image';
+import SelectComponent from '../common/SelectComponent';
+import { cars } from '@/data/cars';
+import Link from 'next/link';
+import Pagination from '../common/Pagination';
+import Slider from 'rc-slider';
 
 export default function Listings6() {
   const [price, setPrice] = useState([5000, 35000]);
-  const handlePrice = (value) => {
+  const handlePrice = value => {
     setPrice(value);
   };
   return (
@@ -58,27 +58,21 @@ export default function Listings6() {
                     <div className="form_boxes">
                       <label>Location</label>
 
-                      <SelectComponent
-                        options={["New York", "Los Vegas", "California"]}
-                      />
+                      <SelectComponent options={['New York', 'Los Vegas', 'California']} />
                     </div>
                   </div>
                   <div className="col-lg-7">
                     <div className="form_boxes">
                       <label>Search within</label>
 
-                      <SelectComponent
-                        options={["200 miles", "200 miles", "200 miles"]}
-                      />
+                      <SelectComponent options={['200 miles', '200 miles', '200 miles']} />
                     </div>
                   </div>
                   <div className="col-lg-5">
                     <div className="form_boxes">
                       <label>Zip Code</label>
 
-                      <SelectComponent
-                        options={["02111", "02111", "02111", "02111"]}
-                      />
+                      <SelectComponent options={['02111', '02111', '02111', '02111']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
@@ -86,12 +80,7 @@ export default function Listings6() {
                       <label>Condition</label>
 
                       <SelectComponent
-                        options={[
-                          "New and Used",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
+                        options={['New and Used', 'New York', 'Los Vegas', 'California']}
                       />
                     </div>
                   </div>
@@ -132,12 +121,7 @@ export default function Listings6() {
                       <label>Make</label>
 
                       <SelectComponent
-                        options={[
-                          "Add Make",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
+                        options={['Add Make', 'New York', 'Los Vegas', 'California']}
                       />
                     </div>
                   </div>
@@ -146,12 +130,7 @@ export default function Listings6() {
                       <label>Model</label>
 
                       <SelectComponent
-                        options={[
-                          "Add Model",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
+                        options={['Add Model', 'New York', 'Los Vegas', 'California']}
                       />
                     </div>
                   </div>
@@ -159,18 +138,14 @@ export default function Listings6() {
                     <div className="form_boxes">
                       <label>Min year</label>
 
-                      <SelectComponent
-                        options={["2019", "2020", "2021", "2022"]}
-                      />
+                      <SelectComponent options={['2019', '2020', '2021', '2022']} />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form_boxes">
                       <label>Max year</label>
 
-                      <SelectComponent
-                        options={["2023", "2020", "2021", "2022"]}
-                      />
+                      <SelectComponent options={['2023', '2020', '2021', '2022']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
@@ -178,12 +153,7 @@ export default function Listings6() {
                       <label>Mileage</label>
 
                       <SelectComponent
-                        options={[
-                          "Any Mileage",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
+                        options={['Any Mileage', 'New York', 'Los Vegas', 'California']}
                       />
                     </div>
                   </div>
@@ -192,22 +162,14 @@ export default function Listings6() {
                       <label>Drive Type</label>
 
                       <SelectComponent
-                        options={[
-                          "Any Type",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
+                        options={['Any Type', 'New York', 'Los Vegas', 'California']}
                       />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="price-box">
                       <h6 className="title">Price</h6>
-                      <form
-                        onSubmit={(e) => e.preventDefault()}
-                        className="row g-0"
-                      >
+                      <form onSubmit={e => e.preventDefault()} className="row g-0">
                         <div className="form-column col-lg-6">
                           <div className="form_boxes">
                             <label>Min price</label>
@@ -229,7 +191,7 @@ export default function Listings6() {
                           max={50000}
                           min={0}
                           defaultValue={price}
-                          onChange={(value) => handlePrice(value)}
+                          onChange={value => handlePrice(value)}
                           id="slider"
                         />
                       </div>
@@ -288,46 +250,28 @@ export default function Listings6() {
                     <div className="form_boxes">
                       <label>Exterior Color</label>
 
-                      <SelectComponent
-                        options={[
-                          "Blue",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
-                      />
+                      <SelectComponent options={['Blue', 'New York', 'Los Vegas', 'California']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="form_boxes">
                       <label>Interior Color</label>
 
-                      <SelectComponent
-                        options={[
-                          "Black",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
-                      />
+                      <SelectComponent options={['Black', 'New York', 'Los Vegas', 'California']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="form_boxes">
                       <label>Doors</label>
 
-                      <SelectComponent
-                        options={["3", "New York", "Los Vegas", "California"]}
-                      />
+                      <SelectComponent options={['3', 'New York', 'Los Vegas', 'California']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="form_boxes">
                       <label>Cylinders</label>
 
-                      <SelectComponent
-                        options={["6", "New York", "Los Vegas", "California"]}
-                      />
+                      <SelectComponent options={['6', 'New York', 'Los Vegas', 'California']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
@@ -383,7 +327,7 @@ export default function Listings6() {
           <div className="col-xl-9 col-md-12 col-sm-12">
             <div className="text-box">
               <div className="text">Showing 1 to 16 of 1559 vehicles</div>
-              <form onSubmit={(e) => e.preventDefault()}>
+              <form onSubmit={e => e.preventDefault()}>
                 <div className="form_boxes v3">
                   <small>Sort by</small>
                   <div className="drop-menu height-auto">
@@ -392,7 +336,7 @@ export default function Listings6() {
                       <i className="fa fa-angle-down" />
                     </div>
                     <input type="hidden" required name="gender" />
-                    <ul className="dropdown" style={{ display: "none" }}>
+                    <ul className="dropdown" style={{ display: 'none' }}>
                       <li>Audi</li>
                       <li>Honda</li>
                     </ul>
@@ -401,21 +345,13 @@ export default function Listings6() {
               </form>
             </div>
             <div className="row wow fadeInUp">
-              {cars.map((car) => (
-                <div
-                  key={car.id}
-                  className="car-block-four col-lg-4 col-md-6 col-sm-12"
-                >
+              {cars.map(car => (
+                <div key={car.id} className="car-block-four col-lg-4 col-md-6 col-sm-12">
                   <div className="inner-box">
                     <div className={car.imgBoxClass}>
                       <figure className="image">
                         <Link href={`/inventory-page-single-v1/${car.id}`}>
-                          <Image
-                            alt={car.alt}
-                            src={car.imgSrc}
-                            width={329}
-                            height={220}
-                          />
+                          <Image alt={car.alt} src={car.imgSrc} width={329} height={220} />
                         </Link>
                       </figure>
                       {car.icon && <span>{car.icon}</span>}
@@ -443,9 +379,7 @@ export default function Listings6() {
                     </div>
                     <div className="content-box">
                       <h6 className="title">
-                        <Link href={`/inventory-page-single-v1/${car.id}`}>
-                          {car.title}
-                        </Link>
+                        <Link href={`/inventory-page-single-v1/${car.id}`}>{car.title}</Link>
                       </h6>
                       <div className="text">{car.description}</div>
                       <ul>
@@ -462,10 +396,7 @@ export default function Listings6() {
                       <div className="btn-box">
                         <span>{car.price}</span>
                         <small>{car.discountPrice}</small>
-                        <Link
-                          href={`/inventory-page-single-v1/${car.id}`}
-                          className="details"
-                        >
+                        <Link href={`/inventory-page-single-v1/${car.id}`} className="details">
                           {car.btnDetails}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

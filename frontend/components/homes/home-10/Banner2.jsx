@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 export default function Banner2() {
   return (
     <section className="boxcar-pricing-section-six bg-1">
@@ -12,12 +12,7 @@ export default function Banner2() {
               <div className="image-box">
                 <figure className="image">
                   <a href="#">
-                    <Image
-                      alt=""
-                      src="/images/resource/pricing6-1.jpg"
-                      width={567}
-                      height={500}
-                    />
+                    <Image alt="" src="/images/resource/pricing6-1.jpg" width={567} height={500} />
                   </a>
                 </figure>
               </div>

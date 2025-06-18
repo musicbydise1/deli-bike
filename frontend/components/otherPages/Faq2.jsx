@@ -1,5 +1,5 @@
-import React from "react";
-import Accordion from "../common/Accordion";
+import React from 'react';
+import Accordion from '../common/Accordion';
 
 export default function Faq2() {
   return (

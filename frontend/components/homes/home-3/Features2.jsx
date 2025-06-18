@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import ModalVideo from "react-modal-video";
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from 'react';
+import ModalVideo from 'react-modal-video';
+import Image from 'next/image';
+import Link from 'next/link';
 export default function Features2() {
   const [isOpen, setOpen] = useState(false);
   return (
@@ -16,18 +16,9 @@ export default function Features2() {
               <div className="inner-column wow fadeInUp">
                 <div className="image-box">
                   <figure className="image">
-                    <Image
-                      alt=""
-                      src="/images/resource/pricing1-1.jpg"
-                      width={836}
-                      height={700}
-                    />
+                    <Image alt="" src="/images/resource/pricing1-1.jpg" width={836} height={700} />
                   </figure>
-                  <a
-                    onClick={() => setOpen(true)}
-                    className="play-now"
-                    data-caption=""
-                  >
+                  <a onClick={() => setOpen(true)} className="play-now" data-caption="">
                     <i className="fa fa-play" aria-hidden="true" />
                     <span className="ripple" />
                   </a>
@@ -39,10 +30,9 @@ export default function Features2() {
                 <div className="boxcar-title">
                   <h2>Flexible finance for added shine</h2>
                   <div className="text">
-                    AA Car Finance allows you to get a quote without affecting
-                    your credit rating. Find a car from any dealer, and we’ll do
-                    the rest. With a large panel of 30+ lenders we can help most
-                    drivers.
+                    AA Car Finance allows you to get a quote without affecting your credit rating.
+                    Find a car from any dealer, and we’ll do the rest. With a large panel of 30+
+                    lenders we can help most drivers.
                   </div>
                 </div>
                 <Link href={`/inventory-list-01`} className="read-more">
@@ -78,7 +68,7 @@ export default function Features2() {
         isOpen={isOpen}
         videoId="AC1cREPIw_o"
         onClose={() => setOpen(false)}
-      />{" "}
+      />{' '}
     </>
   );
 }

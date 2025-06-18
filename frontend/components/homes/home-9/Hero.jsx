@@ -1,8 +1,8 @@
-"use client";
-import SelectComponent from "@/components/common/SelectComponent";
-import Link from "next/link";
-import React, { useState } from "react";
-const categories = ["All", "New", "Used"];
+'use client';
+import SelectComponent from '@/components/common/SelectComponent';
+import Link from 'next/link';
+import React, { useState } from 'react';
+const categories = ['All', 'New', 'Used'];
 export default function Hero() {
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   return (
@@ -13,7 +13,7 @@ export default function Hero() {
             <ul className="form-tabs-list wow fadeInUp" data-wow-delay="200ms">
               {categories.map((category, index) => (
                 <li
-                  className={selectedCategory == category ? "current" : ""}
+                  className={selectedCategory == category ? 'current' : ''}
                   onClick={() => setSelectedCategory(category)}
                   key={index}
                 >
@@ -22,31 +22,20 @@ export default function Hero() {
               ))}
             </ul>
             <div className="form-tab-content">
-              <div
-                className="form-tab-content wow fadeInUp"
-                data-wow-delay="300ms"
-              >
+              <div className="form-tab-content wow fadeInUp" data-wow-delay="300ms">
                 <div className="form-tab-pane current" id="tab-1">
-                  <form onSubmit={(e) => e.preventDefault()}>
+                  <form onSubmit={e => e.preventDefault()}>
                     <div className="form_boxes line-r">
-                      <SelectComponent
-                        options={["Any Models", "A3", "Accord"]}
-                      />
+                      <SelectComponent options={['Any Models', 'A3', 'Accord']} />
                     </div>
                     <div className="form_boxes line-r">
-                      <SelectComponent
-                        options={["Any Makes", "Audi", "Honda"]}
-                      />
+                      <SelectComponent options={['Any Makes', 'Audi', 'Honda']} />
                     </div>
                     <div className="form_boxes line-r">
-                      <SelectComponent
-                        options={["Any Models", "A3", "Aoccrd"]}
-                      />
+                      <SelectComponent options={['Any Models', 'A3', 'Aoccrd']} />
                     </div>
                     <div className="form_boxes">
-                      <SelectComponent
-                        options={["Any Price", "200$", "300$"]}
-                      />
+                      <SelectComponent options={['Any Price', '200$', '300$']} />
                     </div>
                     <Link href={`/inventory-list-01`} className="form-submit">
                       <button type="submit" className="theme-btn">
@@ -60,18 +49,12 @@ export default function Hero() {
             </div>
           </div>
           <div className="content-box">
-            <span className="wow fadeInUp">
-              We make finding the right car simple
-            </span>
+            <span className="wow fadeInUp">We make finding the right car simple</span>
             <h2 className="wow fadeInUp" data-wow-delay="100ms">
               Search Less. Live More.
             </h2>
             <div className="btn-box">
-              <a
-                href="#"
-                className="read-more active wow fadeInUp"
-                data-wow-delay="200ms"
-              >
+              <a href="#" className="read-more active wow fadeInUp" data-wow-delay="200ms">
                 View Inventory
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -93,11 +76,7 @@ export default function Hero() {
                   </defs>
                 </svg>
               </a>
-              <a
-                href="#"
-                className="read-more wow fadeInUp"
-                data-wow-delay="200ms"
-              >
+              <a href="#" className="read-more wow fadeInUp" data-wow-delay="200ms">
                 Contact Us
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

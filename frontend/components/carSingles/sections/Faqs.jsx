@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function Faqs() {
   const [activeTab, setActiveTab] = useState(1);
@@ -12,21 +12,15 @@ export default function Faqs() {
         <div className="inner-column">
           <ul className="widget-accordion wow fadeInUp">
             {/*Block*/}
-            <li
-              className={`accordion block  ${
-                activeTab == 1 ? "active-block" : ""
-              } `}
-            >
+            <li className={`accordion block  ${activeTab == 1 ? 'active-block' : ''} `}>
               <div
                 onClick={() => setActiveTab(1)}
-                className={`acc-btn ${activeTab == 1 ? "active" : ""} `}
+                className={`acc-btn ${activeTab == 1 ? 'active' : ''} `}
               >
                 DEngine and Transmission
                 <div className="icon fa fa-angle-down" />
               </div>
-              <div
-                className={`acc-content ${activeTab == 1 ? "current" : ""} `}
-              >
+              <div className={`acc-content ${activeTab == 1 ? 'current' : ''} `}>
                 <div className="content">
                   <div className="row">
                     <div className="list-column col-lg-6 col-md-6 col-sm-12">
@@ -67,21 +61,15 @@ export default function Faqs() {
               </div>
             </li>
             {/*Block*/}
-            <li
-              className={`accordion block  ${
-                activeTab == 2 ? "active-block" : ""
-              } `}
-            >
+            <li className={`accordion block  ${activeTab == 2 ? 'active-block' : ''} `}>
               <div
                 onClick={() => setActiveTab(2)}
-                className={`acc-btn ${activeTab == 2 ? "active" : ""} `}
+                className={`acc-btn ${activeTab == 2 ? 'active' : ''} `}
               >
                 Dimensions &amp; Capacity
                 <div className="icon fa fa-angle-down" />
               </div>
-              <div
-                className={`acc-content ${activeTab == 2 ? "current" : ""} `}
-              >
+              <div className={`acc-content ${activeTab == 2 ? 'current' : ''} `}>
                 <div className="content">
                   <div className="row">
                     <div className="list-column col-lg-6 col-md-6 col-sm-12">
@@ -122,21 +110,15 @@ export default function Faqs() {
               </div>
             </li>
             {/*Block*/}
-            <li
-              className={`accordion block v2 ${
-                activeTab == 3 ? "active-block " : ""
-              } `}
-            >
+            <li className={`accordion block v2 ${activeTab == 3 ? 'active-block ' : ''} `}>
               <div
                 onClick={() => setActiveTab(3)}
-                className={`acc-btn ${activeTab == 3 ? "active" : ""} `}
+                className={`acc-btn ${activeTab == 3 ? 'active' : ''} `}
               >
                 Miscellaneous
                 <div className="icon fa fa-angle-down" />
               </div>
-              <div
-                className={`acc-content ${activeTab == 3 ? "current" : ""} `}
-              >
+              <div className={`acc-content ${activeTab == 3 ? 'current' : ''} `}>
                 <div className="content">
                   <div className="row">
                     <div className="list-column col-lg-6 col-md-6 col-sm-12">

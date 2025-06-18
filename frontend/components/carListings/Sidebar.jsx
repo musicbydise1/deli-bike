@@ -1,11 +1,11 @@
-"use client";
-import React, { useState } from "react";
-import SelectComponent from "../common/SelectComponent";
-import Image from "next/image";
-import Slider from "rc-slider";
+'use client';
+import React, { useState } from 'react';
+import SelectComponent from '../common/SelectComponent';
+import Image from 'next/image';
+import Slider from 'rc-slider';
 export default function Sidebar() {
   const [price, setPrice] = useState([5000, 35000]);
-  const handlePrice = (value) => {
+  const handlePrice = value => {
     setPrice(value);
   };
   return (
@@ -15,12 +15,7 @@ export default function Sidebar() {
         <div className="fixed-sidebar-title">
           <h3>More Filter</h3>
           <a href="#" title="" className="close-filters">
-            <Image
-              alt=""
-              src="/images/icons/close.svg"
-              width={30}
-              height={30}
-            />
+            <Image alt="" src="/images/icons/close.svg" width={30} height={30} />
           </a>
         </div>
         <div className="inventory-sidebar">
@@ -30,25 +25,21 @@ export default function Sidebar() {
                 <div className="form_boxes">
                   <label>Location</label>
 
-                  <SelectComponent
-                    options={["New York", "Los Vegas", "California"]}
-                  />
+                  <SelectComponent options={['New York', 'Los Vegas', 'California']} />
                 </div>
               </div>
               <div className="col-lg-7">
                 <div className="form_boxes">
                   <label>Search within</label>
 
-                  <SelectComponent options={["200 miles", "", "200 miles"]} />
+                  <SelectComponent options={['200 miles', '', '200 miles']} />
                 </div>
               </div>
               <div className="col-lg-5">
                 <div className="form_boxes">
                   <label>Zip Code</label>
 
-                  <SelectComponent
-                    options={["02111", "02111", "02111", "02111"]}
-                  />
+                  <SelectComponent options={['02111', '02111', '02111', '02111']} />
                 </div>
               </div>
               <div className="col-lg-12">
@@ -56,12 +47,7 @@ export default function Sidebar() {
                   <label>Condition</label>
 
                   <SelectComponent
-                    options={[
-                      "New and Used",
-                      "New York",
-                      "Los Vegas",
-                      "California",
-                    ]}
+                    options={['New and Used', 'New York', 'Los Vegas', 'California']}
                   />
                 </div>
               </div>
@@ -101,37 +87,28 @@ export default function Sidebar() {
                 <div className="form_boxes">
                   <label>Make</label>
 
-                  <SelectComponent
-                    options={["New York", "Los Vegas", "California"]}
-                  />
+                  <SelectComponent options={['New York', 'Los Vegas', 'California']} />
                 </div>
               </div>
               <div className="col-lg-12">
                 <div className="form_boxes">
                   <label>Model</label>
 
-                  <SelectComponent
-                    options={[
-                      "Add Model",
-                      "New York",
-                      "Los Vegas",
-                      "California",
-                    ]}
-                  />
+                  <SelectComponent options={['Add Model', 'New York', 'Los Vegas', 'California']} />
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="form_boxes">
                   <label>Min year</label>
 
-                  <SelectComponent options={["2019", "2020", "2021", "2022"]} />
+                  <SelectComponent options={['2019', '2020', '2021', '2022']} />
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="form_boxes">
                   <label>Max year</label>
 
-                  <SelectComponent options={["2023", "2020", "2021", "2022"]} />
+                  <SelectComponent options={['2023', '2020', '2021', '2022']} />
                 </div>
               </div>
               <div className="col-lg-12">
@@ -139,12 +116,7 @@ export default function Sidebar() {
                   <label>Mileage</label>
 
                   <SelectComponent
-                    options={[
-                      "Any Mileage",
-                      "New York",
-                      "Los Vegas",
-                      "California",
-                    ]}
+                    options={['Any Mileage', 'New York', 'Los Vegas', 'California']}
                   />
                 </div>
               </div>
@@ -152,23 +124,13 @@ export default function Sidebar() {
                 <div className="form_boxes">
                   <label>Drive Type</label>
 
-                  <SelectComponent
-                    options={[
-                      "Any Type",
-                      "New York",
-                      "Los Vegas",
-                      "California",
-                    ]}
-                  />
+                  <SelectComponent options={['Any Type', 'New York', 'Los Vegas', 'California']} />
                 </div>
               </div>
               <div className="col-lg-12">
                 <div className="price-box">
                   <h6 className="title">Price</h6>
-                  <form
-                    onSubmit={(e) => e.preventDefault()}
-                    className="row g-0"
-                  >
+                  <form onSubmit={e => e.preventDefault()} className="row g-0">
                     <div className="form-column col-lg-6">
                       <div className="form_boxes">
                         <label>Min price</label>
@@ -189,7 +151,7 @@ export default function Sidebar() {
                       max={50000}
                       min={0}
                       defaultValue={price}
-                      onChange={(value) => handlePrice(value)}
+                      onChange={value => handlePrice(value)}
                       id="slider"
                     />
                   </div>
@@ -248,36 +210,28 @@ export default function Sidebar() {
                 <div className="form_boxes">
                   <label>Exterior Color</label>
 
-                  <SelectComponent
-                    options={["Blue", "New York", "Los Vegas", "California"]}
-                  />
+                  <SelectComponent options={['Blue', 'New York', 'Los Vegas', 'California']} />
                 </div>
               </div>
               <div className="col-lg-12">
                 <div className="form_boxes">
                   <label>Interior Color</label>
 
-                  <SelectComponent
-                    options={["Black", "New York", "Los Vegas", "California"]}
-                  />
+                  <SelectComponent options={['Black', 'New York', 'Los Vegas', 'California']} />
                 </div>
               </div>
               <div className="col-lg-12">
                 <div className="form_boxes">
                   <label>Doors</label>
 
-                  <SelectComponent
-                    options={["3", "New York", "Los Vegas", "California"]}
-                  />
+                  <SelectComponent options={['3', 'New York', 'Los Vegas', 'California']} />
                 </div>
               </div>
               <div className="col-lg-12">
                 <div className="form_boxes">
                   <label>Cylinders</label>
 
-                  <SelectComponent
-                    options={["6", "New York", "Los Vegas", "California"]}
-                  />
+                  <SelectComponent options={['6', 'New York', 'Los Vegas', 'California']} />
                 </div>
               </div>
               <div className="col-lg-12">

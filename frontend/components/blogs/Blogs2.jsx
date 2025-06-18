@@ -1,7 +1,7 @@
-import React from "react";
-import Image from "next/image";
-import { blogPosts4 } from "@/data/blogs";
-import Link from "next/link";
+import React from 'react';
+import Image from 'next/image';
+import { blogPosts4 } from '@/data/blogs';
+import Link from 'next/link';
 export default function Blogs2() {
   return (
     <section className="blog-section-four layout-radius">
@@ -21,7 +21,7 @@ export default function Blogs2() {
           <h2>Blog List</h2>
         </div>
         <div className="row">
-        <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12">
+          <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12">
             <div className="inner-column-two">
               {blogPosts4.map((post, index) => (
                 <div key={index} className="blog-block-four">
@@ -29,12 +29,7 @@ export default function Blogs2() {
                     <div className="image-box">
                       <figure className="image">
                         <Link href={`/blog-single/${post.id}`}>
-                          <Image
-                            alt={post.alt}
-                            width={400}
-                            height={400}
-                            src={post.imgSrc}
-                          />
+                          <Image alt={post.alt} width={400} height={400} src={post.imgSrc} />
                         </Link>
                       </figure>
                       <span className="date">{post.date}</span>
@@ -45,15 +40,10 @@ export default function Blogs2() {
                         <li>{post.datePublished}</li>
                       </ul>
                       <h6 className="title">
-                        <Link href={`/blog-single/${post.id}`}>
-                          {post.title}
-                        </Link>
+                        <Link href={`/blog-single/${post.id}`}>{post.title}</Link>
                       </h6>
                       <div className="text">{post.text}</div>
-                      <Link
-                        href={`/blog-single/${post.id}`}
-                        className="btn-two"
-                      >
+                      <Link href={`/blog-single/${post.id}`} className="btn-two">
                         Read More
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -119,17 +109,10 @@ export default function Blogs2() {
                 {/* pos-block */}
                 <div className="pos-block">
                   <div className="inner-box">
-                    <Image
-                      width={70}
-                      height={70}
-                      src="/images/resource/post1-1.jpg"
-                      alt=""
-                    />
+                    <Image width={70} height={70} src="/images/resource/post1-1.jpg" alt="" />
                     <div className="content-box">
                       <h6 className="title">
-                        <a href="#">
-                          Battle of the SUVs - Kia Sportage vs Hyundai Tuc...
-                        </a>
+                        <a href="#">Battle of the SUVs - Kia Sportage vs Hyundai Tuc...</a>
                       </h6>
                       <span>December 2, 2023</span>
                     </div>
@@ -138,12 +121,7 @@ export default function Blogs2() {
                 {/* pos-block */}
                 <div className="pos-block">
                   <div className="inner-box">
-                    <Image
-                      width={70}
-                      height={70}
-                      src="/images/resource/post1-2.jpg"
-                      alt=""
-                    />
+                    <Image width={70} height={70} src="/images/resource/post1-2.jpg" alt="" />
                     <div className="content-box">
                       <h6 className="title">
                         <a href="#">The Best Car Boot Sales In London</a>
@@ -155,12 +133,7 @@ export default function Blogs2() {
                 {/* pos-block */}
                 <div className="pos-block">
                   <div className="inner-box">
-                    <Image
-                      width={70}
-                      height={70}
-                      src="/images/resource/post1-3.jpg"
-                      alt=""
-                    />
+                    <Image width={70} height={70} src="/images/resource/post1-3.jpg" alt="" />
                     <div className="content-box">
                       <h6 className="title">
                         <a href="#">

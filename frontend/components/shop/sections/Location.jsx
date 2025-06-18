@@ -1,12 +1,11 @@
-import React from "react";
+import React from 'react';
 
 export default function Location() {
   return (
     <>
       <h4 className="title">Location</h4>
       <div className="text">
-        Ford Shirley, 361 - 369 Stratford Road, Shirley, Solihull, B90 3BS Open
-        today 9am - 6pm
+        Ford Shirley, 361 - 369 Stratford Road, Shirley, Solihull, B90 3BS Open today 9am - 6pm
       </div>
       <a href="#" className="brand-btn">
         Get Directions
@@ -25,12 +24,7 @@ export default function Location() {
           </g>
           <defs>
             <clipPath id="clip0_881_14440">
-              <rect
-                width={14}
-                height={14}
-                fill="white"
-                transform="translate(0.5)"
-              />
+              <rect width={14} height={14} fill="white" transform="translate(0.5)" />
             </clipPath>
           </defs>
         </svg>

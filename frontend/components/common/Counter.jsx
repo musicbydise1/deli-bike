@@ -1,50 +1,53 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
+'use client';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 const Counter = ({ parentClass, min = 0, max }) => {
-  const targetElement = useRef();
+  const targetElement = useRef(null);
   const [counted, setCounted] = useState(min);
 
-  const startCountup = () => {
+  // делаем функцию мемоизированной, чтобы ее можно было безопасно добавить в deps
+  const startCountup = useCallback(() => {
+    const step = Math.ceil(max / 20);
     const intervalId = setInterval(() => {
-      setCounted((prevCount) => {
-        const tempCount = prevCount + Math.ceil(max / 20);
-        if (tempCount >= max) {
+      setCounted(prev => {
+        const next = prev + step;
+        if (next >= max) {
           clearInterval(intervalId);
           return max;
         }
-        return tempCount;
+        return next;
       });
     }, 50);
-  };
+  }, [max]);
 
   useEffect(() => {
-    const handleIntersection = (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          startCountup();
-          observer.unobserve(entry.target);
-        }
-      });
-    };
+    const element = targetElement.current; // сохраняем «снимок» ref
 
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
-    };
+    if (!element) return;
 
-    const observer = new IntersectionObserver(handleIntersection, options);
-    if (targetElement.current) {
-      observer.observe(targetElement.current);
-    }
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            startCountup();
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5,
+      },
+    );
+
+    observer.observe(element);
 
     return () => {
-      if (targetElement.current) {
-        observer.unobserve(targetElement.current);
-      }
+      observer.unobserve(element); // используем сохранённый element
+      observer.disconnect();
     };
-  }, []);
+  }, [startCountup]); // effect перезапустится только если изменится startCountup (=> max)
 
   return (
     <span ref={targetElement} className={parentClass}>

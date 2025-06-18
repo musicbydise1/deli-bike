@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 export default function Replay() {
   return (
     <>
-      {" "}
+      {' '}
       <h6 className="title">Leave a Reply</h6>
       <div className="text">
         Your email address will not be published. Required fields are marked *

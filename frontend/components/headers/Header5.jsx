@@ -1,26 +1,23 @@
-"use client";
-import React, { useState } from "react";
-import Nav from "./Nav";
-import Link from "next/link";
-import Image from "next/image";
-import { carItemsSearch } from "@/data/cars";
+'use client';
+import React, { useState } from 'react';
+import Nav from './Nav';
+import Link from 'next/link';
+import Image from 'next/image';
+import { carItemsSearch } from '@/data/cars';
 export default function Header5() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleFocus = () => {
-    document.getElementById("box-content-search").classList.add("active");
-    document
-      .getElementById("box-content-search")
-      .closest(".layout-search")
-      .classList.add("active");
+    document.getElementById('box-content-search').classList.add('active');
+    document.getElementById('box-content-search').closest('.layout-search').classList.add('active');
   };
 
   const handleBlur = () => {
-    document.getElementById("box-content-search").classList.remove("active");
+    document.getElementById('box-content-search').classList.remove('active');
     document
-      .getElementById("box-content-search")
-      .closest(".layout-search")
-      .classList.remove("active");
+      .getElementById('box-content-search')
+      .closest('.layout-search')
+      .classList.remove('active');
   };
   return (
     <header className="boxcar-header header-style-v1 home-8">
@@ -66,30 +63,21 @@ export default function Header5() {
                     required
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={e => setSearchQuery(e.target.value)}
                   />
                 </div>
                 <div className="box-content-search" id="box-content-search">
                   <ul className="box-car-search">
                     {carItemsSearch
-                      .filter((elm) =>
-                        elm.title
-                          .toLowerCase()
-                          .includes(searchQuery.toLowerCase())
-                      )
-                      .map((car) => (
+                      .filter(elm => elm.title.toLowerCase().includes(searchQuery.toLowerCase()))
+                      .map(car => (
                         <li key={car.id}>
                           <Link
                             href={`/inventory-page-single-v1/${car.id}`}
                             className="car-search-item"
                           >
                             <div className="box-img">
-                              <Image
-                                alt="img"
-                                src={car.imgSrc}
-                                width={70}
-                                height={70}
-                              />
+                              <Image alt="img" src={car.imgSrc} width={70} height={70} />
                             </div>
                             <div className="info">
                               <p className="name">{car.title}</p>
@@ -99,10 +87,7 @@ export default function Header5() {
                         </li>
                       ))}
                   </ul>
-                  <Link
-                    href={`/inventory-page-single-v1`}
-                    className="btn-view-search"
-                  >
+                  <Link href={`/inventory-page-single-v1`} className="btn-view-search">
                     View Details
                     <svg
                       width={14}
@@ -196,7 +181,7 @@ export default function Header5() {
           <span className="fa fa-times" />
         </button>
         <div className="search-inner">
-          <form onSubmit={(e) => e.preventDefault()} method="post">
+          <form onSubmit={e => e.preventDefault()} method="post">
             <div className="form-group">
               <input
                 type="search"

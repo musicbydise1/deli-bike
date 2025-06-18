@@ -1,21 +1,19 @@
-"use client";
-import { carData } from "@/data/cars";
-import Slider from "react-slick";
-import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+'use client';
+import { carData } from '@/data/cars';
+import Slider from 'react-slick';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 const carBrands = [
-  { label: "Audi", isActive: true },
-  { label: "BMW", isActive: false },
-  { label: "Mercedes", isActive: false },
+  { label: 'Audi', isActive: true },
+  { label: 'BMW', isActive: false },
+  { label: 'Mercedes', isActive: false },
 ];
 export default function Cars2() {
   const [activeCategory, setActiveCategory] = useState(carBrands[0]);
   const [filtered, setFiltered] = useState([]);
   useEffect(() => {
-    setFiltered(
-      [...carData].filter((elm) => elm.brand.includes(activeCategory.label))
-    );
+    setFiltered([...carData].filter(elm => elm.brand.includes(activeCategory.label)));
   }, [activeCategory]);
 
   const slickOptions = {
@@ -110,9 +108,7 @@ export default function Cars2() {
               <button
                 key={index}
                 onClick={() => setActiveCategory(brand)}
-                className={`nav-link ${
-                  activeCategory == brand ? "active" : ""
-                }`}
+                className={`nav-link ${activeCategory == brand ? 'active' : ''}`}
               >
                 {brand.label}
               </button>
@@ -122,26 +118,14 @@ export default function Cars2() {
       </div>
       <div className="tab-content wow fadeInUp" data-wow-delay="200ms">
         <div className="tab-pane fade show active">
-          <Slider
-            {...slickOptions}
-            className="row car-slider slider-layout-1"
-            data-preview="2.3"
-          >
+          <Slider {...slickOptions} className="row car-slider slider-layout-1" data-preview="2.3">
             {filtered.map((elm, i) => (
-              <div
-                key={i}
-                className="car-block-two col-lg-4 col-md-6 col-sm-12"
-              >
+              <div key={i} className="car-block-two col-lg-4 col-md-6 col-sm-12">
                 <div className="inner-box">
                   <div className="image-box">
                     <figure className="image">
                       <Link href={`/inventory-page-single-v1/${elm.id}`}>
-                        <Image
-                          alt=""
-                          src={elm.images[0]}
-                          width={320}
-                          height={320}
-                        />
+                        <Image alt="" src={elm.images[0]} width={320} height={320} />
                       </Link>
                     </figure>
                     {elm.badge && <span>Low Mileage</span>}
@@ -169,9 +153,7 @@ export default function Cars2() {
                   </div>
                   <div className="content-box">
                     <h6 className="title">
-                      <Link href={`/inventory-page-single-v1/${elm.id}`}>
-                        {elm.title}
-                      </Link>
+                      <Link href={`/inventory-page-single-v1/${elm.id}`}>{elm.title}</Link>
                     </h6>
                     <div className="text">{elm.description}</div>
                     <ul>

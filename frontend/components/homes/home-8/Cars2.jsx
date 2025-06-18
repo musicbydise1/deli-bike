@@ -1,8 +1,8 @@
-"use client";
-import { carData } from "@/data/cars";
-import Link from "next/link";
-import Slider from "react-slick";
-import Image from "next/image";
+'use client';
+import { carData } from '@/data/cars';
+import Link from 'next/link';
+import Slider from 'react-slick';
+import Image from 'next/image';
 export default function Cars2() {
   return (
     <section className="cars-section-three pt-0">
@@ -93,29 +93,16 @@ export default function Cars2() {
           {carData.map((car, i) => (
             <div key={i} className="car-block-ten col-lg-3 col-md-6 col-sm-12">
               <div className="inner-box">
-                <div
-                  className={`image-box ${
-                    car.badge == "Great Price" ? "two" : ""
-                  }`}
-                >
+                <div className={`image-box ${car.badge == 'Great Price' ? 'two' : ''}`}>
                   <div className="slider-thumb">
                     <div className="image">
                       <Link href={`/inventory-page-single-v1/${car.id}`}>
-                        <Image
-                          alt=""
-                          src={car.images[1]}
-                          width={329}
-                          height={220}
-                        />
+                        <Image alt="" src={car.images[1]} width={329} height={220} />
                       </Link>
                     </div>
                   </div>
                   {car.badge && <span>{car.badge}</span>}
-                  <Link
-                    href={`/inventory-page-single-v1/${car.id}`}
-                    title=""
-                    className="icon-box"
-                  >
+                  <Link href={`/inventory-page-single-v1/${car.id}`} title="" className="icon-box">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="12"

@@ -1,12 +1,12 @@
-import Listings5 from "@/components/carListings/Listings5";
-import Sidebar from "@/components/carListings/Sidebar";
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import React from "react";
+import Listings5 from '@/components/carListings/Listings5';
+import Sidebar from '@/components/carListings/Sidebar';
+import Footer1 from '@/components/footers/Footer1';
+import Header1 from '@/components/headers/Header1';
+import React from 'react';
 
 export const metadata = {
-  title: "Inventory Sidebar Rows || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
+  title: 'Inventory Sidebar Rows || Boxcar - React Nextjs Car Template',
+  description: 'Boxcar - React Nextjs Car Template',
 };
 export default function InventorySidebarRowsPage() {
   return (

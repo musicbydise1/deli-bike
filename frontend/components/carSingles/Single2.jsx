@@ -1,32 +1,32 @@
-"use client";
-import Image from "next/image";
-import Slider from "react-slick";
-import RelatedCars from "./RelatedCars";
+'use client';
+import Image from 'next/image';
+import Slider from 'react-slick';
+import RelatedCars from './RelatedCars';
 
-import Overview from "./sections/Overview/Overview";
-import Description from "./sections/Description";
-import Features from "./sections/Features";
-import Faqs from "./sections/Faqs";
-import Location from "./sections/Location";
-import Financing from "./sections/Financing";
-import Review from "./sections/Review";
-import Ratings from "./sections/Ratings";
-import Replay from "./sections/Replay";
-import CommentForm from "./sections/CommentForm";
-import { Gallery, Item } from "react-photoswipe-gallery";
-import ModalVideo from "react-modal-video";
-import { useState } from "react";
-import Link from "next/link";
+import Overview from './sections/Overview/Overview';
+import Description from './sections/Description';
+import Features from './sections/Features';
+import Faqs from './sections/Faqs';
+import Location from './sections/Location';
+import Financing from './sections/Financing';
+import Review from './sections/Review';
+import Ratings from './sections/Ratings';
+import Replay from './sections/Replay';
+import CommentForm from './sections/CommentForm';
+import { Gallery, Item } from 'react-photoswipe-gallery';
+import ModalVideo from 'react-modal-video';
+import { useState } from 'react';
+import Link from 'next/link';
 const images = [
   {
-    src: "/images/resource/inventory1-6.png",
-    alt: "",
+    src: '/images/resource/inventory1-6.png',
+    alt: '',
     width: 924,
     height: 550,
   },
   {
-    src: "/images/resource/inventory1-6.png",
-    alt: "",
+    src: '/images/resource/inventory1-6.png',
+    alt: '',
     width: 924,
     height: 550,
   },
@@ -80,51 +80,29 @@ export default function Single2() {
               </li>
             </ul>
             <h2>Volvo XC90</h2>
-            <div className="text">
-              2.0 D5 PowerPulse Momentum 5dr AWD Geartronic Estate
-            </div>
+            <div className="text">2.0 D5 PowerPulse Momentum 5dr AWD Geartronic Estate</div>
             <ul className="spectes-list">
               <li>
                 <span>
-                  <Image
-                    src="/images/resource/spec1-1.svg"
-                    width={18}
-                    height={18}
-                    alt=""
-                  />
+                  <Image src="/images/resource/spec1-1.svg" width={18} height={18} alt="" />
                   2023
                 </span>
               </li>
               <li>
                 <span>
-                  <Image
-                    src="/images/resource/spec1-2.svg"
-                    width={18}
-                    height={18}
-                    alt=""
-                  />
+                  <Image src="/images/resource/spec1-2.svg" width={18} height={18} alt="" />
                   35,000 miles
                 </span>
               </li>
               <li>
                 <span>
-                  <Image
-                    src="/images/resource/spec1-3.svg"
-                    width={18}
-                    height={18}
-                    alt=""
-                  />
+                  <Image src="/images/resource/spec1-3.svg" width={18} height={18} alt="" />
                   Automatic
                 </span>
               </li>
               <li>
                 <span>
-                  <Image
-                    src="/images/resource/spec1-4.svg"
-                    width={18}
-                    height={18}
-                    alt=""
-                  />
+                  <Image src="/images/resource/spec1-4.svg" width={18} height={18} alt="" />
                   Diesel
                 </span>
               </li>
@@ -134,23 +112,13 @@ export default function Single2() {
                 <div className="share-btn">
                   <span>Share</span>
                   <a href="#" className="share">
-                    <Image
-                      src="/images/resource/share.svg"
-                      width={12}
-                      height={12}
-                      alt=""
-                    />
+                    <Image src="/images/resource/share.svg" width={12} height={12} alt="" />
                   </a>
                 </div>
                 <div className="share-btn">
                   <span>Save</span>
                   <a href="#" className="share">
-                    <Image
-                      src="/images/resource/share1-1.svg"
-                      width={12}
-                      height={12}
-                      alt=""
-                    />
+                    <Image src="/images/resource/share1-1.svg" width={12} height={12} alt="" />
                   </a>
                 </div>
               </div>
@@ -169,12 +137,7 @@ export default function Single2() {
                         {images.map(({ src, alt, width, height }, index) => (
                           <div key={index} className="image-box d-block">
                             <figure className="image">
-                              <Item
-                                original={src}
-                                thumbnail={src}
-                                width={width}
-                                height={height}
-                              >
+                              <Item original={src} thumbnail={src} width={width} height={height}>
                                 {({ ref, open }) => (
                                   <a onClick={open}>
                                     <Image
@@ -182,8 +145,8 @@ export default function Single2() {
                                       alt={alt}
                                       src={src}
                                       style={{
-                                        height: "100%",
-                                        objectFit: "cover",
+                                        height: '100%',
+                                        objectFit: 'cover',
                                       }}
                                       width={width}
                                       height={height}
@@ -241,7 +204,7 @@ export default function Single2() {
                             </Item>
                           </li>
                         </ul>
-                      </div>{" "}
+                      </div>{' '}
                     </Gallery>
                   </div>
                 </div>
@@ -288,39 +251,22 @@ export default function Single2() {
                   <small>Instant Saving : $7.000</small>
                   <div className="btn-box">
                     <a href="#" className="side-btn">
-                      <Image
-                        src="/images/resource/tag.svg"
-                        width={19}
-                        height={18}
-                        alt=""
-                      />
+                      <Image src="/images/resource/tag.svg" width={19} height={18} alt="" />
                       Make An Offer Price
                     </a>
                     <a href="#" className="side-btn two">
-                      <Image
-                        src="/images/resource/tag1-1.svg"
-                        width={18}
-                        height={18}
-                        alt=""
-                      />
+                      <Image src="/images/resource/tag1-1.svg" width={18} height={18} alt="" />
                       Schedule Test Drive
                     </a>
                   </div>
                 </div>
                 <div className="contact-box">
                   <div className="icon-box">
-                    <Image
-                      src="/images/resource/volvo.svg"
-                      width={55}
-                      height={54}
-                      alt=""
-                    />
+                    <Image src="/images/resource/volvo.svg" width={55} height={54} alt="" />
                   </div>
                   <div className="content-box">
                     <h6 className="title">Volvo Cars Marin</h6>
-                    <div className="text">
-                      619 Francisco Blvd E, San Rafael, CA 94901
-                    </div>
+                    <div className="text">619 Francisco Blvd E, San Rafael, CA 94901</div>
                     <ul className="contact-list">
                       <li>
                         <a href="#">
@@ -426,14 +372,14 @@ export default function Single2() {
         {/* cars-section-three */}
         <RelatedCars />
         {/* End shop section two */}
-      </section>{" "}
+      </section>{' '}
       <ModalVideo
         channel="youtube"
         youtube={{ mute: 0, autoplay: 0 }}
         isOpen={isOpen}
         videoId="7e90gBu4pas"
         onClose={() => setOpen(false)}
-      />{" "}
+      />{' '}
     </>
   );
 }

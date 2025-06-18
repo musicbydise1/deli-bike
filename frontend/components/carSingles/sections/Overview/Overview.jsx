@@ -1,41 +1,41 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import RentalPeriodDropdown from "./RentalPeriodDropdown";
-import WarrantyDropdown from "./WarrantyDropdown";
-import ExtendedWarrantyToggle from "./ExtendedWarrantyToggle";
-import DepositInfo from "./DepositInfo";
-import AdditionalOptionsSelector from "./AdditionalOptionsSelector";
-import BatterySelector from "./BatterySelector";
-import { useTariff } from "@/context/TariffContext";
-import { getDaysForRentalPeriod, getDepositPrice } from "@/utils/pricingUtils";
-import { depositPricing } from "@/data/pricing";
-import {useUser} from "@/context/UserContext";
-import {formatPrice} from "@/utils/sidePricingUtils";
+'use client';
+import React, { useState, useEffect } from 'react';
+import RentalPeriodDropdown from './RentalPeriodDropdown';
+import WarrantyDropdown from './WarrantyDropdown';
+import ExtendedWarrantyToggle from './ExtendedWarrantyToggle';
+import DepositInfo from './DepositInfo';
+import AdditionalOptionsSelector from './AdditionalOptionsSelector';
+import BatterySelector from './BatterySelector';
+import { useTariff } from '@/context/TariffContext';
+import { getDaysForRentalPeriod, getDepositPrice } from '@/utils/pricingUtils';
+import { depositPricing } from '@/data/pricing';
+import { useUser } from '@/context/UserContext';
+import { formatPrice } from '@/utils/sidePricingUtils';
 
 export default function Overview({ price, accessories, warrantyOptions }) {
   // Читаем роль из cookies
-  const [roleCookie, setRoleCookie] = useState("courier");
+  const [roleCookie, setRoleCookie] = useState('courier');
   // Читаем location из cookies (по умолчанию "kz")
-  const { location, language } = useUser()
+  const { location, language } = useUser();
   const [locationCookie, setLocationCookie] = useState();
 
   useEffect(() => {
-    const cookies = document.cookie.split(";").map(cookie => cookie.trim());
-    const roleCookieFound = cookies.find(cookie => cookie.startsWith("userRole="));
+    const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+    const roleCookieFound = cookies.find(cookie => cookie.startsWith('userRole='));
     if (roleCookieFound) {
-      const role = roleCookieFound.split("=")[1];
+      const role = roleCookieFound.split('=')[1];
       setRoleCookie(role);
     }
   }, []);
 
   useEffect(() => {
-    const cookies = document.cookie.split(";").map(cookie => cookie.trim());
-    const locCookie = cookies.find(cookie => cookie.startsWith("location="));
+    const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+    const locCookie = cookies.find(cookie => cookie.startsWith('location='));
     if (locCookie) {
-      const loc = locCookie.split("=")[1];
+      const loc = locCookie.split('=')[1];
       setLocationCookie(loc);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     // console.log("Updated currency:", location);
@@ -45,97 +45,102 @@ export default function Overview({ price, accessories, warrantyOptions }) {
     // console.log("Updated language:", language);
   }, [language]);
 
-
-
   const role = roleCookie;
-  const currency = location || "kz";
-
+  const currency = location || 'kz';
 
   // Вычисляем варианты аренды
   const pricesArr = Array.isArray(price) ? price : price?.prices || [];
 
   let myRoleId = 0;
   let myCurrencyId = 0;
-  if (roleCookie === "courier") {
+  if (roleCookie === 'courier') {
     myRoleId = 1;
-  } else { myRoleId = 2; }
+  } else {
+    myRoleId = 2;
+  }
 
-  if (currency === "kz") {
+  if (currency === 'kz') {
     myCurrencyId = 1;
-  } else { myCurrencyId = 2; }
+  } else {
+    myCurrencyId = 2;
+  }
 
   const computedRentalPeriodOptions = pricesArr
-      // Фильтруем записи по совпадению role.id с roleCookie
-      .filter(item => {
-        return item.role && item.currency && String(item.role.id) === String(myRoleId) && String(item.currency.id) === String(myCurrencyId);
-      })
-      .map(item => {
-        const priceCategory = item.priceCategory;
-        // Значение по умолчанию – оригинальное название
-        let translatedName = priceCategory.name;
+    // Фильтруем записи по совпадению role.id с roleCookie
+    .filter(item => {
+      return (
+        item.role &&
+        item.currency &&
+        String(item.role.id) === String(myRoleId) &&
+        String(item.currency.id) === String(myCurrencyId)
+      );
+    })
+    .map(item => {
+      const priceCategory = item.priceCategory;
+      // Значение по умолчанию – оригинальное название
+      let translatedName = priceCategory.name;
 
-        // Если есть переводы, ищем перевод с нужным языком и полем "name"
-        if (priceCategory.translations && Array.isArray(priceCategory.translations)) {
-          const translationObj = priceCategory.translations.find(
-              t => t.language === language && t.field === "name"
-          );
-          if (translationObj) {
-            translatedName = translationObj.translation;
-          }
+      // Если есть переводы, ищем перевод с нужным языком и полем "name"
+      if (priceCategory.translations && Array.isArray(priceCategory.translations)) {
+        const translationObj = priceCategory.translations.find(
+          t => t.language === language && t.field === 'name',
+        );
+        if (translationObj) {
+          translatedName = translationObj.translation;
         }
+      }
 
-        return {
-          label: `${translatedName} – ${Math.round(item.price).toLocaleString("ru-RU")} ${
-              currency === "by" ? "руб" : "₸"
-          }`,
-          value: priceCategory.rental_duration,
-          price: item.price,
-          categoryName: translatedName,
-        };
-      });
+      return {
+        label: `${translatedName} – ${Math.round(item.price).toLocaleString('ru-RU')} ${
+          currency === 'by' ? 'руб' : '₸'
+        }`,
+        value: priceCategory.rental_duration,
+        price: item.price,
+        categoryName: translatedName,
+      };
+    });
 
   // console.log(computedRentalPeriodOptions);
 
-  const accessoriesArr = Array.isArray(accessories)
-      ? accessories
-      : accessories?.accessories || [];
-
+  const accessoriesArr = Array.isArray(accessories) ? accessories : accessories?.accessories || [];
 
   const computedAccessoriesPeriodOptions = accessoriesArr
-      .map(item => {
-        // Фильтруем цены аксессуара по нужным критериям
-        const validPrices = item.prices.filter(price => {
-          // Если у цены нет role или currency – считаем её валидной
-          if (!price.role || !price.currency) return true;
-          return String(price.role.id) === String(myRoleId) &&
-              String(price.currency.id) === String(myCurrencyId);
-        });
+    .map(item => {
+      // Фильтруем цены аксессуара по нужным критериям
+      const validPrices = item.prices.filter(price => {
+        // Если у цены нет role или currency – считаем её валидной
+        if (!price.role || !price.currency) return true;
+        return (
+          String(price.role.id) === String(myRoleId) &&
+          String(price.currency.id) === String(myCurrencyId)
+        );
+      });
 
-        // Если ни одна цена не соответствует (если это необходимо), исключаем аксессуар
-        if (validPrices.length === 0) return null;
+      // Если ни одна цена не соответствует (если это необходимо), исключаем аксессуар
+      if (validPrices.length === 0) return null;
 
-        // Например, выбираем первую подходящую цену
-        const chosenPrice = validPrices[0];
+      // Например, выбираем первую подходящую цену
+      const chosenPrice = validPrices[0];
 
-        // Определяем название аксессуара – если есть переводы, берем перевод с нужным языком и полем "name"
-        let translatedName = item.name;
-        if (item.translations && Array.isArray(item.translations)) {
-          const translationObj = item.translations.find(
-              t => t.language === language && t.field === "name"
-          );
-          if (translationObj) {
-            translatedName = translationObj.translation;
-          }
+      // Определяем название аксессуара – если есть переводы, берем перевод с нужным языком и полем "name"
+      let translatedName = item.name;
+      if (item.translations && Array.isArray(item.translations)) {
+        const translationObj = item.translations.find(
+          t => t.language === language && t.field === 'name',
+        );
+        if (translationObj) {
+          translatedName = translationObj.translation;
         }
+      }
 
-        return {
-          label: `${translatedName}`,
-          value: item.id,
-          price: chosenPrice.price,
-          accessoryName: translatedName,
-        };
-      })
-      .filter(item => item !== null);
+      return {
+        label: `${translatedName}`,
+        value: item.id,
+        price: chosenPrice.price,
+        accessoryName: translatedName,
+      };
+    })
+    .filter(item => item !== null);
 
   // console.log("Accessories: ", computedAccessoriesPeriodOptions);
   // console.log("accessories: ", accessoriesArr);
@@ -143,13 +148,13 @@ export default function Overview({ price, accessories, warrantyOptions }) {
   // Загрузка списка аккумуляторов
   const [batteryList, setBatteryList] = useState([]);
   useEffect(() => {
-    import("@/data/pricing")
-        .then(module => {
-          const batteryData = module.batteryPricing.find(item => item.role === role);
-          const currencyArr = batteryData ? batteryData.price[currency] || [] : [];
-          setBatteryList(currencyArr);
-        })
-        .catch(() => setBatteryList([]));
+    import('@/data/pricing')
+      .then(module => {
+        const batteryData = module.batteryPricing.find(item => item.role === role);
+        const currencyArr = batteryData ? batteryData.price[currency] || [] : [];
+        setBatteryList(currencyArr);
+      })
+      .catch(() => setBatteryList([]));
   }, [role, currency]);
 
   // Извлекаем данные из контекста тарифа
@@ -179,7 +184,7 @@ export default function Overview({ price, accessories, warrantyOptions }) {
   const days = getDaysForRentalPeriod(rentalValue);
   const deposit = getDepositPrice(rentalValue, role, currency, depositPricing);
 
-  const toggleAdditionalOption = (option) => {
+  const toggleAdditionalOption = option => {
     let updated;
     // Сравниваем по .value
     if (selectedAdditional.some(item => item.value === option.value)) {
@@ -192,7 +197,7 @@ export default function Overview({ price, accessories, warrantyOptions }) {
     setSelectedAdditional(updated);
   };
 
-  const handleSelectBattery = (batteryItem) => {
+  const handleSelectBattery = batteryItem => {
     if (selectedBattery && selectedBattery.value === batteryItem.value) {
       setSelectedBattery(null);
     } else {
@@ -200,60 +205,62 @@ export default function Overview({ price, accessories, warrantyOptions }) {
     }
   };
 
-  const format = (val) => formatPrice(val, currency);
+  const format = val => formatPrice(val, currency);
 
   return (
-      <div className="rental-container">
-        <div className="section">
-          <h4 className="section-title">
-            Аренда и гарантия. <span>На какой срок?</span>
-          </h4>
-          <RentalPeriodDropdown
-              options={computedRentalPeriodOptions}
-              selectedOption={computedRentalPeriodOptions[selectedRentalIndex]}
-              // onSelect теперь обновляет индекс
-              onSelect={(option) => setRentalPeriod(option)}
-          />
-
-          <WarrantyDropdown
-              options={warrantyOptions}
-              selectedOption={selectedWarranty}
-              onSelect={setSelectedWarranty}
-              rentalValue={rentalValue}
-              role={role}
-              currency={currency}
-          />
-
-          <ExtendedWarrantyToggle
-              extendedWarranty={selectedWarranty ? extendedWarrantyStates[selectedWarranty.value] : false}
-              onToggle={(checked) =>
-                  setExtendedWarrantyStates((prev) => ({
-                    ...prev,
-                    [selectedWarranty?.value]: checked,
-                  }))
-              }
-              rentalValue={rentalValue}
-              role={role}
-              currency={currency}
-          />
-
-          <DepositInfo deposit={deposit} currency={currency} />
-        </div>
-
-        <AdditionalOptionsSelector
-            accessories={computedAccessoriesPeriodOptions}
-            selectedAdditional={selectedAdditional}
-            onToggleOption={toggleAdditionalOption}
-            currency={currency}
+    <div className="rental-container">
+      <div className="section">
+        <h4 className="section-title">
+          Аренда и гарантия. <span>На какой срок?</span>
+        </h4>
+        <RentalPeriodDropdown
+          options={computedRentalPeriodOptions}
+          selectedOption={computedRentalPeriodOptions[selectedRentalIndex]}
+          // onSelect теперь обновляет индекс
+          onSelect={option => setRentalPeriod(option)}
         />
 
-        <BatterySelector
-            batteryList={batteryList}
-            selectedBattery={selectedBattery}
-            onSelectBattery={handleSelectBattery}
-            rentalValue={rentalValue}
-            currency={currency}
+        <WarrantyDropdown
+          options={warrantyOptions}
+          selectedOption={selectedWarranty}
+          onSelect={setSelectedWarranty}
+          rentalValue={rentalValue}
+          role={role}
+          currency={currency}
         />
+
+        <ExtendedWarrantyToggle
+          extendedWarranty={
+            selectedWarranty ? extendedWarrantyStates[selectedWarranty.value] : false
+          }
+          onToggle={checked =>
+            setExtendedWarrantyStates(prev => ({
+              ...prev,
+              [selectedWarranty?.value]: checked,
+            }))
+          }
+          rentalValue={rentalValue}
+          role={role}
+          currency={currency}
+        />
+
+        <DepositInfo deposit={deposit} currency={currency} />
       </div>
+
+      <AdditionalOptionsSelector
+        accessories={computedAccessoriesPeriodOptions}
+        selectedAdditional={selectedAdditional}
+        onToggleOption={toggleAdditionalOption}
+        currency={currency}
+      />
+
+      <BatterySelector
+        batteryList={batteryList}
+        selectedBattery={selectedBattery}
+        onSelectBattery={handleSelectBattery}
+        rentalValue={rentalValue}
+        currency={currency}
+      />
+    </div>
   );
 }

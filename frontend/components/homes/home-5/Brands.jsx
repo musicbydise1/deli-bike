@@ -1,5 +1,5 @@
-import { brandBlocks } from "@/data/brands";
-import React from "react";
+import { brandBlocks } from '@/data/brands';
+import React from 'react';
 
 export default function Brands() {
   return (

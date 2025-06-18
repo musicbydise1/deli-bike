@@ -1,8 +1,8 @@
-"use client";
-import { testiSlides } from "@/data/testimonials";
-import { useEffect, useRef, useState } from "react";
-import Slider from "react-slick";
-import Image from "next/image";
+'use client';
+import { testiSlides } from '@/data/testimonials';
+import { useEffect, useRef, useState } from 'react';
+import Slider from 'react-slick';
+import Image from 'next/image';
 export default function Testimonials() {
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
@@ -103,7 +103,7 @@ export default function Testimonials() {
                 <Slider
                   {...slickOptions}
                   asNavFor={nav2}
-                  ref={(slider) => (sliderRef1 = slider)}
+                  ref={slider => (sliderRef1 = slider)}
                   className="testi-two-slider"
                 >
                   {testiSlides.map((slide, index) => (
@@ -116,32 +116,17 @@ export default function Testimonials() {
                   {...thumbOptions}
                   infinite={false}
                   asNavFor={nav1}
-                  ref={(slider) => (sliderRef2 = slider)}
+                  ref={slider => (sliderRef2 = slider)}
                   className="testi-two-thumbs-slider inner-slide"
                 >
                   <div className="testi-two-thumb-slide">
-                    <Image
-                      alt=""
-                      src="/images/resource/thumb1.jpg"
-                      width={60}
-                      height={60}
-                    />
+                    <Image alt="" src="/images/resource/thumb1.jpg" width={60} height={60} />
                   </div>
                   <div className="testi-two-thumb-slide">
-                    <Image
-                      alt=""
-                      src="/images/resource/thumb2.jpg"
-                      width={60}
-                      height={60}
-                    />
+                    <Image alt="" src="/images/resource/thumb2.jpg" width={60} height={60} />
                   </div>
                   <div className="testi-two-thumb-slide">
-                    <Image
-                      alt=""
-                      src="/images/resource/thumb3.jpg"
-                      width={60}
-                      height={60}
-                    />
+                    <Image alt="" src="/images/resource/thumb3.jpg" width={60} height={60} />
                   </div>
                 </Slider>
               </div>

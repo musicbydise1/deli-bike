@@ -1,33 +1,33 @@
-"use client";
-import Slider from "react-slick";
-import RelatedCars from "./RelatedCars";
-import Image from "next/image";
+'use client';
+import Slider from 'react-slick';
+import RelatedCars from './RelatedCars';
+import Image from 'next/image';
 
-import Description from "./sections/Description";
-import Features from "./sections/Features";
-import Faqs from "./sections/Faqs";
-import Location from "./sections/Location";
-import Financing from "./sections/Financing";
-import Review from "./sections/Review";
-import Ratings from "./sections/Ratings";
-import Replay from "./sections/Replay";
-import CommentForm from "./sections/CommentForm";
-import { carOverview } from "@/data/carOverview";
-import Review2 from "./sections/Review2";
-import { Gallery, Item } from "react-photoswipe-gallery";
-import ModalVideo from "react-modal-video";
-import { useState } from "react";
-import Link from "next/link";
+import Description from './sections/Description';
+import Features from './sections/Features';
+import Faqs from './sections/Faqs';
+import Location from './sections/Location';
+import Financing from './sections/Financing';
+import Review from './sections/Review';
+import Ratings from './sections/Ratings';
+import Replay from './sections/Replay';
+import CommentForm from './sections/CommentForm';
+import { carOverview } from '@/data/carOverview';
+import Review2 from './sections/Review2';
+import { Gallery, Item } from 'react-photoswipe-gallery';
+import ModalVideo from 'react-modal-video';
+import { useState } from 'react';
+import Link from 'next/link';
 const images = [
   {
-    src: "/images/resource/inventory1-7.png",
-    alt: "",
+    src: '/images/resource/inventory1-7.png',
+    alt: '',
     width: 924,
     height: 550,
   },
   {
-    src: "/images/resource/inventory1-7.png",
-    alt: "",
+    src: '/images/resource/inventory1-7.png',
+    alt: '',
     width: 924,
     height: 550,
   },
@@ -94,12 +94,7 @@ export default function Single3() {
                         {images.map(({ src, alt, width, height }, index) => (
                           <div key={index} className="image-box d-block">
                             <figure className="image">
-                              <Item
-                                original={src}
-                                thumbnail={src}
-                                width={width}
-                                height={height}
-                              >
+                              <Item original={src} thumbnail={src} width={width} height={height}>
                                 {({ ref, open }) => (
                                   <a onClick={open}>
                                     <Image
@@ -115,7 +110,7 @@ export default function Single3() {
                             </figure>
                           </div>
                         ))}
-                      </Slider>{" "}
+                      </Slider>{' '}
                       <div className="content-box">
                         <ul className="video-list">
                           <li>
@@ -162,7 +157,7 @@ export default function Single3() {
                             </Item>
                           </li>
                         </ul>
-                      </div>{" "}
+                      </div>{' '}
                     </Gallery>
                   </div>
                 </div>
@@ -187,19 +182,12 @@ export default function Single3() {
                 </div>
                 <div className="contact-box-three">
                   <div className="icon-box">
-                    <Image
-                      src="/images/resource/volvo1-2.svg"
-                      width={83}
-                      height={82}
-                      alt=""
-                    />
+                    <Image src="/images/resource/volvo1-2.svg" width={83} height={82} alt="" />
                   </div>
                   <div className="content-box">
                     <div className="inner-box">
                       <h6 className="title">Volvo Cars Marin</h6>
-                      <div className="text">
-                        619 Francisco Blvd E, San Rafael, CA 94901
-                      </div>
+                      <div className="text">619 Francisco Blvd E, San Rafael, CA 94901</div>
                       <ul className="contact-list">
                         <li>
                           <a href="#">
@@ -319,9 +307,7 @@ export default function Single3() {
                 <div className="contact-box-two">
                   <div className="content-box">
                     <h2>Volvo XC90</h2>
-                    <div className="text">
-                      2.0 D5 PowerPulse Momentum 5dr AWD Geartronic Estate
-                    </div>
+                    <div className="text">2.0 D5 PowerPulse Momentum 5dr AWD Geartronic Estate</div>
                     <ul className="list">
                       <li>26,786 kms</li>
                       <li>Petrol</li>
@@ -333,21 +319,11 @@ export default function Single3() {
                   <small>Instant Saving : $7.000</small>
                   <div className="btn-box">
                     <a href="#" className="side-btn">
-                      <Image
-                        src="/images/resource/tag.svg"
-                        width={19}
-                        height={18}
-                        alt=""
-                      />
+                      <Image src="/images/resource/tag.svg" width={19} height={18} alt="" />
                       Make An Offer Price
                     </a>
                     <a href="#" className="side-btn two">
-                      <Image
-                        src="/images/resource/tag1-1.svg"
-                        width={18}
-                        height={18}
-                        alt=""
-                      />
+                      <Image src="/images/resource/tag1-1.svg" width={18} height={18} alt="" />
                       Schedule Test Drive
                     </a>
                   </div>
@@ -379,14 +355,14 @@ export default function Single3() {
         {/* cars-section-three */}
         <RelatedCars />
         {/* End shop section two */}
-      </section>{" "}
+      </section>{' '}
       <ModalVideo
         channel="youtube"
         youtube={{ mute: 0, autoplay: 0 }}
         isOpen={isOpen}
         videoId="7e90gBu4pas"
         onClose={() => setOpen(false)}
-      />{" "}
+      />{' '}
     </>
   );
 }

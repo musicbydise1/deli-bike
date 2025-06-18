@@ -1,9 +1,9 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
 
 export default function CommentForm() {
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="row">
+    <form onSubmit={e => e.preventDefault()} className="row">
       <div className="col-lg-6">
         <div className="form_boxes">
           <label>Name</label>
@@ -13,12 +13,7 @@ export default function CommentForm() {
       <div className="col-lg-6">
         <div className="form_boxes">
           <label>Email</label>
-          <input
-            required
-            type="email"
-            name="email"
-            placeholder="Creativelayers088@Gmail.Com"
-          />
+          <input required type="email" name="email" placeholder="Creativelayers088@Gmail.Com" />
         </div>
       </div>
       <div className="col-lg-12">
@@ -34,7 +29,7 @@ export default function CommentForm() {
             name="message"
             placeholder="Lorem Ipsum Dolar Sit Amet"
             required
-            defaultValue={""}
+            defaultValue={''}
           />
         </div>
       </div>

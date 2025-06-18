@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 export default function Brands2() {
   return (
     <section className="boxcar-brand-section-three">
@@ -12,8 +12,8 @@ export default function Brands2() {
                 <div className="boxcar-title">
                   <h2>Explore Our Premium Brands</h2>
                   <div className="text">
-                    Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id es
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id es
                   </div>
                   <Link href={`/inventory-list-01`} className="brand-btn">
                     Show All Brands
@@ -45,12 +45,7 @@ export default function Brands2() {
                 <div className="image-box">
                   <figure className="image">
                     <a href="#">
-                      <Image
-                        alt=""
-                        src="/images/resource/brandf.png"
-                        width={547}
-                        height={528}
-                      />
+                      <Image alt="" src="/images/resource/brandf.png" width={547} height={528} />
                     </a>
                   </figure>
                 </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function Features() {
   return (
@@ -8,7 +8,7 @@ export default function Features() {
           <div className="content-column col-lg-6 col-lg-6 col-sm-12">
             <div className="boxcar-title wow fadeInUp">
               <h2 className="title">
-                We're BIG on what <br />
+                We&#39;re BIG on what <br />
                 matters to you
               </h2>
             </div>
@@ -74,8 +74,8 @@ export default function Features() {
                   <div className="content-box">
                     <h6 className="title">Special Financing Offers</h6>
                     <div className="text">
-                      Our stress-free finance department that can find financial
-                      solutions to save you money.
+                      Our stress-free finance department that can find financial solutions to save
+                      you money.
                     </div>
                   </div>
                 </div>
@@ -156,8 +156,8 @@ export default function Features() {
                   <div className="content-box">
                     <h6 className="title">Trusted Car Dealership</h6>
                     <div className="text">
-                      Our stress-free finance department that can find financial
-                      solutions to save you money.
+                      Our stress-free finance department that can find financial solutions to save
+                      you money.
                     </div>
                   </div>
                 </div>
@@ -229,8 +229,8 @@ export default function Features() {
                   <div className="content-box">
                     <h6 className="title">Transparent Pricing</h6>
                     <div className="text">
-                      Our stress-free finance department that can find financial
-                      solutions to save you money.
+                      Our stress-free finance department that can find financial solutions to save
+                      you money.
                     </div>
                   </div>
                 </div>
@@ -271,8 +271,8 @@ export default function Features() {
                   <div className="content-box">
                     <h6 className="title">Expert Car Service</h6>
                     <div className="text">
-                      Our stress-free finance department that can find financial
-                      solutions to save you money.
+                      Our stress-free finance department that can find financial solutions to save
+                      you money.
                     </div>
                   </div>
                 </div>

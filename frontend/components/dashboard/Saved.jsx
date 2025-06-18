@@ -1,8 +1,8 @@
-"use client";
-import React from "react";
-import Sidebar from "./Sidebar";
-import Image from "next/image";
-import SelectComponent from "../common/SelectComponent";
+'use client';
+import React from 'react';
+import Sidebar from './Sidebar';
+import Image from 'next/image';
+import SelectComponent from '../common/SelectComponent';
 export default function Saved() {
   return (
     <section className="dashboard-widget">
@@ -12,34 +12,20 @@ export default function Saved() {
           <div className="inner-column">
             <div className="list-title">
               <h3 className="title">Saved Search</h3>
-              <div className="text">
-                Lorem ipsum dolor sit amet, consectetur.
-              </div>
+              <div className="text">Lorem ipsum dolor sit amet, consectetur.</div>
             </div>
             <div className="search-table">
               <div className="search-table-head">
-                <form onSubmit={(e) => e.preventDefault()}>
+                <form onSubmit={e => e.preventDefault()}>
                   <div className="search-table-field">
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      placeholder="Search Cars eg. Audi Q7"
-                    />
-                    <Image
-                      alt=""
-                      src="/images/icons/search.svg"
-                      width={16}
-                      height={16}
-                    />
+                    <input type="text" name="name" required placeholder="Search Cars eg. Audi Q7" />
+                    <Image alt="" src="/images/icons/search.svg" width={16} height={16} />
                   </div>
                   <div className="text-box">
                     <div className="form_boxes v3">
                       <small>Sort by</small>
 
-                      <SelectComponent
-                        options={["Any Makes", "Audi", "Honda"]}
-                      />
+                      <SelectComponent options={['Any Makes', 'Audi', 'Honda']} />
                     </div>
                   </div>
                 </form>
@@ -65,12 +51,7 @@ export default function Saved() {
                     <td>Daily</td>
                     <td>
                       <a href="#" className="remove-cart-item">
-                        <Image
-                          alt=""
-                          src="/images/icons/remove.svg"
-                          width={18}
-                          height={18}
-                        />
+                        <Image alt="" src="/images/icons/remove.svg" width={18} height={18} />
                       </a>
                     </td>
                   </tr>
@@ -84,12 +65,7 @@ export default function Saved() {
                     <td>Daily</td>
                     <td>
                       <a href="#" className="remove-cart-item">
-                        <Image
-                          alt=""
-                          src="/images/icons/remove.svg"
-                          width={18}
-                          height={18}
-                        />
+                        <Image alt="" src="/images/icons/remove.svg" width={18} height={18} />
                       </a>
                     </td>
                   </tr>
@@ -103,12 +79,7 @@ export default function Saved() {
                     <td>Daily</td>
                     <td>
                       <a href="#" className="remove-cart-item">
-                        <Image
-                          alt=""
-                          src="/images/icons/remove.svg"
-                          width={18}
-                          height={18}
-                        />
+                        <Image alt="" src="/images/icons/remove.svg" width={18} height={18} />
                       </a>
                     </td>
                   </tr>

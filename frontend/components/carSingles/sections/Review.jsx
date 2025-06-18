@@ -1,33 +1,33 @@
 const reviews = [
   {
-    title: "Comfort",
+    title: 'Comfort',
     rating: 5.0,
-    remark: "Excellent",
+    remark: 'Excellent',
   },
   {
-    title: "Performance",
+    title: 'Performance',
     rating: 5.0,
-    remark: "Excellent",
+    remark: 'Excellent',
   },
   {
-    title: "Exterior styling",
+    title: 'Exterior styling',
     rating: 5.0,
-    remark: "Excellent",
+    remark: 'Excellent',
   },
   {
-    title: "Interior design",
+    title: 'Interior design',
     rating: 5.0,
-    remark: "Excellent",
+    remark: 'Excellent',
   },
   {
-    title: "Value for the money",
+    title: 'Value for the money',
     rating: 5.0,
-    remark: "Excellent",
+    remark: 'Excellent',
   },
   {
-    title: "Reliability",
+    title: 'Reliability',
     rating: 5.0,
-    remark: "Excellent",
+    remark: 'Excellent',
   },
 ];
 const firstThreeReviews = reviews.slice(0, 3);

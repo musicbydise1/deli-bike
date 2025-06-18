@@ -1,6 +1,6 @@
-"use client";
-import { vehicles } from "@/data/categories";
-import Image from "next/image";
+'use client';
+import { vehicles } from '@/data/categories';
+import Image from 'next/image';
 export default function CarsCategories() {
   return (
     <section className="vehicles-section-two">
@@ -10,10 +10,7 @@ export default function CarsCategories() {
         </div>
         <div className="row">
           {vehicles.map((vehicle, index) => (
-            <div
-              className="Vehicle-block col-lg-2 col-md-6 col-sm-6"
-              key={index}
-            >
+            <div className="Vehicle-block col-lg-2 col-md-6 col-sm-6" key={index}>
               <div className="inner-box">
                 <div className="image-box">
                   <figure className="image">

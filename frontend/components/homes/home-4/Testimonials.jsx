@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { customerData } from "@/data/testimonials";
-import Slider from "react-slick";
+import { customerData } from '@/data/testimonials';
+import Slider from 'react-slick';
 
 export default function Testimonials() {
   const sliderOptions = {
@@ -52,8 +52,7 @@ export default function Testimonials() {
         <div className="boxcar-title wow fadeInUp">
           <h2>What our customers say</h2>
           <div className="text">
-            Rated 4.7 / 5 based on 28,370 reviews Showing our 4 &amp; 5 star
-            reviews
+            Rated 4.7 / 5 based on 28,370 reviews Showing our 4 &amp; 5 star reviews
           </div>
         </div>
         <Slider
@@ -62,10 +61,7 @@ export default function Testimonials() {
           {...sliderOptions}
         >
           {customerData.map((customer, index) => (
-            <div
-              className="customer-block-two col-lg-3 col-md-6 col-sm-12"
-              key={index}
-            >
+            <div className="customer-block-two col-lg-3 col-md-6 col-sm-12" key={index}>
               <div className="inner-box">
                 <div className="rating-area">
                   <ul className="rating">

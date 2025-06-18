@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function Features() {
   return (
@@ -61,8 +61,8 @@ export default function Features() {
               <div className="content-box">
                 <h6 className="title">Special Financing Offers</h6>
                 <div className="text">
-                  Our stress-free finance department that can find financial
-                  solutions to save you money.
+                  Our stress-free finance department that can find financial solutions to save you
+                  money.
                 </div>
               </div>
             </div>
@@ -144,8 +144,8 @@ export default function Features() {
               <div className="content-box">
                 <h6 className="title">Trusted Car Dealership</h6>
                 <div className="text">
-                  Our stress-free finance department that can find financial
-                  solutions to save you money.
+                  Our stress-free finance department that can find financial solutions to save you
+                  money.
                 </div>
               </div>
             </div>
@@ -211,8 +211,8 @@ export default function Features() {
               <div className="content-box">
                 <h6 className="title">Transparent Pricing</h6>
                 <div className="text">
-                  Our stress-free finance department that can find financial
-                  solutions to save you money.
+                  Our stress-free finance department that can find financial solutions to save you
+                  money.
                 </div>
               </div>
             </div>
@@ -254,8 +254,8 @@ export default function Features() {
               <div className="content-box">
                 <h6 className="title">Expert Car Service</h6>
                 <div className="text">
-                  Our stress-free finance department that can find financial
-                  solutions to save you money.
+                  Our stress-free finance department that can find financial solutions to save you
+                  money.
                 </div>
               </div>
             </div>

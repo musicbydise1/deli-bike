@@ -1,8 +1,8 @@
-"use client";
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { blogPosts6 } from "@/data/blogs";
+'use client';
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { blogPosts6 } from '@/data/blogs';
 export default function BlogsSingle({ blogItem }) {
   return (
     <section className="blog-section-five layout-radius">
@@ -19,12 +19,7 @@ export default function BlogsSingle({ blogItem }) {
           <h2>{blogItem.title}</h2>
           <ul className="post-info">
             <li>
-              <Image
-                width={40}
-                height={40}
-                src="/images/resource/ali-tufan.png"
-                alt=""
-              />
+              <Image width={40} height={40} src="/images/resource/ali-tufan.png" alt="" />
             </li>
             <li>
               <a href="#" title="">
@@ -44,44 +39,34 @@ export default function BlogsSingle({ blogItem }) {
         <div className="large-container">
           <div className="content-box">
             <figure className="outer-image">
-              <Image
-                alt=""
-                width={1700}
-                height={600}
-                src="/images/resource/inner-blog3-1.jpg"
-              />
+              <Image alt="" width={1700} height={600} src="/images/resource/inner-blog3-1.jpg" />
             </figure>
             <div className="right-box-two">
-              <h4 className="title">
-                Bringing the culture of sharing to everyone
-              </h4>
+              <h4 className="title">Bringing the culture of sharing to everyone</h4>
               <div className="text">
-                Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan
-                nec. Quisque bibendum orci ac nibh facilisis, at malesuada orci
-                congue. Nullam tempus sollicitudin cursus. Ut et adipiscing
-                erat. Curabitur this is a text link libero tempus congue.
+                Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec. Quisque bibendum
+                orci ac nibh facilisis, at malesuada orci congue. Nullam tempus sollicitudin cursus.
+                Ut et adipiscing erat. Curabitur this is a text link libero tempus congue.
               </div>
               <div className="text two">
-                Duis mattis laoreet neque, et ornare neque sollicitudin at.
-                Proin sagittis dolor sed mi elementum pretium. Donec et justo
-                ante. Vivamus egestas sodales est, eu rhoncus urna semper eu.
-                Cum sociis natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Integer tristique elit lobortis purus
-                bibendum, quis dictum metus mattis. Phasellus posuere felis sed
-                eros porttitor mattis. Curabitur massa magna, tempor in blandit
-                id, porta in \ ligula. Aliquam laoreet nisl massa, at interdum
-                mauris sollicitudin et.
+                Duis mattis laoreet neque, et ornare neque sollicitudin at. Proin sagittis dolor sed
+                mi elementum pretium. Donec et justo ante. Vivamus egestas sodales est, eu rhoncus
+                urna semper eu. Cum sociis natoque penatibus et magnis dis parturient montes,
+                nascetur ridiculus mus. Integer tristique elit lobortis purus bibendum, quis dictum
+                metus mattis. Phasellus posuere felis sed eros porttitor mattis. Curabitur massa
+                magna, tempor in blandit id, porta in \ ligula. Aliquam laoreet nisl massa, at
+                interdum mauris sollicitudin et.
               </div>
               <div className="auther-box">
                 <div className="text">
-                  Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan
-                  nec. Quisque bibendum orci <br />
+                  Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec. Quisque
+                  bibendum orci <br />
                   ac nibh facilisis, at malesuada orci congue.
                 </div>
                 <span className="name">Luis Pickford</span>
               </div>
               <div className="list-sec">
-                <h6 className="title">What you'll learn</h6>
+                <h6 className="title"></h6>
                 <div className="inner-column">
                   <ul className="list">
                     <li>
@@ -145,8 +130,8 @@ export default function BlogsSingle({ blogItem }) {
                 <h6 className="title">Requirements</h6>
                 <ul className="list-two">
                   <li>
-                    We do not require any previous experience or pre-defined
-                    skills to take this course. A great orientation
+                    We do not require any previous experience or pre-defined skills to take this
+                    course. A great orientation
                   </li>
                   <li>would be enough to master UI/UX design.</li>
                   <li>A computer with a good internet connection.</li>
@@ -192,20 +177,14 @@ export default function BlogsSingle({ blogItem }) {
                 </div>
               </div>
               <div className="auther-box-two">
-                <Image
-                  width={70}
-                  height={70}
-                  src="/images/resource/auther2-1.png"
-                  alt=""
-                />
+                <Image width={70} height={70} src="/images/resource/auther2-1.png" alt="" />
                 <div className="content-box">
                   <h6 className="name">Brooklyn Simmons</h6>
                   <span className="designation">Medical Assistant</span>
                   <div className="text">
-                    Etiam vitae leo et diam pellentesque porta. Sed eleifend
-                    ultricies risus, vel rutrum erat commodo ut. Praesent
-                    finibus congue euismod. Nullam scelerisque massa vel augue
-                    placerat, a tempor sem egestas. , Curabitur placerat finibus
+                    Etiam vitae leo et diam pellentesque porta. Sed eleifend ultricies risus, vel
+                    rutrum erat commodo ut. Praesent finibus congue euismod. Nullam scelerisque
+                    massa vel augue placerat, a tempor sem egestas. , Curabitur placerat finibus
                     lacus.
                   </div>
                 </div>
@@ -216,18 +195,14 @@ export default function BlogsSingle({ blogItem }) {
                     <i className="fa-solid fa-angle-left" />
                     Previous Post
                   </h6>
-                  <div className="text">
-                    Given Set was without from god divide rule Hath
-                  </div>
+                  <div className="text">Given Set was without from god divide rule Hath</div>
                 </div>
                 <div className="content-box v2">
                   <h6 className="title">
                     Next Post
                     <i className="fa-solid fa-angle-right" />
                   </h6>
-                  <div className="text">
-                    Tree earth fowl given moveth deep lesser After
-                  </div>
+                  <div className="text">Tree earth fowl given moveth deep lesser After</div>
                 </div>
               </div>
               <div className="reviews">
@@ -259,29 +234,13 @@ export default function BlogsSingle({ blogItem }) {
                     <span>Take this tour!--its fantastic!</span>
                   </div>
                   <div className="text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                   </div>
                   <div className="image-box">
-                    <Image
-                      width={130}
-                      height={130}
-                      src="/images/resource/blog5-4.jpg"
-                      alt=""
-                    />
-                    <Image
-                      width={130}
-                      height={130}
-                      src="/images/resource/blog5-5.jpg"
-                      alt=""
-                    />
-                    <Image
-                      width={130}
-                      height={130}
-                      src="/images/resource/blog5-6.jpg"
-                      alt=""
-                    />
+                    <Image width={130} height={130} src="/images/resource/blog5-4.jpg" alt="" />
+                    <Image width={130} height={130} src="/images/resource/blog5-5.jpg" alt="" />
+                    <Image width={130} height={130} src="/images/resource/blog5-6.jpg" alt="" />
                   </div>
                   <div className="btn-box">
                     <a href="#" className="like-btn">
@@ -321,13 +280,11 @@ export default function BlogsSingle({ blogItem }) {
                     <span>Take this tour!--its fantastic!</span>
                   </div>
                   <div className="text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
                   </div>
                   <div className="btn-box">
                     <a href="#" className="like-btn">
@@ -356,12 +313,7 @@ export default function BlogsSingle({ blogItem }) {
                       </g>
                       <defs>
                         <clipPath id="clip0_881_13248">
-                          <rect
-                            width={14}
-                            height={14}
-                            fill="white"
-                            transform="translate(0.5)"
-                          />
+                          <rect width={14} height={14} fill="white" transform="translate(0.5)" />
                         </clipPath>
                       </defs>
                     </svg>
@@ -371,8 +323,7 @@ export default function BlogsSingle({ blogItem }) {
               <div className="Reply-sec">
                 <h6 className="title">Leave a Reply</h6>
                 <div className="text">
-                  Your email address will not be published. Required fields are
-                  marked *
+                  Your email address will not be published. Required fields are marked *
                 </div>
                 <div className="right-box">
                   <div className="rating-list two">
@@ -501,16 +452,11 @@ export default function BlogsSingle({ blogItem }) {
                   </div>
                 </div>
               </div>
-              <form onSubmit={(e) => e.preventDefault()} className="row">
+              <form onSubmit={e => e.preventDefault()} className="row">
                 <div className="col-lg-6">
                   <div className="form_boxes">
                     <label>Name</label>
-                    <input
-                      required
-                      type="text"
-                      name="name"
-                      placeholder="Ali Tufan"
-                    />
+                    <input required type="text" name="name" placeholder="Ali Tufan" />
                   </div>
                 </div>
                 <div className="col-lg-6">
@@ -527,12 +473,7 @@ export default function BlogsSingle({ blogItem }) {
                 <div className="col-lg-12">
                   <div className="form_boxes">
                     <label>Title</label>
-                    <input
-                      required
-                      type="text"
-                      name="title"
-                      placeholder="Good Cars"
-                    />
+                    <input required type="text" name="title" placeholder="Good Cars" />
                   </div>
                 </div>
                 <div className="col-lg-12">
@@ -542,7 +483,7 @@ export default function BlogsSingle({ blogItem }) {
                       name="message"
                       placeholder="Lorem Ipsum Dolar Sit Amet"
                       required
-                      defaultValue={""}
+                      defaultValue={''}
                     />
                   </div>
                 </div>
@@ -586,14 +527,8 @@ export default function BlogsSingle({ blogItem }) {
           <div className="row">
             {/* blog-block */}
             {blogPosts6.map((post, index) => (
-              <div
-                className="blog-block col-lg-4 col-md-6 col-sm-12"
-                key={index}
-              >
-                <div
-                  className={`inner-box wow fadeInUp`}
-                  data-wow-delay={post.wowDelay}
-                >
+              <div className="blog-block col-lg-4 col-md-6 col-sm-12" key={index}>
+                <div className={`inner-box wow fadeInUp`} data-wow-delay={post.wowDelay}>
                   <div className="image-box">
                     <figure className="image">
                       <Link href={`/blog-single/${post.id}`}>

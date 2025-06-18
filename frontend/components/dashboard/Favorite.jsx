@@ -1,9 +1,9 @@
-import React from "react";
-import Sidebar from "./Sidebar";
-import Image from "next/image";
-import { cars } from "@/data/cars";
-import Link from "next/link";
-import Pagination from "../common/Pagination";
+import React from 'react';
+import Sidebar from './Sidebar';
+import Image from 'next/image';
+import { cars } from '@/data/cars';
+import Link from 'next/link';
+import Pagination from '../common/Pagination';
 export default function Favorite() {
   return (
     <section className="dashboard-widget-two">
@@ -19,18 +19,13 @@ export default function Favorite() {
             <div className="row wow fadeInUp">
               {/* car-block-four */}
 
-              {cars.slice(0, 8).map((car) => (
+              {cars.slice(0, 8).map(car => (
                 <div key={car.id} className="car-block-four col-xl-3 col-md-6">
                   <div className="inner-box">
                     <div className={car.imgBoxClass}>
                       <figure className="image">
                         <Link href={`/inventory-page-single-v1/${car.id}`}>
-                          <Image
-                            alt={car.alt}
-                            src={car.imgSrc}
-                            width={329}
-                            height={220}
-                          />
+                          <Image alt={car.alt} src={car.imgSrc} width={329} height={220} />
                         </Link>
                       </figure>
                       {car.icon && <span>{car.icon}</span>}
@@ -58,9 +53,7 @@ export default function Favorite() {
                     </div>
                     <div className="content-box">
                       <h6 className="title">
-                        <Link href={`/inventory-page-single-v1/${car.id}`}>
-                          {car.title}
-                        </Link>
+                        <Link href={`/inventory-page-single-v1/${car.id}`}>{car.title}</Link>
                       </h6>
                       <div className="text">{car.description}</div>
                       <ul>
@@ -77,10 +70,7 @@ export default function Favorite() {
                       <div className="btn-box">
                         <span>{car.price}</span>
                         <small>{car.discountPrice}</small>
-                        <Link
-                          href={`/inventory-page-single-v1/${car.id}`}
-                          className="details"
-                        >
+                        <Link href={`/inventory-page-single-v1/${car.id}`} className="details">
                           {car.btnDetails}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

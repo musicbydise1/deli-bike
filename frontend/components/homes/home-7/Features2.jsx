@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react';
+import Image from 'next/image';
 export default function Features2() {
   return (
     <section className="boxcar-pricing-section-four v7 pb-0 pt-0">
@@ -9,20 +9,10 @@ export default function Features2() {
           <div className="image-column col-lg-6 col-md-6 col-sm-12">
             <div className="image-box">
               <figure className="image">
-                <Image
-                  alt=""
-                  src="/images/resource/pricing7-1.jpg"
-                  width={300}
-                  height={294}
-                />
+                <Image alt="" src="/images/resource/pricing7-1.jpg" width={300} height={294} />
               </figure>
               <figure className="image-2">
-                <Image
-                  alt=""
-                  src="/images/resource/pricing7-2.jpg"
-                  width={352}
-                  height={528}
-                />
+                <Image alt="" src="/images/resource/pricing7-2.jpg" width={352} height={528} />
               </figure>
             </div>
           </div>
@@ -31,18 +21,14 @@ export default function Features2() {
               <div className="boxcar-title wow fadeInUp">
                 <h2>Get A Fair Price For Your Car Sell To Us Today</h2>
                 <div className="text">
-                  We are committed to providing our customers with exceptional
-                  service, competitive pricing, and a wide range of.
+                  We are committed to providing our customers with exceptional service, competitive
+                  pricing, and a wide range of.
                 </div>
               </div>
-              <ul
-                className="list-style-one wow fadeInUp"
-                data-wow-delay="100ms"
-              >
+              <ul className="list-style-one wow fadeInUp" data-wow-delay="100ms">
                 <li>
                   <i className="fa-solid fa-check" />
-                  We are the UK’s largest provider, with more patrols in more
-                  places
+                  We are the UK’s largest provider, with more patrols in more places
                 </li>
                 <li>
                   <i className="fa-solid fa-check" />
@@ -53,11 +39,7 @@ export default function Features2() {
                   We fix 4 out of 5 cars at the roadside
                 </li>
               </ul>
-              <a
-                href="#"
-                className="read-more wow fadeInUp"
-                data-wow-delay="200ms"
-              >
+              <a href="#" className="read-more wow fadeInUp" data-wow-delay="200ms">
                 get started
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function CarsCollection() {
   return (
@@ -13,34 +13,19 @@ export default function CarsCollection() {
               <div className="image-box">
                 <figure className="image">
                   <a href="#">
-                    <Image
-                      alt=""
-                      src="/images/resource/pricing9-1.jpg"
-                      width={285}
-                      height={279}
-                    />
+                    <Image alt="" src="/images/resource/pricing9-1.jpg" width={285} height={279} />
                   </a>
                 </figure>
                 <figure className="image-2">
                   <a href="#">
-                    <Image
-                      alt=""
-                      src="/images/resource/pricing9-2.jpg"
-                      width={224}
-                      height={224}
-                    />
+                    <Image alt="" src="/images/resource/pricing9-2.jpg" width={224} height={224} />
                   </a>
                 </figure>
               </div>
               <div className="image-box">
                 <figure className="image-3">
                   <a href="#">
-                    <Image
-                      alt=""
-                      src="/images/resource/pricing9-3.jpg"
-                      width={336}
-                      height={447}
-                    />
+                    <Image alt="" src="/images/resource/pricing9-3.jpg" width={336} height={447} />
                   </a>
                 </figure>
               </div>
@@ -51,18 +36,14 @@ export default function CarsCollection() {
               <div className="boxcar-title wow fadeInUp">
                 <h2>Get A Fair Price For Your Car Sell To Us Today</h2>
                 <div className="text">
-                  We are committed to providing our customers with exceptional
-                  service, competitive pricing, and a wide range of.
+                  We are committed to providing our customers with exceptional service, competitive
+                  pricing, and a wide range of.
                 </div>
               </div>
-              <ul
-                className="list-style-one wow fadeInUp"
-                data-wow-delay="100ms"
-              >
+              <ul className="list-style-one wow fadeInUp" data-wow-delay="100ms">
                 <li>
                   <i className="fa-solid fa-check" />
-                  We are the UK’s largest provider, with more patrols in more
-                  places
+                  We are the UK’s largest provider, with more patrols in more places
                 </li>
                 <li>
                   <i className="fa-solid fa-check" />
@@ -73,11 +54,7 @@ export default function CarsCollection() {
                   We fix 4 out of 5 cars at the roadside
                 </li>
               </ul>
-              <Link
-                href={`/contact`}
-                className="read-more wow fadeInUp"
-                data-wow-delay="200ms"
-              >
+              <Link href={`/contact`} className="read-more wow fadeInUp" data-wow-delay="200ms">
                 get started
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

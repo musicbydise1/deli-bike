@@ -1,14 +1,14 @@
-"use client";
-import { useEffect, useRef, useState } from "react";
-import RelatedCars from "./RelatedCars";
-import Slider from "react-slick";
-import Image from "next/image";
-import Review from "./sections/Review";
-import Ratings from "./sections/Ratings";
-import Replay from "./sections/Replay";
-import CommentForm from "./sections/CommentForm";
-import { useCart } from "@/context/CartContext";
-import Link from "next/link";
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import RelatedCars from './RelatedCars';
+import Slider from 'react-slick';
+import Image from 'next/image';
+import Review from './sections/Review';
+import Ratings from './sections/Ratings';
+import Replay from './sections/Replay';
+import CommentForm from './sections/CommentForm';
+import { useCart } from '@/context/CartContext';
+import Link from 'next/link';
 export default function ShopSingle({ product }) {
   const [value, setValue] = useState(1);
   const [nav1, setNav1] = useState(null);
@@ -43,13 +43,13 @@ export default function ShopSingle({ product }) {
   const [quantity, setQuantity] = useState(1);
 
   const isIncludeCard = () => {
-    const item = cartProducts.filter((elm) => elm.id == product.id)[0];
+    const item = cartProducts.filter(elm => elm.id == product.id)[0];
     return item;
   };
   const setQuantityCartItem = (id, quantity) => {
     if (isIncludeCard()) {
       if (quantity >= 1) {
-        const item = cartProducts.filter((elm) => elm.id == id)[0];
+        const item = cartProducts.filter(elm => elm.id == id)[0];
         const items = [...cartProducts];
         const itemIndex = items.indexOf(item);
         item.quantity = quantity;
@@ -64,7 +64,7 @@ export default function ShopSingle({ product }) {
     if (!isIncludeCard()) {
       const item = product;
       item.quantity = quantity;
-      setCartProducts((pre) => [...pre, item]);
+      setCartProducts(pre => [...pre, item]);
     }
   };
 
@@ -93,37 +93,22 @@ export default function ShopSingle({ product }) {
                   {...slickThumbOptions}
                   infinite={false}
                   asNavFor={nav2}
-                  ref={(slider) => (sliderRef1 = slider)}
+                  ref={slider => (sliderRef1 = slider)}
                   className="shop-single-thumbs-slider"
                 >
                   <div className="shop-single-thumb">
                     <div className="thumb-img">
-                      <Image
-                        alt=""
-                        src="/images/resource/shop-thumb1.png"
-                        width={60}
-                        height={60}
-                      />
+                      <Image alt="" src="/images/resource/shop-thumb1.png" width={60} height={60} />
                     </div>
                   </div>
                   <div className="shop-single-thumb">
                     <div className="thumb-img">
-                      <Image
-                        alt=""
-                        src="/images/resource/shop-thumb2.png"
-                        width={60}
-                        height={60}
-                      />
+                      <Image alt="" src="/images/resource/shop-thumb2.png" width={60} height={60} />
                     </div>
                   </div>
                   <div className="shop-single-thumb">
                     <div className="thumb-img">
-                      <Image
-                        alt=""
-                        src="/images/resource/shop-thumb3.png"
-                        width={60}
-                        height={60}
-                      />
+                      <Image alt="" src="/images/resource/shop-thumb3.png" width={60} height={60} />
                     </div>
                   </div>
                 </Slider>
@@ -132,32 +117,17 @@ export default function ShopSingle({ product }) {
                   {...slickOptions}
                   asNavFor={nav1}
                   infinite={false}
-                  ref={(slider) => (sliderRef2 = slider)}
+                  ref={slider => (sliderRef2 = slider)}
                   className="shop-single-product-slider"
                 >
                   <div className="shop-single-product-slide">
-                    <Image
-                      alt=""
-                      src="/images/resource/shop-single.png"
-                      width={400}
-                      height={400}
-                    />
+                    <Image alt="" src="/images/resource/shop-single.png" width={400} height={400} />
                   </div>
                   <div className="shop-single-product-slide">
-                    <Image
-                      alt=""
-                      src="/images/resource/shop-single.png"
-                      width={400}
-                      height={400}
-                    />
+                    <Image alt="" src="/images/resource/shop-single.png" width={400} height={400} />
                   </div>
                   <div className="shop-single-product-slide">
-                    <Image
-                      alt=""
-                      src="/images/resource/shop-single.png"
-                      width={400}
-                      height={400}
-                    />
+                    <Image alt="" src="/images/resource/shop-single.png" width={400} height={400} />
                   </div>
                 </Slider>
                 {/*shop-single-product-slider*/}
@@ -174,8 +144,8 @@ export default function ShopSingle({ product }) {
                   432 in stock
                 </small>
                 <div className="text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Tempus nulla faucibus viverra nisl non senectus tortor.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus nulla faucibus
+                  viverra nisl non senectus tortor.
                 </div>
                 <div className="btn-box">
                   <div className="number">
@@ -184,7 +154,7 @@ export default function ShopSingle({ product }) {
                       onClick={() =>
                         setQuantityCartItem(
                           product.id,
-                          isIncludeCard()?.quantity - 1 || quantity - 1
+                          isIncludeCard()?.quantity - 1 || quantity - 1,
                         )
                       }
                     >
@@ -193,17 +163,15 @@ export default function ShopSingle({ product }) {
                     <input
                       type="number"
                       min={1}
-                      onChange={(e) => setValue(e.target.value / 1)}
-                      value={
-                        isIncludeCard() ? isIncludeCard().quantity : quantity
-                      }
+                      onChange={e => setValue(e.target.value / 1)}
+                      value={isIncludeCard() ? isIncludeCard().quantity : quantity}
                     />
                     <span
                       className="plus"
                       onClick={() =>
                         setQuantityCartItem(
                           product.id,
-                          isIncludeCard()?.quantity + 1 || quantity + 1
+                          isIncludeCard()?.quantity + 1 || quantity + 1,
                         )
                       }
                     >
@@ -287,19 +255,16 @@ export default function ShopSingle({ product }) {
                       <div className="description-sec">
                         <h4 className="title">Details</h4>
                         <div className="text two">
-                          {" "}
-                          This model is offered in sizes 17 to 20 inches with
-                          widths ranging from 8 to 11 inches. Each wheel has an
-                          approximate weight of 17.19lbs to 22.94lbs. Neque
-                          porro quisquam est, qui dolorem ipsum quia dolor sit
-                          amet, consectetur, adipisci velit, sed quia non
-                          numquam eius modi tempora incidunt ut labore et dolore
-                          magnam aliquam quaerat voluptatem.
+                          {' '}
+                          This model is offered in sizes 17 to 20 inches with widths ranging from 8
+                          to 11 inches. Each wheel has an approximate weight of 17.19lbs to
+                          22.94lbs. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+                          consectetur, adipisci velit, sed quia non numquam eius modi tempora
+                          incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
                         </div>
                         <div className="text">
-                          Ut enim ad minima veniam, quis nostrum exercitationem
-                          ullam corporis suscipit laboriosam, nisi ut aliquid ex
-                          ea commodi consequatur.
+                          Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
+                          suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
                         </div>
                       </div>
                       {/* features-sec */}

@@ -1,12 +1,12 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import LoanCalculator from "@/components/otherPages/LoanCalculator";
+import Footer1 from '@/components/footers/Footer1';
+import Header1 from '@/components/headers/Header1';
+import LoanCalculator from '@/components/otherPages/LoanCalculator';
 
-import React from "react";
+import React from 'react';
 
 export const metadata = {
-  title: "Loan Calculator || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
+  title: 'Loan Calculator || Boxcar - React Nextjs Car Template',
+  description: 'Boxcar - React Nextjs Car Template',
 };
 export default function LoanCalculatorPage() {
   return (

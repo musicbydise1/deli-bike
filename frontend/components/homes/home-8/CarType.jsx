@@ -1,5 +1,5 @@
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 
 export default function CarType() {
   return (
@@ -85,12 +85,7 @@ export default function CarType() {
                   </g>
                   <defs>
                     <clipPath id="clip0_130_4394">
-                      <rect
-                        width={34}
-                        height={34}
-                        fill="white"
-                        transform="translate(0.5)"
-                      />
+                      <rect width={34} height={34} fill="white" transform="translate(0.5)" />
                     </clipPath>
                   </defs>
                 </svg>
@@ -145,12 +140,7 @@ export default function CarType() {
                   </g>
                   <defs>
                     <clipPath id="clip0_130_4407">
-                      <rect
-                        width={34}
-                        height={34}
-                        fill="white"
-                        transform="translate(0.5)"
-                      />
+                      <rect width={34} height={34} fill="white" transform="translate(0.5)" />
                     </clipPath>
                   </defs>
                 </svg>
@@ -203,17 +193,14 @@ export default function CarType() {
                 >
                   <mask
                     id="mask0_130_4423"
-                    style={{ maskType: "luminance" }}
+                    style={{ maskType: 'luminance' }}
                     maskUnits="userSpaceOnUse"
                     x={0}
                     y={0}
                     width={35}
                     height={34}
                   >
-                    <path
-                      d="M0.5 3.8147e-06H34.5V34H0.5V3.8147e-06Z"
-                      fill="white"
-                    />
+                    <path d="M0.5 3.8147e-06H34.5V34H0.5V3.8147e-06Z" fill="white" />
                   </mask>
                   <g mask="url(#mask0_130_4423)">
                     <path
@@ -303,7 +290,7 @@ export default function CarType() {
                 >
                   <mask
                     id="mask0_130_4528"
-                    style={{ maskType: "luminance" }}
+                    style={{ maskType: 'luminance' }}
                     maskUnits="userSpaceOnUse"
                     x={0}
                     y={0}
@@ -406,12 +393,7 @@ export default function CarType() {
                   </g>
                   <defs>
                     <clipPath id="clip0_130_4553">
-                      <rect
-                        width={34}
-                        height={34}
-                        fill="white"
-                        transform="translate(0.5)"
-                      />
+                      <rect width={34} height={34} fill="white" transform="translate(0.5)" />
                     </clipPath>
                   </defs>
                 </svg>

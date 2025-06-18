@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Slider from "react-slick";
-import Image from "next/image";
-import { testimonials6 } from "@/data/testimonials";
+import Slider from 'react-slick';
+import Image from 'next/image';
+import { testimonials6 } from '@/data/testimonials';
 export default function Testimonials() {
   const slickOption = {
     infinite: true,
@@ -51,25 +51,16 @@ export default function Testimonials() {
           <div className="boxcar-title light">
             <h2>What our customers say</h2>
             <div className="text">
-              Rated 4.7 / 5 based on 28,370 reviews Showing our 4 &amp; 5 star
-              reviews
+              Rated 4.7 / 5 based on 28,370 reviews Showing our 4 &amp; 5 star reviews
             </div>
           </div>
           <Slider {...slickOption} className="row stories-slider inner-slide">
             {testimonials6.map((testimonial, index) => (
-              <div
-                className="testimonial-block-four col-lg-4 col-md-6 col-sm-12"
-                key={index}
-              >
+              <div className="testimonial-block-four col-lg-4 col-md-6 col-sm-12" key={index}>
                 <div className="inner-box">
                   <figure className="icon">
                     <a href="#">
-                      <Image
-                        alt=""
-                        src={testimonial.iconSrc}
-                        width={37}
-                        height={26}
-                      />
+                      <Image alt="" src={testimonial.iconSrc} width={37} height={26} />
                     </a>
                   </figure>
                   <h6 className="title">{testimonial.title}</h6>
@@ -77,12 +68,7 @@ export default function Testimonials() {
                   <div className="auther-info">
                     <figure className="image">
                       <a href="#">
-                        <Image
-                          alt=""
-                          src={testimonial.authorImageSrc}
-                          width={60}
-                          height={60}
-                        />
+                        <Image alt="" src={testimonial.authorImageSrc} width={60} height={60} />
                       </a>
                     </figure>
                     <h6 className="name">{testimonial.authorName}</h6>

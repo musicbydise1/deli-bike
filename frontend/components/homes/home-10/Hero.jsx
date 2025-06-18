@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import Slider from "react-slick";
-import Image from "next/image";
-import SelectComponent from "@/components/common/SelectComponent";
-import { banners } from "@/data/heroSlides";
-import Link from "next/link";
+import Slider from 'react-slick';
+import Image from 'next/image';
+import SelectComponent from '@/components/common/SelectComponent';
+import { banners } from '@/data/heroSlides';
+import Link from 'next/link';
 export default function Hero() {
   const slickOptions = {
     autoplay: false,
@@ -30,10 +30,7 @@ export default function Hero() {
                 <div className="right-box">
                   <div className="boxcar-container">
                     <div className="content-box">
-                      <span
-                        className="sub-title"
-                        data-animation-in="fadeInDown"
-                      >
+                      <span className="sub-title" data-animation-in="fadeInDown">
                         {banner.subTitle}
                       </span>
                       <h1
@@ -52,20 +49,18 @@ export default function Hero() {
       <div className="form-tab-content">
         <div className="cus-container10">
           <div className="form-tab-pane current">
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={e => e.preventDefault()}>
               <div className="form_boxes">
-                <SelectComponent
-                  options={["Used Cars", "Used Cars", "Used Cars"]}
-                />
+                <SelectComponent options={['Used Cars', 'Used Cars', 'Used Cars']} />
               </div>
               <div className="form_boxes">
-                <SelectComponent options={["Any Makes", "Audi", "Honda"]} />
+                <SelectComponent options={['Any Makes', 'Audi', 'Honda']} />
               </div>
               <div className="form_boxes">
-                <SelectComponent options={["Any Models", "A3", "Accord"]} />
+                <SelectComponent options={['Any Models', 'A3', 'Accord']} />
               </div>
               <div className="form_boxes">
-                <SelectComponent options={["Any Price", "200$", "300$"]} />
+                <SelectComponent options={['Any Price', '200$', '300$']} />
               </div>
               <Link href={`/inventory-list-01`} className="form-submit">
                 <button type="submit" className="theme-btn">

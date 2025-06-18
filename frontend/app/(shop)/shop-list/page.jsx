@@ -1,13 +1,13 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import ShopList from "@/components/shop/ShopList";
+import Footer1 from '@/components/footers/Footer1';
+import Header1 from '@/components/headers/Header1';
+import ShopList from '@/components/shop/ShopList';
 
-import React from "react";
-import Header6 from "@/components/headers/Header6";
+import React from 'react';
+import Header6 from '@/components/headers/Header6';
 
 export const metadata = {
-  title: "Shop Cart || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
+  title: 'Shop Cart || Boxcar - React Nextjs Car Template',
+  description: 'Boxcar - React Nextjs Car Template',
 };
 export default function ShopListPage() {
   return (

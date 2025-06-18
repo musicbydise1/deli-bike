@@ -1,8 +1,8 @@
-import React from "react";
-import Image from "next/image";
-import { vacancies } from "@/data/vacancies";
-import Link from "next/link";
-import Pagination from "../common/Pagination";
+import React from 'react';
+import Image from 'next/image';
+import { vacancies } from '@/data/vacancies';
+import Link from 'next/link';
+import Pagination from '../common/Pagination';
 export default function Dealer() {
   return (
     <section className="dealer-ship-section layout-radius">
@@ -24,23 +24,14 @@ export default function Dealer() {
         </div>
         <div className="row">
           {vacancies.map((vacancy, index) => (
-              <div
-              key={index}
-              className="dealer-block col-lg-3 col-md-6 col-sm-12"
-            >
+            <div key={index} className="dealer-block col-lg-3 col-md-6 col-sm-12">
               <div className="inner-box">
-
                 <div className="content-box">
                   <h6 className="title">
-                    <Link href={`/vacancy-single/${vacancy.id}`}>
-                      {vacancy.title}
-                    </Link>
+                    <Link href={`/vacancy-single/${vacancy.id}`}>{vacancy.title}</Link>
                   </h6>
                   <div className="text">{vacancy.location}</div>
-                  <Link
-                    href={`/vacancy-single/${vacancy.id}`}
-                    className="deal-btn"
-                  >
+                  <Link href={`/vacancy-single/${vacancy.id}`} className="deal-btn">
                     Подробнее
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -57,12 +48,7 @@ export default function Dealer() {
                       </g>
                       <defs>
                         <clipPath id="clip0_801_908">
-                          <rect
-                            width={14}
-                            height={14}
-                            fill="white"
-                            transform="translate(0.5)"
-                          />
+                          <rect width={14} height={14} fill="white" transform="translate(0.5)" />
                         </clipPath>
                       </defs>
                     </svg>

@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import { dealershipBlocks } from "@/data/categories";
+import React from 'react';
+import Image from 'next/image';
+import { dealershipBlocks } from '@/data/categories';
 export default function Dealership() {
   return (
     <section className="dealership-section pt-0">
@@ -10,10 +10,7 @@ export default function Dealership() {
         </div>
         <div className="row">
           {dealershipBlocks.map((block, index) => (
-            <div
-              key={index}
-              className="dealership-block col-lg-4 col-md-6 col-sm-12"
-            >
+            <div key={index} className="dealership-block col-lg-4 col-md-6 col-sm-12">
               <div className="inner-box">
                 <div className="image-box">
                   <figure className="image">

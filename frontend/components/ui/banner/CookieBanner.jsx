@@ -1,43 +1,47 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from 'react';
-import Link from "next/link";
+import Link from 'next/link';
 
 const CookieBanner = () => {
-    const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-    useEffect(() => {
-        const cookieAccepted = localStorage.getItem('cookieAccepted');
-        if (!cookieAccepted) {
-            setIsVisible(true);
-        }
-    }, []);
+  useEffect(() => {
+    const cookieAccepted = localStorage.getItem('cookieAccepted');
+    if (!cookieAccepted) {
+      setIsVisible(true);
+    }
+  }, []);
 
-    const handleAccept = () => {
-        localStorage.setItem('cookieAccepted', 'true');
-        setIsVisible(false);
-    };
+  const handleAccept = () => {
+    localStorage.setItem('cookieAccepted', 'true');
+    setIsVisible(false);
+  };
 
-    if (!isVisible) return null;
+  if (!isVisible) return null;
 
-    return (
-        <>
-            <div
-                className="fixed bottom-6 left-0 rounded-3xl right-0 mx-auto w-[50%] bg-gray-900 bg-opacity-95 backdrop-blur-sm text-white
+  return (
+    <>
+      <div
+        className="fixed bottom-6 left-0 rounded-3xl right-0 mx-auto w-[50%] bg-gray-900 bg-opacity-95 backdrop-blur-sm text-white
              py-4 px-6 flex items-center justify-center space-x-4 z-50 shadow-lg"
-                style={{ animation: 'slideUp 0.5s ease-out forwards' }}
-            >
-                <p className="text-sm sm:text-base text-white m-0">
-                    Этот сайт использует <Link href="/terms" className="text-[#ff5500] underline">cookies</Link> для улучшения вашего опыта.
-                </p>
-                <button
-                    onClick={handleAccept}
-                    className="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-lg shadow-md text-white bg-[#ff5500] hover:bg-[#ff6600] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff5500] transition-colors"
-                >
-                    Принять
-                </button>
-            </div>
-            <style jsx>{`
+        style={{ animation: 'slideUp 0.5s ease-out forwards' }}
+      >
+        <p className="text-sm sm:text-base text-white m-0">
+          Этот сайт использует{' '}
+          <Link href="/terms" className="text-[#ff5500] underline">
+            cookies
+          </Link>{' '}
+          для улучшения вашего опыта.
+        </p>
+        <button
+          onClick={handleAccept}
+          className="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-lg shadow-md text-white bg-[#ff5500] hover:bg-[#ff6600] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff5500] transition-colors"
+        >
+          Принять
+        </button>
+      </div>
+      <style jsx>{`
         @keyframes slideUp {
           from {
             transform: translateY(100%);
@@ -49,8 +53,8 @@ const CookieBanner = () => {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 };
 
 export default CookieBanner;

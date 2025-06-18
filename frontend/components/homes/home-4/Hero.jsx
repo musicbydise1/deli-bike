@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Slider from "react-slick";
-import Image from "next/image";
-import { bannerSlides2 } from "@/data/heroSlides";
-import Link from "next/link";
+import Slider from 'react-slick';
+import Image from 'next/image';
+import { bannerSlides2 } from '@/data/heroSlides';
+import Link from 'next/link';
 export default function Hero() {
   const slickOptions = {
     autoplay: false,
@@ -31,11 +31,7 @@ export default function Hero() {
                   </h1>
                 </div>
               </div>
-              <div
-                className="list-box"
-                data-animation-in="fadeInUp"
-                data-delay-in="0.3"
-              >
+              <div className="list-box" data-animation-in="fadeInUp" data-delay-in="0.3">
                 {slide.details.map((item, itemIndex) => (
                   <div key={itemIndex} className="items">
                     <i className={item.icon} />
@@ -61,12 +57,7 @@ export default function Hero() {
                       </g>
                       <defs>
                         <clipPath id="clip0_743_1816">
-                          <rect
-                            width={14}
-                            height={14}
-                            fill="white"
-                            transform="translate(0.5)"
-                          />
+                          <rect width={14} height={14} fill="white" transform="translate(0.5)" />
                         </clipPath>
                       </defs>
                     </svg>

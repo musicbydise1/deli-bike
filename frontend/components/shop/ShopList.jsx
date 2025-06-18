@@ -1,16 +1,16 @@
-"use client";
-import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import SelectComponent from "../common/SelectComponent";
-import { products } from "@/data/products";
-import { useCart } from "@/context/CartContext";
-import Pagination from "../common/Pagination";
-import Slider from "rc-slider";
+'use client';
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import SelectComponent from '../common/SelectComponent';
+import { products } from '@/data/products';
+import { useCart } from '@/context/CartContext';
+import Pagination from '../common/Pagination';
+import Slider from 'rc-slider';
 export default function ShopList() {
   const { addProductToCart, isAddedToCartProducts } = useCart();
   const [price, setPrice] = useState([5000, 35000]);
-  const handlePrice = (value) => {
+  const handlePrice = value => {
     setPrice(value);
   };
   return (
@@ -31,7 +31,7 @@ export default function ShopList() {
           <h2>Shop List</h2>
         </div>
         <div className="row">
-        <div className="col-lg-3 col-md-12 col-sm-12">
+          <div className="col-lg-3 col-md-12 col-sm-12">
             <div className="side-bar">
               <div className="categories-box">
                 <h6 className="title">Categories</h6>
@@ -80,7 +80,7 @@ export default function ShopList() {
               </div>
               <div className="price-box">
                 <h6 className="title">Price</h6>
-                <form onSubmit={(e) => e.preventDefault()} className="row g-0">
+                <form onSubmit={e => e.preventDefault()} className="row g-0">
                   <div className="form-column col-lg-6">
                     <div className="form_boxes">
                       <label>Min price</label>
@@ -101,7 +101,7 @@ export default function ShopList() {
                     max={50000}
                     min={0}
                     defaultValue={price}
-                    onChange={(value) => handlePrice(value)}
+                    onChange={value => handlePrice(value)}
                     id="slider"
                   />
                 </div>
@@ -112,11 +112,11 @@ export default function ShopList() {
             <div className="inner-column">
               <div className="text-box">
                 <div className="text">Showing 1 to 16 of 1559 vehicles</div>
-                <form onSubmit={(e) => e.preventDefault()}>
+                <form onSubmit={e => e.preventDefault()}>
                   <div className="form_boxes v3">
                     <small>Best Match</small>
 
-                    <SelectComponent options={["Any Makes", "Audi", "Honda"]} />
+                    <SelectComponent options={['Any Makes', 'Audi', 'Honda']} />
                   </div>
                 </form>
               </div>
@@ -154,17 +154,11 @@ export default function ShopList() {
                           </Link>
                         </div>
                         <h6 className="title">
-                          <del>${product.originalPrice}</del>$
-                          {product.discountedPrice}
+                          <del>${product.originalPrice}</del>${product.discountedPrice}
                         </h6>
-                        <a
-                          onClick={() => addProductToCart(product.id)}
-                          className="shoping-btn"
-                        >
+                        <a onClick={() => addProductToCart(product.id)} className="shoping-btn">
                           <i className="fa-solid fa-cart-shopping" />
-                          {isAddedToCartProducts(product.id)
-                            ? "Already Added"
-                            : "Add To Cart"}
+                          {isAddedToCartProducts(product.id) ? 'Already Added' : 'Add To Cart'}
                         </a>
                       </div>
                     </div>

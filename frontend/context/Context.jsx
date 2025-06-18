@@ -1,6 +1,6 @@
-"use client";
-import React, { useState, useEffect, useContext } from "react";
-import { pricingPlans } from "@/data/pricing";
+'use client';
+import React, { useState, useEffect, useContext } from 'react';
+import { pricingPlans } from '@/data/pricing';
 
 const dataContext = React.createContext();
 export const useContextElement = () => useContext(dataContext);
@@ -23,9 +23,7 @@ export default function Context({ children }) {
   // Состояния для тарифов (старые)
   // ------------------------------
   const [selectedPlanIndex, setSelectedPlanIndex] = useState(0);
-  const [selectedOptions, setSelectedOptions] = useState(
-      pricingPlans.map(() => null)
-  );
+  const [selectedOptions, setSelectedOptions] = useState(pricingPlans.map(() => null));
   // === УДАЛЯЕМ массив warrantyChecked ===
   // const [warrantyChecked, setWarrantyChecked] = useState(
   //   pricingPlans.map(() => false)
@@ -48,7 +46,7 @@ export default function Context({ children }) {
 
   // === Чекбокс «Расширенная гарантия» (единый) ===
   const [extendedWarrantyStates, setExtendedWarrantyStates] = useState(
-      pricingPlans.map(() => false)
+    pricingPlans.map(() => false),
   );
 
   // ------------------------------
@@ -59,7 +57,7 @@ export default function Context({ children }) {
   // ------------------------------
   // Состояние для локации (KZ / BY и т.д.)
   // ------------------------------
-  const [location, setLocation] = useState("kz");
+  const [location, setLocation] = useState('kz');
 
   // ------------------------------
   // Загрузка продуктов (велосипедов) с API
@@ -76,17 +74,17 @@ export default function Context({ children }) {
           setQuickViewItem(data[0]);
         }
       } catch (error) {
-        console.error("Error fetching bikes:", error);
+        console.error('Error fetching bikes:', error);
       }
     };
     fetchProducts();
-  }, []);
+  });
 
   // Пересчёт итоговой суммы корзины
   useEffect(() => {
     const subtotal = cartProducts.reduce(
-        (accumulator, product) => accumulator + product.quantity * product.price,
-        0
+      (accumulator, product) => accumulator + product.quantity * product.price,
+      0,
     );
     setTotalPrice(subtotal);
   }, [cartProducts]);
@@ -95,68 +93,68 @@ export default function Context({ children }) {
   // Методы для корзины
   // ------------------------------
   const addProductToCart = (id, qty, price) => {
-    if (!cartProducts.some((elm) => elm.id == id)) {
+    if (!cartProducts.some(elm => elm.id == id)) {
       const item = {
-        ...products.find((elm) => elm.id == id),
+        ...products.find(elm => elm.id == id),
         quantity: qty || 1,
         price: price || 0,
       };
-      setCartProducts((prev) => [...prev, item]);
+      setCartProducts(prev => [...prev, item]);
     }
   };
 
-  const isAddedToCartProducts = (id) => cartProducts.some((elm) => elm.id == id);
+  const isAddedToCartProducts = id => cartProducts.some(elm => elm.id == id);
 
   // ------------------------------
   // Методы для wishlist
   // ------------------------------
-  const addToWishlist = (id) => {
+  const addToWishlist = id => {
     if (!wishList.includes(id)) {
-      setWishList((prev) => [...prev, id]);
+      setWishList(prev => [...prev, id]);
     }
   };
 
-  const removeFromWishlist = (id) => {
+  const removeFromWishlist = id => {
     if (wishList.includes(id)) {
-      setWishList((prev) => prev.filter((elm) => elm !== id));
+      setWishList(prev => prev.filter(elm => elm !== id));
     }
   };
 
-  const isAddedtoWishlist = (id) => wishList.includes(id);
+  const isAddedtoWishlist = id => wishList.includes(id);
 
   // ------------------------------
   // Локальное хранение корзины
   // ------------------------------
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("cartList"));
+    const items = JSON.parse(localStorage.getItem('cartList'));
     if (items?.length) {
       setCartProducts(items);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("cartList", JSON.stringify(cartProducts));
+    localStorage.setItem('cartList', JSON.stringify(cartProducts));
   }, [cartProducts]);
 
   // ------------------------------
   // Локальное хранение wishlist
   // ------------------------------
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("wishlist"));
+    const items = JSON.parse(localStorage.getItem('wishlist'));
     if (items?.length) {
       setWishList(items);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("wishlist", JSON.stringify(wishList));
+    localStorage.setItem('wishlist', JSON.stringify(wishList));
   }, [wishList]);
 
   // ------------------------------
   // Загрузка userRole из localStorage
   // ------------------------------
   useEffect(() => {
-    const storedRole = localStorage.getItem("userRole");
+    const storedRole = localStorage.getItem('userRole');
     if (storedRole) {
       setUserRole(storedRole);
     }
@@ -210,9 +208,5 @@ export default function Context({ children }) {
     setLocation,
   };
 
-  return (
-      <dataContext.Provider value={contextElement}>
-        {children}
-      </dataContext.Provider>
-  );
+  return <dataContext.Provider value={contextElement}>{children}</dataContext.Provider>;
 }

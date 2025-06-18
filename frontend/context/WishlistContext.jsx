@@ -1,45 +1,45 @@
-"use client";
-import React, { createContext, useState, useEffect, useContext } from "react";
+'use client';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 
 export const WishlistContext = createContext(null);
 
 export function useWishlist() {
-    return useContext(WishlistContext);
+  return useContext(WishlistContext);
 }
 
 export function WishlistProvider({ children }) {
-    const [wishList, setWishList] = useState([]);
+  const [wishList, setWishList] = useState([]);
 
-    // Загрузка из localStorage
-    useEffect(() => {
-        const items = JSON.parse(localStorage.getItem("wishlist"));
-        if (items?.length) {
-            setWishList(items);
-        }
-    }, []);
+  // Загрузка из localStorage
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('wishlist'));
+    if (items?.length) {
+      setWishList(items);
+    }
+  }, []);
 
-    // Сохранение
-    useEffect(() => {
-        localStorage.setItem("wishlist", JSON.stringify(wishList));
-    }, [wishList]);
+  // Сохранение
+  useEffect(() => {
+    localStorage.setItem('wishlist', JSON.stringify(wishList));
+  }, [wishList]);
 
-    const addToWishlist = (id) => {
-        if (!wishList.includes(id)) {
-            setWishList((prev) => [...prev, id]);
-        }
-    };
-    const removeFromWishlist = (id) => {
-        setWishList((prev) => prev.filter((item) => item !== id));
-    };
-    const isAddedtoWishlist = (id) => wishList.includes(id);
+  const addToWishlist = id => {
+    if (!wishList.includes(id)) {
+      setWishList(prev => [...prev, id]);
+    }
+  };
+  const removeFromWishlist = id => {
+    setWishList(prev => prev.filter(item => item !== id));
+  };
+  const isAddedtoWishlist = id => wishList.includes(id);
 
-    const value = {
-        wishList,
-        setWishList,
-        addToWishlist,
-        removeFromWishlist,
-        isAddedtoWishlist,
-    };
+  const value = {
+    wishList,
+    setWishList,
+    addToWishlist,
+    removeFromWishlist,
+    isAddedtoWishlist,
+  };
 
-    return <WishlistContext.Provider value={value}>{children}</WishlistContext.Provider>;
+  return <WishlistContext.Provider value={value}>{children}</WishlistContext.Provider>;
 }

@@ -1,10 +1,10 @@
-"use client";
-import React, { useState } from "react";
-import Sidebar from "./Sidebar";
-import Image from "next/image";
-import SelectComponent from "../common/SelectComponent";
+'use client';
+import React, { useState } from 'react';
+import Sidebar from './Sidebar';
+import Image from 'next/image';
+import SelectComponent from '../common/SelectComponent';
 export default function Profile() {
-  const [images, setImages] = useState(["/images/resource/list2-4.png"]);
+  const [images, setImages] = useState(['/images/resource/list2-4.png']);
 
   const handleImageChange = (e, index) => {
     const file = e.target.files[0];
@@ -18,14 +18,14 @@ export default function Profile() {
       reader.readAsDataURL(file);
     }
   };
-  const handleDelete = (index) => {
+  const handleDelete = index => {
     const newImages = images.filter((_, imgIndex) => imgIndex !== index);
     setImages(newImages);
   };
   const [images2, setImages2] = useState([
-    "/images/resource/list2-1.png",
-    "/images/resource/list2-2.png",
-    "/images/resource/list2-3.png",
+    '/images/resource/list2-1.png',
+    '/images/resource/list2-2.png',
+    '/images/resource/list2-3.png',
   ]);
 
   const handleImageChange2 = (e, index) => {
@@ -40,7 +40,7 @@ export default function Profile() {
       reader.readAsDataURL(file);
     }
   };
-  const handleDelete2 = (index) => {
+  const handleDelete2 = index => {
     const newImages = images2.filter((_, imgIndex) => imgIndex !== index);
     setImages2(newImages);
   };
@@ -52,9 +52,7 @@ export default function Profile() {
           <div className="inner-column">
             <div className="list-title">
               <h3 className="title">Profile</h3>
-              <div className="text">
-                Lorem ipsum dolor sit amet, consectetur.
-              </div>
+              <div className="text">Lorem ipsum dolor sit amet, consectetur.</div>
             </div>
             <div className="gallery-sec">
               <div className="right-box-three">
@@ -98,8 +96,8 @@ export default function Profile() {
                                 id={`file-upload-${index}`}
                                 type="file"
                                 accept="image/*"
-                                onChange={(e) => handleImageChange(e, index)}
-                                style={{ display: "none" }}
+                                onChange={e => handleImageChange(e, index)}
+                                style={{ display: 'none' }}
                               />
                             </li>
                           </ul>
@@ -123,40 +121,30 @@ export default function Profile() {
                           id="upload-new"
                           type="file"
                           accept="image/*"
-                          style={{ display: "none" }}
-                          onChange={(e) => handleImageChange(e, images.length)}
+                          style={{ display: 'none' }}
+                          onChange={e => handleImageChange(e, images.length)}
                         />
                       </div>
                     </div>
                   </div>
                   <div className="text">
-                    Max file size is 1MB, Minimum dimension: 330x300 And
-                    Suitable files are .jpg &amp; .png
+                    Max file size is 1MB, Minimum dimension: 330x300 And Suitable files are .jpg
+                    &amp; .png
                   </div>
                 </div>
               </div>
               <div className="form-sec">
-                <form onSubmit={(e) => e.preventDefault()} className="row">
+                <form onSubmit={e => e.preventDefault()} className="row">
                   <div className="col-lg-4">
                     <div className="form_boxes">
                       <label>First Name</label>
-                      <input
-                        name="name"
-                        required
-                        type="text"
-                        placeholder="Ali"
-                      />
+                      <input name="name" required type="text" placeholder="Ali" />
                     </div>
                   </div>
                   <div className="col-lg-4">
                     <div className="form_boxes">
                       <label>Last Name</label>
-                      <input
-                        name="last-name"
-                        required
-                        type="text"
-                        placeholder="Tufan"
-                      />
+                      <input name="last-name" required type="text" placeholder="Tufan" />
                     </div>
                   </div>
                   <div className="col-lg-4">
@@ -173,23 +161,13 @@ export default function Profile() {
                   <div className="col-lg-4">
                     <div className="form_boxes">
                       <label>Phone</label>
-                      <input
-                        name="phone"
-                        required
-                        type="number"
-                        placeholder={+77}
-                      />
+                      <input name="phone" required type="number" placeholder={+77} />
                     </div>
                   </div>
                   <div className="col-lg-4">
                     <div className="form_boxes">
                       <label>Whatsapp</label>
-                      <input
-                        name="whatsapp"
-                        required
-                        type="number"
-                        placeholder={+98}
-                      />
+                      <input name="whatsapp" required type="number" placeholder={+98} />
                     </div>
                   </div>
                   <div className="col-lg-4">
@@ -211,12 +189,7 @@ export default function Profile() {
                   <div className="inner-box">
                     {images2.map((imgSrc, index) => (
                       <div className="image-box" key={index}>
-                        <Image
-                          width={190}
-                          height={167}
-                          src={imgSrc}
-                          alt={`Preview ${index}`}
-                        />
+                        <Image width={190} height={167} src={imgSrc} alt={`Preview ${index}`} />
                         <div className="content-box">
                           <ul className="social-icon">
                             <li>
@@ -245,8 +218,8 @@ export default function Profile() {
                                 id={`file-upload-${index}`}
                                 type="file"
                                 accept="image/*"
-                                onChange={(e) => handleImageChange2(e, index)}
-                                style={{ display: "none" }}
+                                onChange={e => handleImageChange2(e, index)}
+                                style={{ display: 'none' }}
                               />
                             </li>
                           </ul>
@@ -270,32 +243,25 @@ export default function Profile() {
                           id="upload-new"
                           type="file"
                           accept="image/*"
-                          style={{ display: "none" }}
-                          onChange={(e) =>
-                            handleImageChange2(e, images2.length)
-                          }
+                          style={{ display: 'none' }}
+                          onChange={e => handleImageChange2(e, images2.length)}
                         />
                       </div>
                     </div>
                   </div>
                   <div className="text">
-                    Max file size is 1MB, Minimum dimension: 330x300 And
-                    Suitable files are .jpg &amp; .png
+                    Max file size is 1MB, Minimum dimension: 330x300 And Suitable files are .jpg
+                    &amp; .png
                   </div>
                 </div>
               </div>
               <div className="map-sec-two">
                 <div className="form-sec-two">
-                  <form onSubmit={(e) => e.preventDefault()} className="row">
+                  <form onSubmit={e => e.preventDefault()} className="row">
                     <div className="col-lg-6">
                       <div className="form_boxes">
                         <label>Friendly Address</label>
-                        <input
-                          type="text"
-                          name="address"
-                          required
-                          placeholder="ali tufan"
-                        />
+                        <input type="text" name="address" required placeholder="ali tufan" />
                       </div>
                     </div>
                     <div className="col-lg-6">
@@ -318,18 +284,13 @@ export default function Profile() {
                       <div className="form_boxes">
                         <label>Longitude</label>
 
-                        <SelectComponent options={["33", "33", "33"]} />
+                        <SelectComponent options={['33', '33', '33']} />
                       </div>
                     </div>
                     <div className="col-lg-6">
                       <div className="form_boxes">
                         <label>Video Link</label>
-                        <input
-                          required
-                          type="text"
-                          name="video-link"
-                          placeholder="#"
-                        />
+                        <input required type="text" name="video-link" placeholder="#" />
                       </div>
                     </div>
                     <div className="col-lg-12">
@@ -338,7 +299,7 @@ export default function Profile() {
                         <textarea
                           name="text"
                           placeholder="Lorem Ipsum Dolar Sit Amet"
-                          defaultValue={""}
+                          defaultValue={''}
                           required
                         />
                       </div>
@@ -346,12 +307,7 @@ export default function Profile() {
                     <div className="form-submit">
                       <button type="submit" className="theme-btn">
                         Save Profile
-                        <Image
-                          alt=""
-                          src="/images/arrow.svg"
-                          width={14}
-                          height={14}
-                        />
+                        <Image alt="" src="/images/arrow.svg" width={14} height={14} />
                       </button>
                     </div>
                   </form>

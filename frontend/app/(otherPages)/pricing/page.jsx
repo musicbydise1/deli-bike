@@ -1,12 +1,12 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import Pricing from "@/components/otherPages/Pricing";
+import Footer1 from '@/components/footers/Footer1';
+import Header1 from '@/components/headers/Header1';
+import Pricing from '@/components/otherPages/Pricing';
 
-import React from "react";
+import React from 'react';
 
 export const metadata = {
-  title: "Pricing || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
+  title: 'Pricing || Boxcar - React Nextjs Car Template',
+  description: 'Boxcar - React Nextjs Car Template',
 };
 export default function PricingPage() {
   return (

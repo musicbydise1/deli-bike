@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 export default function Collections() {
   return (
     <section className="car-galler-section pb-0">
@@ -37,12 +37,7 @@ export default function Collections() {
               <div className="image-box">
                 <figure className="image">
                   <a href="#">
-                    <Image
-                      alt=""
-                      src="/images/resource/gallery1-1.jpg"
-                      width={686}
-                      height={350}
-                    />
+                    <Image alt="" src="/images/resource/gallery1-1.jpg" width={686} height={350} />
                   </a>
                 </figure>
               </div>
@@ -82,12 +77,7 @@ export default function Collections() {
               <div className="image-box">
                 <figure className="image">
                   <a href="#">
-                    <Image
-                      alt=""
-                      src="/images/resource/gallery1-2.jpg"
-                      width={686}
-                      height={350}
-                    />
+                    <Image alt="" src="/images/resource/gallery1-2.jpg" width={686} height={350} />
                   </a>
                 </figure>
               </div>
@@ -116,12 +106,7 @@ export default function Collections() {
               <div className="image-box">
                 <figure className="image">
                   <a href="#">
-                    <Image
-                      alt=""
-                      src="/images/resource/gallery1-3.jpg"
-                      width={448}
-                      height={350}
-                    />
+                    <Image alt="" src="/images/resource/gallery1-3.jpg" width={448} height={350} />
                   </a>
                 </figure>
               </div>
@@ -150,12 +135,7 @@ export default function Collections() {
               <div className="image-box">
                 <figure className="image">
                   <a href="#">
-                    <Image
-                      alt=""
-                      src="/images/resource/gallery1-4.jpg"
-                      width={448}
-                      height={350}
-                    />
+                    <Image alt="" src="/images/resource/gallery1-4.jpg" width={448} height={350} />
                   </a>
                 </figure>
               </div>
@@ -188,12 +168,7 @@ export default function Collections() {
               <div className="image-box">
                 <figure className="image">
                   <a href="#">
-                    <Image
-                      alt=""
-                      src="/images/resource/gallery1-5.jpg"
-                      width={448}
-                      height={350}
-                    />
+                    <Image alt="" src="/images/resource/gallery1-5.jpg" width={448} height={350} />
                   </a>
                 </figure>
               </div>

@@ -1,6 +1,6 @@
-"use client";
-import React from "react";
-import Image from "next/image";
+'use client';
+import React from 'react';
+import Image from 'next/image';
 export default function NewsLetter() {
   return (
     <section className="news-letter-section pb-0 pt-0">
@@ -11,12 +11,7 @@ export default function NewsLetter() {
             <div className="inner-column">
               <div className="image-box">
                 <figure className="image">
-                  <Image
-                    alt=""
-                    src="/images/resource/news1-1.png"
-                    width={368}
-                    height={295}
-                  />
+                  <Image alt="" src="/images/resource/news1-1.png" width={368} height={295} />
                 </figure>
               </div>
             </div>
@@ -29,19 +24,10 @@ export default function NewsLetter() {
                   Subscribe To Our Mailing <br />
                   List And Stay Up To Date
                 </h2>
-                <div className="text">
-                  We'll keep you updated with the best new jobs.
-                </div>
+                <div className="text">Well keep you updated with the best new jobs.</div>
               </div>
-              <div
-                className="subscribe-form wow fadeInUp"
-                data-wow-delay="100ms"
-              >
-                <form
-                  onSubmit={(e) => e.preventDefault()}
-                  method="post"
-                  action="#"
-                >
+              <div className="subscribe-form wow fadeInUp" data-wow-delay="100ms">
+                <form onSubmit={e => e.preventDefault()} method="post" action="#">
                   <div className="form-group">
                     <input
                       type="email"
@@ -51,10 +37,7 @@ export default function NewsLetter() {
                       placeholder="Your email"
                       required
                     />
-                    <button
-                      type="button"
-                      className="theme-btn btn-style-one hover-light"
-                    >
+                    <button type="button" className="theme-btn btn-style-one hover-light">
                       <span className="btn-title">subscribe</span>
                     </button>
                   </div>

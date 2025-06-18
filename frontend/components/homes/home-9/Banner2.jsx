@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react';
+import Image from 'next/image';
 export default function Banner2() {
   return (
     <section className="blog-section-three">
@@ -11,12 +11,7 @@ export default function Banner2() {
               <div className="hover-img">
                 <figure className="image">
                   <a href="#">
-                    <Image
-                      alt=""
-                      src="/images/resource/blog3-1.jpg"
-                      width={686}
-                      height={396}
-                    />
+                    <Image alt="" src="/images/resource/blog3-1.jpg" width={686} height={396} />
                   </a>
                 </figure>
                 <div className="content-box">
@@ -25,8 +20,7 @@ export default function Banner2() {
                     For a Car ?
                   </h3>
                   <div className="text">
-                    We are committed to providing our customers with exceptional
-                    service.
+                    We are committed to providing our customers with exceptional service.
                   </div>
                   <a href="#" className="read-more">
                     Get Started
@@ -60,12 +54,7 @@ export default function Banner2() {
               <div className="hover-img">
                 <figure className="image">
                   <a href="#">
-                    <Image
-                      alt=""
-                      src="/images/resource/blog3-2.jpg"
-                      width={686}
-                      height={396}
-                    />
+                    <Image alt="" src="/images/resource/blog3-2.jpg" width={686} height={396} />
                   </a>
                 </figure>
                 <div className="content-box">
@@ -74,8 +63,7 @@ export default function Banner2() {
                     Sell a Car ?
                   </h3>
                   <div className="text">
-                    We are committed to providing our customers with exceptional
-                    service.
+                    We are committed to providing our customers with exceptional service.
                   </div>
                   <a href="#" className="read-more">
                     Get Started

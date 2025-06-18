@@ -1,29 +1,23 @@
-"use client";
-import React, { useState } from "react";
-import Nav from "./Nav";
-import Link from "next/link";
-import Image from "next/image";
-import { carItemsSearch } from "@/data/cars";
-export default function Header1({
-  headerClass = "header-style-v1 header-default",
-  white = false,
-}) {
-  const [searchQuery, setSearchQuery] = useState("");
+'use client';
+import React, { useState } from 'react';
+import Nav from './Nav';
+import Link from 'next/link';
+import Image from 'next/image';
+import { carItemsSearch } from '@/data/cars';
+export default function Header1({ headerClass = 'header-style-v1 header-default', white = false }) {
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleFocus = () => {
-    document.getElementById("box-content-search").classList.add("active");
-    document
-      .getElementById("box-content-search")
-      .closest(".layout-search")
-      .classList.add("active");
+    document.getElementById('box-content-search').classList.add('active');
+    document.getElementById('box-content-search').closest('.layout-search').classList.add('active');
   };
 
   const handleBlur = () => {
-    document.getElementById("box-content-search").classList.remove("active");
+    document.getElementById('box-content-search').classList.remove('active');
     document
-      .getElementById("box-content-search")
-      .closest(".layout-search")
-      .classList.remove("active");
+      .getElementById('box-content-search')
+      .closest('.layout-search')
+      .classList.remove('active');
   };
   return (
     <header className={`boxcar-header  ${headerClass}`}>
@@ -80,18 +74,14 @@ export default function Header1({
                     required
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={e => setSearchQuery(e.target.value)}
                   />
                 </div>
                 <div className="box-content-search" id="box-content-search">
                   <ul className="box-car-search">
                     {carItemsSearch
-                      .filter((elm) =>
-                        elm.title
-                          .toLowerCase()
-                          .includes(searchQuery.toLowerCase())
-                      )
-                      .map((car) => (
+                      .filter(elm => elm.title.toLowerCase().includes(searchQuery.toLowerCase()))
+                      .map(car => (
                         <li key={car.id}>
                           <Link
                             href={`/inventory-page-single-v1/${car.id}`}
@@ -114,10 +104,7 @@ export default function Header1({
                         </li>
                       ))}
                   </ul>
-                  <Link
-                    href={`/inventory-page-single-v1`}
-                    className="btn-view-search"
-                  >
+                  <Link href={`/inventory-page-single-v1`} className="btn-view-search">
                     View Details
                     <svg
                       width={14}
@@ -194,7 +181,7 @@ export default function Header1({
           <span className="fa fa-times" />
         </button>
         <div className="search-inner">
-          <form onSubmit={(e) => e.preventDefault()} method="post">
+          <form onSubmit={e => e.preventDefault()} method="post">
             <div className="form-group">
               <input
                 type="search"

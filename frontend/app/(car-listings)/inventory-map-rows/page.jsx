@@ -1,12 +1,12 @@
-import Listings4 from "@/components/carListings/Listings4";
-import Sidebar from "@/components/carListings/Sidebar";
+import Listings4 from '@/components/carListings/Listings4';
+import Sidebar from '@/components/carListings/Sidebar';
 
-import Header1 from "@/components/headers/Header1";
-import React from "react";
+import Header1 from '@/components/headers/Header1';
+import React from 'react';
 
 export const metadata = {
-  title: "Inventory Map Rows || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
+  title: 'Inventory Map Rows || Boxcar - React Nextjs Car Template',
+  description: 'Boxcar - React Nextjs Car Template',
 };
 export default function InventoryMapRowsPage() {
   return (

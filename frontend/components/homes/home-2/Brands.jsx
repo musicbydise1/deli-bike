@@ -1,5 +1,5 @@
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 
 export default function Brands() {
   return (
@@ -186,7 +186,7 @@ export default function Brands() {
                 >
                   <mask
                     id="mask0_104_1554"
-                    style={{ maskType: "luminance" }}
+                    style={{ maskType: 'luminance' }}
                     maskUnits="userSpaceOnUse"
                     x={0}
                     y={0}

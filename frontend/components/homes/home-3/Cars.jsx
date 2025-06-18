@@ -1,12 +1,12 @@
-"use client";
-import { carData } from "@/data/cars";
-import Slider from "react-slick";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+'use client';
+import { carData } from '@/data/cars';
+import Slider from 'react-slick';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 const navButtons = [
   {
-    label: "SUV",
+    label: 'SUV',
     svg: (
       <svg
         width={34}
@@ -34,7 +34,7 @@ const navButtons = [
     ),
   },
   {
-    label: "Sedan",
+    label: 'Sedan',
     svg: (
       <svg
         width={34}
@@ -51,7 +51,7 @@ const navButtons = [
     ),
   },
   {
-    label: "Hatchback",
+    label: 'Hatchback',
     svg: (
       <svg
         width={34}
@@ -68,7 +68,7 @@ const navButtons = [
     ),
   },
   {
-    label: "Coupe",
+    label: 'Coupe',
     svg: (
       <svg
         width={34}
@@ -85,7 +85,7 @@ const navButtons = [
     ),
   },
   {
-    label: "Convertible",
+    label: 'Convertible',
     svg: (
       <svg
         width={34}
@@ -107,11 +107,7 @@ export default function Cars() {
   const [selectedBrand, setSelectedBrand] = useState(navButtons[0]);
   const [filteres, setFilteres] = useState([]);
   useEffect(() => {
-    setFilteres(
-      [...carData].filter((elm) =>
-        elm.filterBrands.includes(selectedBrand.label)
-      )
-    );
+    setFilteres([...carData].filter(elm => elm.filterBrands.includes(selectedBrand.label)));
   }, [selectedBrand]);
 
   return (
@@ -122,7 +118,7 @@ export default function Cars() {
             <button
               key={i}
               onClick={() => setSelectedBrand(elm)}
-              className={`nav-link ${selectedBrand == elm ? "active" : ""}`}
+              className={`nav-link ${selectedBrand == elm ? 'active' : ''}`}
             >
               {elm.svg}
               <span>{elm.label}</span>
@@ -170,26 +166,12 @@ export default function Cars() {
                   className="box-car car-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12"
                 >
                   <div className="inner-box">
-                    <div
-                      className={`image-box ${
-                        car.badge == "Great Price" ? "two" : ""
-                      }`}
-                    >
-                      <Slider
-                        dots
-                        slidesToShow={1}
-                        key={car.id}
-                        className="slider-thumb"
-                      >
+                    <div className={`image-box ${car.badge == 'Great Price' ? 'two' : ''}`}>
+                      <Slider dots slidesToShow={1} key={car.id} className="slider-thumb">
                         {car.images.map((image, i) => (
                           <div key={i} className="image d-block">
                             <Link href={`/inventory-page-single-v1/${car.id}`}>
-                              <Image
-                                alt=""
-                                src={image}
-                                width={329}
-                                height={220}
-                              />
+                              <Image alt="" src={image} width={329} height={220} />
                             </Link>
                           </div>
                         ))}
@@ -223,9 +205,7 @@ export default function Cars() {
                     </div>
                     <div className="content-box">
                       <h6 className="title">
-                        <Link href={`/inventory-page-single-v1/${car.id}`}>
-                          {car.title}
-                        </Link>
+                        <Link href={`/inventory-page-single-v1/${car.id}`}>{car.title}</Link>
                       </h6>
                       <div className="text">{car.description}</div>
                       <ul>
@@ -238,10 +218,7 @@ export default function Cars() {
                       <div className="btn-box">
                         <span>{car.price}</span>
                         <small>{car.oldPrice}</small>
-                        <Link
-                          href={`/inventory-page-single-v1/${car.id}`}
-                          className="details"
-                        >
+                        <Link href={`/inventory-page-single-v1/${car.id}`} className="details">
                           View Details
                           {/* SVG content */}
                         </Link>

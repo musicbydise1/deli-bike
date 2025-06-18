@@ -1,7 +1,7 @@
-import React from "react";
-import Cars from "./Cars";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react';
+import Cars from './Cars';
+import Image from 'next/image';
+import Link from 'next/link';
 export default function TeamSingle({ teamMember }) {
   return (
     <section className="vehicles-section-three layout-radius">
@@ -19,29 +19,23 @@ export default function TeamSingle({ teamMember }) {
             <h2>Team Single</h2>
           </div>
           <div className="auther-info-box">
-            <div className="inner-column" style={{ columnGap: "20px" }}>
-              <div
-                className="image-box"
-                style={{ maxWidth: "100%", maxHeight: "100%" }}
-              >
-                <figure
-                  className="image"
-                  style={{ maxWidth: "100%", maxHeight: "100%" }}
-                >
-                  <a href="#" style={{ maxWidth: "100%", maxHeight: "100%" }}>
+            <div className="inner-column" style={{ columnGap: '20px' }}>
+              <div className="image-box" style={{ maxWidth: '100%', maxHeight: '100%' }}>
+                <figure className="image" style={{ maxWidth: '100%', maxHeight: '100%' }}>
+                  <a href="#" style={{ maxWidth: '100%', maxHeight: '100%' }}>
                     <Image
                       alt=""
                       src={
                         teamMember.imageSrc
                           ? teamMember.imageSrc
                           : teamMember.imgSrc
-                          ? teamMember.imgSrc
-                          : "/images/resource/vehical-auther1-1.png"
+                            ? teamMember.imgSrc
+                            : '/images/resource/vehical-auther1-1.png'
                       }
                       style={{
-                        maxWidth: "70%",
-                        margin: "0 auto",
-                        display: "block",
+                        maxWidth: '70%',
+                        margin: '0 auto',
+                        display: 'block',
                       }}
                       width={431}
                       height={327}
@@ -54,9 +48,8 @@ export default function TeamSingle({ teamMember }) {
                   <h3 className="title">{teamMember.name}</h3>
                   <span>Software Development Manager</span>
                   <div className="text">
-                    Award-winning, family owned dealership of new and pre-owned
-                    vehicles. Lowest prices and the best customer service
-                    guaranteed.
+                    Award-winning, family owned dealership of new and pre-owned vehicles. Lowest
+                    prices and the best customer service guaranteed.
                   </div>
                   <ul className="contact-info">
                     <li>
@@ -137,12 +130,7 @@ export default function TeamSingle({ teamMember }) {
                       </g>
                       <defs>
                         <clipPath id="clip0_788_1269">
-                          <rect
-                            width={14}
-                            height={14}
-                            fill="white"
-                            transform="translate(0.5)"
-                          />
+                          <rect width={14} height={14} fill="white" transform="translate(0.5)" />
                         </clipPath>
                       </defs>
                     </svg>

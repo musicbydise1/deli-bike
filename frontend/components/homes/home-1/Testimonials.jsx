@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { testimonials } from "@/data/testimonials";
-import Slider from "react-slick";
-import Image from "next/image";
+import { testimonials } from '@/data/testimonials';
+import Slider from 'react-slick';
+import Image from 'next/image';
 export default function Testimonials() {
   const slickOptions = {
     infinite: true,
@@ -43,8 +43,7 @@ export default function Testimonials() {
         <div className="boxcar-title wow fadeInUp">
           <h2>What our customers say</h2>
           <div className="text">
-            Rated 4.7 / 5 based on 28,370 reviews Showing our 4 &amp; 5 star
-            reviews
+            Rated 4.7 / 5 based on 28,370 reviews Showing our 4 &amp; 5 star reviews
           </div>
         </div>
         <Slider {...slickOptions} className="testimonial-slider-two">
@@ -55,21 +54,13 @@ export default function Testimonials() {
                   <div className="inner-column wow fadeInUp">
                     <div className="image-box">
                       <figure className="image">
-                        <Image
-                          alt=""
-                          src={testimonial.imgSrc}
-                          width={448}
-                          height={470}
-                        />
+                        <Image alt="" src={testimonial.imgSrc} width={448} height={470} />
                       </figure>
                     </div>
                   </div>
                 </div>
                 <div className="content-column col-lg-8 col-md-12 col-sm-12">
-                  <div
-                    className="inner-column wow fadeInUp"
-                    data-wow-delay={testimonial.wowDelay}
-                  >
+                  <div className="inner-column wow fadeInUp" data-wow-delay={testimonial.wowDelay}>
                     <ul className="rating">
                       {Array.from({ length: 5 }).map((_, starIndex) => (
                         <li key={starIndex}>

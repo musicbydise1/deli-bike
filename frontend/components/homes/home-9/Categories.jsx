@@ -1,8 +1,8 @@
-"use client";
-import Image from "next/image";
-import Slider from "react-slick";
-import Link from "next/link";
-import { cars } from "@/data/categories";
+'use client';
+import Image from 'next/image';
+import Slider from 'react-slick';
+import Link from 'next/link';
+import { cars } from '@/data/categories';
 export default function Categories() {
   const slickOptions = {
     infinite: false,
@@ -78,23 +78,18 @@ export default function Categories() {
           <button className="nav-link">Hybird</button>
         </div>
         <div className="tab-content wow fadeInUp">
-          <div className="tab-pane fade show" style={{ display: "block" }}>
+          <div className="tab-pane fade show" style={{ display: 'block' }}>
             <Slider
               {...slickOptions}
               className="wrap-slider-car car-slider-three relative"
               style={{
-                maxWidth: "100%",
+                maxWidth: '100%',
               }}
             >
               {cars.map((car, index) => (
                 <div className="box-cate-car" key={index}>
                   <Link href={car.href} className="car-image-home-9">
-                    <Image
-                      alt={car.name}
-                      src={car.src}
-                      width={car.width}
-                      height={car.height}
-                    />
+                    <Image alt={car.name} src={car.src} width={car.width} height={car.height} />
                   </Link>
                   <Link href={car.href} className="name">
                     {car.name}

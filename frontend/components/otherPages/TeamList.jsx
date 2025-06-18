@@ -1,8 +1,8 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { teamMembers4 } from "@/data/team";
-import Pagination from "../common/Pagination";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { teamMembers4 } from '@/data/team';
+import Pagination from '../common/Pagination';
 export default function TeamList() {
   return (
     <section className="boxcar-team-section v1 layout-radius">
@@ -21,19 +21,11 @@ export default function TeamList() {
         <div className="row">
           {teamMembers4.map((member, index) => (
             <div className="team-block col-lg-3 col-md-6 col-sm-6" key={index}>
-              <div
-                className={`inner-box wow fadeInUp`}
-                data-wow-delay={member.wowDelay}
-              >
+              <div className={`inner-box wow fadeInUp`} data-wow-delay={member.wowDelay}>
                 <div className="image-box">
                   <figure className="image">
                     <Link href={`/team-single/${member.id}`}>
-                      <Image
-                        alt=""
-                        src={member.imgSrc}
-                        width={329}
-                        height={400}
-                      />
+                      <Image alt="" src={member.imgSrc} width={329} height={400} />
                     </Link>
                   </figure>
                   <div className="contact-info">
@@ -47,9 +39,7 @@ export default function TeamList() {
                 </div>
                 <div className="content-box">
                   <h4 className="title">
-                    <Link href={`/team-single/${member.id}`}>
-                      {member.name}
-                    </Link>
+                    <Link href={`/team-single/${member.id}`}>{member.name}</Link>
                   </h4>
                   <span>{member.role}</span>
                 </div>

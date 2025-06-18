@@ -1,26 +1,26 @@
-"use client";
-import Slider from "rc-slider";
-import React, { useState } from "react";
-import Image from "next/image";
-import SelectComponent from "../common/SelectComponent";
-import { cars } from "@/data/cars";
-import Link from "next/link";
-import Pagination from "../common/Pagination";
+'use client';
+import Slider from 'rc-slider';
+import React, { useState } from 'react';
+import Image from 'next/image';
+import SelectComponent from '../common/SelectComponent';
+import { cars } from '@/data/cars';
+import Link from 'next/link';
+import Pagination from '../common/Pagination';
 const filters = [
-  { text: "SUV" },
-  { text: "Automatic" },
-  { text: "$5,0000-$10,000" },
-  { text: "Hatchback" },
-  { text: "2020+" },
-  { text: "All Wheel Drive" },
-  { text: "Great Price" },
-  { text: "Up to 75,000 miles" },
-  { text: "Low Mileage" },
-  { text: "Diesel" },
+  { text: 'SUV' },
+  { text: 'Automatic' },
+  { text: '$5,0000-$10,000' },
+  { text: 'Hatchback' },
+  { text: '2020+' },
+  { text: 'All Wheel Drive' },
+  { text: 'Great Price' },
+  { text: 'Up to 75,000 miles' },
+  { text: 'Low Mileage' },
+  { text: 'Diesel' },
 ];
 export default function Listings5() {
   const [price, setPrice] = useState([5000, 35000]);
-  const handlePrice = (value) => {
+  const handlePrice = value => {
     setPrice(value);
   };
   return (
@@ -35,9 +35,7 @@ export default function Listings5() {
               <span>Cars for Sale</span>
             </li>
           </ul>
-          <h2>
-            What Kind of Car Should I Get? Try Boxcars Car Finder to Find a Car
-          </h2>
+          <h2>What Kind of Car Should I Get? Try Boxcars Car Finder to Find a Car</h2>
           <ul className="service-list">
             {filters.map((filter, index) => (
               <li key={index}>
@@ -78,25 +76,21 @@ export default function Listings5() {
                     <div className="form_boxes">
                       <label>Location</label>
 
-                      <SelectComponent
-                        options={["New York", "Los Vegas", "California"]}
-                      />
+                      <SelectComponent options={['New York', 'Los Vegas', 'California']} />
                     </div>
                   </div>
                   <div className="col-lg-7">
                     <div className="form_boxes">
                       <label>Search within</label>
 
-                      <SelectComponent
-                        options={["200 miles", "200 mile", "200 mile"]}
-                      />
+                      <SelectComponent options={['200 miles', '200 mile', '200 mile']} />
                     </div>
                   </div>
                   <div className="col-lg-5">
                     <div className="form_boxes">
                       <label>Zip Code</label>
 
-                      <SelectComponent options={["02111", "02111", "02111"]} />
+                      <SelectComponent options={['02111', '02111', '02111']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
@@ -104,12 +98,7 @@ export default function Listings5() {
                       <label>Condition</label>
 
                       <SelectComponent
-                        options={[
-                          "New and Used",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
+                        options={['New and Used', 'New York', 'Los Vegas', 'California']}
                       />
                     </div>
                   </div>
@@ -150,12 +139,7 @@ export default function Listings5() {
                       <label>Make</label>
 
                       <SelectComponent
-                        options={[
-                          "Add Make",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
+                        options={['Add Make', 'New York', 'Los Vegas', 'California']}
                       />
                     </div>
                   </div>
@@ -164,12 +148,7 @@ export default function Listings5() {
                       <label>Model</label>
 
                       <SelectComponent
-                        options={[
-                          "Add Model",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
+                        options={['Add Model', 'New York', 'Los Vegas', 'California']}
                       />
                     </div>
                   </div>
@@ -177,18 +156,14 @@ export default function Listings5() {
                     <div className="form_boxes">
                       <label>Min year</label>
 
-                      <SelectComponent
-                        options={["2019", "2020", "2021", "2022"]}
-                      />
+                      <SelectComponent options={['2019', '2020', '2021', '2022']} />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form_boxes">
                       <label>Max year</label>
 
-                      <SelectComponent
-                        options={["2023", "2020", "2021", "2022"]}
-                      />
+                      <SelectComponent options={['2023', '2020', '2021', '2022']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
@@ -196,12 +171,7 @@ export default function Listings5() {
                       <label>Mileage</label>
 
                       <SelectComponent
-                        options={[
-                          "Any Mileage",
-                          "New York",
-                          "Los Vega",
-                          "California",
-                        ]}
+                        options={['Any Mileage', 'New York', 'Los Vega', 'California']}
                       />
                     </div>
                   </div>
@@ -210,22 +180,14 @@ export default function Listings5() {
                       <label>Drive Type</label>
 
                       <SelectComponent
-                        options={[
-                          "Any Type",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
+                        options={['Any Type', 'New York', 'Los Vegas', 'California']}
                       />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="price-box">
                       <h6 className="title">Price</h6>
-                      <form
-                        onSubmit={(e) => e.preventDefault()}
-                        className="row g-0"
-                      >
+                      <form onSubmit={e => e.preventDefault()} className="row g-0">
                         <div className="form-column col-lg-6">
                           <div className="form_boxes">
                             <label>Min price</label>
@@ -246,7 +208,7 @@ export default function Listings5() {
                           max={50000}
                           min={0}
                           defaultValue={price}
-                          onChange={(value) => handlePrice(value)}
+                          onChange={value => handlePrice(value)}
                           id="slider"
                         />
                       </div>
@@ -305,46 +267,28 @@ export default function Listings5() {
                     <div className="form_boxes">
                       <label>Exterior Color</label>
 
-                      <SelectComponent
-                        options={[
-                          "Blue",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
-                      />
+                      <SelectComponent options={['Blue', 'New York', 'Los Vegas', 'California']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="form_boxes">
                       <label>Interior Color</label>
 
-                      <SelectComponent
-                        options={[
-                          "Black",
-                          "New York",
-                          "Los Vegas",
-                          "California",
-                        ]}
-                      />
+                      <SelectComponent options={['Black', 'New York', 'Los Vegas', 'California']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="form_boxes">
                       <label>Doors</label>
 
-                      <SelectComponent
-                        options={["3", "New York", "Los Vegas", "California"]}
-                      />
+                      <SelectComponent options={['3', 'New York', 'Los Vegas', 'California']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="form_boxes">
                       <label>Cylinders</label>
 
-                      <SelectComponent
-                        options={["6", "New York", "Los Vegas", "California"]}
-                      />
+                      <SelectComponent options={['6', 'New York', 'Los Vegas', 'California']} />
                     </div>
                   </div>
                   <div className="col-lg-12">
@@ -400,11 +344,11 @@ export default function Listings5() {
             <div className="right-box">
               <div className="text-box">
                 <div className="text">Showing 1 to 16 of 1559 vehicles</div>
-                <form onSubmit={(e) => e.preventDefault()}>
+                <form onSubmit={e => e.preventDefault()}>
                   <div className="form_boxes v3">
                     <small>Sort by</small>
 
-                    <SelectComponent options={["Any Makes", "Audi", "Honda"]} />
+                    <SelectComponent options={['Any Makes', 'Audi', 'Honda']} />
                   </div>
                 </form>
               </div>
@@ -413,14 +357,14 @@ export default function Listings5() {
                 <div key={i} className="service-block-thirteen">
                   <div className="inner-box">
                     <div className="image-box">
-                      <figure className="image" style={{ height: "100%" }}>
+                      <figure className="image" style={{ height: '100%' }}>
                         <Link href={`/inventory-page-single-v1/${elm.id}`}>
                           <Image
                             alt=""
                             src={elm.imgSrc}
                             width={340}
                             height={320}
-                            style={{ objectFit: "cover", height: "100%" }}
+                            style={{ objectFit: 'cover', height: '100%' }}
                           />
                         </Link>
                       </figure>
@@ -428,9 +372,7 @@ export default function Listings5() {
                     <div className="right-box">
                       <div className="content-box">
                         <h4 className="title">
-                          <Link href={`/inventory-page-single-v1/${elm.id}`}>
-                            {elm.title}
-                          </Link>
+                          <Link href={`/inventory-page-single-v1/${elm.id}`}>{elm.title}</Link>
                         </h4>
                         <div className="text">{elm.description}</div>
                         <div className="inspection-sec">
@@ -602,10 +544,7 @@ export default function Listings5() {
                         </a>
                         <h4 className="title">{elm.price}</h4>
                         <span>Calculate financing</span>
-                        <Link
-                          href={`/inventory-page-single-v1/${elm.id}`}
-                          className="button"
-                        >
+                        <Link href={`/inventory-page-single-v1/${elm.id}`} className="button">
                           View Details
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 export default function AboutPage() {
   return (
     <>
@@ -18,8 +18,8 @@ export default function AboutPage() {
             <div className="col-lg-6 col-md-6 col-sm-12">
               <div className="content-box">
                 <div className="text">
-                  Мы — команда, увлеченная инновациями и экологией, и мы рады предложить вам современное и
-                  удобное решение для передвижения по городу — аренду электробайков.
+                  Мы — команда, увлеченная инновациями и экологией, и мы рады предложить вам
+                  современное и удобное решение для передвижения по городу — аренду электробайков.
                 </div>
                 <div className="text">
                   Наша миссия — сделать передвижение простым, экологичным и доступным для каждого.

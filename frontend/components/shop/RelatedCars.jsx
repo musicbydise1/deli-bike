@@ -1,9 +1,9 @@
-"use client";
-import Image from "next/image";
-import Slider from "react-slick";
-import Link from "next/link";
-import { products } from "@/data/products";
-import { useCart } from "@/context/CartContext";
+'use client';
+import Image from 'next/image';
+import Slider from 'react-slick';
+import Link from 'next/link';
+import { products } from '@/data/products';
+import { useCart } from '@/context/CartContext';
 export default function RelatedCars() {
   const { addProductToCart, isAddedToCartProducts } = useCart();
   const sliceOptions = {
@@ -102,12 +102,7 @@ export default function RelatedCars() {
                 <div className="image-box">
                   <figure className="image">
                     <Link href={`/shop-single/${product.id}`}>
-                      <Image
-                        alt={product.title}
-                        src={product.imgSrc}
-                        width={186}
-                        height={186}
-                      />
+                      <Image alt={product.title} src={product.imgSrc} width={186} height={186} />
                     </Link>
                   </figure>
                 </div>
@@ -125,17 +120,11 @@ export default function RelatedCars() {
                     </Link>
                   </div>
                   <h6 className="title">
-                    <del>${product.originalPrice}</del>$
-                    {product.discountedPrice}
+                    <del>${product.originalPrice}</del>${product.discountedPrice}
                   </h6>
-                  <a
-                    onClick={() => addProductToCart(product.id)}
-                    className="shoping-btn"
-                  >
+                  <a onClick={() => addProductToCart(product.id)} className="shoping-btn">
                     <i className="fa-solid fa-cart-shopping" />
-                    {isAddedToCartProducts(product.id)
-                      ? "Already Added"
-                      : "Add To Cart"}
+                    {isAddedToCartProducts(product.id) ? 'Already Added' : 'Add To Cart'}
                   </a>
                 </div>
               </div>

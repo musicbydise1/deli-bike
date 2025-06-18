@@ -1,11 +1,11 @@
-import Single3 from "@/components/carSingles/Single3";
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import React from "react";
+import Single3 from '@/components/carSingles/Single3';
+import Footer1 from '@/components/footers/Footer1';
+import Header1 from '@/components/headers/Header1';
+import React from 'react';
 
 export const metadata = {
-  title: "Inventory Single 3 || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
+  title: 'Inventory Single 3 || Boxcar - React Nextjs Car Template',
+  description: 'Boxcar - React Nextjs Car Template',
 };
 export default function InventorySinglePage3() {
   return (

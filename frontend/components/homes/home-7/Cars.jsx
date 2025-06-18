@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { carData } from "@/data/cars";
-import Slider from "react-slick";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { carData } from '@/data/cars';
+import Slider from 'react-slick';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 const buttons = [
-  { label: "New cars", isActive: true },
-  { label: "Used Cars", isActive: false },
-  { label: "In Stock", isActive: false },
+  { label: 'New cars', isActive: true },
+  { label: 'Used Cars', isActive: false },
+  { label: 'In Stock', isActive: false },
 ];
 
 export default function Cars() {
@@ -16,9 +16,7 @@ export default function Cars() {
   const [sortedItems, setSortedItems] = useState([...carData]);
   useEffect(() => {
     setSortedItems([
-      ...carData.filter((elm) =>
-        elm.filterCategories.includes(selectedCategory.label)
-      ),
+      ...carData.filter(elm => elm.filterCategories.includes(selectedCategory.label)),
     ]);
   }, [selectedCategory]);
   return (
@@ -55,9 +53,7 @@ export default function Cars() {
               <button
                 key={index}
                 onClick={() => setSelectedCategory(button)}
-                className={`nav-link ${
-                  selectedCategory == button ? "active" : ""
-                }`}
+                className={`nav-link ${selectedCategory == button ? 'active' : ''}`}
               >
                 {button.label}
               </button>
@@ -65,11 +61,7 @@ export default function Cars() {
           </div>
         </nav>
 
-        <div
-          className="tab-content wow fadeInUp"
-          data-wow-delay="200ms"
-          id="nav-tabContent"
-        >
+        <div className="tab-content wow fadeInUp" data-wow-delay="200ms" id="nav-tabContent">
           <div
             className="tab-pane fade show active"
             id="nav-home"
@@ -139,26 +131,12 @@ export default function Cars() {
                   className="box-car style-2 car-block-nine col-lg-3 col-md-6 col-sm-12"
                 >
                   <div className="inner-box">
-                    <div
-                      className={`image-box ${
-                        car.badge == "Great Price" ? "two" : ""
-                      }`}
-                    >
-                      <Slider
-                        dots
-                        slidesToShow={1}
-                        key={car.id}
-                        className="slider-thumb"
-                      >
+                    <div className={`image-box ${car.badge == 'Great Price' ? 'two' : ''}`}>
+                      <Slider dots slidesToShow={1} key={car.id} className="slider-thumb">
                         {car.images.map((image, i) => (
                           <div key={i} className="image d-block">
                             <Link href={`/inventory-page-single-v1/${car.id}`}>
-                              <Image
-                                alt=""
-                                src={image}
-                                width={329}
-                                height={220}
-                              />
+                              <Image alt="" src={image} width={329} height={220} />
                             </Link>
                           </div>
                         ))}
@@ -192,9 +170,7 @@ export default function Cars() {
                     </div>
                     <div className="content-box">
                       <h6 className="title">
-                        <Link href={`/inventory-page-single-v1/${car.id}`}>
-                          {car.title}
-                        </Link>
+                        <Link href={`/inventory-page-single-v1/${car.id}`}>{car.title}</Link>
                       </h6>
                       <div className="text">{car.description}</div>
                       <ul>
@@ -207,10 +183,7 @@ export default function Cars() {
                       <div className="btn-box">
                         <span>{car.price}</span>
                         <small>{car.oldPrice}</small>
-                        <Link
-                          href={`/inventory-page-single-v1/${car.id}`}
-                          className="details"
-                        >
+                        <Link href={`/inventory-page-single-v1/${car.id}`} className="details">
                           View Details
                           {/* SVG content */}
                         </Link>

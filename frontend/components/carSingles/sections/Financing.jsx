@@ -1,40 +1,40 @@
-"use client";
-import SelectComponent from "@/components/common/SelectComponent";
-import Image from "next/image";
-import React from "react";
+'use client';
+import SelectComponent from '@/components/common/SelectComponent';
+import Image from 'next/image';
+import React from 'react';
 
 export default function Financing() {
   return (
     <>
-      {" "}
+      {' '}
       <h4 className="title">Financing Calculator</h4>
-      <form onSubmit={(e) => e.preventDefault()} className="row">
+      <form onSubmit={e => e.preventDefault()} className="row">
         <div className="col-lg-6">
           <div className="form_boxes">
             <label>Vehicle Price ($)</label>
 
-            <SelectComponent options={["$25.000", "$25.000", "$25.000"]} />
+            <SelectComponent options={['$25.000', '$25.000', '$25.000']} />
           </div>
         </div>
         <div className="col-lg-6">
           <div className="form_boxes">
             <label>Interest rate (%)</label>
 
-            <SelectComponent options={["4", "4", "4"]} />
+            <SelectComponent options={['4', '4', '4']} />
           </div>
         </div>
         <div className="col-lg-6">
           <div className="form_boxes">
             <label>Period (month)</label>
 
-            <SelectComponent options={["36", "36", "36"]} />
+            <SelectComponent options={['36', '36', '36']} />
           </div>
         </div>
         <div className="col-lg-6">
           <div className="form_boxes">
             <label>Down Payment ($)</label>
 
-            <SelectComponent options={["4000", "4000", "4000"]} />
+            <SelectComponent options={['4000', '4000', '4000']} />
           </div>
         </div>
         <div className="col-lg-12">

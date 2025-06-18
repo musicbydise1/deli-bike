@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import SelectComponent from "../common/SelectComponent";
-import { cars } from "@/data/cars";
-import Link from "next/link";
-import Pagination from "../common/Pagination";
+'use client';
+import React from 'react';
+import Image from 'next/image';
+import SelectComponent from '../common/SelectComponent';
+import { cars } from '@/data/cars';
+import Link from 'next/link';
+import Pagination from '../common/Pagination';
 export default function Listings2() {
   return (
     <section className="cars-section-four v1 layout-radius">
@@ -19,70 +19,54 @@ export default function Listings2() {
             </li>
           </ul>
           <h2>New and Used Cars For Sale</h2>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="form-box inventory"
-          >
+          <form onSubmit={e => e.preventDefault()} className="form-box inventory">
             <div className="form_boxes">
-              <SelectComponent options={["New Used", "used", "new"]} />
+              <SelectComponent options={['New Used', 'used', 'new']} />
             </div>
             <div className="form_boxes">
-              <SelectComponent options={["Type", "Tufan", "Tufan"]} />
+              <SelectComponent options={['Type', 'Tufan', 'Tufan']} />
             </div>
             <div className="form_boxes">
-              <SelectComponent options={["Make", "Tofan", "Tofan"]} />
+              <SelectComponent options={['Make', 'Tofan', 'Tofan']} />
             </div>
             <div className="form_boxes">
-              <SelectComponent options={["Models", "2010", "2012"]} />
+              <SelectComponent options={['Models', '2010', '2012']} />
             </div>
             <div className="form_boxes">
-              <SelectComponent options={["Years", "2010", "2012"]} />
+              <SelectComponent options={['Years', '2010', '2012']} />
             </div>
             <div className="form_boxes">
-              <SelectComponent options={["Mileage", "2010", "2012"]} />
+              <SelectComponent options={['Mileage', '2010', '2012']} />
             </div>
             <div className="form_boxes">
-              <SelectComponent options={["Price", "2010", "2012"]} />
+              <SelectComponent options={['Price', '2010', '2012']} />
             </div>
             <div className="form_boxes">
               <a href="#" title="" className="filter-btn filter-popup">
-                <Image
-                  alt=""
-                  src="/images/icons/filter.svg"
-                  width={24}
-                  height={24}
-                />
+                <Image alt="" src="/images/icons/filter.svg" width={24} height={24} />
                 More Filters
               </a>
             </div>
           </form>
           <div className="text-box v1">
             <div className="text">Showing 1 to 16 of 1559 vehicles</div>
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={e => e.preventDefault()}>
               <div className="form_boxes v3">
                 <small>Sort by</small>
 
-                <SelectComponent options={["Any Makes", "Audi", "Honda"]} />
+                <SelectComponent options={['Any Makes', 'Audi', 'Honda']} />
               </div>
             </form>
           </div>
         </div>
         <div className="row wow fadeInUp">
-          {cars.map((car) => (
-            <div
-              key={car.id}
-              className="car-block-four col-xl-3 col-lg-4 col-md-6 col-sm-6"
-            >
+          {cars.map(car => (
+            <div key={car.id} className="car-block-four col-xl-3 col-lg-4 col-md-6 col-sm-6">
               <div className="inner-box">
                 <div className={car.imgBoxClass}>
                   <figure className="image">
                     <Link href={`/inventory-page-single-v1/${car.id}`}>
-                      <Image
-                        alt={car.alt}
-                        src={car.imgSrc}
-                        width={329}
-                        height={220}
-                      />
+                      <Image alt={car.alt} src={car.imgSrc} width={329} height={220} />
                     </Link>
                   </figure>
                   {car.icon && <span>{car.icon}</span>}
@@ -110,9 +94,7 @@ export default function Listings2() {
                 </div>
                 <div className="content-box">
                   <h6 className="title">
-                    <Link href={`/inventory-page-single-v1/${car.id}`}>
-                      {car.title}
-                    </Link>
+                    <Link href={`/inventory-page-single-v1/${car.id}`}>{car.title}</Link>
                   </h6>
                   <div className="text">{car.description}</div>
                   <ul>
@@ -129,10 +111,7 @@ export default function Listings2() {
                   <div className="btn-box">
                     <span>{car.price}</span>
                     <small>{car.discountPrice}</small>
-                    <Link
-                      href={`/inventory-page-single-v1/${car.id}`}
-                      className="details"
-                    >
+                    <Link href={`/inventory-page-single-v1/${car.id}`} className="details">
                       {car.btnDetails}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

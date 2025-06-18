@@ -1,5 +1,5 @@
-"use client";
-import React, { useState, useEffect } from "react";
+'use client';
+import React, { useState, useEffect } from 'react';
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,14 +16,14 @@ const BackToTop = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // Smooth scroll to the top
+      behavior: 'smooth', // Smooth scroll to the top
     });
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility);
     return () => {
-      window.removeEventListener("scroll", toggleVisibility);
+      window.removeEventListener('scroll', toggleVisibility);
     };
   }, []);
 
@@ -33,7 +33,7 @@ const BackToTop = () => {
         <div
           className="scroll-to-top scroll-to-target"
           onClick={scrollToTop}
-          style={{ display: "block" }}
+          style={{ display: 'block' }}
         >
           <span className="fa fa-angle-up"></span>
         </div>

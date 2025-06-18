@@ -4,9 +4,9 @@ import {
   navItems,
   socialMediaLinks,
   vehicleTypes,
-} from "@/data/footerLinks";
-import Link from "next/link";
-import React from "react";
+} from '@/data/footerLinks';
+import Link from 'next/link';
+import React from 'react';
 
 export default function Footer4() {
   return (
@@ -32,10 +32,7 @@ export default function Footer4() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div
-                    className="footer-widget links-widget wow fadeInUp"
-                    data-wow-delay="100ms"
-                  >
+                  <div className="footer-widget links-widget wow fadeInUp" data-wow-delay="100ms">
                     <h4 className="widget-title">Quick Links</h4>
                     <div className="widget-content">
                       <ul className="user-links style-two">
@@ -49,10 +46,7 @@ export default function Footer4() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div
-                    className="footer-widget links-widget wow fadeInUp"
-                    data-wow-delay="200ms"
-                  >
+                  <div className="footer-widget links-widget wow fadeInUp" data-wow-delay="200ms">
                     <h4 className="widget-title">Our Brands</h4>
                     <div className="widget-content">
                       <ul className="user-links style-two">
@@ -66,10 +60,7 @@ export default function Footer4() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div
-                    className="footer-widget links-widget wow fadeInUp"
-                    data-wow-delay="300ms"
-                  >
+                  <div className="footer-widget links-widget wow fadeInUp" data-wow-delay="300ms">
                     <h4 className="widget-title">Vehicles Type</h4>
                     <div className="widget-content">
                       <ul className="user-links style-two">
@@ -86,15 +77,11 @@ export default function Footer4() {
             </div>
             {/* footer column */}
             <div className="footer-column col-lg-3 col-md-6 col-sm-12">
-              <div
-                className="footer-widget social-widget wow fadeInUp"
-                data-wow-delay="400ms"
-              >
+              <div className="footer-widget social-widget wow fadeInUp" data-wow-delay="400ms">
                 <h4 className="widget-title">Vehicles Type</h4>
                 <div className="widget-content">
                   <div className="text">
-                    Monday - Friday: 09:00AM - 09:00 PMSaturday: 09:00AM -
-                    07:00PM Sunday: Closed
+                    Monday - Friday: 09:00AM - 09:00 PMSaturday: 09:00AM - 07:00PM Sunday: Closed
                   </div>
                   <div className="social-icons">
                     <h6 className="title">Connect With Us</h6>

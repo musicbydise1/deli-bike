@@ -1,31 +1,20 @@
 const features = [
   {
-    title: "Interior",
-    items: [
-      "Air Conditioner",
-      "Digital Odometer",
-      "Leather Seats",
-      "Heater",
-      "Tachometer",
-    ],
+    title: 'Interior',
+    items: ['Air Conditioner', 'Digital Odometer', 'Leather Seats', 'Heater', 'Tachometer'],
   },
   {
-    title: "Exterior",
-    items: [
-      "Fog Lights Front",
-      "Rain Sensing Wipe",
-      "Rear Spoiler",
-      "Sun Roof",
-    ],
+    title: 'Exterior',
+    items: ['Fog Lights Front', 'Rain Sensing Wipe', 'Rear Spoiler', 'Sun Roof'],
   },
   {
-    title: "Safety",
+    title: 'Safety',
     items: [
-      "Brake Assist",
-      "Child Safety Locks",
-      "Traction Control",
-      "Power Door Locks",
-      "Driver Air Bag",
+      'Brake Assist',
+      'Child Safety Locks',
+      'Traction Control',
+      'Power Door Locks',
+      'Driver Air Bag',
     ],
   },
 ];

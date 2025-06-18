@@ -1,14 +1,14 @@
-"use client";
-import React from "react";
-import Image from "next/image";
+'use client';
+import React from 'react';
+import Image from 'next/image';
 import {
   carBrands,
   contactItems,
   navItems,
   socialMediaLinks,
   vehicleTypes,
-} from "@/data/footerLinks";
-import Link from "next/link";
+} from '@/data/footerLinks';
+import Link from 'next/link';
 export default function Footer2() {
   return (
     <footer className="boxcar-footer footer-style-four">
@@ -58,16 +58,10 @@ export default function Footer2() {
             <div className="top-right wow fadeInUp" data-wow-delay="100ms">
               <div className="content-box">
                 <h6 className="title">Join BoxCar</h6>
-                <div className="text">
-                  Receive pricing updates, shopping tips &amp; more!
-                </div>
+                <div className="text">Receive pricing updates, shopping tips &amp; more!</div>
               </div>
               <div className="subscribe-form">
-                <form
-                  onSubmit={(e) => e.preventDefault()}
-                  method="post"
-                  action="#"
-                >
+                <form onSubmit={e => e.preventDefault()} method="post" action="#">
                   <div className="form-group">
                     <input
                       type="email"
@@ -77,10 +71,7 @@ export default function Footer2() {
                       placeholder="Your e-mail address"
                       required
                     />
-                    <button
-                      type="button"
-                      className="theme-btn btn-style-one hover-light"
-                    >
+                    <button type="button" className="theme-btn btn-style-one hover-light">
                       <span className="btn-title">Sign Up</span>
                     </button>
                   </div>
@@ -111,10 +102,7 @@ export default function Footer2() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div
-                    className="footer-widget links-widget wow fadeInUp"
-                    data-wow-delay="100ms"
-                  >
+                  <div className="footer-widget links-widget wow fadeInUp" data-wow-delay="100ms">
                     <h4 className="widget-title">Quick Links</h4>
                     <div className="widget-content">
                       <ul className="user-links style-two">
@@ -128,10 +116,7 @@ export default function Footer2() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div
-                    className="footer-widget links-widget wow fadeInUp"
-                    data-wow-delay="200ms"
-                  >
+                  <div className="footer-widget links-widget wow fadeInUp" data-wow-delay="200ms">
                     <h4 className="widget-title">Our Brands</h4>
                     <div className="widget-content">
                       <ul className="user-links style-two">
@@ -145,10 +130,7 @@ export default function Footer2() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div
-                    className="footer-widget links-widget wow fadeInUp"
-                    data-wow-delay="300ms"
-                  >
+                  <div className="footer-widget links-widget wow fadeInUp" data-wow-delay="300ms">
                     <h4 className="widget-title">Vehicles Type</h4>
                     <div className="widget-content">
                       <ul className="user-links style-two">
@@ -165,29 +147,16 @@ export default function Footer2() {
             </div>
             {/* footer column */}
             <div className="footer-column col-lg-3 col-md-12 col-sm-12">
-              <div
-                className="footer-widget social-widget wow fadeInUp"
-                data-wow-delay="400ms"
-              >
+              <div className="footer-widget social-widget wow fadeInUp" data-wow-delay="400ms">
                 <h4 className="widget-title">Vehicles Type</h4>
                 <div className="widget-content">
                   <a href="#" className="store">
-                    <Image
-                      src="/images/resource/apple.png"
-                      width={24}
-                      height={29}
-                      alt=""
-                    />
+                    <Image src="/images/resource/apple.png" width={24} height={29} alt="" />
                     <span>Download on the</span>
                     <h6 className="title">Apple Store</h6>
                   </a>
                   <a href="#" className="store two">
-                    <Image
-                      src="/images/resource/play-2.png"
-                      width={23}
-                      height={26}
-                      alt=""
-                    />
+                    <Image src="/images/resource/play-2.png" width={23} height={26} alt="" />
                     <span>Get in on</span>
                     <h6 className="title">Google Play</h6>
                   </a>

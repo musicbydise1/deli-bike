@@ -1,7 +1,7 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { blogPosts } from "@/data/blogs";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { blogPosts } from '@/data/blogs';
 export default function Blogs() {
   return (
     <section className="blog-section">
@@ -12,19 +12,11 @@ export default function Blogs() {
         <div className="row">
           {blogPosts.map((post, index) => (
             <div className="blog-block col-lg-4 col-md-6 col-sm-12" key={index}>
-              <div
-                className={`inner-box wow fadeInUp`}
-                data-wow-delay={post.delay}
-              >
+              <div className={`inner-box wow fadeInUp`} data-wow-delay={post.delay}>
                 <div className="image-box">
                   <figure className="image">
                     <Link href={`/blog-single/${post.id}`}>
-                      <Image
-                        alt={post.title}
-                        src={post.imageSrc}
-                        width={448}
-                        height={300}
-                      />
+                      <Image alt={post.title} src={post.imageSrc} width={448} height={300} />
                     </Link>
                   </figure>
                   <span className="date">news</span>

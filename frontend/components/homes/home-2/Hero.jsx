@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import Slider from "react-slick";
-import Image from "next/image";
-import { bannerSlides } from "@/data/heroSlides";
-import Link from "next/link";
+import { useEffect, useRef, useState } from 'react';
+import Slider from 'react-slick';
+import Image from 'next/image';
+import { bannerSlides } from '@/data/heroSlides';
+import Link from 'next/link';
 export default function Hero() {
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
@@ -57,7 +57,7 @@ export default function Hero() {
       <Slider
         {...slickOptions}
         asNavFor={nav2}
-        ref={(slider) => (sliderRef1 = slider)}
+        ref={slider => (sliderRef1 = slider)}
         className="banner-slider inner-slide"
       >
         {bannerSlides.map((slide, index) => (
@@ -119,15 +119,13 @@ export default function Hero() {
             {...thumbOptions}
             infinite={false}
             asNavFor={nav1}
-            ref={(slider) => (sliderRef2 = slider)}
+            ref={slider => (sliderRef2 = slider)}
             className="banner-slider-thumbs"
           >
             <div className="banner-slide-thumb">Mercedes Benz E-Class</div>
             <div className="banner-slide-thumb">BMW 5 Series</div>
             <div className="banner-slide-thumb">Jaguar I-PACE</div>
-            <div className="banner-slide-thumb">
-              Land Rover Range Rover Evoque
-            </div>
+            <div className="banner-slide-thumb">Land Rover Range Rover Evoque</div>
           </Slider>
         </div>
       </div>

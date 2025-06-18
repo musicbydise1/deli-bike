@@ -1,7 +1,7 @@
-import React from "react";
-import Image from "next/image";
-import { carBrands2 } from "@/data/brands";
-import Link from "next/link";
+import React from 'react';
+import Image from 'next/image';
+import { carBrands2 } from '@/data/brands';
+import Link from 'next/link';
 export default function Brands() {
   return (
     <section className="boxcar-brand-section pt-0">
@@ -34,10 +34,7 @@ export default function Brands() {
         <div className="row">
           {carBrands2.map((brand, index) => (
             <div className="cars-block col-lg-2 col-md-6 col-sm-6" key={index}>
-              <div
-                className="inner-box wow fadeInUp"
-                data-wow-delay={brand.delay}
-              >
+              <div className="inner-box wow fadeInUp" data-wow-delay={brand.delay}>
                 <div className="image-box">
                   <figure className="image">
                     <a href="#">

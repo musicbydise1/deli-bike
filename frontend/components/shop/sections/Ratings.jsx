@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image';
+import React from 'react';
 
 export default function Ratings() {
   return (
@@ -31,29 +31,13 @@ export default function Ratings() {
           <span>Take this tour!--its fantastic!</span>
         </div>
         <div className="text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam.
         </div>
         <div className="image-box">
-          <Image
-            src="/images/resource/blog5-4.jpg"
-            width={130}
-            height={130}
-            alt=""
-          />
-          <Image
-            src="/images/resource/blog5-5.jpg"
-            width={130}
-            height={130}
-            alt=""
-          />
-          <Image
-            src="/images/resource/blog5-6.jpg"
-            width={130}
-            height={130}
-            alt=""
-          />
+          <Image src="/images/resource/blog5-4.jpg" width={130} height={130} alt="" />
+          <Image src="/images/resource/blog5-5.jpg" width={130} height={130} alt="" />
+          <Image src="/images/resource/blog5-6.jpg" width={130} height={130} alt="" />
         </div>
         <div className="btn-box">
           <a href="#" className="like-btn">
@@ -93,12 +77,11 @@ export default function Ratings() {
           <span>Take this tour!--its fantastic!</span>
         </div>
         <div className="text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident.
         </div>
         <div className="btn-box">
           <a href="#" className="like-btn">
@@ -127,12 +110,7 @@ export default function Ratings() {
             </g>
             <defs>
               <clipPath id="clip0_881_13248">
-                <rect
-                  width={14}
-                  height={14}
-                  fill="white"
-                  transform="translate(0.5)"
-                />
+                <rect width={14} height={14} fill="white" transform="translate(0.5)" />
               </clipPath>
             </defs>
           </svg>

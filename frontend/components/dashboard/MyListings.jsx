@@ -1,50 +1,47 @@
-import React from "react";
-import Sidebar from "./Sidebar";
-import Image from "next/image";
-import SelectComponent from "../common/SelectComponent";
-import Pagination from "../common/Pagination";
+import React from 'react';
+import Sidebar from './Sidebar';
+import Image from 'next/image';
+import SelectComponent from '../common/SelectComponent';
+import Pagination from '../common/Pagination';
 const cartItems = [
   {
-    productImage: "/images/resource/add-car1.jpg",
-    productName: "Mercedes-Benz, C Class",
-    productDescription:
-      "2023 C300e AMG Line Night Ed Premium Plus 5dr 9G-Tronic",
-    price: "$399",
-    originalPrice: "$789",
-    brand: "Volvo",
-    year: "2023",
-    transmission: "Automatic",
-    fuelType: "Petrol",
-    removeIcon: "/images/icons/remove.svg",
-    editIcon: "/images/icons/edit.svg",
+    productImage: '/images/resource/add-car1.jpg',
+    productName: 'Mercedes-Benz, C Class',
+    productDescription: '2023 C300e AMG Line Night Ed Premium Plus 5dr 9G-Tronic',
+    price: '$399',
+    originalPrice: '$789',
+    brand: 'Volvo',
+    year: '2023',
+    transmission: 'Automatic',
+    fuelType: 'Petrol',
+    removeIcon: '/images/icons/remove.svg',
+    editIcon: '/images/icons/edit.svg',
   },
   {
-    productImage: "/images/resource/add-car2.jpg",
-    productName: "Mercedes-Benz, C Class",
-    productDescription:
-      "2023 C300e AMG Line Night Ed Premium Plus 5dr 9G-Tronic",
-    price: "$399",
-    originalPrice: "$789",
-    brand: "Volvo",
-    year: "2023",
-    transmission: "Automatic",
-    fuelType: "Petrol",
-    removeIcon: "/images/icons/remove.svg",
-    editIcon: "/images/icons/edit.svg",
+    productImage: '/images/resource/add-car2.jpg',
+    productName: 'Mercedes-Benz, C Class',
+    productDescription: '2023 C300e AMG Line Night Ed Premium Plus 5dr 9G-Tronic',
+    price: '$399',
+    originalPrice: '$789',
+    brand: 'Volvo',
+    year: '2023',
+    transmission: 'Automatic',
+    fuelType: 'Petrol',
+    removeIcon: '/images/icons/remove.svg',
+    editIcon: '/images/icons/edit.svg',
   },
   {
-    productImage: "/images/resource/add-car3.jpg",
-    productName: "Mercedes-Benz, C Class",
-    productDescription:
-      "2023 C300e AMG Line Night Ed Premium Plus 5dr 9G-Tronic",
-    price: "$399",
-    originalPrice: "$789",
-    brand: "Volvo",
-    year: "2023",
-    transmission: "Automatic",
-    fuelType: "Petrol",
-    removeIcon: "/images/icons/remove.svg",
-    editIcon: "/images/icons/edit.svg",
+    productImage: '/images/resource/add-car3.jpg',
+    productName: 'Mercedes-Benz, C Class',
+    productDescription: '2023 C300e AMG Line Night Ed Premium Plus 5dr 9G-Tronic',
+    price: '$399',
+    originalPrice: '$789',
+    brand: 'Volvo',
+    year: '2023',
+    transmission: 'Automatic',
+    fuelType: 'Petrol',
+    removeIcon: '/images/icons/remove.svg',
+    editIcon: '/images/icons/edit.svg',
   },
 ];
 export default function MyListings() {
@@ -56,9 +53,7 @@ export default function MyListings() {
           <div className="inner-column">
             <div className="list-title">
               <h3 className="title">My Listings</h3>
-              <div className="text">
-                Lorem ipsum dolor sit amet, consectetur.
-              </div>
+              <div className="text">Lorem ipsum dolor sit amet, consectetur.</div>
             </div>
             <div className="my-listing-table wrap-listing">
               <div className="cart-table">
@@ -84,7 +79,7 @@ export default function MyListings() {
                     <div className="form_boxes v3">
                       <small>Sort by</small>
 
-                      <SelectComponent options={["Newest", "Oldest"]} />
+                      <SelectComponent options={['Newest', 'Oldest']} />
                     </div>
                   </div>
                 </div>
@@ -140,20 +135,10 @@ export default function MyListings() {
                         </td>
                         <td>
                           <a href="#" className="remove-cart-item">
-                            <Image
-                              alt="Remove item"
-                              src={item.removeIcon}
-                              width={18}
-                              height={18}
-                            />
+                            <Image alt="Remove item" src={item.removeIcon} width={18} height={18} />
                           </a>
                           <a href="#" className="remove-cart-item">
-                            <Image
-                              alt="Edit item"
-                              src={item.editIcon}
-                              width={18}
-                              height={18}
-                            />
+                            <Image alt="Edit item" src={item.editIcon} width={18} height={18} />
                           </a>
                         </td>
                       </tr>

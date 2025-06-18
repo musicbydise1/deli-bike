@@ -1,7 +1,7 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { teamMembers } from "@/data/team";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { teamMembers } from '@/data/team';
 export default function Team() {
   return (
     <section className="boxcar-team-section">
@@ -34,19 +34,11 @@ export default function Team() {
         <div className="row">
           {teamMembers.map((member, index) => (
             <div className="team-block col-lg-3 col-md-6 col-sm-6" key={index}>
-              <div
-                className={`inner-box wow fadeInUp`}
-                data-wow-delay={member.delay}
-              >
+              <div className={`inner-box wow fadeInUp`} data-wow-delay={member.delay}>
                 <div className="image-box">
                   <figure className="image">
                     <a href="#">
-                      <Image
-                        alt={member.name}
-                        src={member.imageSrc}
-                        width={329}
-                        height={400}
-                      />
+                      <Image alt={member.name} src={member.imageSrc} width={329} height={400} />
                     </a>
                   </figure>
                   <div className="contact-info">
@@ -60,9 +52,7 @@ export default function Team() {
                 </div>
                 <div className="content-box">
                   <h4 className="title">
-                    <Link href={`/team-single/${member.id}`}>
-                      {member.name}
-                    </Link>
+                    <Link href={`/team-single/${member.id}`}>{member.name}</Link>
                   </h4>
                   <span>{member.title}</span>
                 </div>

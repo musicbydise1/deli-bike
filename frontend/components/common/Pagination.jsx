@@ -1,11 +1,11 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState } from 'react';
 
 export default function Pagination() {
   const [activePage, setActivePage] = useState(1);
   const totalPages = 20; // Adjust as needed
 
-  const handlePageClick = (page) => {
+  const handlePageClick = page => {
     if (page != 0 && page <= totalPages) {
       setActivePage(page);
     }
@@ -41,10 +41,7 @@ export default function Pagination() {
       {[...Array(totalPages)].slice(0, 5).map((_, index) => {
         const page = index + 1;
         return (
-          <li
-            className={`page-item ${activePage === page ? "active" : ""}`}
-            key={page}
-          >
+          <li className={`page-item ${activePage === page ? 'active' : ''}`} key={page}>
             <a className="page-link" onClick={() => handlePageClick(page)}>
               {page}
             </a>
@@ -52,7 +49,7 @@ export default function Pagination() {
         );
       })}
       {activePage == 6 && (
-        <li className={`page-item ${activePage === 6 ? "active" : ""}`}>
+        <li className={`page-item ${activePage === 6 ? 'active' : ''}`}>
           <a className="page-link" onClick={() => handlePageClick(6)}>
             {6}
           </a>
@@ -76,24 +73,20 @@ export default function Pagination() {
         </a>
       </li>
       {activePage == 19 && (
-        <li className={`page-item ${activePage === 19 ? "active" : ""}`}>
+        <li className={`page-item ${activePage === 19 ? 'active' : ''}`}>
           <a className="page-link" onClick={() => handlePageClick(19)}>
             {19}
           </a>
         </li>
       )}
-      <li className={`page-item ${activePage === totalPages ? "active" : ""}`}>
+      <li className={`page-item ${activePage === totalPages ? 'active' : ''}`}>
         <a className="page-link" onClick={() => handlePageClick(totalPages)}>
           {totalPages}
         </a>
       </li>
 
       <li className="page-item">
-        <a
-          className="page-link"
-          onClick={() => handlePageClick(activePage + 1)}
-          aria-label="Next"
-        >
+        <a className="page-link" onClick={() => handlePageClick(activePage + 1)} aria-label="Next">
           <span aria-hidden="true">
             <svg
               width={12}

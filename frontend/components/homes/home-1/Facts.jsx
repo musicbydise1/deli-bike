@@ -1,6 +1,6 @@
-import Counter from "@/components/common/Counter";
-import { counters } from "@/data/facts";
-import React from "react";
+import Counter from '@/components/common/Counter';
+import { counters } from '@/data/facts';
+import React from 'react';
 
 export default function Facts() {
   return (
@@ -15,10 +15,7 @@ export default function Facts() {
                 data-wow-delay={counter.wowDelay}
                 key={index}
               >
-                <div
-                  className="inner wow fadeInUp"
-                  data-wow-delay={counter.wowDelay}
-                >
+                <div className="inner wow fadeInUp" data-wow-delay={counter.wowDelay}>
                   <div className="content">
                     <div className="widget-counter">
                       <span className="count-text">

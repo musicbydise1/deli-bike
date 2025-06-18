@@ -1,8 +1,8 @@
-"use client";
-import Link from "next/link";
-import { useState } from "react";
-import ModalVideo from "react-modal-video";
-import Image from "next/image";
+'use client';
+import Link from 'next/link';
+import { useState } from 'react';
+import ModalVideo from 'react-modal-video';
+import Image from 'next/image';
 export default function Features() {
   const [isOpen, setOpen] = useState(false);
   return (
@@ -24,11 +24,7 @@ export default function Features() {
                       />
                     </a>
                   </figure>
-                  <a
-                    onClick={() => setOpen(true)}
-                    className="play-now"
-                    data-caption=""
-                  >
+                  <a onClick={() => setOpen(true)} className="play-now" data-caption="">
                     <i className="fa fa-play" aria-hidden="true" />
                     <span className="ripple" />
                   </a>
@@ -40,18 +36,14 @@ export default function Features() {
                 <div className="boxcar-title wow fadeInUp">
                   <h2>Get A Fair Price For Your Car Sell To Us Today</h2>
                   <div className="text">
-                    We are committed to providing our customers with exceptional
-                    service, competitive pricing, and a wide range of.
+                    We are committed to providing our customers with exceptional service,
+                    competitive pricing, and a wide range of.
                   </div>
                 </div>
-                <ul
-                  className="list-style-one wow fadeInUp"
-                  data-wow-delay="100ms"
-                >
+                <ul className="list-style-one wow fadeInUp" data-wow-delay="100ms">
                   <li>
                     <i className="fa-solid fa-check" />
-                    We are the UK’s largest provider, with more patrols in more
-                    places
+                    We are the UK’s largest provider, with more patrols in more places
                   </li>
                   <li>
                     <i className="fa-solid fa-check" />
@@ -62,11 +54,7 @@ export default function Features() {
                     We fix 4 out of 5 cars at the roadside
                   </li>
                 </ul>
-                <Link
-                  href={`/about`}
-                  className="read-more wow fadeInUp"
-                  data-wow-delay="200ms"
-                >
+                <Link href={`/about`} className="read-more wow fadeInUp" data-wow-delay="200ms">
                   get started
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +87,7 @@ export default function Features() {
         isOpen={isOpen}
         videoId="AC1cREPIw_o"
         onClose={() => setOpen(false)}
-      />{" "}
+      />{' '}
     </>
   );
 }

@@ -1,22 +1,20 @@
-"use client";
+'use client';
 
-import Slider from "react-slick";
-import Image from "next/image";
-import { carData } from "@/data/cars";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import Slider from 'react-slick';
+import Image from 'next/image';
+import { carData } from '@/data/cars';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 const carBrands = [
-  { label: "Audi", isActive: true },
-  { label: "BMW", isActive: false },
-  { label: "Mercedes", isActive: false },
+  { label: 'Audi', isActive: true },
+  { label: 'BMW', isActive: false },
+  { label: 'Mercedes', isActive: false },
 ];
 export default function Cars2() {
   const [activeCategory, setActiveCategory] = useState(carBrands[0]);
   const [filtered, setFiltered] = useState([]);
   useEffect(() => {
-    setFiltered(
-      [...carData].filter((elm) => elm.brand.includes(activeCategory.label))
-    );
+    setFiltered([...carData].filter(elm => elm.brand.includes(activeCategory.label)));
   }, [activeCategory]);
   const slickOptions = {
     infinite: false,
@@ -109,9 +107,7 @@ export default function Cars2() {
               <button
                 key={index}
                 onClick={() => setActiveCategory(brand)}
-                className={`nav-link ${
-                  activeCategory == brand ? "active" : ""
-                }`}
+                className={`nav-link ${activeCategory == brand ? 'active' : ''}`}
               >
                 {brand.label}
               </button>
@@ -121,22 +117,14 @@ export default function Cars2() {
       </div>
       <div className="tab-content wow fadeInUp" data-wow-delay="200ms">
         <div className="tab-pane fade show active">
-          <Slider
-            className="row car-slider slider-layout-1 style-1"
-            {...slickOptions}
-          >
+          <Slider className="row car-slider slider-layout-1 style-1" {...slickOptions}>
             {filtered.slice(0, 4).map((elm, i) => (
               <div key={i} className="car-block-six">
                 <div className="inner-box">
                   <div className="image-box">
                     <figure className="image">
                       <Link href={`/inventory-page-single-v1/${elm.id}`}>
-                        <Image
-                          alt=""
-                          src={elm.images[0]}
-                          width={300}
-                          height={320}
-                        />
+                        <Image alt="" src={elm.images[0]} width={300} height={320} />
                       </Link>
                     </figure>
                     <a href="#" className="icon-box">
@@ -163,9 +151,7 @@ export default function Cars2() {
                   </div>
                   <div className={`content-box v${[2, 4, 3, 4][i]}`}>
                     <h6 className="title">
-                      <Link href={`/inventory-page-single-v1/${elm.id}`}>
-                        {elm.title}
-                      </Link>
+                      <Link href={`/inventory-page-single-v1/${elm.id}`}>{elm.title}</Link>
                     </h6>
                     <div className="text">{elm.description}</div>
                     <ul>
@@ -179,10 +165,7 @@ export default function Cars2() {
                     <div className="btn-box">
                       <span>{elm.oldPrice}</span>
                       <small>{elm.price}</small>
-                      <Link
-                        href={`/inventory-page-single-v1/${elm.id}`}
-                        className="details"
-                      >
+                      <Link href={`/inventory-page-single-v1/${elm.id}`} className="details">
                         View Details
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

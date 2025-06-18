@@ -1,15 +1,13 @@
-"use client";
-import SelectComponent from "@/components/common/SelectComponent";
-import Link from "next/link";
-import { useState } from "react";
+'use client';
+import SelectComponent from '@/components/common/SelectComponent';
+import Link from 'next/link';
+import { useState } from 'react';
 const vehicleTabs = [
-  { label: "New", tab: "tab-1", isActive: true },
-  { label: "Used", tab: "tab-2", isActive: false },
+  { label: 'New', tab: 'tab-1', isActive: true },
+  { label: 'Used', tab: 'tab-2', isActive: false },
 ];
 export default function Hero() {
-  const [activeVehiclesTab, setactiveVehiclesTab] = useState(
-    vehicleTabs[0].label
-  );
+  const [activeVehiclesTab, setactiveVehiclesTab] = useState(vehicleTabs[0].label);
   return (
     <section className="boxcar-banner-section-v8">
       <div className="boxcar-container">
@@ -21,7 +19,7 @@ export default function Hero() {
                 <li
                   key={tab}
                   onClick={() => setactiveVehiclesTab(label)}
-                  className={activeVehiclesTab == label ? "current" : ""}
+                  className={activeVehiclesTab == label ? 'current' : ''}
                   data-tab={tab}
                 >
                   {label}
@@ -30,15 +28,15 @@ export default function Hero() {
             </ul>
             <div className="form-tab-content">
               <div className="form-tab-pane current" id="tab-1">
-                <form onSubmit={(e) => e.preventDefault()}>
+                <form onSubmit={e => e.preventDefault()}>
                   <div className="form_boxes">
-                    <SelectComponent options={["Any Makes", "Audi", "Honda"]} />
+                    <SelectComponent options={['Any Makes', 'Audi', 'Honda']} />
                   </div>
                   <div className="form_boxes">
-                    <SelectComponent options={["Any Models", "A3", "Accord"]} />
+                    <SelectComponent options={['Any Models', 'A3', 'Accord']} />
                   </div>
                   <div className="form_boxes">
-                    <SelectComponent options={["Any Price", "200$", "300$"]} />
+                    <SelectComponent options={['Any Price', '200$', '300$']} />
                   </div>
                   <Link href={`/inventory-list-01`} className="form-submit">
                     <button type="submit" className="theme-btn">

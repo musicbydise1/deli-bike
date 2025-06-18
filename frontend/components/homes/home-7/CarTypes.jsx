@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import { teamBlocks } from "@/data/categories";
+import React from 'react';
+import Image from 'next/image';
+import { teamBlocks } from '@/data/categories';
 export default function CarTypes() {
   return (
     <section className="boxcar-team-section-three">

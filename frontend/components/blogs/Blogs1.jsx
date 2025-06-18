@@ -1,24 +1,20 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import Pagination from "../common/Pagination";
-import { blogPosts3 } from "@/data/blogs";
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import Pagination from '../common/Pagination';
+import { blogPosts3 } from '@/data/blogs';
 const navButtons = [
-  { label: "Auto Detailing", isActive: true },
-  { label: "Car News", isActive: false },
-  { label: "Buying Guides", isActive: false },
+  { label: 'Auto Detailing', isActive: true },
+  { label: 'Car News', isActive: false },
+  { label: 'Buying Guides', isActive: false },
 ];
 
 export default function Blogs1() {
   const [activeCategory, setActiveCategory] = useState(navButtons[0].label);
   const [filtered, setFiltered] = useState([]);
   useEffect(() => {
-    setFiltered(
-      [...blogPosts3].filter((elm) =>
-        elm.filterCategories.includes(activeCategory)
-      )
-    );
+    setFiltered([...blogPosts3].filter(elm => elm.filterCategories.includes(activeCategory)));
   }, [activeCategory]);
 
   return (
@@ -44,9 +40,7 @@ export default function Blogs1() {
               <button
                 key={index}
                 onClick={() => setActiveCategory(label)}
-                className={`nav-link ${
-                  activeCategory == label ? "active" : ""
-                }`}
+                className={`nav-link ${activeCategory == label ? 'active' : ''}`}
               >
                 {label}
               </button>
@@ -57,23 +51,12 @@ export default function Blogs1() {
           <div className="tab-pane fade show active">
             <div className="row">
               {filtered.map((post, index) => (
-                <div
-                  className="blog-block col-lg-4 col-md-6 col-sm-12"
-                  key={index}
-                >
-                  <div
-                    className={`inner-box wow fadeInUp`}
-                    data-wow-delay={post.wowDelay}
-                  >
+                <div className="blog-block col-lg-4 col-md-6 col-sm-12" key={index}>
+                  <div className={`inner-box wow fadeInUp`} data-wow-delay={post.wowDelay}>
                     <div className="image-box">
                       <figure className="image">
                         <Link href={`/blog-single/${post.id}`}>
-                          <Image
-                            alt=""
-                            width={post.width}
-                            height={post.height}
-                            src={post.src}
-                          />
+                          <Image alt="" width={post.width} height={post.height} src={post.src} />
                         </Link>
                       </figure>
                       <span className="date">{post.date}</span>
@@ -84,9 +67,7 @@ export default function Blogs1() {
                         <li>{post.datePublished}</li>
                       </ul>
                       <h6 className="title">
-                        <Link href={`/blog-single/${post.id}`}>
-                          {post.title}
-                        </Link>
+                        <Link href={`/blog-single/${post.id}`}>{post.title}</Link>
                       </h6>
                     </div>
                   </div>

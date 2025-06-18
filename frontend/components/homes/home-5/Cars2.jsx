@@ -1,8 +1,8 @@
-"use client";
-import Image from "next/image";
-import { carData } from "@/data/cars";
-import Slider from "react-slick";
-import Link from "next/link";
+'use client';
+import Image from 'next/image';
+import { carData } from '@/data/cars';
+import Slider from 'react-slick';
+import Link from 'next/link';
 export default function Cars2() {
   return (
     <section className="cars-section-seven pt-0">
@@ -68,34 +68,18 @@ export default function Cars2() {
           className="row car-slider-three"
         >
           {carData.map((car, index) => (
-            <div
-              key={index}
-              className="box-car car-block-five col-lg-3 col-md-6 col-sm-12"
-            >
+            <div key={index} className="box-car car-block-five col-lg-3 col-md-6 col-sm-12">
               <div className="inner-box">
-                <div
-                  className={`image-box ${
-                    car.badge == "Great Price" ? "two" : ""
-                  }`}
-                >
+                <div className={`image-box ${car.badge == 'Great Price' ? 'two' : ''}`}>
                   <div className="slider-thumb">
                     <div className="image">
                       <Link href={`/inventory-page-single-v1/${car.id}`}>
-                        <Image
-                          alt=""
-                          src={car.images[1]}
-                          width={329}
-                          height={220}
-                        />
+                        <Image alt="" src={car.images[1]} width={329} height={220} />
                       </Link>
                     </div>
                   </div>
                   {car.badge && <span>{car.badge}</span>}
-                  <Link
-                    href={`/inventory-page-single-v1/${car.id}`}
-                    title=""
-                    className="icon-box"
-                  >
+                  <Link href={`/inventory-page-single-v1/${car.id}`} title="" className="icon-box">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="12"
@@ -119,9 +103,7 @@ export default function Cars2() {
                 </div>
                 <div className="content-box">
                   <h6 className="title">
-                    <Link href={`/inventory-page-single-v1/${car.id}`}>
-                      {car.title}
-                    </Link>
+                    <Link href={`/inventory-page-single-v1/${car.id}`}>{car.title}</Link>
                   </h6>
                   <div className="text">{car.description}</div>
                   <ul>
@@ -134,10 +116,7 @@ export default function Cars2() {
                   <div className="btn-box">
                     <span>{car.price}</span>
                     <small>{car.oldPrice}</small>
-                    <Link
-                      href={`/inventory-page-single-v1/${car.id}`}
-                      className="details"
-                    >
+                    <Link href={`/inventory-page-single-v1/${car.id}`} className="details">
                       View Details
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -1,15 +1,15 @@
-import DropdownFilter from "@/components/carListings/DropdownFilter";
-import Listings1 from "@/components/carListings/Listings1";
-import Sidebar from "@/components/carListings/Sidebar";
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import React from "react";
-import Header6 from "@/components/headers/Header6";
-import Footer3 from "@/components/footers/Footer3";
+import DropdownFilter from '@/components/carListings/DropdownFilter';
+import Listings1 from '@/components/carListings/Listings1';
+import Sidebar from '@/components/carListings/Sidebar';
+import Footer1 from '@/components/footers/Footer1';
+import Header1 from '@/components/headers/Header1';
+import React from 'react';
+import Header6 from '@/components/headers/Header6';
+import Footer3 from '@/components/footers/Footer3';
 
 export const metadata = {
-  title: "DeliBike",
-  description: "DeliBike",
+  title: 'DeliBike',
+  description: 'DeliBike',
 };
 export default function InventoryListPage1() {
   return (
@@ -19,7 +19,7 @@ export default function InventoryListPage1() {
       <DropdownFilter />
       <Sidebar />
       <Listings1 />
-        <Footer3 parenttClass="boxcar-footer footer-style-five v6" />
+      <Footer3 parenttClass="boxcar-footer footer-style-five v6" />
     </>
   );
 }

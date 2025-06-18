@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 export default function Compare() {
   return (
     <section className="compare-section layout-radius">
@@ -25,55 +25,25 @@ export default function Compare() {
                 <th className="box-empty" />
                 <th>
                   <div className="compare-product-img">
-                    <Image
-                      alt=""
-                      width={329}
-                      height={230}
-                      src="/images/resource/compare1.jpg"
-                    />
+                    <Image alt="" width={329} height={230} src="/images/resource/compare1.jpg" />
                     <a href="#" title="" className="remove-pro">
-                      <Image
-                        alt=""
-                        width={18}
-                        height={18}
-                        src="/images/icons/remove.svg"
-                      />
+                      <Image alt="" width={18} height={18} src="/images/icons/remove.svg" />
                     </a>
                   </div>
                 </th>
                 <th>
                   <div className="compare-product-img">
-                    <Image
-                      alt=""
-                      width={329}
-                      height={230}
-                      src="/images/resource/compare2.jpg"
-                    />
+                    <Image alt="" width={329} height={230} src="/images/resource/compare2.jpg" />
                     <a href="#" title="" className="remove-pro">
-                      <Image
-                        alt=""
-                        width={18}
-                        height={18}
-                        src="/images/icons/remove.svg"
-                      />
+                      <Image alt="" width={18} height={18} src="/images/icons/remove.svg" />
                     </a>
                   </div>
                 </th>
                 <th>
                   <div className="compare-product-img">
-                    <Image
-                      alt=""
-                      width={329}
-                      height={230}
-                      src="/images/resource/compare3.jpg"
-                    />
+                    <Image alt="" width={329} height={230} src="/images/resource/compare3.jpg" />
                     <a href="#" title="" className="remove-pro">
-                      <Image
-                        alt=""
-                        width={18}
-                        height={18}
-                        src="/images/icons/remove.svg"
-                      />
+                      <Image alt="" width={18} height={18} src="/images/icons/remove.svg" />
                     </a>
                   </div>
                 </th>
@@ -82,12 +52,7 @@ export default function Compare() {
             <tbody className="wrap-body-compare">
               <tr>
                 <th>
-                  <Image
-                    alt=""
-                    width={18}
-                    height={18}
-                    src="/images/icons/cv1.svg"
-                  />
+                  <Image alt="" width={18} height={18} src="/images/icons/cv1.svg" />
                   Body
                 </th>
                 <td>SUV</td>
@@ -96,12 +61,7 @@ export default function Compare() {
               </tr>
               <tr>
                 <th>
-                  <Image
-                    alt=""
-                    width={18}
-                    height={18}
-                    src="/images/icons/cv2.svg"
-                  />
+                  <Image alt="" width={18} height={18} src="/images/icons/cv2.svg" />
                   Mileage
                 </th>
                 <td>28.000 miles</td>
@@ -110,12 +70,7 @@ export default function Compare() {
               </tr>
               <tr>
                 <th>
-                  <Image
-                    alt=""
-                    width={18}
-                    height={18}
-                    src="/images/icons/cv3.svg"
-                  />
+                  <Image alt="" width={18} height={18} src="/images/icons/cv3.svg" />
                   Fuel Type
                 </th>
                 <td>Petrol</td>
@@ -124,12 +79,7 @@ export default function Compare() {
               </tr>
               <tr>
                 <th>
-                  <Image
-                    alt=""
-                    width={16}
-                    height={16}
-                    src="/images/icons/cv4.svg"
-                  />
+                  <Image alt="" width={16} height={16} src="/images/icons/cv4.svg" />
                   Year
                 </th>
                 <td>2023</td>
@@ -138,12 +88,7 @@ export default function Compare() {
               </tr>
               <tr>
                 <th>
-                  <Image
-                    alt=""
-                    width={16}
-                    height={16}
-                    src="/images/icons/cv5.svg"
-                  />
+                  <Image alt="" width={16} height={16} src="/images/icons/cv5.svg" />
                   Transmission
                 </th>
                 <td>Automatics</td>
@@ -152,12 +97,7 @@ export default function Compare() {
               </tr>
               <tr>
                 <th>
-                  <Image
-                    alt=""
-                    width={18}
-                    height={18}
-                    src="/images/icons/cv6.svg"
-                  />
+                  <Image alt="" width={18} height={18} src="/images/icons/cv6.svg" />
                   Drive Type
                 </th>
                 <td>Front Wheel Drive</td>
@@ -166,12 +106,7 @@ export default function Compare() {
               </tr>
               <tr>
                 <th>
-                  <Image
-                    alt=""
-                    width={18}
-                    height={18}
-                    src="/images/icons/cv7.svg"
-                  />
+                  <Image alt="" width={18} height={18} src="/images/icons/cv7.svg" />
                   Condition
                 </th>
                 <td>Used</td>
@@ -180,12 +115,7 @@ export default function Compare() {
               </tr>
               <tr>
                 <th>
-                  <Image
-                    alt=""
-                    width={18}
-                    height={18}
-                    src="/images/icons/cv8.svg"
-                  />
+                  <Image alt="" width={18} height={18} src="/images/icons/cv8.svg" />
                   Engine Size
                 </th>
                 <td>4.8L</td>
@@ -194,12 +124,7 @@ export default function Compare() {
               </tr>
               <tr>
                 <th>
-                  <Image
-                    alt=""
-                    width={18}
-                    height={18}
-                    src="/images/icons/cv9.svg"
-                  />
+                  <Image alt="" width={18} height={18} src="/images/icons/cv9.svg" />
                   Doors
                 </th>
                 <td>5-door</td>
@@ -208,12 +133,7 @@ export default function Compare() {
               </tr>
               <tr>
                 <th>
-                  <Image
-                    alt=""
-                    width={18}
-                    height={18}
-                    src="/images/icons/cv10.svg"
-                  />
+                  <Image alt="" width={18} height={18} src="/images/icons/cv10.svg" />
                   Cylinders
                 </th>
                 <td>5-door</td>
@@ -222,12 +142,7 @@ export default function Compare() {
               </tr>
               <tr>
                 <th>
-                  <Image
-                    alt=""
-                    width={18}
-                    height={18}
-                    src="/images/icons/cv11.svg"
-                  />
+                  <Image alt="" width={18} height={18} src="/images/icons/cv11.svg" />
                   Color
                 </th>
                 <td>Blue</td>

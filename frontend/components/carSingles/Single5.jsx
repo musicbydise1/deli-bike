@@ -1,43 +1,43 @@
-"use client";
+'use client';
 
-import Slider from "react-slick";
-import RelatedCars from "./RelatedCars";
-import Image from "next/image";
-import SelectComponent from "../common/SelectComponent";
-import Description from "./sections/Description";
-import Features from "./sections/Features";
-import Faqs from "./sections/Faqs";
-import Location from "./sections/Location";
-import Financing from "./sections/Financing";
-import Review from "./sections/Review";
-import Ratings from "./sections/Ratings";
-import Replay from "./sections/Replay";
-import CommentForm from "./sections/CommentForm";
-import { Gallery, Item } from "react-photoswipe-gallery";
-import ModalVideo from "react-modal-video";
-import { useState } from "react";
-import Link from "next/link";
+import Slider from 'react-slick';
+import RelatedCars from './RelatedCars';
+import Image from 'next/image';
+import SelectComponent from '../common/SelectComponent';
+import Description from './sections/Description';
+import Features from './sections/Features';
+import Faqs from './sections/Faqs';
+import Location from './sections/Location';
+import Financing from './sections/Financing';
+import Review from './sections/Review';
+import Ratings from './sections/Ratings';
+import Replay from './sections/Replay';
+import CommentForm from './sections/CommentForm';
+import { Gallery, Item } from 'react-photoswipe-gallery';
+import ModalVideo from 'react-modal-video';
+import { useState } from 'react';
+import Link from 'next/link';
 const imageColumns = [
   {
-    src: "/images/resource/inventory1-9.png",
-    alt: "",
+    src: '/images/resource/inventory1-9.png',
+    alt: '',
     width: 500,
     height: 550,
-    className: "col-lg-3 col-md-6 col-sm-12",
+    className: 'col-lg-3 col-md-6 col-sm-12',
   },
   {
-    src: "/images/resource/inventory1-11.png",
-    alt: "",
+    src: '/images/resource/inventory1-11.png',
+    alt: '',
     width: 739,
     height: 550,
-    className: "col-lg-6 col-md-6 col-sm-12",
+    className: 'col-lg-6 col-md-6 col-sm-12',
   },
   {
-    src: "/images/resource/inventory1-10.png",
-    alt: "",
+    src: '/images/resource/inventory1-10.png',
+    alt: '',
     width: 500,
     height: 550,
-    className: "col-lg-3 col-md-6 col-sm-12",
+    className: 'col-lg-3 col-md-6 col-sm-12',
   },
 ];
 
@@ -45,7 +45,7 @@ export default function Single5() {
   const slickOptions = {
     infinite: true,
     slidesToShow: 1,
-    centerPadding: "500px",
+    centerPadding: '500px',
     slidesToScroll: 1,
     centerMode: true,
     dots: false,
@@ -54,7 +54,7 @@ export default function Single5() {
       {
         breakpoint: 1500,
         settings: {
-          centerPadding: "200px",
+          centerPadding: '200px',
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
@@ -63,7 +63,7 @@ export default function Single5() {
       {
         breakpoint: 991,
         settings: {
-          centerPadding: "0px",
+          centerPadding: '0px',
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
@@ -72,7 +72,7 @@ export default function Single5() {
       {
         breakpoint: 576,
         settings: {
-          centerPadding: "0px",
+          centerPadding: '0px',
           slidesToShow: 1,
           slidesToScroll: 1,
         },
@@ -80,7 +80,7 @@ export default function Single5() {
       {
         breakpoint: 480,
         settings: {
-          centerPadding: "0px",
+          centerPadding: '0px',
           slidesToShow: 1,
           slidesToScroll: 1,
         },
@@ -108,65 +108,36 @@ export default function Single5() {
         </div>
         <div className="gallery-sec-two wrap-gallery-box style-1">
           <Gallery>
-            <Slider
-              {...slickOptions}
-              className="row inventy-slider wrap-slider-gallery "
-            >
-              {imageColumns.map(
-                ({ src, alt, width, height, className }, index) => (
-                  <div
-                    key={index}
-                    className={`image-column ${className} d-block`}
-                  >
-                    <div className="inner-column">
-                      <div className="image-box">
-                        <figure className="image">
-                          <Item
-                            original={src}
-                            thumbnail={src}
-                            width={width}
-                            height={height}
-                          >
-                            {({ ref, open }) => (
-                              <a onClick={open}>
-                                <Image
-                                  ref={ref}
-                                  alt={alt}
-                                  src={src}
-                                  width={width}
-                                  height={height}
-                                />
-                              </a>
-                            )}
-                          </Item>
-                        </figure>
-                      </div>
+            <Slider {...slickOptions} className="row inventy-slider wrap-slider-gallery ">
+              {imageColumns.map(({ src, alt, width, height, className }, index) => (
+                <div key={index} className={`image-column ${className} d-block`}>
+                  <div className="inner-column">
+                    <div className="image-box">
+                      <figure className="image">
+                        <Item original={src} thumbnail={src} width={width} height={height}>
+                          {({ ref, open }) => (
+                            <a onClick={open}>
+                              <Image ref={ref} alt={alt} src={src} width={width} height={height} />
+                            </a>
+                          )}
+                        </Item>
+                      </figure>
                     </div>
                   </div>
-                )
-              )}
+                </div>
+              ))}
             </Slider>
             <div className="content-box">
               <ul className="video-list">
                 <li>
                   <a onClick={() => setOpen(true)}>
-                    <Image
-                      src="/images/resource/video1-1.svg"
-                      width={18}
-                      height={18}
-                      alt=""
-                    />
+                    <Image src="/images/resource/video1-1.svg" width={18} height={18} alt="" />
                     Video
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <Image
-                      src="/images/resource/video1-2.svg"
-                      width={18}
-                      height={18}
-                      alt=""
-                    />
+                    <Image src="/images/resource/video1-2.svg" width={18} height={18} alt="" />
                     360 View
                   </a>
                 </li>
@@ -192,57 +163,35 @@ export default function Single5() {
                   </Item>
                 </li>
               </ul>
-            </div>{" "}
+            </div>{' '}
           </Gallery>
         </div>
         <div className="boxcar-container">
           <div className="boxcar-title-three">
             <h2>Volvo XC90</h2>
-            <div className="text">
-              2.0 D5 PowerPulse Momentum 5dr AWD Geartronic Estate
-            </div>
+            <div className="text">2.0 D5 PowerPulse Momentum 5dr AWD Geartronic Estate</div>
             <ul className="spectes-list">
               <li>
                 <span>
-                  <Image
-                    src="/images/resource/spec1-1.svg"
-                    width={18}
-                    height={18}
-                    alt=""
-                  />
+                  <Image src="/images/resource/spec1-1.svg" width={18} height={18} alt="" />
                   2023
                 </span>
               </li>
               <li>
                 <span>
-                  <Image
-                    src="/images/resource/spec1-2.svg"
-                    width={18}
-                    height={18}
-                    alt=""
-                  />
+                  <Image src="/images/resource/spec1-2.svg" width={18} height={18} alt="" />
                   35,000 miles
                 </span>
               </li>
               <li>
                 <span>
-                  <Image
-                    src="/images/resource/spec1-3.svg"
-                    width={18}
-                    height={18}
-                    alt=""
-                  />
+                  <Image src="/images/resource/spec1-3.svg" width={18} height={18} alt="" />
                   Automatic
                 </span>
               </li>
               <li>
                 <span>
-                  <Image
-                    src="/images/resource/spec1-4.svg"
-                    width={18}
-                    height={18}
-                    alt=""
-                  />
+                  <Image src="/images/resource/spec1-4.svg" width={18} height={18} alt="" />
                   Diesel
                 </span>
               </li>
@@ -252,23 +201,13 @@ export default function Single5() {
                 <div className="share-btn">
                   <span>Share</span>
                   <a href="#" className="share">
-                    <Image
-                      src="/images/resource/share.svg"
-                      width={12}
-                      height={12}
-                      alt=""
-                    />
+                    <Image src="/images/resource/share.svg" width={12} height={12} alt="" />
                   </a>
                 </div>
                 <div className="share-btn">
                   <span>Save</span>
                   <a href="#" className="share">
-                    <Image
-                      src="/images/resource/share1-1.svg"
-                      width={12}
-                      height={12}
-                      alt=""
-                    />
+                    <Image src="/images/resource/share1-1.svg" width={12} height={12} alt="" />
                   </a>
                 </div>
               </div>
@@ -282,52 +221,27 @@ export default function Single5() {
                   <h4 className="title">Car Overview</h4>
                   <ul className="list">
                     <li>
-                      <Image
-                        src="/images/resource/insep2-1.svg"
-                        width={30}
-                        height={30}
-                        alt=""
-                      />
+                      <Image src="/images/resource/insep2-1.svg" width={30} height={30} alt="" />
                       <span>Mileage</span>
                       <small>72,925</small>
                     </li>
                     <li>
-                      <Image
-                        src="/images/resource/insep2-2.svg"
-                        width={30}
-                        height={30}
-                        alt=""
-                      />
+                      <Image src="/images/resource/insep2-2.svg" width={30} height={30} alt="" />
                       <span>Fuel Type</span>
                       <small>Petrol</small>
                     </li>
                     <li>
-                      <Image
-                        src="/images/resource/insep2-3.svg"
-                        width={30}
-                        height={30}
-                        alt=""
-                      />
+                      <Image src="/images/resource/insep2-3.svg" width={30} height={30} alt="" />
                       <span>Transmission</span>
                       <small>Automatic</small>
                     </li>
                     <li>
-                      <Image
-                        src="/images/resource/insep2-4.svg"
-                        width={30}
-                        height={30}
-                        alt=""
-                      />
+                      <Image src="/images/resource/insep2-4.svg" width={30} height={30} alt="" />
                       <span>Year</span>
                       <small>2023</small>
                     </li>
                     <li>
-                      <Image
-                        src="/images/resource/insep2-5.svg"
-                        width={30}
-                        height={30}
-                        alt=""
-                      />
+                      <Image src="/images/resource/insep2-5.svg" width={30} height={30} alt="" />
                       <span>Body Style</span>
                       <small>SUV</small>
                     </li>
@@ -372,30 +286,18 @@ export default function Single5() {
                   <small>Instant Saving : $7.000</small>
                   <div className="btn-box">
                     <a href="#" className="side-btn">
-                      <Image
-                        src="/images/resource/tag.svg"
-                        width={19}
-                        height={18}
-                        alt=""
-                      />
+                      <Image src="/images/resource/tag.svg" width={19} height={18} alt="" />
                       Make An Offer Price
                     </a>
                   </div>
                 </div>
                 <div className="contact-box">
                   <div className="icon-box">
-                    <Image
-                      src="/images/resource/volvo.svg"
-                      width={55}
-                      height={54}
-                      alt=""
-                    />
+                    <Image src="/images/resource/volvo.svg" width={55} height={54} alt="" />
                   </div>
                   <div className="content-box">
                     <h6 className="title">Volvo Cars Marin</h6>
-                    <div className="text">
-                      619 Francisco Blvd E, San Rafael, CA 94901
-                    </div>
+                    <div className="text">619 Francisco Blvd E, San Rafael, CA 94901</div>
                     <ul className="contact-list">
                       <li>
                         <a href="#">
@@ -501,14 +403,14 @@ export default function Single5() {
         {/* cars-section-three */}
         <RelatedCars />
         {/* End shop section two */}
-      </section>{" "}
+      </section>{' '}
       <ModalVideo
         channel="youtube"
         youtube={{ mute: 0, autoplay: 0 }}
         isOpen={isOpen}
         videoId="7e90gBu4pas"
         onClose={() => setOpen(false)}
-      />{" "}
+      />{' '}
     </>
   );
 }

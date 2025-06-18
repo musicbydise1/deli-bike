@@ -1,12 +1,12 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import TeamList from "@/components/otherPages/TeamList";
+import Footer1 from '@/components/footers/Footer1';
+import Header1 from '@/components/headers/Header1';
+import TeamList from '@/components/otherPages/TeamList';
 
-import React from "react";
+import React from 'react';
 
 export const metadata = {
-  title: "Team List || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
+  title: 'Team List || Boxcar - React Nextjs Car Template',
+  description: 'Boxcar - React Nextjs Car Template',
 };
 export default function TeamListPage() {
   return (

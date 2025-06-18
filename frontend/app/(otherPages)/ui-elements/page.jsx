@@ -1,12 +1,12 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import UiElements from "@/components/otherPages/UiElements";
+import Footer1 from '@/components/footers/Footer1';
+import Header1 from '@/components/headers/Header1';
+import UiElements from '@/components/otherPages/UiElements';
 
-import React from "react";
+import React from 'react';
 
 export const metadata = {
-  title: "UI Elements || Boxcar - React Nextjs Car Template",
-  description: "Boxcar - React Nextjs Car Template",
+  title: 'UI Elements || Boxcar - React Nextjs Car Template',
+  description: 'Boxcar - React Nextjs Car Template',
 };
 export default function UIElementsPage() {
   return (

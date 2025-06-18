@@ -1,5 +1,5 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
 
 export default function LoanCalculator() {
   return (
@@ -15,34 +15,23 @@ export default function LoanCalculator() {
                   <div className="boxcar-title">
                     <h2>Get In Touch</h2>
                     <p>
-                      Use our loan calculator to calculate payments over the
-                      life of your loan. Enter your information to see how much
-                      your monthly payments could be. You can adjust length of
-                      loan, down payment and interest rate to see how those
-                      changes raise or lower your payments.
+                      Use our loan calculator to calculate payments over the life of your loan.
+                      Enter your information to see how much your monthly payments could be. You can
+                      adjust length of loan, down payment and interest rate to see how those changes
+                      raise or lower your payments.
                     </p>
                   </div>
-                  <form onSubmit={(e) => e.preventDefault()} className="row">
+                  <form onSubmit={e => e.preventDefault()} className="row">
                     <div className="col-lg-6">
                       <div className="form_boxes">
                         <label>First Name</label>
-                        <input
-                          required
-                          type="text"
-                          name="name"
-                          placeholder="Ali"
-                        />
+                        <input required type="text" name="name" placeholder="Ali" />
                       </div>
                     </div>
                     <div className="col-lg-6">
                       <div className="form_boxes">
                         <label>First Name</label>
-                        <input
-                          required
-                          type="text"
-                          name="name"
-                          placeholder="Tufan"
-                        />
+                        <input required type="text" name="name" placeholder="Tufan" />
                       </div>
                     </div>
                     <div className="col-lg-6">

@@ -1,7 +1,7 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { teamBlocks } from "@/data/team";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { teamBlocks } from '@/data/team';
 export default function Team() {
   return (
     <section className="boxcar-team-section-two">
@@ -14,19 +14,16 @@ export default function Team() {
             <div
               key={index}
               className="team-block-two col-lg-3 col-md-6 col-sm-6"
-              style={{ position: "relative" }}
+              style={{ position: 'relative' }}
             >
-              <div
-                className={`inner-box wow fadeInUp`}
-                data-wow-delay={block.delay}
-              >
+              <div className={`inner-box wow fadeInUp`} data-wow-delay={block.delay}>
                 <div className="image-box">
                   <figure className="image">
                     <a href="#">
                       <Image
                         alt=""
                         src={block.imgSrc}
-                        width={block.imgSrc.includes("team2-3") ? 263 : 260}
+                        width={block.imgSrc.includes('team2-3') ? 263 : 260}
                         height={400}
                       />
                     </a>

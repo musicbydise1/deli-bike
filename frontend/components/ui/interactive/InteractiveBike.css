@@ -1,79 +1,79 @@
 /* Кнопки (метки на картинке) */
 .int-button {
-    position: absolute;
-    cursor: pointer;
-    background: #ff5500;
-    border-radius: 50px;
-    padding: 0px 10px;
-    font-size: 12px;
-    color: #fff;
-    border: 3px solid #fff;
-    box-shadow: 0px 0px 17.1px 0px #FFFFFF;
+  position: absolute;
+  cursor: pointer;
+  background: #ff5500;
+  border-radius: 50px;
+  padding: 0px 10px;
+  font-size: 12px;
+  color: #fff;
+  border: 3px solid #fff;
+  box-shadow: 0px 0px 17.1px 0px #ffffff;
 }
 
 /* Расположение кнопок */
 .frame {
-    top: 48%;
-    left: 25%;
+  top: 48%;
+  left: 25%;
 }
 
 .battery {
-    top: 75%;
-    left: 47%;
+  top: 75%;
+  left: 47%;
 }
 
 .termoBox {
-    top: 20%;
-    left: 75%;
+  top: 20%;
+  left: 75%;
 }
 
 /* Описание. По умолчанию скрыто (opacity: 0). "active" включает плавное появление */
 .description-block {
-    cursor: pointer;
-    position: absolute;
-    background: #fff;
-    color: #ff5500;
-    box-shadow: 0px 0px 17.1px 0px #EDEDED;
-    border-radius: 5px;
-    padding: 9px 11px;
-    z-index: 10;
+  cursor: pointer;
+  position: absolute;
+  background: #fff;
+  color: #ff5500;
+  box-shadow: 0px 0px 17.1px 0px #ededed;
+  border-radius: 5px;
+  padding: 9px 11px;
+  z-index: 10;
 
-    /* Скрыто по умолчанию (для анимации появления/ухода) */
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
+  /* Скрыто по умолчанию (для анимации появления/ухода) */
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
 
-    /* Плавная анимация */
-    transition:
-            opacity 0.3s ease-in-out,
-            transform 0.3s ease-in-out;
+  /* Плавная анимация */
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
 }
 
 /* Когда блок активен — показываем его (fade + scale up) */
 .description-block.active {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
 }
 
 /* Позиция каждого описания рядом со своей частью */
 .description-block.frame {
-    top: 48%;
-    left: 25%;
+  top: 48%;
+  left: 25%;
 }
 .description-block.battery {
-    top: 75%;
-    left: 47%;
+  top: 75%;
+  left: 47%;
 }
 .description-block.termoBox {
-    top: 20%;
-    left: 75%;
+  top: 20%;
+  left: 75%;
 }
 
 /* Текст внутри описания */
 .description-block p {
-    margin: 0;
-    line-height: 1.4;
-    font-size: 12px;
-    color: #ff5500;
+  margin: 0;
+  line-height: 1.4;
+  font-size: 12px;
+  color: #ff5500;
 }

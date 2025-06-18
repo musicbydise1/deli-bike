@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import Sidebar from "./Sidebar";
-import Image from "next/image";
+'use client';
+import React from 'react';
+import Sidebar from './Sidebar';
+import Image from 'next/image';
 
 export default function Messages() {
   return (
@@ -13,9 +13,7 @@ export default function Messages() {
             <div className="inner-column">
               <div className="list-title">
                 <h3 className="title">Messages</h3>
-                <div className="text">
-                  Lorem ipsum dolor sit amet, consectetur.
-                </div>
+                <div className="text">Lorem ipsum dolor sit amet, consectetur.</div>
               </div>
               <div className="chat-widget">
                 <div className="widget-content">
@@ -27,11 +25,7 @@ export default function Messages() {
                       <div className="card contacts_card">
                         <div className="card-header">
                           <div className="search-box-one">
-                            <form
-                              onSubmit={(e) => e.preventDefault()}
-                              method="post"
-                              action="#"
-                            >
+                            <form onSubmit={e => e.preventDefault()} method="post" action="#">
                               <div className="form-group">
                                 <span className="icon">
                                   <Image
@@ -245,9 +239,7 @@ export default function Messages() {
                             </div>
                           </div>
                           <div className="btn-box">
-                            <button className="dlt-chat">
-                              Delete Conversation
-                            </button>
+                            <button className="dlt-chat">Delete Conversation</button>
                             <button className="toggle-contact">
                               <span className="fa fa-bars" />
                             </button>
@@ -269,8 +261,8 @@ export default function Messages() {
                               </div>
                             </div>
                             <div className="msg_cotainer">
-                              How likely are you to recommend our company to
-                              your friends and family?
+                              How likely are you to recommend our company to your friends and
+                              family?
                             </div>
                           </div>
                           <div className="d-flex justify-content-end mb-2 reply">
@@ -287,8 +279,8 @@ export default function Messages() {
                               </div>
                             </div>
                             <div className="msg_cotainer">
-                              Hey there, we’re just writing to let you know that
-                              you’ve been subscribed to a repository on GitHub.
+                              Hey there, we’re just writing to let you know that you’ve been
+                              subscribed to a repository on GitHub.
                             </div>
                           </div>
                           <div className="d-flex justify-content-start">
@@ -313,12 +305,9 @@ export default function Messages() {
                             <textarea
                               className="form-control type_msg"
                               placeholder="Type a message..."
-                              defaultValue={""}
+                              defaultValue={''}
                             />
-                            <button
-                              type="button"
-                              className="theme-btn btn-style-one submit-btn"
-                            >
+                            <button type="button" className="theme-btn btn-style-one submit-btn">
                               <span className="text-dk">Send Message</span>
                               <span className="text-mb">Send</span>
                               <svg

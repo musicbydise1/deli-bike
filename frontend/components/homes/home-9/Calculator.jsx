@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import SelectComponent from "@/components/common/SelectComponent";
+'use client';
+import React from 'react';
+import Image from 'next/image';
+import SelectComponent from '@/components/common/SelectComponent';
 export default function Calculator() {
   return (
     <section className="calculator-section-home9">
@@ -12,60 +12,39 @@ export default function Calculator() {
               <div className="boxcar-title">
                 <h2>Auto Loan Calculator</h2>
                 <p>
-                  Use this car payment calculator to estimate monthly payments
-                  on your next new or used auto loan.{" "}
+                  Use this car payment calculator to estimate monthly payments on your next new or
+                  used auto loan.{' '}
                 </p>
               </div>
-              <form onSubmit={(e) => e.preventDefault()}>
+              <form onSubmit={e => e.preventDefault()}>
                 <div className="box-ip">
                   <div className="form_boxes">
                     <label>Vehicle Price ($)</label>
                     <div className="drop-menu">
-                      <input
-                        type="text"
-                        required
-                        name="gender"
-                        defaultValue="45$"
-                      />
+                      <input type="text" required name="gender" defaultValue="45$" />
                     </div>
                   </div>
                   <div className="form_boxes">
                     <label>Interest Rate</label>
                     <div className="drop-menu">
-                      <input
-                        type="text"
-                        required
-                        name="gender"
-                        defaultValue={5}
-                      />
+                      <input type="text" required name="gender" defaultValue={5} />
                     </div>
                   </div>
                   <div className="form_boxes">
                     <label>Period (months)</label>
 
-                    <SelectComponent options={["36", "40", "45", "", "", ""]} />
+                    <SelectComponent options={['36', '40', '45', '', '', '']} />
                   </div>
                   <div className="form_boxes">
                     <label>Down Payment</label>
                     <div className="drop-menu">
-                      <input
-                        type="text"
-                        required
-                        name="gender"
-                        defaultValue="$45.000"
-                      />
+                      <input type="text" required name="gender" defaultValue="$45.000" />
                     </div>
                   </div>
                 </div>
                 <div className="form-submit">
                   <button type="submit" className="theme-btn">
-                    Calculate{" "}
-                    <Image
-                      alt=""
-                      src="/images/arrow.svg"
-                      width={14}
-                      height={14}
-                    />
+                    Calculate <Image alt="" src="/images/arrow.svg" width={14} height={14} />
                   </button>
                 </div>
               </form>
