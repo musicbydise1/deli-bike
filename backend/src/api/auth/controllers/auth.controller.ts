@@ -5,6 +5,7 @@ import {
   UseInterceptors,
   UploadedFiles,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { AuthService } from '../services/auth.service';
 import { RegisterDto } from '../dto/auth.dto';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
@@ -14,7 +15,10 @@ import { File as MulterFile } from 'multer'; // Переименование т�
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly configService: ConfigService,
+  ) {}
 
   @Post('sendCode')
   sendCode(@Body('phoneNumber') phoneNumber: string) {
@@ -69,13 +73,15 @@ export class AuthController {
     if (files.photoIdFront && files.photoIdFront.length > 0) {
       const fileFront = files.photoIdFront[0];
       // Формируем URL для хранения пути к файлу в БД
-      user.idCardFrontImage = `http://localhost:4000/uploads/users/${fileFront.filename}`;
+      const baseUrl = this.configService.get<string>('baseUrl');
+      user.idCardFrontImage = `${baseUrl}/uploads/users/${fileFront.filename}`;
     }
 
     // Если загружена задняя сторона удостоверения
     if (files.photoIdBack && files.photoIdBack.length > 0) {
       const fileBack = files.photoIdBack[0];
-      user.idCardBackImage = `http://localhost:4000/uploads/users/${fileBack.filename}`;
+      const baseUrl = this.configService.get<string>('baseUrl');
+      user.idCardBackImage = `${baseUrl}/uploads/users/${fileBack.filename}`;
     }
 
     return this.authService.register(user);

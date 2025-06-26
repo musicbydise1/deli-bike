@@ -9,6 +9,7 @@ import {
     UseInterceptors,
     UploadedFiles,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { BikeService } from '../services/bike.service';
 import { Bike } from '../entities/bike.entity';
 import {CreateBikeDto, CreateBikeTranslationDto} from '../dto/create-bike.dto';
@@ -21,7 +22,10 @@ import { BikePriceDto } from '../dto/create-bike.dto';
 
 @Controller('bikes')
 export class BikeController {
-    constructor(private readonly bikeService: BikeService) {}
+    constructor(
+        private readonly bikeService: BikeService,
+        private readonly configService: ConfigService,
+    ) {}
 
     @Get()
     async getAllBikes(): Promise<Bike[]> {
@@ -64,8 +68,9 @@ export class BikeController {
         console.log(JSON.stringify(bikeData, null, 2));
 
         if (files.photos && files.photos.length > 0) {
+            const baseUrl = this.configService.get<string>('baseUrl');
             bikeData.imageUrls = files.photos.map(
-                (file) => `http://localhost:4000/uploads/bikes/${file.filename}`,
+                (file) => `${baseUrl}/uploads/bikes/${file.filename}`,
             );
         }
 
@@ -142,8 +147,9 @@ export class BikeController {
     ): Promise<Bike> {
         // если пришли новые фото — дописываем их к imageUrls
         if (files.photos?.length) {
+            const baseUrl = this.configService.get<string>('baseUrl');
             const urls = files.photos.map(
-                f => `http://localhost:4000/uploads/bikes/${f.filename}`,
+                f => `${baseUrl}/uploads/bikes/${f.filename}`,
             );
             bikeData.imageUrls = [
                 ...(bikeData.imageUrls as string[] || []),
