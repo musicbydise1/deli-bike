@@ -17,8 +17,14 @@ export class UserService {
       body: CreateUserDto,
       ...roles: Role[]
   ): Promise<User> {
+    const data: Partial<User> = { ...body };
+
+    if (body.password) {
+      data.password = await hash(body.password, 10);
+    }
+
     const user: User = this.repository.create({
-      ...body,
+      ...data,
       roles,
     });
 
