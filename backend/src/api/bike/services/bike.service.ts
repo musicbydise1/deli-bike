@@ -1,4 +1,4 @@
-import {Injectable, NotFoundException} from '@nestjs/common';
+import {Injectable, NotFoundException, Logger} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Bike } from '../entities/bike.entity';
@@ -9,6 +9,7 @@ import {Translation} from "../../translations/entity/translations.entity";
 
 @Injectable()
 export class BikeService {
+    private readonly logger = new Logger(BikeService.name);
     constructor(
         @InjectRepository(Bike)
         private bikeRepository: Repository<Bike>,
@@ -111,7 +112,7 @@ export class BikeService {
     }
 
     async createBike(bikeData: CreateBikeDto): Promise<Bike> {
-        console.log('BikeService.createBike, final bikeData:', JSON.stringify(bikeData, null, 2));
+        this.logger.debug('createBike data: ' + JSON.stringify(bikeData, null, 2));
 
         const { prices, translations, ...bikeDetails } = bikeData;
 
@@ -120,12 +121,12 @@ export class BikeService {
         const savedBike = await this.bikeRepository.save(bike);
 
         // 2. Логируем, что у нас в prices
-        console.log('BikeService, prices:', prices);
+        this.logger.debug('prices: ' + JSON.stringify(prices));
 
         // 3. Сохраняем цены (BikePrice)
         if (prices && prices.length > 0) {
             const bikePrices = prices.map((priceDto) => {
-                console.log('Creating BikePrice for:', priceDto);
+                this.logger.debug('Creating BikePrice for: ' + JSON.stringify(priceDto));
                 return this.bikePriceRepository.create({
                     bike: savedBike,
                     priceCategory: { id: priceDto.categoryId },
@@ -138,10 +139,10 @@ export class BikeService {
         }
 
         // 4. Если есть переводы - создаём/обновляем их
-        console.log('BikeService, translations:', translations);
+        this.logger.debug('translations: ' + JSON.stringify(translations));
         if (translations && translations.length > 0) {
             for (const t of translations) {
-                console.log('Creating translation for:', t);
+                this.logger.debug('Creating translation for: ' + JSON.stringify(t));
                 await this.translationsService.createOrUpdateTranslation({
                     entityType: 'bike',
                     entityId: savedBike.id,

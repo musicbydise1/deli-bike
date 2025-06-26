@@ -30,4 +30,5 @@ export const configuration = () => ({
     email: process.env.ADMIN_EMAIL || 'admin@admin.com',
     password: process.env.ADMIN_PASSWORD || '12345678',
   },
+  logLevels: process.env.LOG_LEVELS || 'log,error,warn',
 });
