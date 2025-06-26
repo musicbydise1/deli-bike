@@ -9,6 +9,7 @@ import {
     UseInterceptors,
     UploadedFiles,
 } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { BikeService } from '../services/bike.service';
 import { Bike } from '../entities/bike.entity';
@@ -22,6 +23,7 @@ import { BikePriceDto } from '../dto/create-bike.dto';
 
 @Controller('bikes')
 export class BikeController {
+    private readonly logger = new Logger(BikeController.name);
     constructor(
         private readonly bikeService: BikeService,
         private readonly configService: ConfigService,
@@ -64,8 +66,8 @@ export class BikeController {
         @Body() bikeData: CreateBikeDto,
     ): Promise<Bike> {
         // Смотрим, что пришло в body до любой трансформации
-        console.log('--- Raw bikeData (before manual parse) ---');
-        console.log(JSON.stringify(bikeData, null, 2));
+        this.logger.debug('--- Raw bikeData (before manual parse) ---');
+        this.logger.debug(JSON.stringify(bikeData, null, 2));
 
         if (files.photos && files.photos.length > 0) {
             const baseUrl = this.configService.get<string>('baseUrl');
@@ -75,44 +77,44 @@ export class BikeController {
         }
 
         // Логируем bikeData.prices и bikeData.translations, чтобы понять, что там
-        console.log('bikeData.prices:', bikeData.prices);
-        console.log('bikeData.translations:', bikeData.translations);
+        this.logger.debug('bikeData.prices: ' + JSON.stringify(bikeData.prices));
+        this.logger.debug('bikeData.translations: ' + JSON.stringify(bikeData.translations));
 
         // Если prices строка — парсим
         if (typeof bikeData.prices === 'string') {
-            console.log('prices is string, try parse JSON');
+            this.logger.debug('prices is string, try parse JSON');
             try {
                 const parsed = JSON.parse(bikeData.prices);
-                console.log('prices parsed:', parsed);
+                this.logger.debug('prices parsed: ' + JSON.stringify(parsed));
                 bikeData.prices = plainToInstance(BikePriceDto, Array.isArray(parsed) ? parsed : [parsed], {
                     excludeExtraneousValues: true,
                 });
             } catch (e) {
-                console.log('Error parsing prices JSON:', e);
+                this.logger.warn('Error parsing prices JSON: ' + e);
                 bikeData.prices = [];
             }
         }
 
         // Если translations строка — парсим
         if (typeof bikeData.translations === 'string') {
-            console.log('translations is string, try parse JSON');
+            this.logger.debug('translations is string, try parse JSON');
             try {
                 const parsed = JSON.parse(bikeData.translations);
-                console.log('translations parsed:', parsed);
+                this.logger.debug('translations parsed: ' + JSON.stringify(parsed));
                 bikeData.translations = plainToInstance(
                     CreateBikeTranslationDto,
                     Array.isArray(parsed) ? parsed : [parsed],
                     { excludeExtraneousValues: true },
                 );
             } catch (e) {
-                console.log('Error parsing translations JSON:', e);
+                this.logger.warn('Error parsing translations JSON: ' + e);
                 bikeData.translations = [];
             }
         }
 
         // После парсинга смотрим, что в bikeData
-        console.log('--- bikeData after manual parse ---');
-        console.log(JSON.stringify(bikeData, null, 2));
+        this.logger.debug('--- bikeData after manual parse ---');
+        this.logger.debug(JSON.stringify(bikeData, null, 2));
 
         return this.bikeService.createBike(bikeData);
     }
