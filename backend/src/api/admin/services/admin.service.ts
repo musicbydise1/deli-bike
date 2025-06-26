@@ -1,5 +1,4 @@
 import {BadRequestException, Injectable, NotFoundException} from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../../../database/entities/user.entity';
@@ -9,6 +8,7 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 import { CreateBikeDto } from '../dto/create-bike.dto';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { RoleService } from '../../role/services/role.service';
+import { UserService } from '../../user/services/user.service';
 
 @Injectable()
 export class AdminService {
@@ -23,6 +23,7 @@ export class AdminService {
         private rentalRepository: Repository<Rental>,
 
         private readonly roleService: RoleService,
+        private readonly userService: UserService,
     ) {}
 
     async getAllUsers(): Promise<User[]> {
@@ -38,20 +39,7 @@ export class AdminService {
             throw new BadRequestException('Пользователь с таким email уже существует');
         }
 
-        // 2. Создаём нового пользователя на основе DTO
-        const user = this.userRepository.create(createUserDto);
-
-        // 3. Если есть пароль, хэшируем его
-        if (createUserDto.password) {
-            const saltRounds = 10;
-            const hashedPassword = await bcrypt.hash(createUserDto.password, saltRounds);
-            user.password = hashedPassword;
-        }
-
-        // 4. Сохраняем пользователя, чтобы у него появился id
-        const savedUser = await this.userRepository.save(user);
-
-        // 5. Определяем, какую роль присвоить
+        // Определяем, какую роль присвоить
         let roleId: number;
         if (createUserDto.role === 'courier') {
             roleId = 1;
@@ -61,14 +49,21 @@ export class AdminService {
 
         const userRole = await this.roleService.findById(roleId);
 
-        // 6. Вызываем метод, который свяжет пользователя с ролью (используя userId = savedUser.id)
-        await this.roleService.assignRoleToUser({
-            roleId: userRole.id,
-            userId: savedUser.id,
-        });
+        const newUser = await this.userService.createUser({
+            phoneNumber: createUserDto.phoneNumber,
+            firstName: createUserDto.firstName,
+            lastName: createUserDto.lastName,
+            patronymic: createUserDto.patronymic,
+            email: createUserDto.email,
+            password: createUserDto.password,
+            companyName: createUserDto.companyName,
+            telegramChatId: createUserDto.telegramChatId,
+            idCardNumber: createUserDto.idCardNumber,
+            idCardFrontImage: createUserDto.idCardFrontImage,
+            idCardBackImage: createUserDto.idCardBackImage,
+        }, userRole);
 
-        // 7. Возвращаем уже сохранённого пользователя
-        return savedUser;
+        return newUser;
     }
 
     async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User> {

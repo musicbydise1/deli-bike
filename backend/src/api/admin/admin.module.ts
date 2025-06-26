@@ -6,11 +6,13 @@ import { User } from '../../database/entities/user.entity';
 import { Bike } from '../bike/entities/bike.entity';
 import {Rental} from "../rental/entities/rental.entity";
 import {RoleModule} from "../role/role.module";
+import {UserModule} from "../user/user.module";
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([User, Bike, Rental]),
         RoleModule,
+        UserModule,
     ],
     controllers: [AdminController],
     providers: [AdminService],
