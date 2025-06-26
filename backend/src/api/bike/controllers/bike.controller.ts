@@ -20,6 +20,8 @@ import { extname } from 'path';
 import { File as MulterFile } from 'multer';
 import { plainToInstance } from 'class-transformer';
 import { BikePriceDto } from '../dto/create-bike.dto';
+import { Auth } from '../../auth/guards/auth.decorator';
+import { RoleIds } from '../../role/enum/role.enum';
 
 @Controller('bikes')
 export class BikeController {
@@ -40,6 +42,7 @@ export class BikeController {
     }
 
     // Эндпоинт для создания велосипеда с загрузкой фотографий
+    @Auth(RoleIds.Admin)
     @Post()
     @UseInterceptors(
         FileFieldsInterceptor([{ name: 'photos', maxCount: 5 }], {
@@ -120,6 +123,7 @@ export class BikeController {
     }
 
 
+    @Auth(RoleIds.Admin)
     @Put(':id')
     @UseInterceptors(
         FileFieldsInterceptor(
@@ -191,6 +195,7 @@ export class BikeController {
         return this.bikeService.updateBike(id, bikeData);
     }
 
+    @Auth(RoleIds.Admin)
     @Delete(':id')
     async deleteBike(@Param('id') id: number): Promise<void> {
         return this.bikeService.deleteBike(id);
