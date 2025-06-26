@@ -20,8 +20,15 @@ export const configuration = () => ({
   jwt: {
     secret: process.env.JWT_SECRET || 'secret',
   },
+  telegram: {
+    botToken: process.env.TELEGRAM_BOT_TOKEN || '',
+  },
+  bitrix: {
+    webhookUrl: process.env.BITRIX_WEBHOOK_URL || '',
+  },
   adminUser: {
     email: process.env.ADMIN_EMAIL || 'admin@admin.com',
     password: process.env.ADMIN_PASSWORD || '12345678',
   },
+  logLevels: process.env.LOG_LEVELS || 'log,error,warn',
 });
