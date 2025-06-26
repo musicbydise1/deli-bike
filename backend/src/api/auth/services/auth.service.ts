@@ -39,7 +39,7 @@ export class AuthService {
       private configService: ConfigService,
       private readonly roleService: RoleService,
   ) {
-    const telegramToken = '7722439245:AAH5crruoiLpYfiCnQRNUe83gQ55ozx3Og8';
+    const telegramToken = this.configService.get<string>('telegram.botToken');
     // Включаем polling (или можно использовать webhook)
     this.telegramBot = new TelegramBot(telegramToken, { polling: true });
 
