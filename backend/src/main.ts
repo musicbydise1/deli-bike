@@ -1,12 +1,16 @@
 import { NestFactory } from '@nestjs/core';
-import { NestExpressApplication } from '@nestjs/platform-express'; // Импортируем NestExpressApplication
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
-import { ValidationPipe, ClassSerializerInterceptor } from '@nestjs/common';
+import { ValidationPipe, ClassSerializerInterceptor, Logger, LogLevel } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { ConfigService } from '@nestjs/config';
 import { join } from 'path';
 
 async function bootstrap() {
-    const app = await NestFactory.create<NestExpressApplication>(AppModule); // Указываем тип приложения
+    const app = await NestFactory.create<NestExpressApplication>(AppModule);
+    const configService = app.get(ConfigService);
+    const logLevels = (configService.get<string>('logLevels') || 'log,error,warn').split(',') as LogLevel[];
+    app.useLogger(logLevels);
 
     // Включение глобальной валидации
     app.useGlobalPipes(
