@@ -9,7 +9,7 @@ export class BitrixService {
     constructor(private configService: ConfigService) {
         // Получаем URL вебхука для доступа к REST API Битрикс24
         // Например: https://yourdomain.bitrix24.ru/rest/1/your_webhook_code
-        this.webhookUrl = 'https://mdline.bitrix24.kz/rest/9/7c7xusn6aab7mls9/';
+        this.webhookUrl = this.configService.get<string>('bitrix.webhookUrl');
     }
 
     /**
