@@ -6,8 +6,8 @@ import {
   PrimaryColumn,
   ManyToMany, OneToMany,
 } from 'typeorm';
-import { User } from './user.entity';
-import {BikePrice} from "../../api/bike/entities/bike_price.entity";
+import { User } from '../modules/users/entities/user.entity';
+import { BikePrice } from '../modules/bikes/entities/bike_price.entity';
 
 @Entity()
 export class Role {

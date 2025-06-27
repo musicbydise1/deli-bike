@@ -8,12 +8,12 @@ import {
     CreateAccessoryTranslationDto,
     UpdateAccessoryDto
 } from '../dto/accessory.dto';
-import { Bike } from '../../bike/entities/bike.entity';
+import { Bike } from '../../modules/bikes/entities/bike.entity';
 import { AccessoriesPrice } from '../entities/accessories_price.entity';
-import { PriceCategory } from '../../price-category/entities/price-category.entity';
+import { PriceCategory } from '../../../modules/pricing/price-categories/entities/price-category.entity';
 import { Role } from '../../../database/entities/role.entity';
-import { Currency } from '../../currency/entities/currency.entity';
-import { TranslationsService } from '../../translations/service/translations.service';
+import { Currency } from '../../../modules/pricing/currency/entities/currency.entity';
+import { TranslationsService } from '../../../modules/translations/service/translations.service';
 
 @Injectable()
 export class AccessoriesService {

@@ -1,12 +1,12 @@
 import { config } from 'dotenv';
 import { resolve } from 'path';
-import { getEnvPath } from '../../common/helper/env.helper';
+import { getEnvPath } from '../../shared/utils/env.helper';
 import { DataSourceOptions } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { configuration } from '../../config';
 
 const envFilePath: string = getEnvPath(
-  resolve(__dirname, '../..', 'common/envs'),
+  resolve(__dirname, '../..', 'shared/envs'),
 );
 config({ path: envFilePath });
 
