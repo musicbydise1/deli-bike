@@ -1,8 +1,8 @@
-import { getEnvPath } from '../common/helper/env.helper';
+import { getEnvPath } from '../shared/utils/env.helper';
 import { config } from 'dotenv';
 import { resolve } from 'path';
 
-const envFilePath: string = getEnvPath(resolve(__dirname, '..', 'common/envs'));
+const envFilePath: string = getEnvPath(resolve(__dirname, '..', 'shared/envs'));
 
 config({ path: envFilePath });
 

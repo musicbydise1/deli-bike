@@ -7,7 +7,7 @@ import {
     ManyToOne,
     JoinColumn, OneToMany,
 } from 'typeorm';
-import { Bike } from '../../bike/entities/bike.entity';
+import { Bike } from '../../modules/bikes/entities/bike.entity';
 import {AccessoriesPrice} from "./accessories_price.entity";
 
 @Entity('accessories')

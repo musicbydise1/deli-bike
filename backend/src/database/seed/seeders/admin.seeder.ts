@@ -4,7 +4,7 @@ import { Repository, EntityManager } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
 import { hash } from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
-import { User } from '../../entities/user.entity';
+import { User } from '../../modules/users/entities/user.entity';
 import { Role } from '../../entities/role.entity';
 
 @Injectable()
