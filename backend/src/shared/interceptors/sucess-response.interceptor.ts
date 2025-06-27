@@ -3,8 +3,8 @@ import {
   ExecutionContext,
   Injectable,
   NestInterceptor,
-} from '@nestjs/common';
-import { map, Observable } from 'rxjs';
+} from "@nestjs/common";
+import { map, Observable } from "rxjs";
 
 @Injectable()
 export class SucessResponseInterceptor implements NestInterceptor {
@@ -13,16 +13,16 @@ export class SucessResponseInterceptor implements NestInterceptor {
       map((data) => {
         return {
           isSuccess: true,
-          message: 'success',
+          message: "success",
           data,
           errorCode: null,
           errors: [],
         };
-      }),
+      })
     );
   }
 }
 
 export const successObject = {
-  message: 'success',
+  message: "success",
 };

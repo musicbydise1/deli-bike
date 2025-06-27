@@ -1,36 +1,41 @@
 import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    CreateDateColumn,
-    UpdateDateColumn,
-    Unique,
-} from 'typeorm';
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  Unique,
+} from "typeorm";
 
-@Entity('translations')
-@Unique('UQ_translations_entity_field_lang', ['entityType', 'entityId', 'field', 'language'])
+@Entity("translations")
+@Unique("UQ_translations_entity_field_lang", [
+  "entityType",
+  "entityId",
+  "field",
+  "language",
+])
 export class Translation {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    entityType: string; // "bike", "accessory", "price_category"
+  @Column()
+  entityType: string; // "bike", "accessory", "price_category"
 
-    @Column()
-    entityId: number;
+  @Column()
+  entityId: number;
 
-    @Column()
-    field: string; // "name", "description", ...
+  @Column()
+  field: string; // "name", "description", ...
 
-    @Column()
-    language: string; // "ru", "en", ...
+  @Column()
+  language: string; // "ru", "en", ...
 
-    @Column({ type: 'text' })
-    translation: string;
+  @Column({ type: "text" })
+  translation: string;
 
-    @CreateDateColumn()
-    createdAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

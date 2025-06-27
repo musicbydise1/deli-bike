@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
-import { Repository, EntityManager } from 'typeorm';
-import { SeederInterface } from '../seeder.interface';
-import { hash } from 'bcrypt';
-import { ConfigService } from '@nestjs/config';
-import { User } from '../../modules/users/entities/user.entity';
-import { Role } from '../../entities/role.entity';
+import { Injectable } from "@nestjs/common";
+import { InjectEntityManager, InjectRepository } from "@nestjs/typeorm";
+import { Repository, EntityManager } from "typeorm";
+import { SeederInterface } from "../seeder.interface";
+import { hash } from "bcrypt";
+import { ConfigService } from "@nestjs/config";
+import { User } from "../../modules/users/entities/user.entity";
+import { Role } from "../../entities/role.entity";
 
 @Injectable()
 export class AdminSeeder implements SeederInterface {
@@ -14,14 +14,14 @@ export class AdminSeeder implements SeederInterface {
     private readonly rolesRepository: Repository<Role>,
     private readonly config: ConfigService,
     @InjectEntityManager()
-    private readonly entityManager: EntityManager,
+    private readonly entityManager: EntityManager
   ) {}
 
   async seed() {
     const data: Partial<User> = await this.generateData();
     await this.entityManager.transaction(async (transactionalEntityManager) => {
       const result = await transactionalEntityManager.upsert(User, data, {
-        conflictPaths: ['email'],
+        conflictPaths: ["email"],
       });
       const adminUser = await transactionalEntityManager
         .getRepository(User)
@@ -37,12 +37,12 @@ export class AdminSeeder implements SeederInterface {
 
   async generateData(): Promise<Partial<User>> {
     const hashedPassword = await hash(
-      this.config.get<string>('adminUser.password'),
-      10,
+      this.config.get<string>("adminUser.password"),
+      10
     );
     const adminRoles = await this.rolesRepository.find();
     return {
-      email: this.config.get<string>('adminUser.email'),
+      email: this.config.get<string>("adminUser.email"),
       password: hashedPassword,
       roles: adminRoles,
     };

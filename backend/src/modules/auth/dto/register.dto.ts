@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsEmail, IsOptional, IsEnum } from 'class-validator';
+import { IsNotEmpty, IsEmail, IsOptional, IsEnum } from "class-validator";
 
 export class RegisterDto {
   @IsNotEmpty()
@@ -38,6 +38,6 @@ export class RegisterDto {
   @IsOptional()
   idCardBackImage?: string;
 
-  @IsEnum(['courier', 'corporate'])
-  role: 'courier' | 'corporate';
+  @IsEnum(["courier", "corporate"])
+  role: "courier" | "corporate";
 }

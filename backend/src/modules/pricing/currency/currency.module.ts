@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Currency } from './entities/currency.entity';
-import { CurrencyController } from './controllers/currency.controller';
-import { CurrencyService } from './services/currency.service';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { Currency } from "./entities/currency.entity";
+import { CurrencyController } from "./controllers/currency.controller";
+import { CurrencyService } from "./services/currency.service";
 
 @Module({
   imports: [TypeOrmModule.forFeature([Currency])],

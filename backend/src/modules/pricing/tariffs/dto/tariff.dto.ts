@@ -1,12 +1,12 @@
 export class CreateTariffDto {
-    bikeId: number;
-    name: string;
-    price: number;
-    duration: number;
+  bikeId: number;
+  name: string;
+  price: number;
+  duration: number;
 }
 
 export class UpdateTariffDto {
-    name?: string;
-    price?: number;
-    duration?: number;
+  name?: string;
+  price?: number;
+  duration?: number;
 }

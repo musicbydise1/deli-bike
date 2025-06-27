@@ -4,29 +4,29 @@ import {
   Post,
   UseInterceptors,
   UploadedFiles,
-} from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { AuthService } from './auth.service';
-import { RegisterDto } from './dto/register.dto';
-import { LoginDto } from './dto/login.dto';
-import { FileFieldsInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
-import { File as MulterFile } from 'multer'; // Переименование типового File -> MulterFile, чтобы не конфликтовало с другими классами
+} from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { AuthService } from "./auth.service";
+import { RegisterDto } from "./dto/register.dto";
+import { LoginDto } from "./dto/login.dto";
+import { FileFieldsInterceptor } from "@nestjs/platform-express";
+import { diskStorage } from "multer";
+import { extname } from "path";
+import { File as MulterFile } from "multer"; // Переименование типового File -> MulterFile, чтобы не конфликтовало с другими классами
 
-@Controller('auth')
+@Controller("auth")
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private readonly configService: ConfigService,
+    private readonly configService: ConfigService
   ) {}
 
-  @Post('sendCode')
-  sendCode(@Body('phoneNumber') phoneNumber: string) {
+  @Post("sendCode")
+  sendCode(@Body("phoneNumber") phoneNumber: string) {
     return this.authService.sendCode(phoneNumber);
   }
 
-  @Post('login')
+  @Post("login")
   login(@Body() user: LoginDto) {
     return this.authService.login(user);
   }
@@ -36,52 +36,53 @@ export class AuthController {
    * - photoIdFront (передняя сторона)
    * - photoIdBack (задняя сторона)
    */
-  @Post('register')
+  @Post("register")
   @UseInterceptors(
-      FileFieldsInterceptor(
-          [
-            { name: 'photoIdFront', maxCount: 1 },
-            { name: 'photoIdBack', maxCount: 1 },
-          ],
-          {
-            storage: diskStorage({
-              destination: './uploads/users',
-              filename: (req, file, callback) => {
-                const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-                const fileExtName = extname(file.originalname);
-                const filename = `user-${uniqueSuffix}${fileExtName}`;
-                callback(null, filename);
-              },
-            }),
-            fileFilter: (req, file, callback) => {
-              if (!file.mimetype.match(/\/(jpg|jpeg|png)$/)) {
-                return callback(new Error('Only image files are allowed!'), false);
-              }
-              callback(null, true);
-            },
+    FileFieldsInterceptor(
+      [
+        { name: "photoIdFront", maxCount: 1 },
+        { name: "photoIdBack", maxCount: 1 },
+      ],
+      {
+        storage: diskStorage({
+          destination: "./uploads/users",
+          filename: (req, file, callback) => {
+            const uniqueSuffix =
+              Date.now() + "-" + Math.round(Math.random() * 1e9);
+            const fileExtName = extname(file.originalname);
+            const filename = `user-${uniqueSuffix}${fileExtName}`;
+            callback(null, filename);
           },
-      ),
+        }),
+        fileFilter: (req, file, callback) => {
+          if (!file.mimetype.match(/\/(jpg|jpeg|png)$/)) {
+            return callback(new Error("Only image files are allowed!"), false);
+          }
+          callback(null, true);
+        },
+      }
+    )
   )
   async register(
-      @UploadedFiles()
-          files: {
-        photoIdFront?: MulterFile[];
-        photoIdBack?: MulterFile[];
-      },
-      @Body() user: RegisterDto,
+    @UploadedFiles()
+    files: {
+      photoIdFront?: MulterFile[];
+      photoIdBack?: MulterFile[];
+    },
+    @Body() user: RegisterDto
   ) {
     // Если загружена передняя сторона удостоверения
     if (files.photoIdFront && files.photoIdFront.length > 0) {
       const fileFront = files.photoIdFront[0];
       // Формируем URL для хранения пути к файлу в БД
-      const baseUrl = this.configService.get<string>('baseUrl');
+      const baseUrl = this.configService.get<string>("baseUrl");
       user.idCardFrontImage = `${baseUrl}/uploads/users/${fileFront.filename}`;
     }
 
     // Если загружена задняя сторона удостоверения
     if (files.photoIdBack && files.photoIdBack.length > 0) {
       const fileBack = files.photoIdBack[0];
-      const baseUrl = this.configService.get<string>('baseUrl');
+      const baseUrl = this.configService.get<string>("baseUrl");
       user.idCardBackImage = `${baseUrl}/uploads/users/${fileBack.filename}`;
     }
 
@@ -89,7 +90,7 @@ export class AuthController {
   }
 
   // Остальные методы
-  @Post('other-login')
+  @Post("other-login")
   otherLogin(@Body() user: { email: string; password: string }) {
     return this.authService.otherLogin(user);
   }
