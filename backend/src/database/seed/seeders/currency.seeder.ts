@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
-import { Currency } from '../../../api/currency/entities/currency.entity';
+import { Currency } from '../../../modules/pricing/currency/entities/currency.entity';
 
 @Injectable()
 export class CurrencySeeder implements SeederInterface {

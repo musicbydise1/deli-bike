@@ -6,7 +6,7 @@ import {
     CreateDateColumn,
     JoinColumn,
 } from 'typeorm';
-import { User } from '../../../database/entities/user.entity';
+import { User } from '../../../modules/users/entities/user.entity';
 
 @Entity('notification')
 export class Notification {

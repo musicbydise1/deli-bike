@@ -8,9 +8,9 @@ import {
     JoinColumn,
 } from 'typeorm';
 import { Accessory } from './accessory.entity';
-import { PriceCategory } from '../../price-category/entities/price-category.entity';
+import { PriceCategory } from '../../../modules/pricing/price-categories/entities/price-category.entity';
 import { Role } from '../../../database/entities/role.entity';
-import {Currency} from "../../currency/entities/currency.entity";
+import { Currency } from '../../../modules/pricing/currency/entities/currency.entity';
 
 @Entity('accessories_price')
 export class AccessoriesPrice {

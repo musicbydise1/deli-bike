@@ -7,7 +7,7 @@ import {
     UpdateDateColumn,
     JoinColumn,
 } from 'typeorm';
-import { Bike } from '../../bike/entities/bike.entity';
+import { Bike } from '../../modules/bikes/entities/bike.entity';
 
 @Entity('maintenance')
 export class Maintenance {

@@ -7,8 +7,8 @@ import {
     UpdateDateColumn,
     JoinColumn,
 } from 'typeorm';
-import { User } from '../../../database/entities/user.entity';
-import { Bike } from '../../bike/entities/bike.entity';
+import { User } from '../../../modules/users/entities/user.entity';
+import { Bike } from '../../modules/bikes/entities/bike.entity';
 
 @Entity('review')
 export class Review {
