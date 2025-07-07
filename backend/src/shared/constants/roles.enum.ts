@@ -7,9 +7,9 @@ export enum RoleIds {
 }
 
 export enum Roles {
-  Customer = "Customer",
-  Merchant = "Merchant",
-  Admin = "Admin",
-  Corporate = "Corporate",
-  Courier = "Courier",
+  Customer = 'Customer',
+  Merchant = 'Merchant',
+  Admin = 'Admin',
+  Corporate = 'Corporate',
+  Courier = 'Courier',
 }

@@ -5,15 +5,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Unique,
-} from "typeorm";
+} from 'typeorm';
 
-@Entity("translations")
-@Unique("UQ_translations_entity_field_lang", [
-  "entityType",
-  "entityId",
-  "field",
-  "language",
-])
+@Entity('translations')
+@Unique('UQ_translations_entity_field_lang', ['entityType', 'entityId', 'field', 'language'])
 export class Translation {
   @PrimaryGeneratedColumn()
   id: number;
@@ -30,7 +25,7 @@ export class Translation {
   @Column()
   language: string; // "ru", "en", ...
 
-  @Column({ type: "text" })
+  @Column({ type: 'text' })
   translation: string;
 
   @CreateDateColumn()

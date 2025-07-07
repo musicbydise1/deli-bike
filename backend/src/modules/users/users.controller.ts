@@ -1,18 +1,18 @@
-import { Controller, Get } from "@nestjs/common";
-import { Auth } from "../../shared/guards/auth.decorator";
-import { CurrentUser } from "../../shared/guards/user.decorator";
-import { UserService } from "./users.service";
+import { Controller, Get } from '@nestjs/common';
+import { Auth } from '../../shared/guards/auth.decorator';
+import { CurrentUser } from '../../shared/guards/user.decorator';
+import { UserService } from './users.service';
 
-@Controller("user")
+@Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Auth()
-  @Get("profile")
+  @Get('profile')
   async profile(@CurrentUser() user) {
     // Получаем пользователя с ролями из базы данных
     const userWithRoles = await this.userService.findById(user.id, {
-      relations: ["roles"],
+      relations: ['roles'],
     });
 
     // Ручная сериализация
@@ -40,7 +40,7 @@ export class UserController {
       })),
     };
 
-    console.log("Serialized User:", serializedUser); // Логируем результат для отладки
+    console.log('Serialized User:', serializedUser); // Логируем результат для отладки
     return serializedUser; // Возвращаем сериализованный объект
   }
 }

@@ -1,9 +1,9 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { Notification } from "../entities/notification.entity";
-import { SendNotificationDto } from "../dto/send-notification.dto";
-import { User } from "../../../modules/users/entities/user.entity";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Notification } from '../entities/notification.entity';
+import { SendNotificationDto } from '../dto/send-notification.dto';
+import { User } from '../../../modules/users/entities/user.entity';
 
 @Injectable()
 export class NotificationService {
@@ -12,7 +12,7 @@ export class NotificationService {
     private notificationRepository: Repository<Notification>,
 
     @InjectRepository(User)
-    private userRepository: Repository<User>
+    private userRepository: Repository<User>,
   ) {}
 
   async sendNotification(dto: SendNotificationDto): Promise<Notification> {
@@ -28,11 +28,11 @@ export class NotificationService {
       user,
       type: dto.type,
       message: dto.message,
-      status: "pending",
+      status: 'pending',
     });
 
     // Логика отправки (заглушка)
-    notification.status = "sent";
+    notification.status = 'sent';
 
     return this.notificationRepository.save(notification);
   }
@@ -40,7 +40,7 @@ export class NotificationService {
   async getNotificationsByUser(userId: number): Promise<Notification[]> {
     return this.notificationRepository.find({
       where: { user: { id: userId } },
-      order: { createdAt: "DESC" },
+      order: { createdAt: 'DESC' },
     });
   }
 }

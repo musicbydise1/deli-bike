@@ -1,10 +1,4 @@
-import {
-  IsNotEmpty,
-  IsDateString,
-  IsString,
-  IsOptional,
-  IsEnum,
-} from "class-validator";
+import { IsNotEmpty, IsDateString, IsString, IsOptional, IsEnum } from 'class-validator';
 
 export class CreateMaintenanceDto {
   @IsNotEmpty()
@@ -19,8 +13,8 @@ export class CreateMaintenanceDto {
   description?: string;
 
   @IsOptional()
-  @IsEnum(["scheduled", "in_progress", "completed"], {
-    message: "Invalid status",
+  @IsEnum(['scheduled', 'in_progress', 'completed'], {
+    message: 'Invalid status',
   })
-  status?: "scheduled" | "in_progress" | "completed";
+  status?: 'scheduled' | 'in_progress' | 'completed';
 }

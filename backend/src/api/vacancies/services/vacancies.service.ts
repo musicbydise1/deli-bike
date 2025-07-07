@@ -1,14 +1,14 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { Vacancy } from "../entities/vacancy.entity";
-import { CreateVacancyDto, UpdateVacancyDto } from "../dto/vacancy.dto";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Vacancy } from '../entities/vacancy.entity';
+import { CreateVacancyDto, UpdateVacancyDto } from '../dto/vacancy.dto';
 
 @Injectable()
 export class VacanciesService {
   constructor(
     @InjectRepository(Vacancy)
-    private vacancyRepository: Repository<Vacancy>
+    private vacancyRepository: Repository<Vacancy>,
   ) {}
 
   async findAll(): Promise<Vacancy[]> {

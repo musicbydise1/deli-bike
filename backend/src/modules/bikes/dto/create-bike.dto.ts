@@ -1,17 +1,9 @@
-import {
-  IsNotEmpty,
-  IsOptional,
-  IsArray,
-  ValidateNested,
-  IsNumber,
-  IsEnum,
-  IsString,
-} from "class-validator";
-import { Type, Transform, Expose } from "class-transformer";
+import { IsNotEmpty, IsOptional, IsArray, IsNumber, IsEnum, IsString } from 'class-validator';
+import { Type, Transform, Expose } from 'class-transformer';
 
 export enum AvailabilityStatus {
-  AVAILABLE = "available",
-  UNAVAILABLE = "unavailable",
+  AVAILABLE = 'available',
+  UNAVAILABLE = 'unavailable',
 }
 
 export class CreateBikeTranslationDto {
@@ -65,17 +57,17 @@ export class CreateBikeDto {
   @Transform(
     ({ value }) => {
       // Если приходит строка, пробуем распарсить как JSON или делим по запятой
-      if (typeof value === "string") {
+      if (typeof value === 'string') {
         try {
           const parsed = JSON.parse(value);
           return Array.isArray(parsed) ? parsed : [];
         } catch (e) {
-          return value.split(",").map((s: string) => s.trim());
+          return value.split(',').map((s: string) => s.trim());
         }
       }
       return value;
     },
-    { toClassOnly: true }
+    { toClassOnly: true },
   )
   @IsArray()
   imageUrls?: string[];
@@ -128,17 +120,15 @@ export class CreateBikeDto {
   @IsOptional()
   @Transform(
     ({ value }) =>
-      typeof value === "string"
-        ? value.split(",").map((t: string) => t.trim())
-        : value,
-    { toClassOnly: true }
+      typeof value === 'string' ? value.split(',').map((t: string) => t.trim()) : value,
+    { toClassOnly: true },
   )
   @IsArray()
   tags?: string[];
 
   // Если клиент отправляет availability_status в snake_case, используем alias:
-  @Expose({ name: "availability_status" })
-  @IsEnum(AvailabilityStatus, { message: "Invalid availability status" })
+  @Expose({ name: 'availability_status' })
+  @IsEnum(AvailabilityStatus, { message: 'Invalid availability status' })
   availabilityStatus: AvailabilityStatus;
 
   @Expose()

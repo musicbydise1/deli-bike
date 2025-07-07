@@ -1,20 +1,18 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { Maintenance } from "../entities/maintenance.entity";
-import { CreateMaintenanceDto } from "../dto/create-maintenance.dto";
-import { UpdateMaintenanceDto } from "../dto/update-maintenance.dto";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Maintenance } from '../entities/maintenance.entity';
+import { CreateMaintenanceDto } from '../dto/create-maintenance.dto';
+import { UpdateMaintenanceDto } from '../dto/update-maintenance.dto';
 
 @Injectable()
 export class MaintenanceService {
   constructor(
     @InjectRepository(Maintenance)
-    private maintenanceRepository: Repository<Maintenance>
+    private maintenanceRepository: Repository<Maintenance>,
   ) {}
 
-  async createMaintenance(
-    createMaintenanceDto: CreateMaintenanceDto
-  ): Promise<Maintenance> {
+  async createMaintenance(createMaintenanceDto: CreateMaintenanceDto): Promise<Maintenance> {
     const { bikeId, serviceDate, description, status } = createMaintenanceDto;
 
     const maintenance = this.maintenanceRepository.create({
@@ -29,7 +27,7 @@ export class MaintenanceService {
 
   async updateMaintenance(
     id: number,
-    updateMaintenanceDto: UpdateMaintenanceDto
+    updateMaintenanceDto: UpdateMaintenanceDto,
   ): Promise<Maintenance> {
     const maintenance = await this.maintenanceRepository.findOne({
       where: { id },
@@ -58,6 +56,6 @@ export class MaintenanceService {
   }
 
   async getAllMaintenance(): Promise<Maintenance[]> {
-    return this.maintenanceRepository.find({ relations: ["bike"] });
+    return this.maintenanceRepository.find({ relations: ['bike'] });
   }
 }

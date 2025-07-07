@@ -1,9 +1,9 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { INestApplication } from "@nestjs/common";
-import * as request from "supertest";
-import { AppModule } from "../../../src/app.module";
+import { Test, TestingModule } from '@nestjs/testing';
+import { INestApplication } from '@nestjs/common';
+import * as request from 'supertest';
+import { AppModule } from '../../../src/app.module';
 
-describe("AccessoriesController (e2e)", () => {
+describe('AccessoriesController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -19,8 +19,8 @@ describe("AccessoriesController (e2e)", () => {
     await app.close();
   });
 
-  it("/accessories (GET)", async () => {
-    const response = await request(app.getHttpServer()).get("/accessories");
+  it('/accessories (GET)', async () => {
+    const response = await request(app.getHttpServer()).get('/accessories');
     expect(response.status).toBe(200);
     expect(response.body.isSuccess).toBe(true);
   });

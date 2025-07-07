@@ -7,11 +7,11 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
-} from "typeorm";
-import { Bike } from "../../modules/bikes/entities/bike.entity";
-import { AccessoriesPrice } from "./accessories_price.entity";
+} from 'typeorm';
+import { Bike } from '@/modules/bikes/entities/bike.entity';
+import { AccessoriesPrice } from './accessories_price.entity';
 
-@Entity("accessories")
+@Entity('accessories')
 export class Accessory {
   @PrimaryGeneratedColumn()
   id: number;
@@ -19,20 +19,20 @@ export class Accessory {
   @Column()
   bikeId: number;
 
-  @Column({ type: "varchar" })
+  @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ type: 'text', nullable: true })
   description: string;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: "timestamp" })
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
   @ManyToOne(() => Bike, (bike) => bike.accessories, { nullable: false })
-  @JoinColumn({ name: "bikeId" })
+  @JoinColumn({ name: 'bikeId' })
   bike: Bike;
 
   @OneToMany(() => AccessoriesPrice, (accessories) => accessories.accessory, {

@@ -5,8 +5,8 @@ import {
   IsArray,
   IsString,
   ValidateNested,
-} from "class-validator";
-import { Expose, Type } from "class-transformer";
+} from 'class-validator';
+import { Expose, Type } from 'class-transformer';
 
 export class AccessoriesPriceDto {
   @Expose()

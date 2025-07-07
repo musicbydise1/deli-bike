@@ -1,16 +1,9 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Param,
-  ParseIntPipe,
-} from "@nestjs/common";
-import { CompaniesService } from "./companies.service";
-import { CreateCompanyDto } from "./dto/create-company.dto";
-import { Company } from "./entities/company.entity";
+import { Controller, Post, Body, Get, Param, ParseIntPipe } from '@nestjs/common';
+import { CompaniesService } from './companies.service';
+import { CreateCompanyDto } from './dto/create-company.dto';
+import { Company } from './entities/company.entity';
 
-@Controller("companies")
+@Controller('companies')
 export class CompaniesController {
   constructor(private readonly companiesService: CompaniesService) {}
 
@@ -24,8 +17,8 @@ export class CompaniesController {
     return this.companiesService.findAll();
   }
 
-  @Get(":id")
-  async findOne(@Param("id", ParseIntPipe) id: number): Promise<Company> {
+  @Get(':id')
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Company> {
     return this.companiesService.findOne(id);
   }
 }

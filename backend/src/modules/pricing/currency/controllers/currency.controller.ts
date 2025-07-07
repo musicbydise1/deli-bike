@@ -1,9 +1,9 @@
-import { Controller, Post, Body, Get } from "@nestjs/common";
-import { CurrencyService } from "../services/currency.service";
-import { CreateCurrencyDto } from "../dto/create-currency.dto";
-import { Currency } from "../entities/currency.entity";
+import { Controller, Post, Body, Get } from '@nestjs/common';
+import { CurrencyService } from '../services/currency.service';
+import { CreateCurrencyDto } from '../dto/create-currency.dto';
+import { Currency } from '../entities/currency.entity';
 
-@Controller("currencies")
+@Controller('currencies')
 export class CurrencyController {
   constructor(private readonly currencyService: CurrencyService) {}
 

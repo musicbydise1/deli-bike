@@ -1,10 +1,10 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { PriceCategory } from "../entities/price-category.entity";
-import { CreatePriceCategoryDto } from "../dto/create-price-category.dto";
-import { UpdatePriceCategoryDto } from "../dto/update-price-category.dto";
-import { TranslationsService } from "../../../translations/service/translations.service";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { PriceCategory } from '../entities/price-category.entity';
+import { CreatePriceCategoryDto } from '../dto/create-price-category.dto';
+import { UpdatePriceCategoryDto } from '../dto/update-price-category.dto';
+import { TranslationsService } from '../../../translations/service/translations.service';
 
 @Injectable()
 export class PriceCategoryService {
@@ -12,7 +12,7 @@ export class PriceCategoryService {
     @InjectRepository(PriceCategory)
     private readonly priceCategoryRepository: Repository<PriceCategory>,
 
-    private readonly translationsService: TranslationsService // <-- инжект
+    private readonly translationsService: TranslationsService, // <-- инжект
   ) {}
 
   async create(createDto: CreatePriceCategoryDto): Promise<PriceCategory> {
@@ -25,7 +25,7 @@ export class PriceCategoryService {
     if (translations && translations.length > 0) {
       for (const t of translations) {
         await this.translationsService.createOrUpdateTranslation({
-          entityType: "price_category",
+          entityType: 'price_category',
           entityId: savedCategory.id,
           field: t.field,
           language: t.language,
@@ -44,10 +44,10 @@ export class PriceCategoryService {
     // Если нужно, подгружаем переводы для каждой
     for (const category of categories) {
       const translations = await this.translationsService.findAllForEntity(
-        "price_category",
-        category.id
+        'price_category',
+        category.id,
       );
-      category["translations"] = translations; // <-- дополняем
+      category['translations'] = translations; // <-- дополняем
     }
 
     return categories;
@@ -62,18 +62,15 @@ export class PriceCategoryService {
 
     // Подгружаем переводы
     const translations = await this.translationsService.findAllForEntity(
-      "price_category",
-      category.id
+      'price_category',
+      category.id,
     );
-    category["translations"] = translations; // <-- добавляем «виртуальное» поле
+    category['translations'] = translations; // <-- добавляем «виртуальное» поле
 
     return category;
   }
 
-  async update(
-    id: number,
-    updateDto: UpdatePriceCategoryDto
-  ): Promise<PriceCategory> {
+  async update(id: number, updateDto: UpdatePriceCategoryDto): Promise<PriceCategory> {
     await this.priceCategoryRepository.update(id, updateDto);
     return this.findOne(id);
   }

@@ -1,10 +1,10 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { Payment } from "../entities/payment.entity";
-import { CreatePaymentDto } from "../dto/create-payment.dto";
-import { User } from "../../../users/entities/user.entity";
-import { Rental } from "../../../rentals/entities/rental.entity";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Payment } from '../entities/payment.entity';
+import { CreatePaymentDto } from '../dto/create-payment.dto';
+import { User } from '../../../users/entities/user.entity';
+import { Rental } from '../../../rentals/entities/rental.entity';
 
 @Injectable()
 export class PaymentService {
@@ -16,12 +16,11 @@ export class PaymentService {
     private userRepository: Repository<User>,
 
     @InjectRepository(Rental)
-    private rentalRepository: Repository<Rental>
+    private rentalRepository: Repository<Rental>,
   ) {}
 
   async createPayment(createPaymentDto: CreatePaymentDto): Promise<Payment> {
-    const { userId, rentalId, amount, paymentMethod, status } =
-      createPaymentDto;
+    const { userId, rentalId, amount, paymentMethod, status } = createPaymentDto;
 
     // Проверка существования пользователя
     const user = await this.userRepository.findOne({ where: { id: userId } });
@@ -52,20 +51,20 @@ export class PaymentService {
   async getPaymentsByUser(userId: number): Promise<Payment[]> {
     return this.paymentRepository.find({
       where: { user: { id: userId } },
-      relations: ["rental"],
+      relations: ['rental'],
     });
   }
 
   async getPaymentsByRental(rentalId: number): Promise<Payment[]> {
     return this.paymentRepository.find({
       where: { rental: { id: rentalId } },
-      relations: ["user"],
+      relations: ['user'],
     });
   }
 
   async updatePaymentStatus(
     id: number,
-    status: "pending" | "completed" | "failed"
+    status: 'pending' | 'completed' | 'failed',
   ): Promise<Payment> {
     const payment = await this.paymentRepository.findOne({ where: { id } });
     if (!payment) {

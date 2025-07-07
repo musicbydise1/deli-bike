@@ -1,4 +1,4 @@
-import { IsEmail, IsEnum, IsNotEmpty, IsOptional } from "class-validator";
+import { IsEmail, IsEnum, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -36,6 +36,6 @@ export class CreateUserDto {
   public idCardBackImage?: string;
 
   // Роль пользователя: курьер или корпоративный клиент.
-  @IsEnum(["courier", "corporate"])
-  public role: "courier" | "corporate";
+  @IsEnum(['courier', 'corporate'])
+  public role: 'courier' | 'corporate';
 }

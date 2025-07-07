@@ -1,14 +1,14 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { Tariff } from "../entities/tariff.entity";
-import { CreateTariffDto, UpdateTariffDto } from "../dto/tariff.dto";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Tariff } from '../entities/tariff.entity';
+import { CreateTariffDto, UpdateTariffDto } from '../dto/tariff.dto';
 
 @Injectable()
 export class TariffsService {
   constructor(
     @InjectRepository(Tariff)
-    private tariffRepository: Repository<Tariff>
+    private tariffRepository: Repository<Tariff>,
   ) {}
 
   async findAll(): Promise<Tariff[]> {

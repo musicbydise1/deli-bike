@@ -1,6 +1,12 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import axios from "axios";
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import axios from 'axios';
+
+// Interface for Bitrix24 lead creation response
+interface BitrixLeadResponse {
+  id: number;
+  [key: string]: unknown;
+}
 
 @Injectable()
 export class BitrixService {
@@ -9,7 +15,7 @@ export class BitrixService {
   constructor(private configService: ConfigService) {
     // Получаем URL вебхука для доступа к REST API Битрикс24
     // Например: https://yourdomain.bitrix24.ru/rest/1/your_webhook_code
-    this.webhookUrl = this.configService.get<string>("bitrix.webhookUrl");
+    this.webhookUrl = this.configService.get<string>('bitrix.webhookUrl');
   }
 
   /**
@@ -23,7 +29,7 @@ export class BitrixService {
     email: string;
     companyName?: string;
     comment?: string;
-  }): Promise<any> {
+  }): Promise<BitrixLeadResponse> {
     const url = `${this.webhookUrl}/crm.lead.add.json`;
 
     // Формирование payload согласно документации Битрикс24
@@ -31,13 +37,13 @@ export class BitrixService {
       fields: {
         TITLE: leadData.title, // например, "Новый лид с сайта"
         NAME: leadData.name,
-        PHONE: [{ VALUE: leadData.phone, VALUE_TYPE: "WORK" }],
-        EMAIL: [{ VALUE: leadData.email, VALUE_TYPE: "WORK" }],
-        COMMENTS: leadData.comment || "",
+        PHONE: [{ VALUE: leadData.phone, VALUE_TYPE: 'WORK' }],
+        EMAIL: [{ VALUE: leadData.email, VALUE_TYPE: 'WORK' }],
+        COMMENTS: leadData.comment || '',
         // Если companyName передан, добавляем его в поля лида
         ...(leadData.companyName && { COMPANY_TITLE: leadData.companyName }),
       },
-      params: { REGISTER_SONET_EVENT: "Y" },
+      params: { REGISTER_SONET_EVENT: 'Y' },
     };
 
     try {
@@ -45,13 +51,11 @@ export class BitrixService {
       if (response.data.result) {
         return response.data.result;
       } else {
-        throw new InternalServerErrorException(
-          "Ошибка при создании лида в Битрикс24"
-        );
+        throw new InternalServerErrorException('Ошибка при создании лида в Битрикс24');
       }
     } catch (error) {
-      console.error("Ошибка при создании лида:", error);
-      throw new InternalServerErrorException("Ошибка интеграции с Битрикс24");
+      console.error('Ошибка при создании лида:', error);
+      throw new InternalServerErrorException('Ошибка интеграции с Битрикс24');
     }
   }
 }

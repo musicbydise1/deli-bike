@@ -1,15 +1,15 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { Review } from "../entities/review.entity";
-import { CreateReviewDto } from "../dto/create-review.dto";
-import { UpdateReviewDto } from "../dto/update-review.dto";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Review } from '../entities/review.entity';
+import { CreateReviewDto } from '../dto/create-review.dto';
+import { UpdateReviewDto } from '../dto/update-review.dto';
 
 @Injectable()
 export class ReviewService {
   constructor(
     @InjectRepository(Review)
-    private reviewRepository: Repository<Review>
+    private reviewRepository: Repository<Review>,
   ) {}
 
   async createReview(createReviewDto: CreateReviewDto): Promise<Review> {
@@ -25,10 +25,7 @@ export class ReviewService {
     return this.reviewRepository.save(review);
   }
 
-  async updateReview(
-    id: number,
-    updateReviewDto: UpdateReviewDto
-  ): Promise<Review> {
+  async updateReview(id: number, updateReviewDto: UpdateReviewDto): Promise<Review> {
     const review = await this.reviewRepository.findOne({ where: { id } });
     if (!review) {
       throw new NotFoundException(`Review with ID ${id} not found`);
@@ -50,22 +47,22 @@ export class ReviewService {
   async getReviewsByBike(bikeId: number): Promise<Review[]> {
     return this.reviewRepository.find({
       where: { bike: { id: bikeId } },
-      relations: ["user"],
+      relations: ['user'],
     });
   }
 
   async getReviewsByUser(userId: number): Promise<Review[]> {
     return this.reviewRepository.find({
       where: { user: { id: userId } },
-      relations: ["bike"],
+      relations: ['bike'],
     });
   }
 
   async getBikeAverageRating(bikeId: number): Promise<number> {
     const { avg } = await this.reviewRepository
-      .createQueryBuilder("review")
-      .select("AVG(review.rating)", "avg")
-      .where("review.bikeId = :bikeId", { bikeId })
+      .createQueryBuilder('review')
+      .select('AVG(review.rating)', 'avg')
+      .where('review.bikeId = :bikeId', { bikeId })
       .getRawOne();
 
     return parseFloat(avg) || 0;

@@ -1,19 +1,25 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { Accessory } from "../entities/accessory.entity";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Accessory } from '../entities/accessory.entity';
 import {
   AccessoriesPriceDto,
   CreateAccessoryDto,
   CreateAccessoryTranslationDto,
   UpdateAccessoryDto,
-} from "../dto/accessory.dto";
-import { Bike } from "../../modules/bikes/entities/bike.entity";
-import { AccessoriesPrice } from "../entities/accessories_price.entity";
-import { PriceCategory } from "../../../modules/pricing/price-categories/entities/price-category.entity";
-import { Role } from "../../../database/entities/role.entity";
-import { Currency } from "../../../modules/pricing/currency/entities/currency.entity";
-import { TranslationsService } from "../../../modules/translations/service/translations.service";
+} from '../dto/accessory.dto';
+import { Bike } from '@/modules/bikes/entities/bike.entity';
+import { AccessoriesPrice } from '../entities/accessories_price.entity';
+import { PriceCategory } from '@/modules/pricing/price-categories/entities/price-category.entity';
+import { Role } from '@/database/entities/role.entity';
+import { Currency } from '@/modules/pricing/currency/entities/currency.entity';
+import { TranslationsService } from '@/modules/translations/service/translations.service';
+import { Translation } from '@/modules/translations/entity/translations.entity';
+
+// Interface extending Accessory with translations
+interface AccessoryWithTranslations extends Accessory {
+  translations: Translation[];
+}
 
 @Injectable()
 export class AccessoriesService {
@@ -24,53 +30,38 @@ export class AccessoriesService {
     @InjectRepository(AccessoriesPrice)
     private readonly accessoriesPriceRepo: Repository<AccessoriesPrice>,
 
-    private readonly translationsService: TranslationsService
+    private readonly translationsService: TranslationsService,
   ) {}
 
-  async findAll(): Promise<Accessory[]> {
+  async findAll(): Promise<AccessoryWithTranslations[]> {
     const accessories = await this.accessoryRepository.find({
-      relations: [
-        "bike",
-        "prices",
-        "prices.priceCategory",
-        "prices.role",
-        "prices.currency",
-      ],
+      relations: ['bike', 'prices', 'prices.priceCategory', 'prices.role', 'prices.currency'],
     });
 
     for (const accessory of accessories) {
       const translations = await this.translationsService.findAllForEntity(
-        "accessory",
-        accessory.id
+        'accessory',
+        accessory.id,
       );
-      (accessory as any).translations = translations;
+      (accessory as AccessoryWithTranslations).translations = translations;
     }
 
-    return accessories;
+    return accessories as AccessoryWithTranslations[];
   }
 
-  async findById(id: number): Promise<Accessory> {
+  async findById(id: number): Promise<AccessoryWithTranslations> {
     const accessory = await this.accessoryRepository.findOne({
       where: { id },
-      relations: [
-        "bike",
-        "prices",
-        "prices.priceCategory",
-        "prices.role",
-        "prices.currency",
-      ],
+      relations: ['bike', 'prices', 'prices.priceCategory', 'prices.role', 'prices.currency'],
     });
     if (!accessory) {
       throw new NotFoundException(`Accessory with ID ${id} not found`);
     }
 
-    const translations = await this.translationsService.findAllForEntity(
-      "accessory",
-      accessory.id
-    );
-    (accessory as any).translations = translations;
+    const translations = await this.translationsService.findAllForEntity('accessory', accessory.id);
+    (accessory as AccessoryWithTranslations).translations = translations;
 
-    return accessory;
+    return accessory as AccessoryWithTranslations;
   }
 
   async createAccessory(dto: CreateAccessoryDto): Promise<Accessory[]> {
@@ -102,7 +93,7 @@ export class AccessoriesService {
       if (dto.translations?.length) {
         for (const t of dto.translations) {
           await this.translationsService.createOrUpdateTranslation({
-            entityType: "accessory",
+            entityType: 'accessory',
             entityId: saved.id,
             field: t.field,
             language: t.language,
@@ -122,7 +113,7 @@ export class AccessoriesService {
     dto: UpdateAccessoryDto & {
       prices?: AccessoriesPriceDto[];
       translations?: CreateAccessoryTranslationDto[];
-    }
+    },
   ): Promise<Accessory> {
     // 1) Загрузить существующую сущность (с bikeId внутри)
     const accessory = await this.findById(id);
@@ -144,7 +135,7 @@ export class AccessoriesService {
     if (dto.translations) {
       for (const t of dto.translations) {
         await this.translationsService.createOrUpdateTranslation({
-          entityType: "accessory",
+          entityType: 'accessory',
           entityId: id,
           field: t.field,
           language: t.language,

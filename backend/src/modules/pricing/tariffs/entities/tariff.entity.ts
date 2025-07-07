@@ -6,10 +6,10 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
-} from "typeorm";
-import { Bike } from "../../../bikes/entities/bike.entity";
+} from 'typeorm';
+import { Bike } from '../../../bikes/entities/bike.entity';
 
-@Entity("tariffs")
+@Entity('tariffs')
 export class Tariff {
   @PrimaryGeneratedColumn()
   id: number;
@@ -17,22 +17,22 @@ export class Tariff {
   @Column()
   bikeId: number;
 
-  @Column({ type: "varchar" })
+  @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: "decimal", precision: 10, scale: 2 })
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;
 
-  @Column({ type: "int", comment: "Продолжительность тарифа в днях" })
+  @Column({ type: 'int', comment: 'Продолжительность тарифа в днях' })
   duration: number;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: "timestamp" })
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
-  @ManyToOne(() => Bike, (bike) => bike.tariffs, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "bikeId" })
+  @ManyToOne(() => Bike, (bike) => bike.tariffs, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'bikeId' })
   bike: Bike;
 }

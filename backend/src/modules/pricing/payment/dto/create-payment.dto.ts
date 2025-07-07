@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsEnum, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsEnum, IsString } from 'class-validator';
 
 export class CreatePaymentDto {
   @IsNotEmpty()
@@ -17,8 +17,8 @@ export class CreatePaymentDto {
   @IsString()
   paymentMethod: string;
 
-  @IsEnum(["pending", "completed", "failed"], {
-    message: "Invalid payment status",
+  @IsEnum(['pending', 'completed', 'failed'], {
+    message: 'Invalid payment status',
   })
-  status: "pending" | "completed" | "failed";
+  status: 'pending' | 'completed' | 'failed';
 }

@@ -1,8 +1,8 @@
 // translations.module.ts
-import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { TranslationsService } from "./service/translations.service";
-import { Translation } from "./entity/translations.entity";
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TranslationsService } from './service/translations.service';
+import { Translation } from './entity/translations.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Translation])],

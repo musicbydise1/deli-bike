@@ -1,7 +1,7 @@
-import { Body, Controller, Post } from "@nestjs/common";
-import { BitrixService } from "./bitrix.service";
+import { Body, Controller, Post } from '@nestjs/common';
+import { BitrixService } from './bitrix.service';
 
-@Controller("lead")
+@Controller('lead')
 export class LeadController {
   constructor(private readonly bitrixService: BitrixService) {}
 
@@ -14,9 +14,9 @@ export class LeadController {
       phone: string;
       email: string;
       comment?: string;
-    }
+    },
   ) {
     const leadId = await this.bitrixService.createLead(leadData);
-    return { leadId, message: "Лид успешно создан в Битрикс24" };
+    return { leadId, message: 'Лид успешно создан в Битрикс24' };
   }
 }

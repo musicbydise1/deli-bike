@@ -1,5 +1,5 @@
-import { IsNotEmpty, IsDate, IsNumber } from "class-validator";
-import { Transform } from "class-transformer";
+import { IsNotEmpty, IsDate, IsNumber } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class CreateRentalDto {
   @IsNotEmpty()
@@ -24,12 +24,12 @@ export class CreateRentalDto {
 
   @IsNotEmpty()
   @Transform(({ value }) => new Date(value)) // Преобразует строку в дату
-  @IsDate({ message: "startDate must be a valid Date instance" })
+  @IsDate({ message: 'startDate must be a valid Date instance' })
   startDate: Date;
 
   @IsNotEmpty()
   @Transform(({ value }) => new Date(value)) // Преобразует строку в дату
-  @IsDate({ message: "endDate must be a valid Date instance" })
+  @IsDate({ message: 'endDate must be a valid Date instance' })
   endDate: Date;
 
   @IsNotEmpty()

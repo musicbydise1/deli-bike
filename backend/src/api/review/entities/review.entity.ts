@@ -6,27 +6,27 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   JoinColumn,
-} from "typeorm";
-import { User } from "../../../modules/users/entities/user.entity";
-import { Bike } from "../../modules/bikes/entities/bike.entity";
+} from 'typeorm';
+import { User } from '@/modules/users/entities/user.entity';
+import { Bike } from '@/modules/bikes/entities/bike.entity';
 
-@Entity("review")
+@Entity('review')
 export class Review {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "userId" })
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'userId' })
   user: User;
 
-  @ManyToOne(() => Bike, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "bikeId" })
+  @ManyToOne(() => Bike, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'bikeId' })
   bike: Bike;
 
-  @Column({ type: "int" })
+  @Column({ type: 'int' })
   rating: number;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ type: 'text', nullable: true })
   comment?: string;
 
   @CreateDateColumn()

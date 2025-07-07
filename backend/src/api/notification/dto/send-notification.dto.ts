@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString, IsEnum } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, IsEnum } from 'class-validator';
 
 export class SendNotificationDto {
   @IsNotEmpty()
@@ -7,8 +7,8 @@ export class SendNotificationDto {
 
   @IsNotEmpty()
   @IsString()
-  @IsEnum(["payment", "rental", "system"], {
-    message: "Invalid notification type",
+  @IsEnum(['payment', 'rental', 'system'], {
+    message: 'Invalid notification type',
   })
   type: string;
 

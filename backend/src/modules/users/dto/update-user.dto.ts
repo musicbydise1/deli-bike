@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsBoolean, IsOptional, IsEnum } from "class-validator";
+import { IsNotEmpty, IsBoolean, IsOptional, IsEnum } from 'class-validator';
 
 export class UpdateUserDto {
   @IsOptional()
@@ -14,6 +14,6 @@ export class UpdateUserDto {
   isVerified?: boolean;
 
   @IsOptional()
-  @IsEnum(["active", "blocked", "deleted"], { message: "Invalid status" })
-  status?: "active" | "blocked" | "deleted";
+  @IsEnum(['active', 'blocked', 'deleted'], { message: 'Invalid status' })
+  status?: 'active' | 'blocked' | 'deleted';
 }

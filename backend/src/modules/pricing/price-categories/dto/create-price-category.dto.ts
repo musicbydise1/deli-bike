@@ -7,8 +7,8 @@ import {
   Length,
   Min,
   ValidateNested,
-} from "class-validator";
-import { Type } from "class-transformer";
+} from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreatePriceCategoryTranslationDto {
   @IsString()

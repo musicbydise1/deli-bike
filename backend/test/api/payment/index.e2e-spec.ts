@@ -1,9 +1,9 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { INestApplication } from "@nestjs/common";
-import * as request from "supertest";
-import { AppModule } from "../../../src/app.module";
+import { Test, TestingModule } from '@nestjs/testing';
+import { INestApplication } from '@nestjs/common';
+import * as request from 'supertest';
+import { AppModule } from '../../../src/app.module';
 
-describe("PaymentController (e2e)", () => {
+describe('PaymentController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -19,8 +19,8 @@ describe("PaymentController (e2e)", () => {
     await app.close();
   });
 
-  it("/payments/user/1 (GET)", async () => {
-    const response = await request(app.getHttpServer()).get("/payments/user/1");
+  it('/payments/user/1 (GET)', async () => {
+    const response = await request(app.getHttpServer()).get('/payments/user/1');
     expect(response.status).toBe(200);
     expect(response.body.isSuccess).toBe(true);
   });

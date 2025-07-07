@@ -1,16 +1,16 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { INestApplication } from "@nestjs/common";
-import * as request from "supertest";
-import { AppModule } from "../../../src/app.module";
-import { Repository } from "typeorm";
-import { generateMockToken } from "../../mocks/jwt";
-import { User } from "../../../src/database/entities/user.entity";
+import { Test, TestingModule } from '@nestjs/testing';
+import { INestApplication } from '@nestjs/common';
+import * as request from 'supertest';
+import { AppModule } from '../../../src/app.module';
+import { Repository } from 'typeorm';
+import { generateMockToken } from '../../mocks/jwt';
+import { User } from '../../../src/database/entities/user.entity';
 
-describe("UserController (e2e)", () => {
+describe('UserController (e2e)', () => {
   let app: INestApplication;
   const user = {
-    email: "testy@test.com",
-    password: "password",
+    email: 'testy@test.com',
+    password: 'password',
   };
   let currentUser: User;
   let userRepository: Repository<User>;
@@ -22,7 +22,7 @@ describe("UserController (e2e)", () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    userRepository = moduleFixture.get("UserRepository");
+    userRepository = moduleFixture.get('UserRepository');
     userRepository.delete({});
     currentUser = await userRepository.create(user);
     currentUser = await userRepository.save(currentUser);
@@ -34,11 +34,11 @@ describe("UserController (e2e)", () => {
     await app.close;
   });
 
-  describe("/user/profile (GET)", () => {
-    it("should success", async () => {
+  describe('/user/profile (GET)', () => {
+    it('should success', async () => {
       const response = await request(app.getHttpServer())
-        .get("/user/profile")
-        .set("Authorization", `Bearer ${token}`)
+        .get('/user/profile')
+        .set('Authorization', `Bearer ${token}`)
         .send(user);
       expect(response.body.isSuccess).toBe(true);
     });
