@@ -1,92 +1,124 @@
 'use client';
-
-import Slider from 'react-slick';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { testimonials4 } from '@/data/testimonials';
+import { clients, testimonials2 } from '@/data/testimonials';
+import Button from '@/components/ui/button/Button';
+import Modal from '@/components/homes/home-6/Modal';
+import FormModalContent from '@/components/homes/home-6/FormModalContent';
+
 export default function Testimonials() {
-  const slickOption = {
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    dots: false,
-    responsive: [
-      {
-        breakpoint: 991,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+  const [userRole, setUserRole] = useState('courier');
+  const [userRoleCookie, setUserRoleCookie] = useState('courier');
+
+  // Состояние для открытия модального окна
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Получаем роль пользователя из cookies
+  useEffect(() => {
+    const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+    const roleCookie = cookies.find(cookie => cookie.startsWith('userRole='));
+    if (roleCookie) {
+      const role = roleCookie.split('=')[1];
+      setUserRole(role);
+    }
+  }, []);
+
+  // Функции открытия/закрытия модального окна
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const toggleUserRole = () => {
+    const newRole = userRole === 'courier' ? 'corporate' : 'courier';
+    document.cookie = `userRole=${newRole}; path=/; max-age=31536000`;
+    window.location.reload();
   };
+
   return (
-    <section className="boxcar-testimonial-section-four pt-0">
-      <div className="large-container">
-        <div className="right-box">
-          <div className="boxcar-title">
-            <h2>What our customers say</h2>
-            <div className="text">
-              Rated 4.7 / 5 based on 28,370 reviews Showing our 4 &amp; 5 star reviews
-            </div>
-          </div>
-          <Slider {...slickOption} className="row stories-slider inner-slide">
-            {testimonials4.map((testimonial, index) => (
-              <div key={index} className="testimonial-block-four col-lg-4 col-md-6 col-sm-12">
-                <div className="inner-box">
-                  <figure className="icon">
-                    <a href="#">
-                      <Image
-                        alt="testimonial icon"
-                        src={testimonial.iconImage}
-                        width={37}
-                        height={26}
-                      />
-                    </a>
-                  </figure>
-                  <h6 className="title">{testimonial.title}</h6>
-                  <div className="text">{testimonial.text}</div>
-                  <div className="auther-info">
-                    <figure className="image">
-                      <a href="#">
-                        <Image
-                          alt={testimonial.authorName}
-                          src={testimonial.authorImage}
-                          width={60}
-                          height={60}
-                        />
-                      </a>
-                    </figure>
-                    <h6 className="name">{testimonial.authorName}</h6>
-                    <span>{testimonial.authorCompany}</span>
+    <>
+      <section className="boxcar-testimonial-section-three">
+        <div className="large-container">
+          <div className="right-box">
+            <div className="row">
+              {/* content-column */}
+              <div className="content-column col-lg-6 col-md-12 col-sm-12">
+                <div className="inner-column">
+                  <div className="boxcar-title textiominal-title light">
+                    <h2>Кому Deli-bike подойдет?</h2>
+                    <div className="text">
+                      Электровелосипеды DELI-BIKE сокращают расходы и <br />
+                      повышают скорость доставки. <br />
+                      DELI-BIKE подходит как для Курьеров, так и для компаний, <br />
+                      занимающихся доставкой (розничные сети, общепит, <br />
+                      службы доставки и т.д.).
+                    </div>
+                  </div>
+                  <div className="image-box">
+                    <Image
+                      alt="DeliBike banner"
+                      title="DeliBike"
+                      src="/images/testiominals-bike1.png"
+                      width={500}
+                      height={371}
+                      className="testiominals-img"
+                    />
                   </div>
                 </div>
               </div>
-            ))}
-          </Slider>
+              {/* testimonial-block */}
+              <div className="col-lg-6 col-md-12 col-sm-12">
+                <div className="row">
+                  {clients.map((client, index) => (
+                    <div
+                      key={index}
+                      className="testimonial-block-three col-lg-6 col-md-6 col-sm-12"
+                    >
+                      <div className="inner-box">
+                        <div className="content-box">
+                          {/* Заголовок */}
+                          <h3 className="client-title">{client.title}</h3>
+                          {/* Список описаний */}
+                          <ul className="client-description">
+                            {client.description.map((item, idx) => (
+                              <li key={idx}>
+                                <strong>{item.title}</strong>
+                                <br />
+                                <small>{item.text}</small>
+                              </li>
+                            ))}
+                            <div className="button-container">
+                              {userRole === client.type ? (
+                                <Button
+                                  className="m-0 w-full"
+                                  variant="secondary"
+                                  onClick={openModal}
+                                >
+                                  Оставить заявку
+                                </Button>
+                              ) : (
+                                <Button
+                                  onClick={toggleUserRole}
+                                  className="m-0 w-full"
+                                  variant="primary-outline"
+                                >
+                                  Подробнее
+                                </Button>
+                              )}
+                            </div>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      {/* Модальное окно с формой заявки */}
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <FormModalContent />
+      </Modal>
+    </>
   );
 }

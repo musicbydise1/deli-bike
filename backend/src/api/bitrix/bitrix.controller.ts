@@ -13,10 +13,11 @@ export class LeadController {
       name: string;
       phone: string;
       email: string;
+      companyName?: string;
       comment?: string;
     },
-  ) {
-    const leadId = await this.bitrixService.createLead(leadData);
-    return { leadId, message: 'Лид успешно создан в Битрикс24' };
+  ): Promise<{ leadId: number; message: string }> {
+    const result = await this.bitrixService.createLead(leadData);
+    return { leadId: result.id, message: 'Лид успешно создан в Битрикс24' };
   }
 }

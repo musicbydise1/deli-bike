@@ -40,6 +40,8 @@ export default function InteractiveBike() {
       {/* Основное изображение в ЧБ */}
       <Image
         src="/images/int-bike.png"
+        width={30}
+        height={30}
         alt="Bike"
         style={{
           width: '100%',
@@ -54,6 +56,8 @@ export default function InteractiveBike() {
         <Image
           src="/images/int-bike.png"
           alt="Bike-frame"
+          width={30}
+          height={30}
           style={{
             position: 'absolute',
             top: 0,
@@ -69,6 +73,8 @@ export default function InteractiveBike() {
         <Image
           src="/images/int-bike.png"
           alt="Bike-battery"
+          width={30}
+          height={30}
           style={{
             position: 'absolute',
             top: 0,
@@ -84,6 +90,8 @@ export default function InteractiveBike() {
         <Image
           src="/images/int-bike.png"
           alt="Bike-termoBox"
+          width={30}
+          height={30}
           style={{
             position: 'absolute',
             top: 0,

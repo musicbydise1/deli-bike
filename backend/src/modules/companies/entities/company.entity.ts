@@ -16,8 +16,9 @@ export class Company {
   @Column({ type: 'varchar', length: 255 })
   name: string;
 
-  @OneToMany(() => User, (user) => user.company)
-  users: User[];
+  // Temporarily commented out to fix seeding issue
+  // @OneToMany(() => User, (user) => user.company)
+  // users: User[];
 
   @CreateDateColumn({ name: 'createdAt' })
   createdAt: Date;

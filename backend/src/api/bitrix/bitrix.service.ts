@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 
 // Interface for Bitrix24 lead creation response
-interface BitrixLeadResponse {
+export interface BitrixLeadResponse {
   id: number;
   [key: string]: unknown;
 }

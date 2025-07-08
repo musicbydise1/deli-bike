@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { AdminService } from './admin.service';
+import { AdminService, RentalStats } from './admin.service';
 import { Auth } from '../../shared/guards/auth.decorator';
 import { RoleIds } from '../../shared/constants/roles.enum';
 
@@ -15,7 +15,7 @@ export class AdminController {
 
   @Auth(RoleIds.Admin)
   @Get('rental-stats')
-  getStats() {
+  getStats(): Promise<RentalStats> {
     return this.adminService.getRentalStats();
   }
 }

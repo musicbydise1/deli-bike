@@ -29,6 +29,7 @@ async function bootstrap() {
     origin: [
       'https://deli-bike-test.vercel.app',
       'https://deli-bike.kz',
+      'https://deli-bike.by',
       'http://84.252.157.215',
       'http://localhost:3000',
     ],

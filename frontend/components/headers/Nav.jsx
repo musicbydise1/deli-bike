@@ -11,12 +11,17 @@ import {
 } from '@/data/menu';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function Nav() {
   const { t } = useTranslation();
   const pathname = usePathname();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const isMenuActive = menuItem => {
     let active = false;
     if (menuItem.href?.includes('/')) {
@@ -83,7 +88,7 @@ export default function Nav() {
 
       <li className="current-dropdown">
         <span className={isMenuActive(CatalogueLinks) ? 'menuActive' : ''}>
-          {t('menu.cooperation')} <i className="fa-solid fa-angle-down" />
+          {isClient ? t('menu.cooperation') : 'Сотрудничество'} <i className="fa-solid fa-angle-down" />
         </span>
         <ul className="dropdown">
           {CatalogueLinks.map((link, index) => (
@@ -116,19 +121,19 @@ export default function Nav() {
 
       <li className="current-dropdown">
         <Link className={pathname == '/contact' ? 'menuActive' : ''} href={`/contact`}>
-          {t('menu.contacts')}
+          {isClient ? t('menu.contacts') : 'Контакты'}
         </Link>
       </li>
 
       <li className="current-dropdown">
         <Link className={pathname == '/reviews' ? 'menuActive' : ''} href={`/#reviews`}>
-          {t('menu.reviews')}
+          {isClient ? t('menu.reviews') : 'Отзывы'}
         </Link>
       </li>
 
       <li className="current-dropdown">
         <Link className={pathname == '/vacancy' ? 'menuActive' : ''} href={`/vacancy`}>
-          {t('menu.vacancies')}
+          {isClient ? t('menu.vacancies') : 'Вакансии'}
         </Link>
       </li>
     </>

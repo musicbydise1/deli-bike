@@ -18,10 +18,15 @@ export default function MobileMenu() {
   const [userRole, setUserRole] = useState(null);
   const [userData, setUserData] = useState(null);
   const [hasAccessToken, setHasAccessToken] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const { i18n, t } = useTranslation();
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const { location, setLocation, language, setLanguage } = useUser();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const changeLanguage = lng => {
     flushSync(() => {
@@ -238,13 +243,16 @@ export default function MobileMenu() {
                 </li>
               </ul>
               <Button variant="primary" className="ml-0 w-full" onClick={toggleUserRole}>
-                {userRole === 'courier' ? t('for_corporate') : t('for_courier')}{' '}
+                {isClient 
+                  ? userRole === 'courier' ? t('for_corporate') : t('for_courier')
+                  : userRole === 'courier' ? "Для Юр.лиц" : "Для Курьеров"
+                }{' '}
                 <FaArrowRightToBracket className="ml-2" />
               </Button>
               <div className="mt-3">
                 <Link href={userRole === 'courier' ? '/login' : '/other-login'}>
                   <Button className="ml-0 w-full" variant="primary-outline">
-                    {t('login')}
+                    {isClient ? t('login') : "Личный кабинет"}
                   </Button>
                 </Link>
               </div>

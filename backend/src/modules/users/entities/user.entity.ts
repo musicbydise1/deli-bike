@@ -38,9 +38,9 @@ export class User {
   @Column({ type: 'varchar', length: 255, nullable: true })
   public companyName?: string;
 
-  @ManyToOne(() => Company, (company) => company.users, { nullable: true })
-  @JoinColumn({ name: 'companyId' })
-  company?: Company;
+  // Temporarily commented out to fix seeding issue
+  // @ManyToOne(() => Company, (company) => company.users, { nullable: true })
+  // company?: Company;
 
   @Column({
     name: 'telegram_chat_id', // <--- указать, что этот столбец так называется в БД

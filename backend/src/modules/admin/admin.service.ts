@@ -5,7 +5,7 @@ import { User } from '../users/entities/user.entity';
 import { Rental } from '../rentals/entities/rental.entity';
 import { RentalStatus } from '../rentals/enums/rental-status.enum';
 
-interface RentalStats {
+export interface RentalStats {
   totalUsers: number;
   activeRentals: number;
   completedRentals: number;
