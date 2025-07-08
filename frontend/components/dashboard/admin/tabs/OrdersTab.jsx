@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useGetRentalsQuery } from '@/store/services/rentalsApi';
 import NextLink from 'next/link';
 import {
   Box,
@@ -22,28 +23,11 @@ import {
 import InfoIcon from '@mui/icons-material/Info';
 
 export default function OrdersTab() {
-  const [rentals, setRentals] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const { data, isLoading, error } = useGetRentalsQuery();
+  const rentals = Array.isArray(data?.data) ? data.data : [];
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetch(`${API_URL}/rentals/`);
-        if (!response.ok) throw new Error('Не удалось загрузить данные об арендах');
-        const data = await response.json();
-        setRentals(data.data || []);
-      } catch (err) {
-        console.error(err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, [API_URL]);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
         <CircularProgress />

@@ -1,6 +1,7 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
+import { useGetRentalByIdQuery } from '@/store/services/rentalsApi';
 
 // Вспомогательная функция для форматирования цены в тенге
 function formatTenge(value) {
@@ -8,32 +9,12 @@ function formatTenge(value) {
 }
 
 export default function OrderDetails({ orderId }) {
-  const [rental, setRental] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-  // Загружаем один конкретный заказ
-  useEffect(() => {
-    async function fetchOrder() {
-      try {
-        const response = await fetch(`${API_URL}/rentals/${orderId}`);
-        if (!response.ok) {
-          throw new Error('Не удалось загрузить данные о заказе');
-        }
-        const data = await response.json();
-        // Ожидаем структуру { isSuccess, message, data: { ... } }
-        setRental(data.data || null);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    if (orderId) {
-      fetchOrder();
-    }
-  });
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useGetRentalByIdQuery(orderId, { skip: !orderId });
+  const rental = data?.data || null;
 
   if (loading) {
     return <p className="p-4">Загрузка заказа...</p>;

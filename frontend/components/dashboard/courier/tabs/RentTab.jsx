@@ -1,36 +1,18 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useGetRentalsQuery } from '@/store/services/rentalsApi';
 import { FiEye } from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 export default function RentTab() {
   const router = useRouter();
-  const [rentals, setRentals] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const { data, isLoading, error } = useGetRentalsQuery();
+  const rentals = Array.isArray(data?.data) ? data.data : [];
 
-  useEffect(() => {
-    async function fetchRentals() {
-      try {
-        const response = await fetch(`${API_URL}/rentals/`);
-        if (!response.ok) {
-          throw new Error('Не удалось загрузить данные об арендах');
-        }
-        const data = await response.json();
-        // Ожидаем структуру { isSuccess, message, data: [...] }
-        setRentals(data.data || []);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchRentals();
-  });
+  // RTK Query already загружает аренды
 
-  if (loading) {
+  if (isLoading) {
     return <p className="p-4">Загрузка заказов...</p>;
   }
 

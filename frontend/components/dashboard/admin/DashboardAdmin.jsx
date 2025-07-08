@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useGetAnalyticsQuery } from '@/store/services/adminApi';
 import { useRouter } from 'next/navigation';
 import '../../../public/css/pages/login/Login.css';
 
@@ -60,32 +61,16 @@ export default function DashboardAdmin() {
 
   // Период для графика: "oneWeek", "twoWeeks", "oneMonth"
   const [selectedPeriod, setSelectedPeriod] = useState('oneWeek');
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const { data: analyticsData, error: analyticsError } = useGetAnalyticsQuery();
 
-  // useEffect для загрузки данных аналитики
   useEffect(() => {
-    async function fetchAnalytics() {
-      try {
-        const token = localStorage.getItem('accessToken');
-        const response = await fetch(`${API_URL}/admin/analytics`, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const data = await response.json();
-        if (data.isSuccess) {
-          setAnalytics(data.data);
-        } else {
-          console.error('Ошибка загрузки аналитики:', data.message);
-        }
-      } catch (error) {
-        console.error('Ошибка при запросе аналитики:', error);
-      }
+    if (analyticsData?.data) {
+      setAnalytics(analyticsData.data);
     }
-
-    fetchAnalytics();
-  });
+    if (analyticsError) {
+      console.error('Ошибка загрузки аналитики:', analyticsError);
+    }
+  }, [analyticsData, analyticsError]);
 
   // Формируем массив статистики на основе analytics
   const stats = [

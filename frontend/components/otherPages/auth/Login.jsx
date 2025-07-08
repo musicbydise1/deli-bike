@@ -2,6 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import '../../../public/css/pages/login/Login.css';
+import {
+  useSendCodeMutation,
+  useLoginMutation,
+  useRegisterMutation,
+  useLazyGetProfileQuery,
+} from '@/store/services/authApi';
 
 // Компоненты шагов
 import PhoneStep from './PhoneStep';
@@ -11,7 +17,10 @@ import ErrorMessage from './ErrorMessage';
 
 export default function Login() {
   const router = useRouter();
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const [sendCode] = useSendCodeMutation();
+  const [login] = useLoginMutation();
+  const [register] = useRegisterMutation();
+  const [getProfile] = useLazyGetProfileQuery();
 
   // При загрузке страницы читаем userRole из cookies
   useEffect(() => {
@@ -48,24 +57,13 @@ export default function Login() {
     e.preventDefault();
     setErrorMessage('');
 
-    // Преобразуем номер телефона в формат с цифрами без лишних символов
     const formattedPhone = phone.replace(/\D/g, '');
 
     try {
-      const response = await fetch(`${API_URL}/auth/sendCode`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber: formattedPhone }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || 'Ошибка при отправке кода');
-      }
-
+      await sendCode(formattedPhone).unwrap();
       setStep('code');
     } catch (error) {
-      console.error('Ошибка при отправке телефона:', error.message);
+      console.error('Ошибка при отправке телефона:', error);
       setErrorMessage(error.message);
     }
   };
@@ -77,16 +75,10 @@ export default function Login() {
     setCode(codeStr);
     const formattedPhone = phone.replace(/\D/g, '');
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber: formattedPhone, code: codeStr }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || 'Ошибка проверки кода');
-      }
+      const data = await login({
+        phoneNumber: formattedPhone,
+        code: codeStr,
+      }).unwrap();
 
       if (data.isSuccess) {
         if (data.data.registrationRequired) {
@@ -101,16 +93,7 @@ export default function Login() {
         } else {
           localStorage.setItem('accessToken', data.data.accessToken);
 
-          // Дозапрашиваем профиль
-          const userResponse = await fetch(`${API_URL}/user/profile`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${data.data.accessToken}`,
-            },
-          });
-
-          const userData = await userResponse.json();
+          const userData = await getProfile().unwrap();
 
           localStorage.setItem('userData', JSON.stringify(userData.data));
           // Сохраняем userRole в cookies вместо localStorage
@@ -134,19 +117,10 @@ export default function Login() {
     const formattedPhone = phone.replace(/\D/g, '');
 
     try {
-      const response = await fetch(`${API_URL}/auth/sendCode`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber: formattedPhone }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || 'Ошибка при отправке кода');
-      }
+      await sendCode(formattedPhone).unwrap();
       // Можно добавить уведомление об успешной отправке кода
     } catch (error) {
-      console.error('Ошибка при отправке телефона:', error.message);
+      console.error('Ошибка при отправке телефона:', error);
       setErrorMessage(error.message);
     }
   };
@@ -175,24 +149,10 @@ export default function Login() {
 
       console.log(body);
 
-      const response = await fetch(`${API_URL}/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      const data = await response.json();
+      const data = await register(body).unwrap();
       localStorage.setItem('accessToken', data.data.accessToken);
 
-      // Дозапрашиваем профиль
-      const userResponse = await fetch(`${API_URL}/user/profile`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${data.data.accessToken}`,
-        },
-      });
-
-      const userData = await userResponse.json();
+      const userData = await getProfile().unwrap();
 
       localStorage.setItem('userData', JSON.stringify(userData.data));
       // Сохраняем userRole в cookies вместо localStorage

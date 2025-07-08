@@ -7,6 +7,7 @@ import Button from '@/components/ui/button/Button';
 import { IoIosArrowDown } from 'react-icons/io';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
+import { useGetBikesQuery } from '@/store/services/bikesApi';
 
 const buttons = [
   { label: 'New cars', isActive: true },
@@ -16,41 +17,30 @@ const buttons = [
 
 export default function Cars() {
   const router = useRouter();
-  const [bikes, setBikes] = useState([]);
+  const { data, isLoading, error } = useGetBikesQuery();
+  const bikes = Array.isArray(data?.data) ? data.data : [];
   const [selectedCategory, setSelectedCategory] = useState(buttons[0]);
-  const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [isInnerTouchActive, setIsInnerTouchActive] = useState(false);
   const [rentingBikeId, setRentingBikeId] = useState(null);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  if (error) console.error('Ошибка загрузки байков:', error);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-40">
+        <AiOutlineLoading size={60} className="animate-spin" />
+      </div>
+    );
+  }
 
   useEffect(() => {
-    const fetchBikes = async () => {
-      try {
-        const response = await fetch(`${API_URL}/bikes/`);
-        if (!response.ok) {
-          throw new Error('Ошибка при загрузке данных о байках');
-        }
-        const result = await response.json();
-        // Сортируем байки по id
-        const sortedBikes = result.data.sort((a, b) => a.id - b.id);
-        setBikes(sortedBikes);
-      } catch (error) {
-        console.error('Ошибка:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchBikes();
-
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [API_URL]);
+  }, []);
 
   const handleRentClick = bikeId => {
     setRentingBikeId(bikeId);

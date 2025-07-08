@@ -5,40 +5,28 @@ import Button from '@/components/ui/button/Button';
 import Link from 'next/link';
 import { AiOutlineLoading } from 'react-icons/ai';
 import '../../../../public/css/pages/login/Login.css';
+import {
+  useOtherLoginMutation,
+  useLazyGetProfileQuery,
+} from '@/store/services/authApi';
 
 export default function CorporateLogin() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const [login] = useOtherLoginMutation();
+  const [getProfile] = useLazyGetProfileQuery();
 
   const handleCorporateLogin = async e => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_URL}/auth/other-login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || 'Ошибка авторизации');
-      }
+      const data = await login({ email, password }).unwrap();
 
       localStorage.setItem('accessToken', data.data.accessToken);
 
-      const userResponse = await fetch(`${API_URL}/user/profile`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${data.data.accessToken}`,
-        },
-      });
-
-      const userData = await userResponse.json();
+      const userData = await getProfile().unwrap();
       localStorage.setItem('userData', JSON.stringify(userData.data));
 
       const userRoleName = userData.data.roles[0].name;

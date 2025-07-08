@@ -6,9 +6,11 @@ import AccessoriesTable from './AccessoriesTable';
 import AccessoryForm from './AccessoryForm';
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
 import Alert from '@mui/material/Alert';
+import { useGetBikesQuery } from '@/store/services/bikesApi';
 
 export default function AccessoriesTab() {
   const [accessories, setAccessories] = useState([]);
+  const { data: bikesData, error: bikesError } = useGetBikesQuery();
   const [bikes, setBikes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,8 +29,14 @@ export default function AccessoriesTab() {
 
   useEffect(() => {
     fetchAccessories();
-    fetchBikes();
-  });
+  }, []);
+
+  useEffect(() => {
+    if (bikesData?.data) {
+      setBikes(Array.isArray(bikesData.data) ? bikesData.data : []);
+    }
+    if (bikesError) console.error('Ошибка загрузки велосипедов:', bikesError);
+  }, [bikesData, bikesError]);
 
   async function fetchAccessories() {
     setLoading(true);
@@ -47,16 +55,6 @@ export default function AccessoriesTab() {
     }
   }
 
-  async function fetchBikes() {
-    try {
-      const response = await fetch(`${API_URL}/bikes`);
-      if (!response.ok) throw new Error('Ошибка при получении велосипедов');
-      const result = await response.json();
-      if (result.isSuccess) setBikes(result.data || []);
-    } catch (err) {
-      console.error(err);
-    }
-  }
 
   const handleAddAccessory = () => {
     setIsEditMode(false);
