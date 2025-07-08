@@ -5,14 +5,10 @@ import { DataSourceOptions } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { configuration } from '../../config';
 
-const envFilePath: string = getEnvPath(
-  resolve(__dirname, '../..', 'shared/envs'),
-);
+const envFilePath: string = getEnvPath(resolve(__dirname, '../..', 'shared/envs'));
 config({ path: envFilePath });
 
-export const createDataSourceOptions = (
-  configService: ConfigService,
-): DataSourceOptions => ({
+export const createDataSourceOptions = (configService: ConfigService): DataSourceOptions => ({
   type: 'postgres',
   host: configService.get<string>('database.host'),
   port: configService.get<number>('database.port'),

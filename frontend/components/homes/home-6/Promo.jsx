@@ -91,9 +91,27 @@ export default function Promo() {
                   <p>Брендируется под заказ</p>
                   {/* Галерея из 3 фото */}
                   <div className="termo-photos mt-2">
-                    <Image src="/images/termo-box1.png" alt="Termobox 1" className="termo-photo" />
-                    <Image src="/images/termo-box2.png" alt="Termobox 2" className="termo-photo" />
-                    <Image src="/images/termo-box3.png" alt="Termobox 3" className="termo-photo" />
+                    <Image
+                      width={30}
+                      height={30}
+                      src="/images/termo-box1.png"
+                      alt="Termobox 1"
+                      className="termo-photo"
+                    />
+                    <Image
+                      width={30}
+                      height={30}
+                      src="/images/termo-box2.png"
+                      alt="Termobox 2"
+                      className="termo-photo"
+                    />
+                    <Image
+                      width={30}
+                      height={30}
+                      src="/images/termo-box3.png"
+                      alt="Termobox 3"
+                      className="termo-photo"
+                    />
                   </div>
                 </div>
               </div>

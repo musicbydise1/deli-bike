@@ -5,9 +5,9 @@ import { TariffsService } from './services/tariffs.service';
 import { TariffsController } from './controllers/tariffs.controller';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Tariff])],
-    providers: [TariffsService],
-    controllers: [TariffsController],
-    exports: [TariffsService],
+  imports: [TypeOrmModule.forFeature([Tariff])],
+  providers: [TariffsService],
+  controllers: [TariffsController],
+  exports: [TariffsService],
 })
 export class TariffsModule {}

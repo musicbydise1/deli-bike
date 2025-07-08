@@ -4,7 +4,7 @@ import { Repository, EntityManager } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
 import { hash } from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
-import { User } from '../../modules/users/entities/user.entity';
+import { User } from '@/modules/users/entities/user.entity';
 import { Role } from '../../entities/role.entity';
 
 @Injectable()
@@ -23,23 +23,18 @@ export class AdminSeeder implements SeederInterface {
       const result = await transactionalEntityManager.upsert(User, data, {
         conflictPaths: ['email'],
       });
-      const adminUser = await transactionalEntityManager
-        .getRepository(User)
-        .findOne({
-          where: {
-            id: result.raw[0].id,
-          },
-        });
+      const adminUser = await transactionalEntityManager.getRepository(User).findOne({
+        where: {
+          id: result.raw[0].id,
+        },
+      });
       adminUser.roles = data.roles;
       await transactionalEntityManager.save(adminUser);
     });
   }
 
   async generateData(): Promise<Partial<User>> {
-    const hashedPassword = await hash(
-      this.config.get<string>('adminUser.password'),
-      10,
-    );
+    const hashedPassword = await hash(this.config.get<string>('adminUser.password'), 10);
     const adminRoles = await this.rolesRepository.find();
     return {
       email: this.config.get<string>('adminUser.email'),

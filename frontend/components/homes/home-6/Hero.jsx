@@ -12,8 +12,13 @@ export default function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Состояние для роли пользователя, по умолчанию "courier"
   const [userRoleCookie, setUserRoleCookie] = useState('courier');
+  const [isClient, setIsClient] = useState(false);
   const range = '90';
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     // Чтение cookies для получения userRole
@@ -45,25 +50,28 @@ export default function Hero() {
             <div className="inner-column">
               <div className="left-banner">
                 <h1 className="wow fadeInUp mb-0" data-wow-delay="100ms">
-                  {t('home_title')}{' '}
+                  {isClient ? t('home_title') : "Аренда электровелосипедов"}{' '}
                   <span className="orange !mb-[15px] uppercase">
-                    {userRoleCookie === 'courier' ? t('for_courier') : t('for_business')}
+                    {isClient 
+                      ? userRoleCookie === 'courier' ? t('for_courier') : t('for_business')
+                      : userRoleCookie === 'courier' ? "Для Курьеров" : "Для Бизнеса"
+                    }
                   </span>
                 </h1>
                 <div className="hero-little-text">
                   <span className="wow fadeInUp" data-wow-delay="100ms">
                     {userRoleCookie === 'courier' ? (
                       <>
-                        {t('home.hero.courier_text')} <br />
+                        {isClient ? t('home.hero.courier_text') : "Сократим на 50% ваши расходы на транспорт, увеличим на 37% скорость доставки."} <br />
                         <span className="font-medium mb-0">
-                          {t('home.hero.courier_text_second')}
+                          {isClient ? t('home.hero.courier_text_second') : "Больше доставок → больше денег."}
                         </span>
                       </>
                     ) : (
                       <>
-                        {t('home.hero.business_text')} <br />
+                        {isClient ? t('home.hero.business_text') : "Сократим на 50% ваши расходы на транспорт, увеличим на 37% скорость доставки."} <br />
                         <span className="font-medium mb-0">
-                          {t('home.hero.business_text_second')}
+                          {isClient ? t('home.hero.business_text_second') : "Меньше расходы → больше Доход."}
                         </span>
                       </>
                     )}
@@ -72,7 +80,7 @@ export default function Hero() {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full hero-btn-box">
                   <Link href="/#bikes">
                     <Button className="!ml-0 w-full sm:w-auto" variant="primary">
-                      {t('home.hero.rent_bike')}
+                      {isClient ? t('home.hero.rent_bike') : "Арендовать электровелосипеды"}
                     </Button>
                   </Link>
                   <Button
@@ -80,30 +88,38 @@ export default function Hero() {
                     variant="primary-outline"
                     onClick={toggleModal}
                   >
-                    {t('home.hero.get_consultation')}
+                    {isClient ? t('home.hero.get_consultation') : "Получить консультацию"}
                   </Button>
                 </div>
                 <div className="right-box wow fadeInUp" data-wow-delay="100ms">
                   <ul className="service-list">
-                    <ServiceItem title={t('home.hero.in_city_title')}>
-                      <span className="big-text">№1</span> {t('home.hero.in_city')}
+                    <ServiceItem title={isClient ? t('home.hero.in_city_title') : "Скорость"}>
+                      <span className="big-text">№1</span> {isClient ? t('home.hero.in_city') : " в городе"}
                     </ServiceItem>
-                    <ServiceItem title={t('home.hero.range_title')}>
-                      <Trans i18nKey="home.hero.range" values={{ value: range }}>
-                        <span className="big-text">{range}</span>
-                      </Trans>
+                    <ServiceItem title={isClient ? t('home.hero.range_title') : "Запас хода"}>
+                      {isClient ? (
+                        <Trans i18nKey="home.hero.range" values={{ value: range }}>
+                          <span className="big-text">{range}</span>
+                        </Trans>
+                      ) : (
+                        <>До <span className="big-text">{range}</span> км на одном заряде</>
+                      )}
                     </ServiceItem>
-                    <ServiceItem title={t('home.hero.savings_title')}>
-                      <Trans i18nKey="home.hero.savings" values={{ value: '80%' }}>
-                        <span className="big-text">80%</span>
-                      </Trans>
+                    <ServiceItem title={isClient ? t('home.hero.savings_title') : "Экономия"}>
+                      {isClient ? (
+                        <Trans i18nKey="home.hero.savings" values={{ value: '80%' }}>
+                          <span className="big-text">80%</span>
+                        </Trans>
+                      ) : (
+                        <>До <span className="big-text">80%</span></>
+                      )}
                     </ServiceItem>
                   </ul>
                 </div>
               </div>
               <div className="right-banner wow fadeInUp" data-wow-delay="100ms">
                 <div className="right-banner-box">
-                  <p>{t('home.hero.payback')}</p>
+                  <p>{isClient ? t('home.hero.payback') : "Окупается быстрее любого другого транспорта"}</p>
                   <Image
                     alt="DeliBike banner"
                     title="DeliBike"

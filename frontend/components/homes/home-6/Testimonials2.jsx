@@ -3,7 +3,7 @@
 import { customerData } from '@/data/testimonials';
 import Slider from 'react-slick';
 
-export default function Testimonials() {
+export default function Testimonials2() {
   return (
     <section className="boxcar-customers-section" id="reviews">
       <div className="boxcar-container">

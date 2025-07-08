@@ -7,26 +7,17 @@ import { User } from '../../modules/users/entities/user.entity';
 import { TypeOrmConfigService } from '../typeorm/typeorm.service';
 import { SeedService } from './seed.service';
 import { AdminSeeder } from './seeders/admin.seeder';
-// import { CurrencySeeder } from './seeders/currency.seeder';
+import { CurrencySeeder } from './seeders/currency.seeder';
 import { RolesSeeder } from './seeders/role.seeder';
 import { Currency } from '../../modules/pricing/currency/entities/currency.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
-    TypeOrmModule.forFeature([
-      Role,
-      User,
-      Currency,
-    ]),
+    TypeOrmModule.forFeature([Role, User, Currency]),
     ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
   ],
   controllers: [],
-  providers: [
-    SeedService,
-    RolesSeeder,
-    AdminSeeder,
-    // CurrencySeeder,
-  ],
+  providers: [SeedService, RolesSeeder, AdminSeeder, CurrencySeeder],
 })
 export class SeedModule {}

@@ -7,51 +7,55 @@ import { UpdateMaintenanceDto } from '../dto/update-maintenance.dto';
 
 @Injectable()
 export class MaintenanceService {
-    constructor(
-        @InjectRepository(Maintenance)
-        private maintenanceRepository: Repository<Maintenance>,
-    ) {}
+  constructor(
+    @InjectRepository(Maintenance)
+    private maintenanceRepository: Repository<Maintenance>,
+  ) {}
 
-    async createMaintenance(createMaintenanceDto: CreateMaintenanceDto): Promise<Maintenance> {
-        const { bikeId, serviceDate, description, status } = createMaintenanceDto;
+  async createMaintenance(createMaintenanceDto: CreateMaintenanceDto): Promise<Maintenance> {
+    const { bikeId, serviceDate, description, status } = createMaintenanceDto;
 
-        const maintenance = this.maintenanceRepository.create({
-            bike: { id: bikeId }, // Убедитесь, что здесь передаётся объект с ID
-            serviceDate: new Date(serviceDate),
-            description,
-            status,
-        });
+    const maintenance = this.maintenanceRepository.create({
+      bike: { id: bikeId }, // Убедитесь, что здесь передаётся объект с ID
+      serviceDate: new Date(serviceDate),
+      description,
+      status,
+    });
 
-        return this.maintenanceRepository.save(maintenance);
+    return this.maintenanceRepository.save(maintenance);
+  }
+
+  async updateMaintenance(
+    id: number,
+    updateMaintenanceDto: UpdateMaintenanceDto,
+  ): Promise<Maintenance> {
+    const maintenance = await this.maintenanceRepository.findOne({
+      where: { id },
+    });
+    if (!maintenance) {
+      throw new NotFoundException(`Maintenance with ID ${id} not found`);
     }
 
-    async updateMaintenance(
-        id: number,
-        updateMaintenanceDto: UpdateMaintenanceDto,
-    ): Promise<Maintenance> {
-        const maintenance = await this.maintenanceRepository.findOne({ where: { id } });
-        if (!maintenance) {
-            throw new NotFoundException(`Maintenance with ID ${id} not found`);
-        }
+    Object.assign(maintenance, updateMaintenanceDto);
+    return this.maintenanceRepository.save(maintenance);
+  }
 
-        Object.assign(maintenance, updateMaintenanceDto);
-        return this.maintenanceRepository.save(maintenance);
+  async deleteMaintenance(id: number): Promise<void> {
+    const maintenance = await this.maintenanceRepository.findOne({
+      where: { id },
+    });
+    if (!maintenance) {
+      throw new NotFoundException(`Maintenance with ID ${id} not found`);
     }
 
-    async deleteMaintenance(id: number): Promise<void> {
-        const maintenance = await this.maintenanceRepository.findOne({ where: { id } });
-        if (!maintenance) {
-            throw new NotFoundException(`Maintenance with ID ${id} not found`);
-        }
+    await this.maintenanceRepository.remove(maintenance);
+  }
 
-        await this.maintenanceRepository.remove(maintenance);
-    }
+  async getMaintenanceByBike(bikeId: number): Promise<Maintenance[]> {
+    return this.maintenanceRepository.find({ where: { bike: { id: bikeId } } });
+  }
 
-    async getMaintenanceByBike(bikeId: number): Promise<Maintenance[]> {
-        return this.maintenanceRepository.find({ where: { bike: { id: bikeId } } });
-    }
-
-    async getAllMaintenance(): Promise<Maintenance[]> {
-        return this.maintenanceRepository.find({ relations: ['bike'] });
-    }
+  async getAllMaintenance(): Promise<Maintenance[]> {
+    return this.maintenanceRepository.find({ relations: ['bike'] });
+  }
 }

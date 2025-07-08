@@ -9,7 +9,10 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
@@ -18,10 +21,8 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
   },
-  "include": [
-    "src/**/*"
-  ],
-//  "files": [
+  "include": ["src/**/*", "test/**/*"]
+  //  "files": [
 //    "src/database/migration/history/1740727593705-AddAccessoriesVacanciesTariffs.ts"
 //  ]
 }

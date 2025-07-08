@@ -5,8 +5,8 @@ import { MaintenanceService } from './services/maintenance.service';
 import { MaintenanceController } from './controllers/maintenance.controller';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Maintenance])],
-    controllers: [MaintenanceController],
-    providers: [MaintenanceService],
+  imports: [TypeOrmModule.forFeature([Maintenance])],
+  controllers: [MaintenanceController],
+  providers: [MaintenanceService],
 })
 export class MaintenanceModule {}

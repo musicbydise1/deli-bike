@@ -31,31 +31,23 @@ describe('AuthController (e2e)', () => {
 
   describe('/auth/register (POST)', () => {
     it('should success', async () => {
-      const response = await request(app.getHttpServer())
-        .post('/auth/register')
-        .send(user);
+      const response = await request(app.getHttpServer()).post('/auth/register').send(user);
       expect(response.body.isSuccess).toBe(true);
     });
 
     it('should fail if already registered', async () => {
       await request(app.getHttpServer()).post('/auth/register').send(user);
-      const response = await request(app.getHttpServer())
-        .post('/auth/register')
-        .send(user);
+      const response = await request(app.getHttpServer()).post('/auth/register').send(user);
 
       expect(response.body.isSuccess).toBe(false);
-      expect(response.body.message).toBe(
-        errorMessages.auth.userAlreadyExist.message,
-      );
+      expect(response.body.message).toBe(errorMessages.auth.userAlreadyExist.message);
     });
   });
 
   describe('/auth/login (POST)', () => {
     it('should success', async () => {
       await request(app.getHttpServer()).post('/auth/register').send(user);
-      const response = await request(app.getHttpServer())
-        .post('/auth/login')
-        .send(user);
+      const response = await request(app.getHttpServer()).post('/auth/login').send(user);
       expect(response.body.isSuccess).toBe(true);
       expect(response.body.data).toHaveProperty('accessToken');
     });
@@ -69,9 +61,7 @@ describe('AuthController (e2e)', () => {
           password: 'wrong password',
         });
       expect(response.body.isSuccess).toBe(false);
-      expect(response.body.message).toBe(
-        errorMessages.auth.wronCredentials.message,
-      );
+      expect(response.body.message).toBe(errorMessages.auth.wronCredentials.message);
     });
 
     it('should fail if wrong email', async () => {
@@ -83,9 +73,7 @@ describe('AuthController (e2e)', () => {
           email: 'wrong@test.com',
         });
       expect(response.body.isSuccess).toBe(false);
-      expect(response.body.message).toBe(
-        errorMessages.auth.wronCredentials.message,
-      );
+      expect(response.body.message).toBe(errorMessages.auth.wronCredentials.message);
     });
   });
 });

@@ -4,10 +4,7 @@ import { UserService } from '../../users/users.service';
 
 @Injectable()
 export class JwtStrategy {
-  constructor(
-    private readonly jwtService: JwtService,
-    private readonly userService: UserService,
-  ) {}
+  constructor(private readonly jwtService: JwtService, private readonly userService: UserService) {}
 
   async validate(token: string) {
     const payload = await this.jwtService.verifyAsync(token, {

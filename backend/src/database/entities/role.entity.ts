@@ -4,10 +4,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryColumn,
-  ManyToMany, OneToMany,
+  ManyToMany,
+  OneToMany,
 } from 'typeorm';
-import { User } from '../modules/users/entities/user.entity';
-import { BikePrice } from '../modules/bikes/entities/bike_price.entity';
+import { User } from '@/modules/users/entities/user.entity';
+import { BikePrice } from '@/modules/bikes/entities/bike_price.entity';
 
 @Entity()
 export class Role {

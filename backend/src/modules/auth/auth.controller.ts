@@ -1,10 +1,4 @@
-import {
-  Body,
-  Controller,
-  Post,
-  UseInterceptors,
-  UploadedFiles,
-} from '@nestjs/common';
+import { Body, Controller, Post, UseInterceptors, UploadedFiles } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
@@ -38,37 +32,37 @@ export class AuthController {
    */
   @Post('register')
   @UseInterceptors(
-      FileFieldsInterceptor(
-          [
-            { name: 'photoIdFront', maxCount: 1 },
-            { name: 'photoIdBack', maxCount: 1 },
-          ],
-          {
-            storage: diskStorage({
-              destination: './uploads/users',
-              filename: (req, file, callback) => {
-                const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-                const fileExtName = extname(file.originalname);
-                const filename = `user-${uniqueSuffix}${fileExtName}`;
-                callback(null, filename);
-              },
-            }),
-            fileFilter: (req, file, callback) => {
-              if (!file.mimetype.match(/\/(jpg|jpeg|png)$/)) {
-                return callback(new Error('Only image files are allowed!'), false);
-              }
-              callback(null, true);
-            },
+    FileFieldsInterceptor(
+      [
+        { name: 'photoIdFront', maxCount: 1 },
+        { name: 'photoIdBack', maxCount: 1 },
+      ],
+      {
+        storage: diskStorage({
+          destination: './uploads/users',
+          filename: (req, file, callback) => {
+            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+            const fileExtName = extname(file.originalname);
+            const filename = `user-${uniqueSuffix}${fileExtName}`;
+            callback(null, filename);
           },
-      ),
+        }),
+        fileFilter: (req, file, callback) => {
+          if (!file.mimetype.match(/\/(jpg|jpeg|png)$/)) {
+            return callback(new Error('Only image files are allowed!'), false);
+          }
+          callback(null, true);
+        },
+      },
+    ),
   )
   async register(
-      @UploadedFiles()
-          files: {
-        photoIdFront?: MulterFile[];
-        photoIdBack?: MulterFile[];
-      },
-      @Body() user: RegisterDto,
+    @UploadedFiles()
+    files: {
+      photoIdFront?: MulterFile[];
+      photoIdBack?: MulterFile[];
+    },
+    @Body() user: RegisterDto,
   ) {
     // Если загружена передняя сторона удостоверения
     if (files.photoIdFront && files.photoIdFront.length > 0) {

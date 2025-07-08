@@ -1,37 +1,37 @@
 import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    ManyToOne,
-    CreateDateColumn,
-    UpdateDateColumn,
-    JoinColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  JoinColumn,
 } from 'typeorm';
-import { User } from '../../../modules/users/entities/user.entity';
-import { Bike } from '../../modules/bikes/entities/bike.entity';
+import { User } from '@/modules/users/entities/user.entity';
+import { Bike } from '@/modules/bikes/entities/bike.entity';
 
 @Entity('review')
 export class Review {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @ManyToOne(() => User, { onDelete: 'CASCADE' })
-    @JoinColumn({ name: 'userId' })
-    user: User;
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'userId' })
+  user: User;
 
-    @ManyToOne(() => Bike, { onDelete: 'CASCADE' })
-    @JoinColumn({ name: 'bikeId' })
-    bike: Bike;
+  @ManyToOne(() => Bike, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'bikeId' })
+  bike: Bike;
 
-    @Column({ type: 'int' })
-    rating: number;
+  @Column({ type: 'int' })
+  rating: number;
 
-    @Column({ type: 'text', nullable: true })
-    comment?: string;
+  @Column({ type: 'text', nullable: true })
+  comment?: string;
 
-    @CreateDateColumn()
-    createdAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

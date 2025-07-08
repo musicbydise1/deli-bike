@@ -19,7 +19,7 @@ export class CurrencySeeder implements SeederInterface {
   }
 
   generateData(): Partial<Currency>[] {
-    const codes = ['USD', 'KZT', 'BYN'];
+    const codes = ['KZT', 'BYN'];
     return codes.map((code) => ({ code }));
   }
 }

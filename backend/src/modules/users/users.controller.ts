@@ -11,7 +11,9 @@ export class UserController {
   @Get('profile')
   async profile(@CurrentUser() user) {
     // Получаем пользователя с ролями из базы данных
-    const userWithRoles = await this.userService.findById(user.id, { relations: ['roles'] });
+    const userWithRoles = await this.userService.findById(user.id, {
+      relations: ['roles'],
+    });
 
     // Ручная сериализация
     const serializedUser = {

@@ -16,21 +16,36 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRouter } from 'next/navigation';
-import {
-  useGetRentalByIdQuery,
-  useUpdateRentalStatusMutation,
-} from '@/store/services/rentalsApi';
 
 export default function AdminOrderDetails({ orderId }) {
-  const { data, isLoading: loading, error } = useGetRentalByIdQuery(orderId, {
-    skip: !orderId,
-  });
-  const [updateStatus] = useUpdateRentalStatusMutation();
-  const order = data?.data || null;
+  const [order, setOrder] = useState(null);
   const [newStatus, setNewStatus] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
   const router = useRouter();
-  // Обновляем статус заказа
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+  useEffect(() => {
+    async function fetchOrder() {
+      try {
+        const response = await fetch(`${API_URL}/rentals/${orderId}`);
+        if (!response.ok) {
+          throw new Error('Не удалось загрузить детали заказа');
+        }
+        const data = await response.json();
+        // Ожидаем, что данные приходят в виде { isSuccess, message, data: { ... } }
+        setOrder(data.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    if (orderId) {
+      fetchOrder();
+    }
+  }, [orderId, API_URL]);
 
   // Устанавливаем текущий статус после загрузки заказа
   useEffect(() => {
@@ -45,13 +60,19 @@ export default function AdminOrderDetails({ orderId }) {
 
   const handleStatusUpdate = async () => {
     try {
-      const updated = await updateStatus({ id: order.id, status: newStatus }).unwrap();
-      setSnackbar({ open: true, message: 'Статус успешно обновлён', severity: 'success' });
-      // Обновляем локальное состояние
-      if (updated.data) {
-        // обновляем статус в локальном состоянии
-        setNewStatus(updated.data.status);
+      const response = await fetch(`${API_URL}/rentals/${order.id}/status`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+      if (!response.ok) {
+        throw new Error('Ошибка обновления статуса заказа');
       }
+      const updatedData = await response.json();
+      setOrder(updatedData.data);
+      setSnackbar({ open: true, message: 'Статус успешно обновлён', severity: 'success' });
     } catch (error) {
       setSnackbar({ open: true, message: error.message, severity: 'error' });
     }

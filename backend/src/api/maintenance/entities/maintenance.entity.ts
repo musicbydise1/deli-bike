@@ -1,39 +1,39 @@
 import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    ManyToOne,
-    CreateDateColumn,
-    UpdateDateColumn,
-    JoinColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  JoinColumn,
 } from 'typeorm';
-import { Bike } from '../../modules/bikes/entities/bike.entity';
+import { Bike } from '@/modules/bikes/entities/bike.entity';
 
 @Entity('maintenance')
 export class Maintenance {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @ManyToOne(() => Bike, { onDelete: 'CASCADE' })
-    @JoinColumn({ name: 'bikeId' })
-    bike: Bike;
+  @ManyToOne(() => Bike, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'bikeId' })
+  bike: Bike;
 
-    @Column({ name: 'service_date', type: 'timestamp' }) // Исправление названия колонки
-    serviceDate: Date;
+  @Column({ name: 'service_date', type: 'timestamp' }) // Исправление названия колонки
+  serviceDate: Date;
 
-    @Column({ type: 'text', nullable: true })
-    description?: string;
+  @Column({ type: 'text', nullable: true })
+  description?: string;
 
-    @Column({
-        type: 'enum',
-        enum: ['scheduled', 'in_progress', 'completed'],
-        default: 'scheduled',
-    })
-    status: 'scheduled' | 'in_progress' | 'completed';
+  @Column({
+    type: 'enum',
+    enum: ['scheduled', 'in_progress', 'completed'],
+    default: 'scheduled',
+  })
+  status: 'scheduled' | 'in_progress' | 'completed';
 
-    @CreateDateColumn()
-    createdAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { Auth } from '../../../shared/guards/auth.decorator';
 import { AssignRoleDto } from '../dto/role.dto';
 import { RoleIds } from '../../../shared/constants/roles.enum';

@@ -6,9 +6,7 @@ import { CreateCompanyDto } from './dto/create-company.dto';
 
 @Injectable()
 export class CompaniesService {
-  constructor(
-    @InjectRepository(Company) private readonly repository: Repository<Company>,
-  ) {}
+  constructor(@InjectRepository(Company) private readonly repository: Repository<Company>) {}
 
   async create(dto: CreateCompanyDto): Promise<Company> {
     const company = this.repository.create(dto);
