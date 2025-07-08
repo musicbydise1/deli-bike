@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import SelectComponent from '../common/SelectComponent';
 import Pagination from '../common/Pagination';
@@ -10,33 +10,14 @@ import { AiOutlineLoading } from 'react-icons/ai';
 import Button from '@/components/ui/button/Button';
 // Импортируем контекст корзины
 import { useCart } from '@/context/CartContext';
+import { useGetBikesQuery } from '@/store/services/bikesApi';
 
 export default function Listings1() {
   const { addProductToCart, isAddedToCartProducts } = useCart();
-  const [bikes, setBikes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [loadingBikeId, setLoadingBikeId] = useState(null);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const { data, error, isLoading } = useGetBikesQuery();
+  const [loadingBikeId, setLoadingBikeId] = React.useState(null);
+  const bikes = Array.isArray(data?.data) ? data.data : [];
   const router = useRouter();
-
-  useEffect(() => {
-    const fetchBikes = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`${API_URL}/bikes/`);
-        const result = await response.json();
-        console.log('Fetched bikes:', result);
-        const bikesData = Array.isArray(result.data) ? result.data : [];
-        setBikes(bikesData);
-      } catch (error) {
-        console.error('Error fetching bikes:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBikes();
-  }, [API_URL]);
 
   const handleRent = id => {
     setLoadingBikeId(id);
@@ -44,7 +25,7 @@ export default function Listings1() {
     router.push(`/bike/${id}`);
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center h-80">
         <AiOutlineLoading size={60} className="animate-spin" />

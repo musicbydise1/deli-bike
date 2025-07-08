@@ -1,5 +1,6 @@
 'use client';
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { useGetBikesQuery } from '@/store/services/bikesApi';
 
 export const CartContext = createContext(null);
 
@@ -12,23 +13,18 @@ export function CartProvider({ children }) {
   const [totalPrice, setTotalPrice] = useState(0);
   const [products, setProducts] = useState([]);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const { data, error } = useGetBikesQuery();
 
   // Загрузка товаров с API
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch(`${API_URL}/bikes/`);
-        const json = await res.json();
-        const data = Array.isArray(json.data) ? json.data : [];
-        setProducts(data);
-      } catch (error) {
-        console.error('Ошибка загрузки товаров:', error);
-      }
-    };
-
-    fetchProducts();
-  }, [API_URL]);
+    if (data?.data) {
+      const bikes = Array.isArray(data.data) ? data.data : [];
+      setProducts(bikes);
+    }
+    if (error) {
+      console.error('Ошибка загрузки товаров:', error);
+    }
+  }, [data, error]);
 
   // Загрузка корзины из localStorage
   useEffect(() => {

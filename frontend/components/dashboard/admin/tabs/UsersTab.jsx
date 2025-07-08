@@ -30,7 +30,7 @@ export default function UsersTab() {
 
   useEffect(() => {
     fetchUsers();
-  });
+  }, []);
 
   async function fetchUsers() {
     setLoading(true);
