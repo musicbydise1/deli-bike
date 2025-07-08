@@ -9,6 +9,8 @@ import RootContext from '@/context/RootContext';
 import BackToTop from '@/components/common/BackToTop';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
+import { Provider } from 'react-redux';
+import { store } from '@/store/store';
 
 import { Roboto } from 'next/font/google';
 
@@ -23,14 +25,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={roboto.className}>
       <body>
-        <I18nextProvider i18n={i18n}>
-          <RootContext>
-            <MobileMenu />
-            <div className="boxcar-wrapper">{children}</div>
-            <FilterSidebar />
-          </RootContext>
-          <BackToTop />
-        </I18nextProvider>
+        <Provider store={store}>
+          <I18nextProvider i18n={i18n}>
+            <RootContext>
+              <MobileMenu />
+              <div className="boxcar-wrapper">{children}</div>
+              <FilterSidebar />
+            </RootContext>
+            <BackToTop />
+          </I18nextProvider>
+        </Provider>
       </body>
     </html>
   );

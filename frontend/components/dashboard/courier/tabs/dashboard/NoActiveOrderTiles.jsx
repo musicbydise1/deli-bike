@@ -1,35 +1,17 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/button/Button';
 import { AiOutlineLoading } from 'react-icons/ai';
 import Image from 'next/image';
+import { useGetBikesQuery } from '@/store/services/bikesApi';
 
 export default function NoActiveOrderTiles() {
-  const [bikes, setBikes] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { data, isLoading, error } = useGetBikesQuery();
+  const bikes = Array.isArray(data?.data) ? data.data : [];
   const [loadingBikeId, setLoadingBikeId] = useState(null);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetch(`${API_URL}/bikes`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.isSuccess) {
-          setBikes(data.data);
-        } else {
-          console.error('Произошла ошибка при получении байков:', data);
-        }
-      })
-      .catch(error => {
-        console.error('Произошла ошибка при загрузке:', error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [API_URL]);
+  if (error) console.error('Ошибка загрузки байков:', error);
 
   const handleRent = id => {
     setLoadingBikeId(id);

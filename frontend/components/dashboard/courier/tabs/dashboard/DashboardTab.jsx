@@ -1,5 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import {
+  useGetRentalsByUserQuery,
+  useGetRentalHistoryByUserQuery,
+} from '@/store/services/rentalsApi';
 import NoActiveOrderTiles from './NoActiveOrderTiles';
 import ActiveOrderCard from './ActiveOrderCard';
 import HistoryOrders from './HistoryOrders';
@@ -9,9 +13,18 @@ export default function DashboardTab({ setActiveTab }) {
   const [userId, setUserId] = useState(null);
   const [activeRentals, setActiveRentals] = useState([]);
   const [historyRentals, setHistoryRentals] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const {
+    data: activeData,
+    isLoading: loadingActive,
+    error: activeError,
+  } = useGetRentalsByUserQuery(userId, { skip: userId === null });
+  const {
+    data: historyData,
+    isLoading: loadingHistory,
+    error: historyError,
+  } = useGetRentalHistoryByUserQuery(userId, { skip: userId === null });
+  const loading = loadingActive || loadingHistory;
+  const error = activeError || historyError;
 
   // Состояние для аккордеона
   const [openIndex, setOpenIndex] = useState(null);
@@ -57,38 +70,18 @@ export default function DashboardTab({ setActiveTab }) {
     }
   }, []);
 
-  // Загрузка активных заказов и истории после получения userId
+  // Обновляем локальное состояние при получении данных из API
   useEffect(() => {
-    if (userId === null) return;
-
-    setLoading(true);
-    async function fetchData() {
-      try {
-        const [activeRes, historyRes] = await Promise.all([
-          fetch(`${API_URL}/rentals/user/${userId}`),
-          fetch(`${API_URL}/rentals/user/${userId}/history`),
-        ]);
-
-        if (!activeRes.ok) {
-          throw new Error('Не удалось загрузить активные заказы');
-        }
-        if (!historyRes.ok) {
-          throw new Error('Не удалось загрузить историю заказов');
-        }
-
-        const activeData = await activeRes.json();
-        const historyData = await historyRes.json();
-
-        setActiveRentals(activeData.data || []);
-        setHistoryRentals(historyData.data || []);
-      } catch (err) {
-        setError(err.message || 'Ошибка при загрузке данных');
-      } finally {
-        setLoading(false);
-      }
+    if (activeData?.data) {
+      setActiveRentals(activeData.data);
     }
-    fetchData();
-  }, [userId, API_URL]);
+  }, [activeData]);
+
+  useEffect(() => {
+    if (historyData?.data) {
+      setHistoryRentals(historyData.data);
+    }
+  }, [historyData]);
 
   if (loading) {
     return <p className="p-4">Загрузка данных об арендах...</p>;

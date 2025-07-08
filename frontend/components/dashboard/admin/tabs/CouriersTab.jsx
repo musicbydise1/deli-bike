@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import NextLink from 'next/link';
+import { useGetCouriersQuery } from '@/store/services/adminApi';
 import {
   Box,
   Typography,
@@ -16,26 +17,8 @@ import {
 } from '@mui/material';
 
 export default function CouriersTab() {
-  const [couriers, setCouriers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await fetch(`${API_URL}/couriers`);
-        if (!res.ok) throw new Error('Не удалось загрузить курьеров');
-        const result = await res.json();
-        setCouriers(result.data || []);
-      } catch (err) {
-        console.error(err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, [API_URL]);
+  const { data, isLoading: loading, error } = useGetCouriersQuery();
+  const couriers = Array.isArray(data?.data) ? data.data : [];
 
   if (loading) {
     return (

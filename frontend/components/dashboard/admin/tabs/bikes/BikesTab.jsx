@@ -38,7 +38,7 @@ export default function BikesTab() {
   useEffect(() => {
     fetchBikes();
     fetchPriceCategories();
-  });
+  }, []);
 
   async function fetchBikes() {
     try {
