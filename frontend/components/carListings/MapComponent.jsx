@@ -195,7 +195,7 @@ export default function ListingMap1() {
   const [getLocation, setLocation] = useState(null);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM',
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   });
   const center = useMemo(() => ({ lat: 27.411201277163975, lng: -96.12394824867293 }), []);
 

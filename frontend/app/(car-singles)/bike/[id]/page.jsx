@@ -2,7 +2,6 @@ import Single1 from '@/components/carSingles/Single1';
 import Header6 from '@/components/headers/Header6';
 import Footer1 from '@/components/footers/Footer1';
 import Footer3 from '@/components/footers/Footer3';
-import process from 'next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss';
 
 /**
  * Функция generateStaticParams возвращает список параметров для генерации

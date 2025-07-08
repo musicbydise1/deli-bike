@@ -8,7 +8,6 @@ import { BillingDetails } from './BillingDetails';
 import { OrderSummary } from './OrderSummary';
 import { PaymentOptions } from './PaymentOptions';
 import { useCart } from '@/context/CartContext';
-import process from 'next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss';
 
 export default function Checkout() {
   const { t } = useTranslation();
