@@ -45,7 +45,7 @@ export default function AdminOrderDetails({ orderId }) {
     if (orderId) {
       fetchOrder();
     }
-  });
+  }, [orderId, API_URL]);
 
   // Устанавливаем текущий статус после загрузки заказа
   useEffect(() => {

@@ -3,7 +3,6 @@
 import React from 'react';
 import Header6 from '@/components/headers/Header6';
 import OrderDetails from '@/components/orders/Orders';
-import process from 'next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss';
 
 // Если используете metadata:
 export const metadata = {

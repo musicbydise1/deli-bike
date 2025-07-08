@@ -78,7 +78,7 @@ export default function Context({ children }) {
       }
     };
     fetchProducts();
-  });
+  }, [API_URL]);
 
   // Пересчёт итоговой суммы корзины
   useEffect(() => {
