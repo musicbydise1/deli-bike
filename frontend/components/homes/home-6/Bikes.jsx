@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { carData } from '@/data/cars';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 const carBrands = [
   { label: 'Audi', isActive: true },
   { label: 'BMW', isActive: false },
@@ -13,6 +14,7 @@ const carBrands = [
 export default function Bikes() {
   const [activeCategory, setActiveCategory] = useState(carBrands[0]);
   const [filtered, setFiltered] = useState([]);
+  const { t } = useTranslation();
   useEffect(() => {
     setFiltered([...carData].filter(elm => elm.brand.includes(activeCategory.label)));
   }, [activeCategory]);
@@ -77,9 +79,9 @@ export default function Bikes() {
     <section className="cars-section-six">
       <div className="boxcar-container">
         <div className="boxcar-title wow fadeInUp">
-          <h2>Электровелосипеды для Аренды</h2>
+          <h2>{t('bikes.section_title')}</h2>
           <Link href={`/bikes`} className="btn-title">
-            Посмотреть
+            {t('bikes.view')}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={14}

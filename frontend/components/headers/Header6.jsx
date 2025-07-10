@@ -411,7 +411,7 @@ export default function Header6({ white = false }) {
                   type="search"
                   name="search-field"
                   defaultValue=""
-                  placeholder="Search..."
+                  placeholder={t('search.placeholder')}
                   required
                 />
                 <button type="submit">

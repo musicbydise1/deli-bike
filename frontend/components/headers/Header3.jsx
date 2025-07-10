@@ -4,10 +4,12 @@ import Nav from './Nav';
 import Link from 'next/link';
 import Image from 'next/image';
 import { carItemsSearch } from '@/data/cars';
+import { useTranslation } from 'react-i18next';
 
 export default function Header3() {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Состояние авторизации
   const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Проверяем наличие токена в localStorage
@@ -79,7 +81,7 @@ export default function Header3() {
                       </svg>
                       <input
                         type="search"
-                        placeholder="Search Cars eg. Audi Q7"
+                        placeholder={t('search.placeholder_cars')}
                         className="show-search"
                         name="name"
                         tabIndex={2}
