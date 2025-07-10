@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import UsersTable from './users/UsersTable';
@@ -28,11 +28,7 @@ export default function UsersTab() {
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  async function fetchUsers() {
+  const fetchUsers = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -48,7 +44,11 @@ export default function UsersTab() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [API_URL]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
 
   const handleAddUser = () => {
     setIsEditMode(false);
