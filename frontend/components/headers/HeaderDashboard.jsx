@@ -4,9 +4,11 @@ import Nav from './Nav';
 import Link from 'next/link';
 import Image from 'next/image';
 import { carItemsSearch } from '@/data/cars';
+import { useTranslation } from 'react-i18next';
 
 export default function HeaderDashboard() {
   const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useTranslation();
 
   const handleFocus = () => {
     document.getElementById('box-content-search').classList.add('active');
@@ -57,7 +59,7 @@ export default function HeaderDashboard() {
                     </svg>
                     <input
                       type="search"
-                      placeholder="Поиск автомобилей, например Audi Q7"
+                      placeholder={t('search.placeholder_cars')}
                       className="show-search"
                       name="name"
                       tabIndex={2}
@@ -88,7 +90,7 @@ export default function HeaderDashboard() {
                         ))}
                     </ul>
                     <Link href={`/bike`} className="btn-view-search">
-                      Посмотреть детали
+                      {t('search.view_details')}
                       <svg
                         width={14}
                         height={14}
@@ -157,7 +159,7 @@ export default function HeaderDashboard() {
                 type="search"
                 name="search-field"
                 defaultValue=""
-                placeholder="Поиск..."
+                placeholder={t('search.placeholder')}
                 required
               />
               <button type="submit">

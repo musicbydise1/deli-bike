@@ -98,9 +98,7 @@ export default function Cars() {
           <h2>
             {t('bikes.rental_cost')} <span className="orange">Deli-Bike</span>
           </h2>
-          <p>
-            {t('bikes.price_note')}
-          </p>
+          <p>{t('bikes.price_note')}</p>
         </div>
 
         <div className="tab-content wow fadeInUp" data-wow-delay="200ms" id="nav-tabContent">
@@ -176,22 +174,29 @@ export default function Cars() {
                             <span className="spec-title">{t('bikes.specs.range_per_charge')}</span>
                             <span className="spec-value">
                               {bike.range_per_charge} {t('bikes.specs.km')}{' '}
-                              <span className="text-[12px]">({t('bikes.specs.depends_on_battery')})</span>
+                              <span className="text-[12px]">
+                                ({t('bikes.specs.depends_on_battery')})
+                              </span>
                             </span>
                           </li>
                           <li className="spec-item">
                             <span className="spec-title">{t('bikes.specs.charging_time')}</span>
-                            <span className="spec-value">{bike.charge_time} {t('bikes.specs.hours')}</span>
+                            <span className="spec-value">
+                              {bike.charge_time} {t('bikes.specs.hours')}
+                            </span>
                           </li>
                           <li className="spec-item">
                             <span className="spec-title">{t('bikes.specs.max_load')}</span>
                             <span className="spec-value">
-                              <span className="text-[12px]">{t('bikes.specs.up_to')}</span> {Math.round(bike.max_load)} {t('bikes.specs.kg')}
+                              <span className="text-[12px]">{t('bikes.specs.up_to')}</span>{' '}
+                              {Math.round(bike.max_load)} {t('bikes.specs.kg')}
                             </span>
                           </li>
                           <li className="spec-item">
                             <span className="spec-title">{t('bikes.specs.weight')}</span>
-                            <span className="spec-value">{Math.round(bike.weight)} {t('bikes.specs.kg')}</span>
+                            <span className="spec-value">
+                              {Math.round(bike.weight)} {t('bikes.specs.kg')}
+                            </span>
                           </li>
                           <li className="spec-item">
                             <span className="spec-title">{t('bikes.specs.suspension')}</span>
@@ -212,7 +217,7 @@ export default function Cars() {
                             {rentingBikeId === bike.id ? (
                               <AiOutlineLoading className="animate-spin" />
                             ) : (
-                              'Арендовать'
+                              t('bikes.rent')
                             )}
                           </Button>
                         </div>
@@ -315,7 +320,7 @@ export default function Cars() {
                             {rentingBikeId === bike.id ? (
                               <AiOutlineLoading className="animate-spin" />
                             ) : (
-                              'Арендовать'
+                              t('bikes.rent')
                             )}
                           </Button>
                         </div>

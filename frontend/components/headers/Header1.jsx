@@ -4,8 +4,10 @@ import Nav from './Nav';
 import Link from 'next/link';
 import Image from 'next/image';
 import { carItemsSearch } from '@/data/cars';
+import { useTranslation } from 'react-i18next';
 export default function Header1({ headerClass = 'header-style-v1 header-default', white = false }) {
   const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useTranslation();
 
   const handleFocus = () => {
     document.getElementById('box-content-search').classList.add('active');
@@ -65,7 +67,7 @@ export default function Header1({ headerClass = 'header-style-v1 header-default'
                   </svg>
                   <input
                     type="search"
-                    placeholder="Search Cars eg. Audi Q7"
+                    placeholder={t('search.placeholder_cars')}
                     className="show-search"
                     name="name"
                     tabIndex={2}
@@ -187,7 +189,7 @@ export default function Header1({ headerClass = 'header-style-v1 header-default'
                 type="search"
                 name="search-field"
                 defaultValue=""
-                placeholder="Search..."
+                placeholder={t('search.placeholder')}
                 required
               />
               <button type="submit">
