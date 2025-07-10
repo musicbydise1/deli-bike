@@ -243,16 +243,19 @@ export default function MobileMenu() {
                 </li>
               </ul>
               <Button variant="primary" className="ml-0 w-full" onClick={toggleUserRole}>
-                {isClient 
-                  ? userRole === 'courier' ? t('for_corporate') : t('for_courier')
-                  : userRole === 'courier' ? "Для Юр.лиц" : "Для Курьеров"
-                }{' '}
+                {isClient
+                  ? userRole === 'courier'
+                    ? t('for_corporate')
+                    : t('for_courier')
+                  : userRole === 'courier'
+                    ? 'Для Юр.лиц'
+                    : 'Для Курьеров'}{' '}
                 <FaArrowRightToBracket className="ml-2" />
               </Button>
               <div className="mt-3">
                 <Link href={userRole === 'courier' ? '/login' : '/other-login'}>
                   <Button className="ml-0 w-full" variant="primary-outline">
-                    {isClient ? t('login') : "Личный кабинет"}
+                    {isClient ? t('login') : 'Личный кабинет'}
                   </Button>
                 </Link>
               </div>

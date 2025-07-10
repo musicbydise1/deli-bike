@@ -339,25 +339,25 @@ export default function Header6({ white = false }) {
                           <li>
                             <Link href="/dashboard" onClick={() => setIsProfileMenuOpen(false)}>
                               <IoGridSharp size={15} style={{ marginRight: '10px' }} />
-                              {isClient ? t('dashboard') : "Личный кабинет"}
+                              {isClient ? t('dashboard') : 'Личный кабинет'}
                             </Link>
                           </li>
                           <li>
                             <Link href="/dashboard" onClick={() => setIsProfileMenuOpen(false)}>
                               <HiOutlineShoppingBag size={20} style={{ marginRight: '10px' }} />
-                              {isClient ? t('my_orders') : "Аренда"}
+                              {isClient ? t('my_orders') : 'Аренда'}
                             </Link>
                           </li>
                           <li>
                             <Link href="/dashboard" onClick={() => setIsProfileMenuOpen(false)}>
                               <MdSettings size={20} style={{ marginRight: '10px' }} />
-                              {isClient ? t('profile') : "Профиль"}
+                              {isClient ? t('profile') : 'Профиль'}
                             </Link>
                           </li>
                           <li>
                             <button onClick={handleLogout} className="text-center">
                               <HiOutlineLogout size={20} style={{ marginRight: '10px' }} />
-                              {isClient ? t('logout') : "Выйти"}
+                              {isClient ? t('logout') : 'Выйти'}
                             </button>
                           </li>
                         </ul>
@@ -368,14 +368,19 @@ export default function Header6({ white = false }) {
                   <ul>
                     <li>
                       <Button variant="primary" onClick={toggleUserRole}>
-                        {isClient 
-                          ? userRoleCookie === 'courier' ? t('for_corporate') : t('for_courier')
-                          : userRoleCookie === 'courier' ? "Для Юр.лиц" : "Для Курьеров"
-                        }{' '}
+                        {isClient
+                          ? userRoleCookie === 'courier'
+                            ? t('for_corporate')
+                            : t('for_courier')
+                          : userRoleCookie === 'courier'
+                            ? 'Для Юр.лиц'
+                            : 'Для Курьеров'}{' '}
                         <FaArrowRightToBracket className="ml-2" />
                       </Button>
                       <Link href={userRoleCookie === 'courier' ? '/login' : '/other-login'}>
-                        <Button variant="primary-outline">{isClient ? t('login') : "Личный кабинет"}</Button>
+                        <Button variant="primary-outline">
+                          {isClient ? t('login') : 'Личный кабинет'}
+                        </Button>
                       </Link>
                     </li>
                   </ul>

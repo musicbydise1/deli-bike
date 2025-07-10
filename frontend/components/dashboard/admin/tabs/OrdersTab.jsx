@@ -26,7 +26,6 @@ export default function OrdersTab() {
   const { data, isLoading, error } = useGetRentalsQuery();
   const rentals = Array.isArray(data?.data) ? data.data : [];
 
-
   if (isLoading) {
     return (
       <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>

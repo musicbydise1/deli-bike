@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Modal from '../Modal';
 import { BikesTable } from './BikesTable';
 import { BikeForm } from './BikeForm';
@@ -35,12 +35,7 @@ export default function BikesTab() {
     files: null,
   });
 
-  useEffect(() => {
-    fetchBikes();
-    fetchPriceCategories();
-  }, []);
-
-  async function fetchBikes() {
+  const fetchBikes = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -55,9 +50,9 @@ export default function BikesTab() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [API_URL]);
 
-  async function fetchPriceCategories() {
+  const fetchPriceCategories = useCallback(async () => {
     try {
       const res = await fetch(`${API_URL}/price-categories`);
       const result = await res.json();
@@ -65,7 +60,12 @@ export default function BikesTab() {
     } catch (err) {
       console.error('Ошибка загрузки категорий цен:', err);
     }
-  }
+  }, [API_URL]);
+
+  useEffect(() => {
+    fetchBikes();
+    fetchPriceCategories();
+  }, [fetchBikes, fetchPriceCategories]);
 
   const resetCurrentBike = () =>
     setCurrentBike({

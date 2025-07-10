@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Modal from '../Modal';
 import AccessoriesTable from './AccessoriesTable';
 import AccessoryForm from './AccessoryForm';
@@ -29,7 +29,7 @@ export default function AccessoriesTab() {
 
   useEffect(() => {
     fetchAccessories();
-  }, []);
+  }, [fetchAccessories]);
 
   useEffect(() => {
     if (bikesData?.data) {
@@ -38,7 +38,7 @@ export default function AccessoriesTab() {
     if (bikesError) console.error('Ошибка загрузки велосипедов:', bikesError);
   }, [bikesData, bikesError]);
 
-  async function fetchAccessories() {
+  const fetchAccessories = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -53,8 +53,7 @@ export default function AccessoriesTab() {
     } finally {
       setLoading(false);
     }
-  }
-
+  }, [API_URL]);
 
   const handleAddAccessory = () => {
     setIsEditMode(false);

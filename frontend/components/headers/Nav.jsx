@@ -88,7 +88,8 @@ export default function Nav() {
 
       <li className="current-dropdown">
         <span className={isMenuActive(CatalogueLinks) ? 'menuActive' : ''}>
-          {isClient ? t('menu.cooperation') : 'Сотрудничество'} <i className="fa-solid fa-angle-down" />
+          {isClient ? t('menu.cooperation') : 'Сотрудничество'}{' '}
+          <i className="fa-solid fa-angle-down" />
         </span>
         <ul className="dropdown">
           {CatalogueLinks.map((link, index) => (

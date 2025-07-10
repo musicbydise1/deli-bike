@@ -5,10 +5,7 @@ import Button from '@/components/ui/button/Button';
 import Link from 'next/link';
 import { AiOutlineLoading } from 'react-icons/ai';
 import '../../../../public/css/pages/login/Login.css';
-import {
-  useOtherLoginMutation,
-  useLazyGetProfileQuery,
-} from '@/store/services/authApi';
+import { useOtherLoginMutation, useLazyGetProfileQuery } from '@/store/services/authApi';
 
 export default function CorporateLogin() {
   const router = useRouter();

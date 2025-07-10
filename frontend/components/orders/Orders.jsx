@@ -9,11 +9,7 @@ function formatTenge(value) {
 }
 
 export default function OrderDetails({ orderId }) {
-  const {
-    data,
-    isLoading: loading,
-    error,
-  } = useGetRentalByIdQuery(orderId, { skip: !orderId });
+  const { data, isLoading: loading, error } = useGetRentalByIdQuery(orderId, { skip: !orderId });
   const rental = data?.data || null;
 
   if (loading) {
