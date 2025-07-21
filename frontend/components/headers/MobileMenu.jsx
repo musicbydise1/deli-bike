@@ -198,7 +198,7 @@ export default function MobileMenu() {
               <ul className="navigation mm-listview">
                 <li className={`mm-listitem ${pathname == '/' ? 'current' : ''}`}>
                   <Link href={`/`} className="mm-listitem__text">
-                    Главная
+                    {isClient ? t('breadcrumb.home') : 'Главная'}
                   </Link>
                 </li>
                 <li
@@ -210,7 +210,7 @@ export default function MobileMenu() {
                     className="mm-btn mm-btn_next mm-listitem__btn mm-listitem__text"
                     onClick={() => setMemuOpen(pre => (pre == 3 ? -1 : 3))}
                   >
-                    О нас <i className="fa-solid fa-angle-down" />
+                    {isClient ? t('menu.about') : 'О нас'} <i className="fa-solid fa-angle-down" />
                     <span className="mm-sronly">Открыть</span>
                   </a>
                 </li>
@@ -223,22 +223,23 @@ export default function MobileMenu() {
                     className="mm-btn mm-btn_next mm-listitem__btn mm-listitem__text"
                     onClick={() => setMemuOpen(pre => (pre == 2 ? -1 : 2))}
                   >
-                    Сотрудничество <i className="fa-solid fa-angle-down" />
+                    {isClient ? t('menu.cooperation') : 'Сотрудничество'}{' '}
+                    <i className="fa-solid fa-angle-down" />
                   </a>
                 </li>
                 <li className={`mm-listitem ${pathname == '/contact' ? 'current' : ''}`}>
                   <Link href={`/contact`} className="mm-listitem__text">
-                    Контакты
+                    {isClient ? t('menu.contacts') : 'Контакты'}
                   </Link>
                 </li>
                 <li className={`mm-listitem ${pathname == '/#reviews' ? 'current' : ''}`}>
                   <Link href={`/contact`} className="mm-listitem__text">
-                    Отзывы
+                    {isClient ? t('menu.reviews') : 'Отзывы'}
                   </Link>
                 </li>
                 <li className={`mm-listitem ${pathname == '/vacancy' ? 'current' : ''}`}>
                   <Link href={`/contact`} className="mm-listitem__text">
-                    Вакансии
+                    {isClient ? t('menu.vacancies') : 'Вакансии'}
                   </Link>
                 </li>
               </ul>
@@ -373,7 +374,7 @@ export default function MobileMenu() {
                   <span className="mm-sronly">Close submenu</span>
                 </a>
                 <a className="mm-navbar__title" href="#navbar">
-                  <span>Сотрудничество</span>
+                  <span>{isClient ? t('menu.cooperation') : 'Сотрудничество'}</span>
                 </a>
               </div>
               {megaMenuData.map((elm, i) => (
@@ -409,7 +410,7 @@ export default function MobileMenu() {
                   <span className="mm-sronly">Close submenu</span>
                 </a>
                 <a className="mm-navbar__title" href="#navbar">
-                  <span>О нас</span>
+                  <span>{isClient ? t('menu.about') : 'О нас'}</span>
                 </a>
               </div>
               <ul className="dropdown mm-listview">
