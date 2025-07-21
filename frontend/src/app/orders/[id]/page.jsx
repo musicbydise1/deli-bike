@@ -1,8 +1,8 @@
 // app/orders/[id]/page.jsx
 
 import React from 'react';
-import Header6 from '@/components/headers/Header6';
-import OrderDetails from '@/components/orders/Orders';
+import Header6 from '@/widgets/headers/Header6';
+import OrderDetails from '@/features/orders/Orders';
 
 // Если используете metadata:
 export const metadata = {

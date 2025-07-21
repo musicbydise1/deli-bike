@@ -1,9 +1,9 @@
-import Favorite from '@/components/dashboard/Favorite';
-import Footer1 from '@/components/footers/Footer1';
+import Favorite from '@/widgets/dashboard/Favorite';
+import Footer1 from '@/widgets/footers/Footer1';
 
-import HeaderDashboard from '@/components/headers/HeaderDashboard';
+import HeaderDashboard from '@/widgets/headers/HeaderDashboard';
 import React from 'react';
-import Header6 from '@/components/headers/Header6';
+import Header6 from '@/widgets/headers/Header6';
 
 export const metadata = {
   title: 'Favorite || Boxcar - React Nextjs Car Template',

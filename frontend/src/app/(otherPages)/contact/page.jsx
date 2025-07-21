@@ -1,10 +1,10 @@
-import Footer1 from '@/components/footers/Footer1';
-import Header1 from '@/components/headers/Header1';
-import Contact from '@/components/otherPages/Contact';
+import Footer1 from '@/widgets/footers/Footer1';
+import Header1 from '@/widgets/headers/Header1';
+import Contact from '@/widgets/otherPages/Contact';
 
 import React from 'react';
-import Header6 from '@/components/headers/Header6';
-import Footer3 from '@/components/footers/Footer3';
+import Header6 from '@/widgets/headers/Header6';
+import Footer3 from '@/widgets/footers/Footer3';
 
 export const metadata = {
   title: 'Contact || Boxcar - React Nextjs Car Template',

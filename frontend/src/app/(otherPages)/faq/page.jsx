@@ -1,6 +1,6 @@
-import Footer1 from '@/components/footers/Footer1';
-import Header1 from '@/components/headers/Header1';
-import Faq2 from '@/components/otherPages/Faq2';
+import Footer1 from '@/widgets/footers/Footer1';
+import Header1 from '@/widgets/headers/Header1';
+import Faq2 from '@/widgets/otherPages/Faq2';
 
 import React from 'react';
 

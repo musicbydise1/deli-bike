@@ -1,9 +1,9 @@
-import Footer1 from '@/components/footers/Footer1';
-import Header1 from '@/components/headers/Header1';
-import ShopList from '@/components/shop/ShopList';
+import Footer1 from '@/widgets/footers/Footer1';
+import Header1 from '@/widgets/headers/Header1';
+import ShopList from '@/widgets/shop/ShopList';
 
 import React from 'react';
-import Header6 from '@/components/headers/Header6';
+import Header6 from '@/widgets/headers/Header6';
 
 export const metadata = {
   title: 'Shop Cart || Boxcar - React Nextjs Car Template',
