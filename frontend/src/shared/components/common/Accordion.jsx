@@ -1,5 +1,5 @@
 'use client';
-import { accordionData } from '@/data/faqs';
+import { accordionData } from '../../data/faqs';
 
 import React, { useState } from 'react';
 

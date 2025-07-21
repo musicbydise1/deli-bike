@@ -37,4 +37,16 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## State Management
 
-This project uses **Redux Toolkit Query** for API interactions. The store is initialized in `store/store.js` and provided in `app/layout.jsx`.
+This project uses **Redux Toolkit Query** for API interactions. The store is initialized in `src/shared/store/store.js` and provided in `src/app/layout.jsx`.
+
+## Project Structure
+
+The frontend now follows the [Feature‑Sliced Design](https://feature-sliced.design/) methodology. Key layers reside in the `src` directory:
+
+- `src/app` – Next.js entry points.
+- `src/shared` – reusable components, context, data, store and utilities.
+- `src/entities` – domain entities (currently empty).
+- `src/features` – feature level modules (currently empty).
+- `src/widgets` – page-level widgets (currently empty).
+
+Existing imports continue to resolve through the `@` alias that points to `src/`.
