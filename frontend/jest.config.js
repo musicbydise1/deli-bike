@@ -8,7 +8,7 @@ const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     '^@/shared/(.*)$': '<rootDir>/src/shared/$1',
-    '^@/components/(.*)$': '<rootDir>/src/shared/components/$1',
+    '^@/ui/(.*)$': '<rootDir>/src/shared/ui/$1',
     '^@/context/(.*)$': '<rootDir>/src/shared/context/$1',
     '^@/data/(.*)$': '<rootDir>/src/shared/data/$1',
     '^@/store/(.*)$': '<rootDir>/src/shared/store/$1',

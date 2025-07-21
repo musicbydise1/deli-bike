@@ -1,7 +1,7 @@
-import Single1 from '@/components/carSingles/Single1';
-import Header6 from '@/components/headers/Header6';
-import Footer1 from '@/components/footers/Footer1';
-import Footer3 from '@/components/footers/Footer3';
+import Single1 from '@/features/carSingles/Single1';
+import Header6 from '@/widgets/headers/Header6';
+import Footer1 from '@/widgets/footers/Footer1';
+import Footer3 from '@/widgets/footers/Footer3';
 
 /**
  * Функция generateStaticParams возвращает список параметров для генерации

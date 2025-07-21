@@ -1,12 +1,12 @@
 'use client';
-import Footer1 from '@/components/footers/Footer1';
-import HeaderDashboard from '@/components/headers/HeaderDashboard';
+import Footer1 from '@/widgets/footers/Footer1';
+import HeaderDashboard from '@/widgets/headers/HeaderDashboard';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import DashboardCourier from '@/components/dashboard/courier/DashboardCourier';
-import DashboardCorporate from '@/components/dashboard/corporate/DashboardCorporate';
-import DashboardAdmin from '@/components/dashboard/admin/DashboardAdmin';
-import Header6 from '@/components/headers/Header6';
+import DashboardCourier from '@/widgets/dashboard/courier/DashboardCourier';
+import DashboardCorporate from '@/widgets/dashboard/corporate/DashboardCorporate';
+import DashboardAdmin from '@/widgets/dashboard/admin/DashboardAdmin';
+import Header6 from '@/widgets/headers/Header6';
 
 export default function DashboardPage() {
   const [userRole, setUserRole] = useState(null);

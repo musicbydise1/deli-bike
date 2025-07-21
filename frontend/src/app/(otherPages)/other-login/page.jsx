@@ -1,7 +1,7 @@
-import Login from '@/components/otherPages/auth/other-login/Login';
+import Login from '@/widgets/otherPages/auth/other-login/Login';
 
 import React from 'react';
-import Header6 from '@/components/headers/Header6';
+import Header6 from '@/widgets/headers/Header6';
 
 export const metadata = {
   title: 'Login DeliBike',
