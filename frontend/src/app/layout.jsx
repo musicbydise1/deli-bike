@@ -1,12 +1,12 @@
 'use client';
 import React from 'react';
-import FilterSidebar from '@/components/common/FilterSidebar';
+import FilterSidebar from '@/ui/common/FilterSidebar';
 import '../public/main.scss';
 import 'photoswipe/dist/photoswipe.css';
 import 'rc-slider/assets/index.css';
-import MobileMenu from '@/components/headers/MobileMenu';
+import MobileMenu from '@/widgets/headers/MobileMenu';
 import RootContext from '@/context/RootContext';
-import BackToTop from '@/components/common/BackToTop';
+import BackToTop from '@/ui/common/BackToTop';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import { Provider } from 'react-redux';

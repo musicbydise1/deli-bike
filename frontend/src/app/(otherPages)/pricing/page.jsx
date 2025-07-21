@@ -1,6 +1,6 @@
-import Footer1 from '@/components/footers/Footer1';
-import Header1 from '@/components/headers/Header1';
-import Pricing from '@/components/homes/home-6/Pricing';
+import Footer1 from '@/widgets/footers/Footer1';
+import Header1 from '@/widgets/headers/Header1';
+import Pricing from '@/widgets/homes/home-6/Pricing';
 
 import React from 'react';
 

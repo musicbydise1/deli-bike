@@ -4,7 +4,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/shared/*": ["./src/shared/*"],
-      "@/components/*": ["./src/shared/components/*"],
+      "@/ui/*": ["./src/shared/ui/*"],
       "@/context/*": ["./src/shared/context/*"],
       "@/data/*": ["./src/shared/data/*"],
       "@/store/*": ["./src/shared/store/*"],

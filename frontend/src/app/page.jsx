@@ -1,5 +1,5 @@
 import Home from './(homes)/home-6/page';
-import CookieBanner from '@/components/ui/banner/CookieBanner';
+import CookieBanner from '@/ui/ui/banner/CookieBanner';
 
 export const metadata = {
   title: 'DeliBike',
