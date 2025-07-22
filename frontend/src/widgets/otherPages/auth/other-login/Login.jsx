@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Button from '@/ui/button/Button';
+import { Button } from '@mantine/core';
 import Link from 'next/link';
 import { AiOutlineLoading } from 'react-icons/ai';
 import '../../../../../public/css/pages/login/Login.css';
@@ -72,6 +72,7 @@ export default function CorporateLogin() {
                   variant="primary"
                   type="submit"
                   disabled={isLoading}
+                  color="#ff5500"
                 >
                   {isLoading ? <AiOutlineLoading className="animate-spin" /> : 'Войти'}
                 </Button>

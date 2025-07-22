@@ -13,15 +13,21 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Menu, Group, UnstyledButton, Text, Box, Flex } from '@mantine/core';
+import { FaChevronDown } from 'react-icons/fa';
+import styles from './Nav.module.css';
 
 export default function Nav() {
   const { t } = useTranslation();
   const pathname = usePathname();
   const [isClient, setIsClient] = useState(false);
+  const [aboutMenuOpened, setAboutMenuOpened] = useState(false);
+  const [cooperationMenuOpened, setCooperationMenuOpened] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
   const isMenuActive = menuItem => {
     let active = false;
     if (menuItem.href?.includes('/')) {
@@ -62,81 +68,112 @@ export default function Nav() {
   };
 
   return (
-    <>
-      {/*<li className="current-dropdown current">*/}
-      {/*    <Link*/}
-      {/*        className={pathname == "/" ? "menuActive" : ""}*/}
-      {/*        href={`/`}*/}
-      {/*    >*/}
-      {/*        Главная*/}
-      {/*    </Link>*/}
-      {/*</li>*/}
-      <li className="current-dropdown">
-        <span className={isMenuActive(AboutLinks) ? 'menuActive' : ''}>
-          {isClient ? t('menu.about') : 'О нас'} <i className="fa-solid fa-angle-down" />
-        </span>
-        <ul className="dropdown">
+    <Group className={styles.navList}>
+      {/* About Menu */}
+      <Menu
+        opened={aboutMenuOpened}
+        onOpen={() => setAboutMenuOpened(true)}
+        onClose={() => setAboutMenuOpened(false)}
+        position="bottom-start"
+        offset={5}
+        withArrow
+        arrowPosition="center"
+        withinPortal={false}
+      >
+        <Menu.Target>
+          <UnstyledButton
+            className={`${styles.menuItem} ${isMenuActive(AboutLinks) ? styles.menuActive : ''} ${aboutMenuOpened ? styles.dropdownOpen : ''}`}
+          >
+            <Flex className={styles.dropdownTrigger}>
+              <Text className={styles.dropdownMainText}>
+                {isClient ? t('menu.about') : 'О нас'}
+              </Text>
+              <FaChevronDown className={styles.dropdownIcon} />
+            </Flex>
+          </UnstyledButton>
+        </Menu.Target>
+
+        <Menu.Dropdown className={styles.dropdownMenu}>
           {AboutLinks.map((link, index) => (
-            <li key={index}>
-              <Link className={isMenuActive(link) ? 'menuActive' : ''} href={link.href}>
-                {link.label}
-              </Link>
-            </li>
+            <Menu.Item
+              key={index}
+              component={Link}
+              href={link.href}
+              className={`${styles.dropdownItem} ${isMenuActive(link) ? styles.menuActive : ''}`}
+            >
+              {link.label}
+            </Menu.Item>
           ))}
-        </ul>
-      </li>
+        </Menu.Dropdown>
+      </Menu>
 
-      <li className="current-dropdown">
-        <span className={isMenuActive(CatalogueLinks) ? 'menuActive' : ''}>
-          {isClient ? t('menu.cooperation') : 'Сотрудничество'}{' '}
-          <i className="fa-solid fa-angle-down" />
-        </span>
-        <ul className="dropdown">
+      {/* Cooperation Menu */}
+      <Menu
+        opened={cooperationMenuOpened}
+        onOpen={() => setCooperationMenuOpened(true)}
+        onClose={() => setCooperationMenuOpened(false)}
+        position="bottom-start"
+        offset={5}
+        withArrow
+        arrowPosition="center"
+        withinPortal={false}
+      >
+        <Menu.Target>
+          <UnstyledButton
+            className={`${styles.menuItem} ${isMenuActive(CatalogueLinks) ? styles.menuActive : ''} ${cooperationMenuOpened ? styles.dropdownOpen : ''}`}
+          >
+            <Flex className={styles.dropdownTrigger}>
+              <Text className={styles.dropdownMainText}>
+                {isClient ? t('menu.cooperation') : 'Сотрудничество'}
+              </Text>
+              <FaChevronDown className={styles.dropdownIcon} />
+            </Flex>
+          </UnstyledButton>
+        </Menu.Target>
+
+        <Menu.Dropdown className={styles.dropdownMenu}>
           {CatalogueLinks.map((link, index) => (
-            <li key={index}>
-              <Link className={isMenuActive(link) ? 'menuActive' : ''} href={link.href}>
-                {link.label}
-              </Link>
-            </li>
+            <Menu.Item
+              key={index}
+              component={Link}
+              href={link.href}
+              className={`${styles.dropdownItem} ${isMenuActive(link) ? styles.menuActive : ''}`}
+            >
+              {link.label}
+            </Menu.Item>
           ))}
-        </ul>
-      </li>
+        </Menu.Dropdown>
+      </Menu>
 
-      {/*<li className="current-dropdown">*/}
-      {/*    <Link*/}
-      {/*        className={pathname == "/blog-list-01" ? "menuActive" : ""}*/}
-      {/*        href={`/blog-list-02`}*/}
-      {/*    >*/}
-      {/*        Новости*/}
-      {/*    </Link>*/}
-      {/*</li>*/}
-
-      {/*<li className="current-dropdown">*/}
-      {/*    <Link*/}
-      {/*        className={pathname == "/blog-list-01" ? "menuActive" : ""}*/}
-      {/*        href={`/#`}*/}
-      {/*    >*/}
-      {/*        Вопрос-Ответы*/}
-      {/*    </Link>*/}
-      {/*</li>*/}
-
-      <li className="current-dropdown">
-        <Link className={pathname == '/contact' ? 'menuActive' : ''} href={`/contact`}>
+      {/* Contacts Link */}
+      <Box className={styles.menuItem}>
+        <Link
+          href="/contact"
+          className={`${styles.link} ${pathname === '/contact' ? styles.menuActive : ''}`}
+        >
           {isClient ? t('menu.contacts') : 'Контакты'}
         </Link>
-      </li>
+      </Box>
 
-      <li className="current-dropdown">
-        <Link className={pathname == '/reviews' ? 'menuActive' : ''} href={`/#reviews`}>
+      {/* Reviews Link */}
+      <Box className={styles.menuItem}>
+        <Link
+          href="/#reviews"
+          className={`${styles.link} ${pathname === '/reviews' ? styles.menuActive : ''}`}
+        >
           {isClient ? t('menu.reviews') : 'Отзывы'}
         </Link>
-      </li>
+      </Box>
 
-      <li className="current-dropdown">
-        <Link className={pathname == '/vacancy' ? 'menuActive' : ''} href={`/vacancy`}>
+      {/* Vacancies Link */}
+      <Box className={styles.menuItem}>
+        <Link
+          href="/vacancy"
+          className={`${styles.link} ${pathname === '/vacancy' ? styles.menuActive : ''}`}
+        >
           {isClient ? t('menu.vacancies') : 'Вакансии'}
         </Link>
-      </li>
-    </>
+      </Box>
+    </Group>
   );
 }

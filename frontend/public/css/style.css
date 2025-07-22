@@ -32,7 +32,7 @@ License: copyright commercial
 26. Main Footer
 **********************************************/
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,87.5,100..900;1,87.5,100..900&display=swap');
+/* Font is loaded by Next.js in layout.jsx */
 @import url("animate.css");
 @import url("owl.css");
 @import url("jquery.fancybox.min.css");
@@ -59,9 +59,9 @@ License: copyright commercial
   --headings-color: #242424;
   --link-color: var(--headings-color);
   --link-hover-color: var(--headings-color);
-  --title-font: "Roboto", serif;
-  --text-font: "Roboto", serif;
-  --title-font2: "Roboto", serif;
+  --title-font: var(--font-jost, "Jost", sans-serif);
+  --text-font: var(--font-jost, "Jost", sans-serif);
+  --title-font2: var(--font-jost, "Jost", sans-serif);
   --body-font-size: 16px;
   --body-line-height: 28px;
   --body-font-weight: 400;
@@ -6086,6 +6086,7 @@ Section Title
 ***/
 .boxcar-banner-section-six {
   position: relative;
+  padding-top: 80px;
 }
 
 .boxcar-banner-section-six .content-column .inner-column {
@@ -13552,7 +13553,7 @@ Section Title
 
 .order_complete_message .list_last_content .para {
   color: #000000;
-  font-family: Jost;
+  font-family: var(--text-font);
   font-size: 15px;
   font-weight: 500;
   line-height: 22px;
@@ -31355,4 +31356,3 @@ svg {
 .deli-phone-img {
   margin-top: 15px;
 }
-

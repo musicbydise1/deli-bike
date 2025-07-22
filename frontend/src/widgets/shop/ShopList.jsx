@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import SelectComponent from '../common/SelectComponent';
+import SelectComponent from '@/shared/ui/common/SelectComponent';
 import { products } from '@/data/products';
 import { useCart } from '@/context/CartContext';
-import Pagination from '../common/Pagination';
+import Pagination from '@/shared/ui/common/Pagination';
 import Slider from 'rc-slider';
 export default function ShopList() {
   const { addProductToCart, isAddedToCartProducts } = useCart();

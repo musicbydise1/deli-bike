@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { BiTrashAlt } from 'react-icons/bi';
 import { AiOutlineLoading } from 'react-icons/ai';
-import Button from '@/ui/button/Button';
+import { Button } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 
 export default function Cart() {
@@ -129,7 +129,7 @@ export default function Cart() {
                   <div className="col-6">{t('cart.emptyMessage')}</div>
                   <div className="col-12 mt-4">
                     <Link href="/bikes">
-                      <Button>{t('cart.shopNow')}</Button>
+                      <Button color="#ff5500">{t('cart.shopNow')}</Button>
                     </Link>
                   </div>
                 </div>
@@ -156,7 +156,7 @@ export default function Cart() {
 
                 <Button
                   className="!ml-0 w-full mt-4"
-                  variant="primary"
+                  color="#ff5500"
                   onClick={handleProceed}
                   disabled={isProceedLoading}
                 >

@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { vacancies } from '@/data/vacancies';
 import Link from 'next/link';
-import Pagination from '../common/Pagination';
+import Pagination from '@/shared/ui/common/Pagination';
 export default function Dealer() {
   return (
     <section className="dealer-ship-section layout-radius">

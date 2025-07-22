@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useCallback, useEffect, useState } from 'react';
-import Button from '@/shared/ui/ui/button/Button';
+// import Button from '@/shared/ui/ui/button/Button';
+import { Button, Flex } from '@mantine/core';
 import Image from 'next/image';
 import { useTranslation, Trans } from 'react-i18next';
 import Modal from '@/widgets/homes/home-6/Modal';
@@ -90,20 +91,24 @@ export default function Hero() {
                     )}
                   </span>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full hero-btn-box">
+                <Flex
+                  direction={{ base: 'column', sm: 'row' }}
+                  align={{ sm: 'center' }}
+                  gap="md"
+                  w="100%"
+                  className="hero-btn-box"
+                >
                   <Link href="/#bikes">
-                    <Button className="!ml-0 w-full sm:w-auto" variant="primary">
+                    <Button variant="filled" color="#ff5500" style={{ textTransform: 'uppercase' }}>
                       {isClient ? t('home.hero.rent_bike') : 'Арендовать электровелосипеды'}
                     </Button>
                   </Link>
-                  <Button
-                    className="w-full sm:w-auto !ml-0"
-                    variant="primary-outline"
-                    onClick={toggleModal}
-                  >
+
+                  <Button variant="outline" color="#ff5500" style={{ textTransform: 'uppercase' }} onClick={toggleModal}>
                     {isClient ? t('home.hero.get_consultation') : 'Получить консультацию'}
                   </Button>
-                </div>
+                </Flex>
+
                 <div className="right-box wow fadeInUp" data-wow-delay="100ms">
                   <ul className="service-list">
                     <ServiceItem title={isClient ? t('home.hero.in_city_title') : 'Скорость'}>

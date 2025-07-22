@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Button from '@/ui/button/Button';
+import { Button, Stack } from '@mantine/core';
 import InputMask from 'react-input-mask';
 import { AiOutlineCheckCircle, AiOutlineLoading } from 'react-icons/ai';
+import { ORANGE_COLOR } from '@/app/theme/colors';
 
 export default function PhoneStep({ phone, setPhone, handlePhoneSubmit }) {
   // Подсчитываем только цифры (включая введённую '7')
@@ -72,24 +73,28 @@ export default function PhoneStep({ phone, setPhone, handlePhoneSubmit }) {
           )}
         </div>
 
-        <div className="form-submit">
-          {/* Кнопка неактивна, пока номер не заполнен или идёт загрузка */}
+        <Stack gap="sm" className="form-submit">
+          {/* Кнопка неактивна, пока номер не введён или идёт запрос */}
           <Button
-            className="w-full !ml-0"
-            variant="primary"
             type="submit"
+            variant="filled"
+            color={ORANGE_COLOR} // либо "primary", если цвет описан в теме
+            fullWidth // эквивалент w-full
             disabled={!isPhoneFilled || isLoading}
+            loading={isLoading} // Mantine сам отрисует индикатор загрузки
           >
-            {isLoading ? <AiOutlineLoading className="animate-spin text-xl" /> : 'Получить код'}
+            Получить код
           </Button>
+
           <Button
-            className="w-full !ml-0 mt-4"
-            variant="secondary"
+            variant="light"
+            color={ORANGE_COLOR}
+            fullWidth
             onClick={() => window.open('https://t.me/DeliBikeBot', '_blank')}
           >
             Привязать Telegram
           </Button>
-        </div>
+        </Stack>
 
         <div className="politic-privacy">
           <p>

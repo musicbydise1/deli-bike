@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { teamMembers4 } from '@/data/team';
-import Pagination from '../common/Pagination';
+import Pagination from '@/shared/ui/common/Pagination';
 export default function TeamList() {
   return (
     <section className="boxcar-team-section v1 layout-radius">

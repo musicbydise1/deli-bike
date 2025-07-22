@@ -8,14 +8,25 @@ import { FaChevronDown, FaUser } from 'react-icons/fa';
 import { HiOutlineLogout, HiOutlineMenuAlt3, HiOutlineShoppingBag } from 'react-icons/hi';
 import { MdSettings } from 'react-icons/md';
 import { IoGridSharp } from 'react-icons/io5';
-import Button from '@/shared/ui/ui/button/Button';
-import '../../../public/css/pages/header/Header.css';
 import { CgShoppingCart } from 'react-icons/cg';
 import { FaArrowRightToBracket } from 'react-icons/fa6';
 import { useUser } from '@/context/UserContext';
 import { useCart } from '@/context/CartContext';
 import { useRouter } from 'next/navigation';
 import { flushSync } from 'react-dom';
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Group,
+  Menu,
+  Text,
+  UnstyledButton,
+  rem,
+} from '@mantine/core';
+import { ORANGE_COLOR } from '@/app/theme/colors';
+import styles from './Header6.module.css';
 
 export default function Header6({ white = false }) {
   const [userRoleCookie, setUserRoleCookie] = useState('courier');
@@ -189,241 +200,225 @@ export default function Header6({ white = false }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isScrolled]);
 
+  // No need for classes and cx with the new styling approach
+
   return (
-    <header className={`boxcar-header header-style-v9 ${isScrolled ? 'fixed-header' : ''}`}>
-      <div className="header-inner">
-        <div className="inner-container">
-          {/* Main box */}
-          <div className="c-box">
-            <div className="logo st-logo">
-              <Link href={`/`}>
-                {isScrolled ? (
-                  <div>
+    <Box
+      component="header"
+      h={80}
+      className={`${styles.header} ${isScrolled ? styles.fixedHeader : ''}`}
+    >
+      <Container size="xl" className={styles.container}>
+        {/* Logo and Navigation */}
+        <Flex align="center">
+          <Box className={styles.logo}>
+            <Link href="/">
+              <Flex direction="column" align="center">
+                <Image
+                  alt="Logo"
+                  title="DeliBike"
+                  src="/images/logo-deli2.svg"
+                  width={111}
+                  height={48}
+                />
+                <Box className={styles.logoTextContainer}>
+                  <Text className={styles.logoText}>Скорость</Text>
+                  <Text className={styles.logoText}>Свобода</Text>
+                  <Text className={styles.logoText}>Стиль</Text>
+                </Box>
+              </Flex>
+            </Link>
+          </Box>
+
+          <Box ml="xl" className={styles.desktopNav}>
+            <Box component="nav">
+              <Nav />
+            </Box>
+          </Box>
+        </Flex>
+
+        {/* Right Side Controls */}
+        <Group>
+          {/* Location Switcher */}
+          <Box className={styles.dropdown}>
+            <Menu
+              opened={isLocationDropdownOpen}
+              onOpen={() => setIsLocationDropdownOpen(true)}
+              onClose={() => setIsLocationDropdownOpen(false)}
+              position="bottom-end"
+              withinPortal={false}
+            >
+              <Menu.Target>
+                <UnstyledButton className={styles.flagButton}>
+                  <Image
+                    src={
+                      location === 'kz' ? '/images/kazakhstan-flag.svg' : '/images/belarus-flag.svg'
+                    }
+                    alt={location === 'kz' ? 'Flag of Kazakhstan' : 'Flag of Belarus'}
+                    width={18}
+                    height={13}
+                    className={`${styles.autoSize} ${styles.flagIcon}`}
+                  />
+                  <FaChevronDown className={styles.arrowIcon} />
+                </UnstyledButton>
+              </Menu.Target>
+
+              <Menu.Dropdown className={styles.dropdownMenu}>
+                <Menu.Item onClick={() => handleLocationChange('kz')}>
+                  <Group>
                     <Image
-                      alt="Logo"
-                      title="DeliBike"
-                      src="/images/logo-deli2.svg"
-                      width={111}
-                      height={48}
+                      src="/images/kazakhstan-flag.svg"
+                      alt="Kazakhstan"
+                      width={18}
+                      height={13}
+                      className={styles.autoSize}
                     />
-                    <div style={{ lineHeight: '5px' }}>
-                      <span className="logo-text white-text">Скорость</span>
-                      <span className="logo-text white-text">Свобода</span>
-                      <span className="logo-text white-text">Стиль</span>
-                    </div>
-                  </div>
-                ) : (
-                  <div>
+                    <Text>Казахстан</Text>
+                  </Group>
+                </Menu.Item>
+                <Menu.Item onClick={() => handleLocationChange('by')}>
+                  <Group>
                     <Image
-                      alt="Logo"
-                      title="DeliBike"
-                      src="/images/logo-deli2.svg"
-                      width={111}
-                      height={48}
+                      src="/images/belarus-flag.svg"
+                      alt="Belarus"
+                      width={18}
+                      height={13}
+                      className={styles.autoSize}
                     />
-                    <div style={{ lineHeight: '5px' }}>
-                      <span className="logo-text white-text">Скорость</span>
-                      <span className="logo-text white-text">Свобода</span>
-                      <span className="logo-text white-text">Стиль</span>
-                    </div>
-                  </div>
-                )}
-              </Link>
-              <div className="nav-out-bar">
-                <nav className="nav main-menu">
-                  <ul className="navigation mt-3" id="navbar">
-                    <Nav />
-                  </ul>
-                </nav>
-              </div>
-            </div>
-            {/* Nav Box */}
-            <div className="nav-box">
-              <div className="right-box">
-                {/* Location Switcher */}
-                <div className="location-switcher mt-2">
-                  <div className="dropdown">
-                    <button
-                      className="dropdown-togglee location-button"
-                      onClick={toggleLocationDropdown}
-                    >
-                      <Image
-                        src={
-                          location === 'kz'
-                            ? '/images/kazakhstan-flag.svg'
-                            : '/images/belarus-flag.svg'
-                        }
-                        alt={location === 'kz' ? 'Flag of Kazakhstan' : 'Flag of Belarus'}
-                        width={18}
-                        height={13}
-                        style={{ width: 'auto', height: 'auto' }}
-                        className="flag-icon"
-                      />
-                      <FaChevronDown className="arrow-icon" />
-                    </button>
-                    {isLocationDropdownOpen && (
-                      <div className="dropdown-menuu">
-                        <button onClick={() => handleLocationChange('kz')}>
-                          <Image
-                            src="/images/kazakhstan-flag.svg"
-                            alt="Kazakhstan"
-                            width={18}
-                            height={13}
-                            style={{ width: 'auto', height: 'auto' }}
-                            className="flag-icon"
-                          />
-                          <span className="country-name">Казахстан</span>
-                        </button>
-                        <button onClick={() => handleLocationChange('by')}>
-                          <Image
-                            src="/images/belarus-flag.svg"
-                            alt="Belarus"
-                            width={18}
-                            height={13}
-                            style={{ width: 'auto', height: 'auto' }}
-                            className="flag-icon"
-                          />
-                          <span className="country-name">Беларусь</span>
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
+                    <Text>Беларусь</Text>
+                  </Group>
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
+          </Box>
 
-                {/* Language Switcher */}
-                <div className="language-switcher mt-2">
-                  <div className="dropdown">
-                    <button
-                      className="dropdown-togglee language-button"
-                      onClick={toggleLanguageDropdown}
-                    >
-                      {i18n.language.toUpperCase()} <FaChevronDown className="arrow-icon" />
-                    </button>
-                    {isLanguageDropdownOpen && (
-                      <div className="dropdown-menuu">
-                        <button onClick={() => changeLanguage('kz')}>Қазақша</button>
-                        <button onClick={() => changeLanguage('ru')}>Русский</button>
-                      </div>
-                    )}
-                  </div>
-                </div>
+          {/* Language Switcher */}
+          <Box className={styles.dropdown}>
+            <Menu
+              opened={isLanguageDropdownOpen}
+              onOpen={() => setIsLanguageDropdownOpen(true)}
+              onClose={() => setIsLanguageDropdownOpen(false)}
+              position="bottom-end"
+              withinPortal={false}
+            >
+              <Menu.Target>
+                <UnstyledButton className={styles.flagButton}>
+                  <Text color="white">{i18n.language.toUpperCase()}</Text>
+                  <FaChevronDown className={styles.arrowIcon} />
+                </UnstyledButton>
+              </Menu.Target>
 
-                {hasAccessToken ? (
-                  <ul className="user-actions">
-                    {/* Корзина */}
-                    <li>
-                      <Link href="/cart" className="icon-link" style={{ position: 'relative' }}>
-                        <CgShoppingCart
-                          className="cart-icon"
-                          size={20}
-                          style={{ color: '#fff', marginTop: '5px', marginLeft: '10px' }}
-                        />
-                        {cartQuantity > 0 && <span className="cart-badge">{cartQuantity}</span>}
-                      </Link>
-                    </li>
+              <Menu.Dropdown className={styles.dropdownMenu}>
+                <Menu.Item onClick={() => changeLanguage('kz')}>Қазақша</Menu.Item>
+                <Menu.Item onClick={() => changeLanguage('ru')}>Русский</Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
+          </Box>
 
-                    {/* Личный кабинет */}
-                    <li className="user-menu">
+          {/* User Actions */}
+          {hasAccessToken ? (
+            <Group spacing="md">
+              {/* Cart */}
+              <Box className={styles.relativePosition}>
+                <Link href="/cart">
+                  <UnstyledButton className={styles.cartIcon}>
+                    <CgShoppingCart size={20} />
+                    {cartQuantity > 0 && <Box className={styles.cartBadge}>{cartQuantity}</Box>}
+                  </UnstyledButton>
+                </Link>
+              </Box>
+
+              {/* User Menu */}
+              <Box className={styles.userMenu}>
+                <Menu
+                  opened={isProfileMenuOpen}
+                  onOpen={() => setIsProfileMenuOpen(true)}
+                  onClose={() => setIsProfileMenuOpen(false)}
+                  position="bottom-end"
+                  withinPortal={false}
+                >
+                  <Menu.Target>
+                    <Group spacing="xs">
                       {userData && (
-                        <div className="user-info">
+                        <Text className={styles.userInfo}>
                           {userData.firstName
                             ? `${userData.firstName} ${userData.lastName ? userData.lastName[0] + '.' : ''}`
                             : 'Имя пользователя'}
-                        </div>
+                        </Text>
                       )}
-                      <button className="user-icon" onClick={toggleProfileMenu}>
-                        <FaUser size={18} style={{ color: '#fff' }} />
-                      </button>
-                      {isProfileMenuOpen && (
-                        <ul className="user-menu-dropdown">
-                          <li>
-                            <Link href="/dashboard" onClick={() => setIsProfileMenuOpen(false)}>
-                              <IoGridSharp size={15} style={{ marginRight: '10px' }} />
-                              {isClient ? t('dashboard') : 'Личный кабинет'}
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="/dashboard" onClick={() => setIsProfileMenuOpen(false)}>
-                              <HiOutlineShoppingBag size={20} style={{ marginRight: '10px' }} />
-                              {isClient ? t('my_orders') : 'Аренда'}
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="/dashboard" onClick={() => setIsProfileMenuOpen(false)}>
-                              <MdSettings size={20} style={{ marginRight: '10px' }} />
-                              {isClient ? t('profile') : 'Профиль'}
-                            </Link>
-                          </li>
-                          <li>
-                            <button onClick={handleLogout} className="text-center">
-                              <HiOutlineLogout size={20} style={{ marginRight: '10px' }} />
-                              {isClient ? t('logout') : 'Выйти'}
-                            </button>
-                          </li>
-                        </ul>
-                      )}
-                    </li>
-                  </ul>
-                ) : (
-                  <ul>
-                    <li>
-                      <Button variant="primary" onClick={toggleUserRole}>
-                        {isClient
-                          ? userRoleCookie === 'courier'
-                            ? t('for_corporate')
-                            : t('for_courier')
-                          : userRoleCookie === 'courier'
-                            ? 'Для Юр.лиц'
-                            : 'Для Курьеров'}{' '}
-                        <FaArrowRightToBracket className="ml-2" />
-                      </Button>
-                      <Link href={userRoleCookie === 'courier' ? '/login' : '/other-login'}>
-                        <Button variant="primary-outline">
-                          {isClient ? t('login') : 'Личный кабинет'}
-                        </Button>
-                      </Link>
-                    </li>
-                  </ul>
-                )}
-              </div>
-            </div>
-            <div className="mobile-box">
-              <div className="right-box">
-                <div className="mobile-navigation">
-                  <a href="#nav-mobile" title="">
-                    <HiOutlineMenuAlt3 className="menu-burger-icon" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Mobile Menu  */}
-        </div>
-        <div className="search-popup">
-          <span className="search-back-drop" />
-          <button className="close-search">
-            <span className="fa fa-times" />
-          </button>
-          <div className="search-inner">
-            <form onSubmit={e => e.preventDefault()} method="post">
-              <div className="form-group">
-                <input
-                  type="search"
-                  name="search-field"
-                  defaultValue=""
-                  placeholder={t('search.placeholder')}
-                  required
-                />
-                <button type="submit">
-                  <i className="fa fa-search" />
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-        {/* End Header Search */}
-        <div id="nav-mobile" />
-      </div>
-    </header>
+                      <UnstyledButton>
+                        <FaUser size={18} color="white" />
+                      </UnstyledButton>
+                    </Group>
+                  </Menu.Target>
+
+                  <Menu.Dropdown className={styles.dropdownMenu}>
+                    <Menu.Item
+                      component={Link}
+                      href="/dashboard"
+                      onClick={() => setIsProfileMenuOpen(false)}
+                      icon={<IoGridSharp size={15} />}
+                    >
+                      {isClient ? t('dashboard') : 'Личный кабинет'}
+                    </Menu.Item>
+                    <Menu.Item
+                      component={Link}
+                      href="/dashboard"
+                      onClick={() => setIsProfileMenuOpen(false)}
+                      icon={<HiOutlineShoppingBag size={20} />}
+                    >
+                      {isClient ? t('my_orders') : 'Аренда'}
+                    </Menu.Item>
+                    <Menu.Item
+                      component={Link}
+                      href="/dashboard"
+                      onClick={() => setIsProfileMenuOpen(false)}
+                      icon={<MdSettings size={20} />}
+                    >
+                      {isClient ? t('profile') : 'Профиль'}
+                    </Menu.Item>
+                    <Menu.Item onClick={handleLogout} icon={<HiOutlineLogout size={20} />}>
+                      {isClient ? t('logout') : 'Выйти'}
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
+              </Box>
+            </Group>
+          ) : (
+            <Group>
+              <Button size="sm" variant="filled" color="#ff5500" onClick={toggleUserRole}>
+                {isClient
+                  ? userRoleCookie === 'courier'
+                    ? t('for_corporate')
+                    : t('for_courier')
+                  : userRoleCookie === 'courier'
+                    ? 'Для Юр.лиц'
+                    : 'Для Курьеров'}{' '}
+                <FaArrowRightToBracket className={styles.iconMarginLeft} />
+              </Button>
+              <Button
+                component={Link}
+                href={userRoleCookie === 'courier' ? '/login' : '/other-login'}
+                variant="outline"
+                color="#ff5500"
+                size="sm"
+              >
+                {isClient ? t('login') : 'Личный кабинет'}
+              </Button>
+            </Group>
+          )}
+
+          {/* Mobile Menu Button */}
+          <Box className={styles.mobileMenu}>
+            <UnstyledButton component="a" href="#nav-mobile">
+              <HiOutlineMenuAlt3 size={24} color="white" />
+            </UnstyledButton>
+          </Box>
+        </Group>
+      </Container>
+
+      {/* Mobile Menu Container */}
+      <Box id="nav-mobile" />
+    </Box>
   );
 }

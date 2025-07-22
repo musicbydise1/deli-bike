@@ -1,8 +1,8 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import Image from 'next/image';
-import SelectComponent from '../common/SelectComponent';
-import Pagination from '../common/Pagination';
+import SelectComponent from '@/shared/ui/common/SelectComponent';
+import Pagination from '@/shared/ui/common/Pagination';
 const cartItems = [
   {
     productImage: '/images/resource/add-car1.jpg',

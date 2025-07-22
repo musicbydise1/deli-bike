@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
 import FilterSidebar from '@/ui/common/FilterSidebar';
 import '@public/main.scss';
 import 'photoswipe/dist/photoswipe.css';
@@ -13,24 +14,14 @@ import i18n from './i18n';
 import { Provider } from 'react-redux';
 import { store } from '@/store/store';
 
-import { Roboto } from 'next/font/google';
-
-const roboto = Roboto({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['100', '300', '400', '500', '700', '900'],
-  style: ['normal', 'italic'],
-  display: 'swap',
-});
+// Import theme configuration
+import { jost, theme } from './theme';
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={roboto.className}>
+    <html lang="en" className={`${jost.className} ${jost.variable}`}>
       <body>
-        <MantineProvider
-          withGlobalStyles
-          withNormalizeCSS
-          theme={{ fontFamily: roboto.style.fontFamily }}
-        >
+        <MantineProvider theme={theme}>
           <Provider store={store}>
             <I18nextProvider i18n={i18n}>
               <RootContext>

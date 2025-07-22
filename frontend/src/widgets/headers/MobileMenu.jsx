@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaArrowRightToBracket } from 'react-icons/fa6';
-import Button from '@/shared/ui/ui/button/Button';
+import { Button } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { FaChevronDown } from 'react-icons/fa';
 import Image from 'next/image';
@@ -243,7 +243,7 @@ export default function MobileMenu() {
                   </Link>
                 </li>
               </ul>
-              <Button variant="primary" className="ml-0 w-full" onClick={toggleUserRole}>
+              <Button color="#ff5500" className="ml-0 w-full" onClick={toggleUserRole}>
                 {isClient
                   ? userRole === 'courier'
                     ? t('for_corporate')
@@ -255,7 +255,7 @@ export default function MobileMenu() {
               </Button>
               <div className="mt-3">
                 <Link href={userRole === 'courier' ? '/login' : '/other-login'}>
-                  <Button className="ml-0 w-full" variant="primary-outline">
+                  <Button className="ml-0 w-full" variant="outline" color="#ff5500">
                     {isClient ? t('login') : 'Личный кабинет'}
                   </Button>
                 </Link>

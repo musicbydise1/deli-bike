@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import SelectComponent from '../common/SelectComponent';
+import SelectComponent from '@/shared/ui/common/SelectComponent';
 import Image from 'next/image';
 import Slider from 'rc-slider';
 export default function Sidebar() {

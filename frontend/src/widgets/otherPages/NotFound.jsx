@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from '@/shared/ui/ui/button/Button';
+import { Button } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 export default function NotFound() {
   const { t } = useTranslation();
@@ -16,7 +16,7 @@ export default function NotFound() {
               <h2>{t('notFound.title')}</h2>
               <div className="text">{t('notFound.description')}</div>
               <Link href={`/`} className="">
-                <Button>{t('notFound.back_home')}</Button>
+                <Button color="#ff5500">{t('notFound.back_home')}</Button>
               </Link>
             </div>
           </div>

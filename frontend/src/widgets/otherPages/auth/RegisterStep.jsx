@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '@/ui/button/Button';
+import { Button } from '@mantine/core';
 import Link from 'next/link';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 
@@ -155,7 +155,7 @@ export default function RegisterStep({ registerData, setRegisterData, handleRegi
             <div className="form-submit">
               <Button
                 className="w-full !ml-0"
-                variant="primary"
+                color="#ff5500"
                 type="submit"
                 disabled={!isStep1Valid}
               >
@@ -265,12 +265,12 @@ export default function RegisterStep({ registerData, setRegisterData, handleRegi
             </div>
 
             <div className="form_submit_buttons" style={{ display: 'flex', gap: '1rem' }}>
-              <Button className="w-full !ml-0" variant="secondary" onClick={handleBack}>
+              <Button className="w-full !ml-0" variant="outline" color="#ff5500" onClick={handleBack}>
                 Назад
               </Button>
               <Button
                 className="w-full !ml-0"
-                variant="primary"
+                color="#ff5500"
                 type="submit"
                 disabled={!isStep2Valid}
               >

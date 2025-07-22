@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import SelectComponent from '../common/SelectComponent';
+import SelectComponent from '@/shared/ui/common/SelectComponent';
 import { useTranslation } from 'react-i18next';
 export default function DropdownFilter() {
   const { t } = useTranslation();

@@ -1,13 +1,13 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import SelectComponent from '../common/SelectComponent';
-import Pagination from '../common/Pagination';
+import SelectComponent from '@/shared/ui/common/SelectComponent';
+import Pagination from '@/shared/ui/common/Pagination';
 import Slider from 'react-slick';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { AiOutlineLoading } from 'react-icons/ai';
-import Button from '@/ui/button/Button';
+import Button from '@/shared/ui/ui/button/Button';
 // Импортируем контекст корзины
 import { useCart } from '@/context/CartContext';
 import { useGetBikesQuery } from '@/store/services/bikesApi';

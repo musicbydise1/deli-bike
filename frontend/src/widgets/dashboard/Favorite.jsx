@@ -3,7 +3,7 @@ import Sidebar from './Sidebar';
 import Image from 'next/image';
 import { cars } from '@/data/cars';
 import Link from 'next/link';
-import Pagination from '../common/Pagination';
+import Pagination from '@/shared/ui/common/Pagination';
 export default function Favorite() {
   return (
     <section className="dashboard-widget-two">
