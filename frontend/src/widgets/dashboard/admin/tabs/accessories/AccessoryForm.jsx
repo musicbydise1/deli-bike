@@ -10,10 +10,10 @@ import {
   MenuItem,
   OutlinedInput,
   Chip,
-  Button,
   InputAdornment,
   Typography,
 } from '@mui/material';
+import { Button } from '@mantine/core';
 
 export default function AccessoryForm({ currentAccessory, onChange, onSave, onCancel, bikes }) {
   const handleBikesChange = event => {
@@ -97,10 +97,10 @@ export default function AccessoryForm({ currentAccessory, onChange, onSave, onCa
       />
 
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1, pt: 1 }}>
-        <Button variant="outlined" size="small" onClick={onCancel}>
+        <Button variant="outline" size="sm" onClick={onCancel} color="#ff5500">
           Отмена
         </Button>
-        <Button type="submit" variant="contained" size="small">
+        <Button type="submit" variant="filled" size="sm" color="#ff5500">
           Сохранить
         </Button>
       </Box>

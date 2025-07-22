@@ -3,7 +3,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 import Modal from '../Modal';
 import { BikesTable } from './BikesTable';
 import { BikeForm } from './BikeForm';
-import { Box, Typography, Button, CircularProgress, Alert } from '@mui/material';
+import { Box, Typography, CircularProgress, Alert } from '@mui/material';
+import { Button } from '@mantine/core';
 
 const AVAILABLE_STATUSES = ['available', 'unavailable', 'in maintenance'];
 
@@ -215,7 +216,7 @@ export default function BikesTab() {
       </Typography>
 
       <Box sx={{ mb: 2 }}>
-        <Button variant="contained" color="success" onClick={handleAddBike}>
+        <Button variant="filled" color="#ff5500" onClick={handleAddBike}>
           Добавить велосипед
         </Button>
       </Box>

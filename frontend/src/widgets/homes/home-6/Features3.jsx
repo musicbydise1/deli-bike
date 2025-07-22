@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { Button } from '@mantine/core';
 
 export default function Features3() {
   return (
@@ -15,8 +16,9 @@ export default function Features3() {
         {/* Навигация по вкладкам */}
         <ul className="nav nav-tabs wow fadeInUp" id="myTab" role="tablist">
           <li className="nav-item" role="presentation">
-            <button
+            <Button
               className="nav-link active"
+              color="#ff5500"
               id="foot-tab"
               data-bs-toggle="tab"
               data-bs-target="#foot"
@@ -26,11 +28,12 @@ export default function Features3() {
               aria-selected="true"
             >
               Пешком
-            </button>
+            </Button>
           </li>
           <li className="nav-item" role="presentation">
-            <button
+            <Button
               className="nav-link"
+              color="#ff5500"
               id="moped-tab"
               data-bs-toggle="tab"
               data-bs-target="#moped"
@@ -40,11 +43,12 @@ export default function Features3() {
               aria-selected="false"
             >
               Мопед
-            </button>
+            </Button>
           </li>
           <li className="nav-item" role="presentation">
-            <button
+            <Button
               className="nav-link"
+              color="#ff5500"
               id="car-tab"
               data-bs-toggle="tab"
               data-bs-target="#car"
@@ -54,7 +58,7 @@ export default function Features3() {
               aria-selected="false"
             >
               Авто
-            </button>
+            </Button>
           </li>
         </ul>
 

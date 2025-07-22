@@ -4,7 +4,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 import Modal from '../Modal';
 import AccessoriesTable from './AccessoriesTable';
 import AccessoryForm from './AccessoryForm';
-import { Box, Typography, Button, CircularProgress } from '@mui/material';
+import { Box, Typography, CircularProgress } from '@mui/material';
+import { Button } from '@mantine/core';
 import Alert from '@mui/material/Alert';
 import { useGetBikesQuery } from '@/store/services/bikesApi';
 
@@ -145,7 +146,7 @@ export default function AccessoriesTab() {
         </Alert>
       )}
       <Box sx={{ mb: 2 }}>
-        <Button variant="contained" color="success" onClick={handleAddAccessory}>
+        <Button variant="filled" color="#ff5500" onClick={handleAddAccessory}>
           Добавить аксессуар
         </Button>
       </Box>

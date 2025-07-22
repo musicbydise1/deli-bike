@@ -1,6 +1,7 @@
 // components/Modal.js
 'use client';
 import { useEffect } from 'react';
+import { Button } from '@mantine/core';
 import styles from '../../../../public/css/pages/home/Modal.module.css';
 
 const Modal = ({ isOpen, onClose, children }) => {
@@ -21,9 +22,9 @@ const Modal = ({ isOpen, onClose, children }) => {
   return (
     <div className={`${styles.overlay} ${isOpen ? styles.show : ''}`} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={onClose}>
+        <Button className={styles.closeButton} onClick={onClose} variant="subtle" color="#ff5500">
           &times;
-        </button>
+        </Button>
         {children}
       </div>
     </div>

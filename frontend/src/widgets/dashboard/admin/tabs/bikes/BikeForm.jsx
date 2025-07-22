@@ -11,11 +11,11 @@ import {
   Select,
   MenuItem,
   Typography,
-  Button,
   Paper,
   Autocomplete,
   Chip,
 } from '@mui/material';
+import { Button } from '@mantine/core';
 
 export function BikeForm({
   currentBike,
@@ -182,17 +182,17 @@ export function BikeForm({
           <Typography color="textSecondary">Нет добавленных цен</Typography>
         )}
         <Box sx={{ mt: 1 }}>
-          <Button variant="contained" onClick={addPriceField} size="small">
+          <Button variant="filled" onClick={addPriceField} size="sm" color="#ff5500">
             Добавить цену
           </Button>
         </Box>
       </Paper>
 
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1, mt: 2 }}>
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="filled" color="#ff5500">
           {isEditMode ? 'Сохранить' : 'Добавить'}
         </Button>
-        <Button variant="outlined" onClick={onCancel} size="small">
+        <Button variant="outline" onClick={onCancel} size="sm" color="#ff5500">
           Отмена
         </Button>
       </Box>

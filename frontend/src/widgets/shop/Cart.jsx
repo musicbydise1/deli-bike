@@ -116,9 +116,15 @@ export default function Cart() {
                           </span>
                         </td>
                         <td>
-                          <button className="remove-cart-item" onClick={() => removeItem(item.id)}>
+                          <Button
+                            className="remove-cart-item"
+                            onClick={() => removeItem(item.id)}
+                            color="#ff5500"
+                            variant="subtle"
+                            size="compact-sm"
+                          >
                             <BiTrashAlt />
-                          </button>
+                          </Button>
                         </td>
                       </tr>
                     ))}

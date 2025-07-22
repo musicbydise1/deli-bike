@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
+import { Button } from '@mantine/core';
 import {
   carBrands,
   contactItems,
@@ -71,9 +72,13 @@ export default function Footer2() {
                       placeholder="Your e-mail address"
                       required
                     />
-                    <button type="button" className="theme-btn btn-style-one hover-light">
+                    <Button
+                      type="button"
+                      className="theme-btn btn-style-one hover-light"
+                      color="#ff5500"
+                    >
                       <span className="btn-title">Sign Up</span>
-                    </button>
+                    </Button>
                   </div>
                 </form>
               </div>
