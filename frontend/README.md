@@ -50,3 +50,9 @@ The frontend now follows the [Feature‑Sliced Design](https://feature-sliced.de
 - `src/widgets` – page-level widgets (currently empty).
 
 Existing imports continue to resolve through the `@` alias that points to `src/`.
+
+## UI Library
+
+The application now integrates [Mantine](https://mantine.dev/) as the main UI
+framework. `MantineProvider` is configured in `src/app/layout.jsx` with Roboto as
+the default font family.

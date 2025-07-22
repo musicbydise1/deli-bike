@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { MantineProvider } from '@mantine/core';
 import FilterSidebar from '@/ui/common/FilterSidebar';
 import '@public/main.scss';
 import 'photoswipe/dist/photoswipe.css';
@@ -25,16 +26,22 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={roboto.className}>
       <body>
-        <Provider store={store}>
-          <I18nextProvider i18n={i18n}>
-            <RootContext>
-              <MobileMenu />
-              <div className="boxcar-wrapper">{children}</div>
-              <FilterSidebar />
-            </RootContext>
-            <BackToTop />
-          </I18nextProvider>
-        </Provider>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{ fontFamily: roboto.style.fontFamily }}
+        >
+          <Provider store={store}>
+            <I18nextProvider i18n={i18n}>
+              <RootContext>
+                <MobileMenu />
+                <div className="boxcar-wrapper">{children}</div>
+                <FilterSidebar />
+              </RootContext>
+              <BackToTop />
+            </I18nextProvider>
+          </Provider>
+        </MantineProvider>
       </body>
     </html>
   );
