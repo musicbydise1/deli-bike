@@ -104,7 +104,12 @@ export default function Hero() {
                     </Button>
                   </Link>
 
-                  <Button variant="outline" color="#ff5500" style={{ textTransform: 'uppercase' }} onClick={toggleModal}>
+                  <Button
+                    variant="outline"
+                    color="#ff5500"
+                    style={{ textTransform: 'uppercase' }}
+                    onClick={toggleModal}
+                  >
                     {isClient ? t('home.hero.get_consultation') : 'Получить консультацию'}
                   </Button>
                 </Flex>

@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
-import { Box, Typography, Button, CircularProgress } from '@mui/material';
+import { Box, Typography, CircularProgress } from '@mui/material';
+import { Button } from '@mantine/core';
 import Alert from '@mui/material/Alert';
 import UsersTable from './users/UsersTable';
 import UserModal from './users/UserModal';
@@ -145,7 +146,7 @@ export default function UsersTab() {
       {error && <ErrorMessage errorMessage={error} />}
 
       <Box sx={{ mb: 2 }}>
-        <Button variant="contained" color="primary" onClick={handleAddUser}>
+        <Button variant="filled" color="#ff5500" onClick={handleAddUser}>
           Добавить пользователя
         </Button>
       </Box>

@@ -7,7 +7,6 @@ import {
   DialogContent,
   DialogActions,
   TextField,
-  Button,
   FormControl,
   InputLabel,
   Select,
@@ -15,6 +14,7 @@ import {
   Box,
   Typography,
 } from '@mui/material';
+import { Button } from '@mantine/core';
 
 export default function UserModal({
   isEditMode,
@@ -123,10 +123,10 @@ export default function UserModal({
           )}
         </DialogContent>
         <DialogActions sx={{ px: 3, py: 2 }}>
-          <Button onClick={onClose} variant="outlined" size="small">
+          <Button onClick={onClose} variant="outline" size="sm" color="#ff5500">
             Отмена
           </Button>
-          <Button type="submit" variant="contained" size="small">
+          <Button type="submit" variant="filled" size="sm" color="#ff5500">
             {isEditMode ? 'Сохранить' : 'Добавить'}
           </Button>
         </DialogActions>

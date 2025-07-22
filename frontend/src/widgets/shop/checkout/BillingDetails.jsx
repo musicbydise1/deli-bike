@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { FiEdit } from 'react-icons/fi';
 import { FaTimes } from 'react-icons/fa';
+import { Button } from '@mantine/core';
 
 export function BillingDetails({
   isEditing,
@@ -163,9 +164,15 @@ export function BillingDetails({
                 width={100}
                 height={100}
               />
-              <button type="button" onClick={() => onDeleteImage('idCardFrontImage')}>
+              <Button
+                type="button"
+                onClick={() => onDeleteImage('idCardFrontImage')}
+                color="#ff5500"
+                variant="subtle"
+                size="compact-sm"
+              >
                 <FaTimes title="Удалить фото" />
-              </button>
+              </Button>
             </div>
           )}
         </div>
@@ -187,9 +194,15 @@ export function BillingDetails({
                 width={100}
                 height={100}
               />
-              <button type="button" onClick={() => onDeleteImage('idCardBackImage')}>
+              <Button
+                type="button"
+                onClick={() => onDeleteImage('idCardBackImage')}
+                color="#ff5500"
+                variant="subtle"
+                size="compact-sm"
+              >
                 <FaTimes title="Удалить фото" />
-              </button>
+              </Button>
             </div>
           )}
         </div>

@@ -265,7 +265,12 @@ export default function RegisterStep({ registerData, setRegisterData, handleRegi
             </div>
 
             <div className="form_submit_buttons" style={{ display: 'flex', gap: '1rem' }}>
-              <Button className="w-full !ml-0" variant="outline" color="#ff5500" onClick={handleBack}>
+              <Button
+                className="w-full !ml-0"
+                variant="outline"
+                color="#ff5500"
+                onClick={handleBack}
+              >
                 Назад
               </Button>
               <Button

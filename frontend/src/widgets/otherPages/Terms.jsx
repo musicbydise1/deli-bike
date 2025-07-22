@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import { Button } from '@mantine/core';
 
 export default function Terms() {
   return (
@@ -24,7 +25,8 @@ export default function Terms() {
           <div className="tabs-column col-lg-3 col-md-4 col-sm-12">
             <ul className="nav nav-tabs" id="myTab" role="tablist">
               <li className="nav-item" role="presentation">
-                <button
+                <Button
+                  color="#ff5500"
                   className="nav-link active"
                   id="cookie-policy-tab"
                   data-bs-toggle="tab"
@@ -35,10 +37,11 @@ export default function Terms() {
                   aria-selected="true"
                 >
                   Политика обработки файлов cookie
-                </button>
+                </Button>
               </li>
               <li className="nav-item" role="presentation">
-                <button
+                <Button
+                  color="#ff5500"
                   className="nav-link"
                   id="data-policy-tab"
                   data-bs-toggle="tab"
@@ -49,10 +52,11 @@ export default function Terms() {
                   aria-selected="false"
                 >
                   Политика обработки персональных данных
-                </button>
+                </Button>
               </li>
               <li className="nav-item" role="presentation">
-                <button
+                <Button
+                  color="#ff5500"
                   className="nav-link"
                   id="video-policy-tab"
                   data-bs-toggle="tab"
@@ -63,10 +67,11 @@ export default function Terms() {
                   aria-selected="false"
                 >
                   Политика видеонаблюдения
-                </button>
+                </Button>
               </li>
               <li className="nav-item" role="presentation">
-                <button
+                <Button
+                  color="#ff5500"
                   className="nav-link"
                   id="cookie-settings-tab"
                   data-bs-toggle="tab"
@@ -77,7 +82,7 @@ export default function Terms() {
                   aria-selected="false"
                 >
                   Персональные настройки файлов cookie
-                </button>
+                </Button>
               </li>
             </ul>
           </div>

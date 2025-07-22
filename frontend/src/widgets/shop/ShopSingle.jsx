@@ -9,6 +9,7 @@ import Replay from './sections/Replay';
 import CommentForm from './sections/CommentForm';
 import { useCart } from '@/context/CartContext';
 import Link from 'next/link';
+import { Button } from '@mantine/core';
 export default function ShopSingle({ product }) {
   const [value, setValue] = useState(1);
   const [nav1, setNav1] = useState(null);
@@ -214,8 +215,9 @@ export default function ShopSingle({ product }) {
                 <div className="inner-column">
                   <nav>
                     <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                      <button
+                      <Button
                         className="nav-link active"
+                        color="#ff5500"
                         id="nav-home-tab"
                         data-bs-toggle="tab"
                         data-bs-target="#nav-home"
@@ -225,9 +227,10 @@ export default function ShopSingle({ product }) {
                         aria-selected="true"
                       >
                         Description
-                      </button>
-                      <button
+                      </Button>
+                      <Button
                         className="nav-link"
+                        color="#ff5500"
                         id="nav-profile-tab"
                         data-bs-toggle="tab"
                         data-bs-target="#nav-profile"
@@ -237,7 +240,7 @@ export default function ShopSingle({ product }) {
                         aria-selected="false"
                       >
                         Review
-                      </button>
+                      </Button>
                     </div>
                   </nav>
                 </div>

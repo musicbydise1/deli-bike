@@ -8,12 +8,12 @@ import {
   Box,
   Select,
   MenuItem,
-  Button,
   FormControl,
   InputLabel,
   Snackbar,
   IconButton,
 } from '@mui/material';
+import { Button } from '@mantine/core';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRouter } from 'next/navigation';
 
@@ -208,7 +208,7 @@ export default function AdminOrderDetails({ orderId }) {
             <MenuItem value="cancelled">Отменён</MenuItem>
           </Select>
         </FormControl>
-        <Button variant="contained" onClick={handleStatusUpdate}>
+        <Button variant="filled" onClick={handleStatusUpdate} color="#ff5500">
           Обновить статус
         </Button>
       </Box>

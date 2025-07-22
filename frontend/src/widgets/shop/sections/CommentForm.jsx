@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { Button } from '@mantine/core';
 
 export default function CommentForm() {
   return (
@@ -35,7 +36,7 @@ export default function CommentForm() {
       </div>
       <div className="col-lg-12">
         <div className="form-submit">
-          <button type="submit" className="theme-btn">
+          <Button type="submit" className="theme-btn" color="#ff5500">
             Post Comment
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +57,7 @@ export default function CommentForm() {
                 </clipPath>
               </defs>
             </svg>
-          </button>
+          </Button>
         </div>
       </div>
     </form>
