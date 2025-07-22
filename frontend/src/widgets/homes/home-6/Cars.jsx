@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Slider from 'react-slick';
 import Image from 'next/image';
 import { useEffect, useState, useCallback } from 'react';
-import Button from '@/ui/button/Button';
+import Button from '@/shared/ui/ui/button/Button';
 import { IoIosArrowDown } from 'react-icons/io';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';

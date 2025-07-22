@@ -1,9 +1,9 @@
 'use client';
 import { pricingPlans } from '@/data/pricing';
 import React, { useState } from 'react';
-import Button from '@/ui/button/Button';
+import Button from '@/shared/ui/ui/button/Button';
 import { useTariff } from '@/context/TariffContext';
-import NotificationModal from '@/ui/notifications/NotificationModal'; // Импорт модального окна
+import NotificationModal from '@/shared/ui/ui/notifications/NotificationModal';
 
 export default function Pricing() {
   const {

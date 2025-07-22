@@ -12,14 +12,14 @@ import Feature from '@/widgets/homes/home-6/Feature';
 import Pricing from '@/widgets/homes/home-6/Pricing';
 import Cta from '@/widgets/homes/home-6/Cta';
 import Testimonials from '@/widgets/homes/home-6/Testimonials';
-import '../../../public/css/pages/home/Home.css';
+import '@public/css/pages/home/Home.css';
 import Banner from '@/widgets/homes/home-6/Banner';
 import Features3 from '@/widgets/homes/home-6/Features3';
 import About from '@/widgets/homes/home-6/About';
 import Testimonials2 from '@/widgets/homes/home-6/Testimonials2';
 import Cooperation from '@/widgets/homes/home-6/Cooperation';
 import Promo from '@/widgets/homes/home-6/Promo';
-import SocialWidget from '@/ui/widget/SocialWidget';
+import SocialWidget from '@/shared/ui/ui/widget/SocialWidget';
 
 export default function HomePage6() {
   // Состояние для хранения роли, по умолчанию "courier"

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useState } from 'react';
-import Button from '@/ui/button/Button';
+import Button from '@/shared/ui/ui/button/Button';
 import Image from 'next/image';
 import { useTranslation, Trans } from 'react-i18next';
 import Modal from '@/widgets/homes/home-6/Modal';

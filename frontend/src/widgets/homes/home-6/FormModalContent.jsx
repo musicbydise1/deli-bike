@@ -4,7 +4,7 @@ import Image from 'next/image';
 import InputMask from 'react-input-mask';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import styles from '../../../../public/css/pages/home/FormModalContent.module.css';
-import Button from '@/ui/button/Button';
+import Button from '@/shared/ui/ui/button/Button';
 
 export default function FormModalContent() {
   // Добавляем новое поле companyName в formData

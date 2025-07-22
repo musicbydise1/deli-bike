@@ -8,7 +8,7 @@ import { FaChevronDown, FaUser } from 'react-icons/fa';
 import { HiOutlineLogout, HiOutlineMenuAlt3, HiOutlineShoppingBag } from 'react-icons/hi';
 import { MdSettings } from 'react-icons/md';
 import { IoGridSharp } from 'react-icons/io5';
-import Button from '@/ui/button/Button';
+import Button from '@/shared/ui/ui/button/Button';
 import '../../../public/css/pages/header/Header.css';
 import { CgShoppingCart } from 'react-icons/cg';
 import { FaArrowRightToBracket } from 'react-icons/fa6';

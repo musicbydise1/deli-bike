@@ -1,3 +1,4 @@
+'use client';
 import Footer1 from '@/widgets/footers/Footer1';
 import Header6 from '@/widgets/headers/Header6';
 import NotFound from '@/widgets/otherPages/NotFound';

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaArrowRightToBracket } from 'react-icons/fa6';
-import Button from '@/ui/button/Button';
+import Button from '@/shared/ui/ui/button/Button';
 import { useTranslation } from 'react-i18next';
 import { FaChevronDown } from 'react-icons/fa';
 import Image from 'next/image';

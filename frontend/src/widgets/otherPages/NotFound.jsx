@@ -1,7 +1,8 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from '@/ui/button/Button';
+import Button from '@/shared/ui/ui/button/Button';
 import { useTranslation } from 'react-i18next';
 export default function NotFound() {
   const { t } = useTranslation();

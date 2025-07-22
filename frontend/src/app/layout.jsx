@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import FilterSidebar from '@/ui/common/FilterSidebar';
-import '../public/main.scss';
+import '@public/main.scss';
 import 'photoswipe/dist/photoswipe.css';
 import 'rc-slider/assets/index.css';
 import MobileMenu from '@/widgets/headers/MobileMenu';

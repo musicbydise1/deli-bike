@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import InteractiveBike from '@/ui/interactive/InteractiveBike';
+import InteractiveBike from '@/shared/ui/ui/interactive/InteractiveBike';
 import { MdSunny } from 'react-icons/md';
 import { FaDollarSign, FaTenge } from 'react-icons/fa';
-import Button from '@/ui/button/Button';
+import Button from '@/shared/ui/ui/button/Button';
 import Modal from '@/widgets/homes/home-6/Modal';
 import FormModalContent from '@/widgets/homes/home-6/FormModalContent';
 

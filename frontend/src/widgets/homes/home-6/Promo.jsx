@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import Button from '@/ui/button/Button';
+import Button from '@/shared/ui/ui/button/Button';
 import Modal from '@/widgets/homes/home-6/Modal';
 import FormModalContent from '@/widgets/homes/home-6/FormModalContent';
 import Image from 'next/image';
