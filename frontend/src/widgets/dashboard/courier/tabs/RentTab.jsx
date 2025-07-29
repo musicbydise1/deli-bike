@@ -3,19 +3,19 @@ import React from 'react';
 import { useGetRentalsQuery } from '@/store/services/rentalsApi';
 import { IconEye } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
-import { 
-  Container, 
-  Title, 
-  Text, 
-  Table, 
-  Group, 
-  Image, 
-  Stack, 
-  ActionIcon, 
-  Loader, 
+import {
+  Container,
+  Title,
+  Text,
+  Table,
+  Group,
+  Image,
+  Stack,
+  ActionIcon,
+  Loader,
   Alert,
   Box,
-  Paper
+  Paper,
 } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 
@@ -48,7 +48,9 @@ export default function RentTab() {
 
   return (
     <Container size="xl" p="md">
-      <Title order={1} mb="xl">{t('rent.title', 'ORDERS')}</Title>
+      <Title order={1} mb="xl">
+        {t('rent.title', 'ORDERS')}
+      </Title>
 
       <Paper withBorder p={0}>
         <Box style={{ overflowX: 'auto' }}>
@@ -67,15 +69,14 @@ export default function RentTab() {
               {rentals.map(rental => {
                 const bike = rental.bike || {};
                 const startDate = new Date(rental.startDate).toLocaleDateString(
-                  t('rent.locale', 'en-US')
+                  t('rent.locale', 'en-US'),
                 );
                 const endDate = new Date(rental.endDate).toLocaleDateString(
-                  t('rent.locale', 'en-US')
+                  t('rent.locale', 'en-US'),
                 );
                 const itemsCount = t('rent.itemsCount', '1 pc');
-                const priceTenge = Number(rental.totalPrice).toLocaleString(
-                  t('rent.locale', 'en-US')
-                ) + ' ₸';
+                const priceTenge =
+                  Number(rental.totalPrice).toLocaleString(t('rent.locale', 'en-US')) + ' ₸';
 
                 return (
                   <Table.Tr key={rental.id}>
@@ -94,7 +95,9 @@ export default function RentTab() {
                         )}
                         <Stack gap={4}>
                           <Text fw={600}>{bike.name || t('rent.noName', 'No name')}</Text>
-                          <Text size="xs" c="dimmed">{bike.model || t('rent.noModel', 'No model')}</Text>
+                          <Text size="xs" c="dimmed">
+                            {bike.model || t('rent.noModel', 'No model')}
+                          </Text>
                         </Stack>
                       </Group>
                     </Table.Td>
@@ -105,9 +108,9 @@ export default function RentTab() {
                     <Table.Td>{itemsCount}</Table.Td>
                     <Table.Td>{priceTenge}</Table.Td>
                     <Table.Td>
-                      <ActionIcon 
-                        variant="subtle" 
-                        color="blue" 
+                      <ActionIcon
+                        variant="subtle"
+                        color="blue"
                         onClick={() => handleViewClick(rental.id)}
                         aria-label={t('rent.view', 'View')}
                       >

@@ -10,7 +10,10 @@ export default function Features3() {
       <div className="boxcar-container">
         <div className="boxcar-title categ wow fadeInUp">
           <h2>
-            {t('home.features3.title')} <span style={{ color: 'var(--theme-color1)' }}>{t('home.features3.titleHighlight')}</span>
+            {t('home.features3.title')}{' '}
+            <span style={{ color: 'var(--theme-color1)' }}>
+              {t('home.features3.titleHighlight')}
+            </span>
           </h2>
           <p>{t('home.features3.subtitle')}</p>
         </div>
@@ -62,9 +65,7 @@ export default function Features3() {
                       <tr>
                         <td>{t('home.features3.table.rows.distance')}</td>
                         <td>
-                          <span>
-                            {t('home.features3.table.foot.distance')}
-                          </span>
+                          <span>{t('home.features3.table.foot.distance')}</span>
                         </td>
                         <td>{t('home.features3.table.delibike.distance')}</td>
                       </tr>
@@ -75,7 +76,9 @@ export default function Features3() {
                       </tr>
                       <tr>
                         <td>{t('home.features3.table.rows.income')}</td>
-                        <td style={{ color: '#ac2318' }}>{t('home.features3.table.foot.income')}</td>
+                        <td style={{ color: '#ac2318' }}>
+                          {t('home.features3.table.foot.income')}
+                        </td>
                         <td>
                           <span>{t('home.features3.table.delibike.income')}</span>
                         </td>

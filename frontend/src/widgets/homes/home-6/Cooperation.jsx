@@ -40,9 +40,7 @@ export default function Cooperation() {
             <div className="inner-box wow fadeInUp" data-wow-delay="100ms">
               <div className="content-box">
                 <h6 className="title">{t('home.cooperation.models.deposit.title')}</h6>
-                <div className="text">
-                  {t('home.cooperation.models.deposit.description')}
-                </div>
+                <div className="text">{t('home.cooperation.models.deposit.description')}</div>
               </div>
             </div>
           </div>
@@ -52,9 +50,7 @@ export default function Cooperation() {
             <div className="inner-box wow fadeInUp">
               <div className="content-box">
                 <h6 className="title">{t('home.cooperation.models.warranty.title')}</h6>
-                <div className="text">
-                  {t('home.cooperation.models.warranty.description')}
-                </div>
+                <div className="text">{t('home.cooperation.models.warranty.description')}</div>
               </div>
             </div>
           </div>
@@ -64,9 +60,7 @@ export default function Cooperation() {
             <div className="inner-box wow fadeInUp" data-wow-delay="200ms">
               <div className="content-box">
                 <h6 className="title">{t('home.cooperation.models.tariff.title')}</h6>
-                <div className="text">
-                  {t('home.cooperation.models.tariff.description')}
-                </div>
+                <div className="text">{t('home.cooperation.models.tariff.description')}</div>
               </div>
             </div>
           </div>
@@ -82,9 +76,7 @@ export default function Cooperation() {
                 <div className="inner-box wow fadeInUp" data-wow-delay="100ms">
                   <div className="content-box">
                     <h6 className="title">{t('home.cooperation.tariffs.standard.title')}</h6>
-                    <div className="text">
-                      {t('home.cooperation.tariffs.standard.description')}
-                    </div>
+                    <div className="text">{t('home.cooperation.tariffs.standard.description')}</div>
                   </div>
                 </div>
               </div>
@@ -94,9 +86,7 @@ export default function Cooperation() {
                 <div className="inner-box wow fadeInUp" data-wow-delay="200ms">
                   <div className="content-box">
                     <h6 className="title">{t('home.cooperation.tariffs.premium.title')}</h6>
-                    <div className="text">
-                      {t('home.cooperation.tariffs.premium.description')}
-                    </div>
+                    <div className="text">{t('home.cooperation.tariffs.premium.description')}</div>
                   </div>
                 </div>
               </div>

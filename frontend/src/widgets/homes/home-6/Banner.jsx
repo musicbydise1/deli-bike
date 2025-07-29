@@ -56,9 +56,7 @@ export default function Banner() {
                   <h2>{t('home.banner.steps.1.title')}</h2>
                   <ul className="corporate-banner-items">
                     <li className="corporate-banner-item">{t('home.banner.steps.1.items.1')}</li>
-                    <li className="corporate-banner-item">
-                      {t('home.banner.steps.1.items.2')}
-                    </li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.1.items.2')}</li>
                     <li className="corporate-banner-item">{t('home.banner.steps.1.items.3')}</li>
                     <li className="corporate-banner-item">{t('home.banner.steps.1.items.4')}</li>
                   </ul>
@@ -83,9 +81,7 @@ export default function Banner() {
                   <h2>{t('home.banner.steps.3.title')}</h2>
                   <ul className="corporate-banner-items">
                     <li className="corporate-banner-item">{t('home.banner.steps.3.items.1')}</li>
-                    <li className="corporate-banner-item">
-                      {t('home.banner.steps.3.items.2')}
-                    </li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.3.items.2')}</li>
                   </ul>
                 </div>
               </div>
@@ -94,15 +90,9 @@ export default function Banner() {
                 <div>
                   <h2>{t('home.banner.steps.4.title')}</h2>
                   <ul className="corporate-banner-items">
-                    <li className="corporate-banner-item">
-                      {t('home.banner.steps.4.items.1')}
-                    </li>
-                    <li className="corporate-banner-item">
-                      {t('home.banner.steps.4.items.2')}
-                    </li>
-                    <li className="corporate-banner-item">
-                      {t('home.banner.steps.4.items.3')}
-                    </li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.4.items.1')}</li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.4.items.2')}</li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.4.items.3')}</li>
                   </ul>
                 </div>
               </div>

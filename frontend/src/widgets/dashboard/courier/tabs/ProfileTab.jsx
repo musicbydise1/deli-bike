@@ -2,17 +2,17 @@
 import React, { useState, useEffect } from 'react';
 import { IconCheck, IconUser } from '@tabler/icons-react';
 import Image from 'next/image';
-import { 
-  Container, 
-  Title, 
-  Text, 
-  Grid, 
-  Avatar, 
-  Paper, 
-  Group, 
-  Button, 
+import {
+  Container,
+  Title,
+  Text,
+  Grid,
+  Avatar,
+  Paper,
+  Group,
+  Button,
   Stack,
-  Box
+  Box,
 } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 
@@ -37,7 +37,9 @@ export default function ProfileTab() {
   if (!userData) {
     return (
       <Container size="md" p="md">
-        <Title order={2} mb="md">{t('profile.title', 'My Profile')}</Title>
+        <Title order={2} mb="md">
+          {t('profile.title', 'My Profile')}
+        </Title>
         <Text c="dimmed">{t('profile.noData', 'User data not found.')}</Text>
       </Container>
     );
@@ -48,24 +50,22 @@ export default function ProfileTab() {
 
   return (
     <Container size="lg" p="md">
-      <Title order={2} mb="xl">{t('profile.title', 'My Profile')}</Title>
+      <Title order={2} mb="xl">
+        {t('profile.title', 'My Profile')}
+      </Title>
 
       <Paper withBorder p="md" radius="md">
         {/* Avatar centered */}
         <Box ta="center" mb="lg">
           {hasProfileImage ? (
-            <Avatar 
-              src={userData.profileImage} 
+            <Avatar
+              src={userData.profileImage}
               alt={t('profile.avatar.alt', 'User avatar')}
               size={128}
               radius={9999}
             />
           ) : (
-            <Avatar 
-              color="gray" 
-              size={128} 
-              radius={9999}
-            >
+            <Avatar color="gray" size={128} radius={9999}>
               <IconUser size={48} />
             </Avatar>
           )}
@@ -76,13 +76,17 @@ export default function ProfileTab() {
           {/* First name and last name */}
           <Grid.Col span={{ base: 12, sm: 6 }}>
             <Stack gap="xs">
-              <Text size="sm" c="dimmed">{t('profile.fields.firstName', 'First Name')}</Text>
+              <Text size="sm" c="dimmed">
+                {t('profile.fields.firstName', 'First Name')}
+              </Text>
               <Text fw={600}>{userData.firstName || '—'}</Text>
             </Stack>
           </Grid.Col>
           <Grid.Col span={{ base: 12, sm: 6 }}>
             <Stack gap="xs">
-              <Text size="sm" c="dimmed">{t('profile.fields.lastName', 'Last Name')}</Text>
+              <Text size="sm" c="dimmed">
+                {t('profile.fields.lastName', 'Last Name')}
+              </Text>
               <Text fw={600}>{userData.lastName || '—'}</Text>
             </Stack>
           </Grid.Col>
@@ -90,13 +94,17 @@ export default function ProfileTab() {
           {/* Patronymic and Email */}
           <Grid.Col span={{ base: 12, sm: 6 }}>
             <Stack gap="xs">
-              <Text size="sm" c="dimmed">{t('profile.fields.patronymic', 'Patronymic')}</Text>
+              <Text size="sm" c="dimmed">
+                {t('profile.fields.patronymic', 'Patronymic')}
+              </Text>
               <Text>{userData.patronymic || '—'}</Text>
             </Stack>
           </Grid.Col>
           <Grid.Col span={{ base: 12, sm: 6 }}>
             <Stack gap="xs">
-              <Text size="sm" c="dimmed">{t('profile.fields.email', 'Email')}</Text>
+              <Text size="sm" c="dimmed">
+                {t('profile.fields.email', 'Email')}
+              </Text>
               <Text>{userData.email}</Text>
             </Stack>
           </Grid.Col>
@@ -104,13 +112,17 @@ export default function ProfileTab() {
           {/* Phone and Telegram */}
           <Grid.Col span={{ base: 12, sm: 6 }}>
             <Stack gap="xs">
-              <Text size="sm" c="dimmed">{t('profile.fields.phone', 'Phone')}</Text>
+              <Text size="sm" c="dimmed">
+                {t('profile.fields.phone', 'Phone')}
+              </Text>
               <Text>{userData.phoneNumber || '—'}</Text>
             </Stack>
           </Grid.Col>
           <Grid.Col span={{ base: 12, sm: 6 }}>
             <Stack gap="xs">
-              <Text size="sm" c="dimmed">{t('profile.fields.telegram', 'Telegram')}</Text>
+              <Text size="sm" c="dimmed">
+                {t('profile.fields.telegram', 'Telegram')}
+              </Text>
               {userData.telegramChatId ? (
                 <Group gap="xs" c="green">
                   <Text>{t('profile.fields.telegramConnected', 'Connected')}</Text>
@@ -125,13 +137,17 @@ export default function ProfileTab() {
           {/* Company and Address */}
           <Grid.Col span={{ base: 12, sm: 6 }}>
             <Stack gap="xs">
-              <Text size="sm" c="dimmed">{t('profile.fields.company', 'Company')}</Text>
+              <Text size="sm" c="dimmed">
+                {t('profile.fields.company', 'Company')}
+              </Text>
               <Text>{userData.companyName || '—'}</Text>
             </Stack>
           </Grid.Col>
           <Grid.Col span={{ base: 12, sm: 6 }}>
             <Stack gap="xs">
-              <Text size="sm" c="dimmed">{t('profile.fields.address', 'Address')}</Text>
+              <Text size="sm" c="dimmed">
+                {t('profile.fields.address', 'Address')}
+              </Text>
               <Text>{userData.address || '—'}</Text>
             </Stack>
           </Grid.Col>
@@ -139,13 +155,19 @@ export default function ProfileTab() {
           {/* Balance and Role */}
           <Grid.Col span={{ base: 12, sm: 6 }}>
             <Stack gap="xs">
-              <Text size="sm" c="dimmed">{t('profile.fields.balance', 'Balance')}</Text>
-              <Text>{userData.walletBalance || '0.00'} {userData.preferredCurrency || ''}</Text>
+              <Text size="sm" c="dimmed">
+                {t('profile.fields.balance', 'Balance')}
+              </Text>
+              <Text>
+                {userData.walletBalance || '0.00'} {userData.preferredCurrency || ''}
+              </Text>
             </Stack>
           </Grid.Col>
           <Grid.Col span={{ base: 12, sm: 6 }}>
             <Stack gap="xs">
-              <Text size="sm" c="dimmed">{t('profile.fields.role', 'Role')}</Text>
+              <Text size="sm" c="dimmed">
+                {t('profile.fields.role', 'Role')}
+              </Text>
               <Text tt="capitalize">{userData.roles?.[0]?.name || 'user'}</Text>
             </Stack>
           </Grid.Col>
@@ -154,7 +176,9 @@ export default function ProfileTab() {
         {/* Buttons */}
         <Group justify="center" mt="xl">
           <Button color="orange">{t('profile.buttons.edit', 'Edit')}</Button>
-          <Button variant="light" color="gray">{t('profile.buttons.changePassword', 'Change Password')}</Button>
+          <Button variant="light" color="gray">
+            {t('profile.buttons.changePassword', 'Change Password')}
+          </Button>
         </Group>
       </Paper>
     </Container>

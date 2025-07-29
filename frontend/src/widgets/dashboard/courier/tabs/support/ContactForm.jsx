@@ -1,16 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { 
-  Paper, 
-  Title, 
-  Text, 
-  TextInput, 
-  Textarea, 
-  Button, 
-  Group, 
-  Stack,
-  Box
-} from '@mantine/core';
+import { Paper, Title, Text, TextInput, Textarea, Button, Group, Stack, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
 import { IconPhone, IconMail } from '@tabler/icons-react';
@@ -26,13 +16,20 @@ export default function ContactForm() {
       message: '',
     },
     validate: {
-      name: (value) => (value.trim().length < 2 ? t('contactForm.validation.nameRequired', 'Name is required') : null),
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : t('contactForm.validation.emailInvalid', 'Invalid email')),
-      message: (value) => (value.trim().length < 10 ? t('contactForm.validation.messageLength', 'Message should be at least 10 characters') : null),
+      name: value =>
+        value.trim().length < 2
+          ? t('contactForm.validation.nameRequired', 'Name is required')
+          : null,
+      email: value =>
+        /^\S+@\S+$/.test(value) ? null : t('contactForm.validation.emailInvalid', 'Invalid email'),
+      message: value =>
+        value.trim().length < 10
+          ? t('contactForm.validation.messageLength', 'Message should be at least 10 characters')
+          : null,
     },
   });
 
-  const handleSubmit = (values) => {
+  const handleSubmit = values => {
     // Logic to send data to server or email
     console.log('Form submitted:', values);
     alert(t('contactForm.submitSuccess', 'Your message has been sent!'));
@@ -42,10 +39,15 @@ export default function ContactForm() {
 
   return (
     <Paper withBorder p="md" radius="md">
-      <Title order={3} mb="md">{t('contactForm.title', 'Contact Us')}</Title>
+      <Title order={3} mb="md">
+        {t('contactForm.title', 'Contact Us')}
+      </Title>
 
       <Text c="dimmed" size="sm" mb="md">
-        {t('contactForm.description', 'If you couldn\'t find an answer to your question, you can contact our support team:')}
+        {t(
+          'contactForm.description',
+          "If you couldn't find an answer to your question, you can contact our support team:",
+        )}
       </Text>
 
       {/* Contact information */}

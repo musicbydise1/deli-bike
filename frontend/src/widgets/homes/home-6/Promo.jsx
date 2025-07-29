@@ -49,9 +49,7 @@ export default function Promo() {
                 </div>
                 <div>
                   <h4>{t('home.promo.blocks.referral.title')}</h4>
-                  <p>
-                    {t('home.promo.blocks.referral.description')}
-                  </p>
+                  <p>{t('home.promo.blocks.referral.description')}</p>
                 </div>
               </div>
 

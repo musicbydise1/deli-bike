@@ -90,17 +90,22 @@ export default function MapSection() {
           </div>
 
           <p className="text-sm text-gray-700 mb-4">
-            <strong>{t('home.mapSection.contacts.general')}:</strong> info@deli-bike.kz ({t('home.mapSection.contacts.inKZ')})
+            <strong>{t('home.mapSection.contacts.general')}:</strong> info@deli-bike.kz (
+            {t('home.mapSection.contacts.inKZ')})
             <br />
             <strong>{t('home.mapSection.contacts.cooperation')}:</strong>
-            <br /> Sales_KZ@deli-bike.kz ({t('home.mapSection.contacts.inKZ')}), <br /> Sales_BY@deli-bike.kz ({t('home.mapSection.contacts.inBY')})
+            <br /> Sales_KZ@deli-bike.kz ({t('home.mapSection.contacts.inKZ')}), <br />{' '}
+            Sales_BY@deli-bike.kz ({t('home.mapSection.contacts.inBY')})
             <br />
-            <strong>{t('home.mapSection.contacts.marketing')}:</strong> marketing@deli-bike.kz ({t('home.mapSection.contacts.allCountries')})
+            <strong>{t('home.mapSection.contacts.marketing')}:</strong> marketing@deli-bike.kz (
+            {t('home.mapSection.contacts.allCountries')})
             <br />
             <strong>{t('home.mapSection.contacts.service')}:</strong>
-            <br /> service_KZ@deli-bike.kz ({t('home.mapSection.contacts.inKZ')}), <br /> service_BY@deli-bike.kz ({t('home.mapSection.contacts.inBY')})
+            <br /> service_KZ@deli-bike.kz ({t('home.mapSection.contacts.inKZ')}), <br />{' '}
+            service_BY@deli-bike.kz ({t('home.mapSection.contacts.inBY')})
             <br />
-            <strong>{t('home.mapSection.contacts.employment')}:</strong> HR@deli-bike.kz ({t('home.mapSection.contacts.allCountries')})
+            <strong>{t('home.mapSection.contacts.employment')}:</strong> HR@deli-bike.kz (
+            {t('home.mapSection.contacts.allCountries')})
           </p>
 
           <p className="text-sm text-gray-700 mb-4">
@@ -126,7 +131,9 @@ export default function MapSection() {
                 </Link>
               </li>
             </ul>
-            <span className="text-xs font-bold text-gray-500">{t('home.mapSection.companyName')}</span>
+            <span className="text-xs font-bold text-gray-500">
+              {t('home.mapSection.companyName')}
+            </span>
           </div>
         </div>
       </div>

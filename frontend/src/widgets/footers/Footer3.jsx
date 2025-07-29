@@ -43,9 +43,7 @@ export default function Footer3({ parenttClass = 'boxcar-footer footer-style-fiv
                     <span className="logo-text white-text">{t('home.footer.logo.style')}</span>
                   </div>
                 </div>
-                <div className="text">
-                  {t('home.footer.subscriptionText')}
-                </div>
+                <div className="text">{t('home.footer.subscriptionText')}</div>
               </div>
               <div className="subscribe-form wow fadeInUp" data-wow-delay="100ms">
                 <Button variant="filled" color="#ff5500" onClick={openModal}>

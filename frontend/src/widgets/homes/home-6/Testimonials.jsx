@@ -54,7 +54,7 @@ export default function Testimonials() {
             {/* Left column with title and image */}
             <Grid.Col span={{ base: 12, md: 6 }}>
               <Box>
-                <Title order={1} mb="md" style={{ textTransform: 'uppercase' }} >
+                <Title order={1} mb="md" style={{ textTransform: 'uppercase' }}>
                   {t('home.testimonials.title')}
                 </Title>
                 <Text mb="xl" size="lg">
@@ -87,7 +87,9 @@ export default function Testimonials() {
                       <Stack spacing="sm" mb="md">
                         {client.description.map((item, idx) => (
                           <Box key={idx} mb="xs">
-                            <Text fw={700}>{t(`home.testimonials.clients.${client.type}.items.${idx}.title`)}</Text>
+                            <Text fw={700}>
+                              {t(`home.testimonials.clients.${client.type}.items.${idx}.title`)}
+                            </Text>
                             <Text size="sm" color="dimmed">
                               {t(`home.testimonials.clients.${client.type}.items.${idx}.text`)}
                             </Text>

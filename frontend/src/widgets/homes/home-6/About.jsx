@@ -13,7 +13,8 @@ export default function About() {
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <div className="boxcar-title">
                   <h2>
-                    {t('home.about.title')} <span className="orange">DELI-BIKE</span> {t('home.about.titleEnd')}
+                    {t('home.about.title')} <span className="orange">DELI-BIKE</span>{' '}
+                    {t('home.about.titleEnd')}
                   </h2>
                 </div>
               </div>
@@ -29,11 +30,10 @@ export default function About() {
                   <div className="exp-box">
                     <div className="ext-text-box">
                       <h2 className="title">
-                        {t('home.about.helmet.title')} <br /> <span className="black">Deli-bike</span>
+                        {t('home.about.helmet.title')} <br />{' '}
+                        <span className="black">Deli-bike</span>
                       </h2>
-                      <div className="text">
-                        {t('home.about.helmet.description')}
-                      </div>
+                      <div className="text">{t('home.about.helmet.description')}</div>
                     </div>
                     <Image
                       alt=""
@@ -49,9 +49,7 @@ export default function About() {
                       <h2 className="title">
                         {t('home.about.lock.title')} <span className="orange">Deli-bike</span>
                       </h2>
-                      <div className="text">
-                        {t('home.about.lock.description')}
-                      </div>
+                      <div className="text">{t('home.about.lock.description')}</div>
                     </div>
                     <Image
                       alt=""
@@ -98,9 +96,7 @@ export default function About() {
                     <h2 className="title text-[var(--theme-color1)]">
                       {t('home.about.laser.title')} <span className="black">Deli-bike</span>
                     </h2>
-                    <div className="text pb-[25px]">
-                      {t('home.about.laser.description')}
-                    </div>
+                    <div className="text pb-[25px]">{t('home.about.laser.description')}</div>
                   </div>
                 </div>
                 <div className="row box-double-img">
@@ -109,11 +105,10 @@ export default function About() {
                       <div className="exp-box">
                         <div className="ext-text-box">
                           <h2 className="title">
-                            {t('home.about.raincoat.title')} <br /> <span className="black">Deli-bike</span>
+                            {t('home.about.raincoat.title')} <br />{' '}
+                            <span className="black">Deli-bike</span>
                           </h2>
-                          <div className="text">
-                            {t('home.about.raincoat.description')}
-                          </div>
+                          <div className="text">{t('home.about.raincoat.description')}</div>
                         </div>
                         <Image
                           alt=""
@@ -132,11 +127,10 @@ export default function About() {
                       <div className="image-box">
                         <div className="ext-text-box second-text">
                           <h2 className="title">
-                            {t('home.about.smartphone.title')} <br /> <span className="orange">Deli-bike</span>
+                            {t('home.about.smartphone.title')} <br />{' '}
+                            <span className="orange">Deli-bike</span>
                           </h2>
-                          <div className="text">
-                            {t('home.about.smartphone.description')}
-                          </div>
+                          <div className="text">{t('home.about.smartphone.description')}</div>
                         </div>
                         <Image
                           alt=""

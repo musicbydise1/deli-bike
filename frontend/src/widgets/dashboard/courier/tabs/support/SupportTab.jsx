@@ -10,7 +10,9 @@ export default function SupportTab() {
 
   return (
     <Container size="lg" p="md">
-      <Title order={1} mb="xl">{t('support.title', 'Support')}</Title>
+      <Title order={1} mb="xl">
+        {t('support.title', 'Support')}
+      </Title>
 
       <Stack gap="xl">
         {/* FAQ accordion (full width) */}

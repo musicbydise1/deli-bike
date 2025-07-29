@@ -45,9 +45,7 @@ export default function Feature() {
             <div className="inner-box wow fadeInUp" data-wow-delay="100ms">
               <div className="content-box">
                 <h6 className="title">
-                  {isClient
-                    ? t('home.feature.blocks.speed.title')
-                    : 'Скорость'}
+                  {isClient ? t('home.feature.blocks.speed.title') : 'Скорость'}
                 </h6>
                 <div className="text">
                   {isClient
@@ -70,9 +68,7 @@ export default function Feature() {
             <div className="inner-box wow fadeInUp">
               <div className="content-box">
                 <h6 className="title">
-                  {isClient
-                    ? t('home.feature.blocks.economy.title')
-                    : 'Экономия'}
+                  {isClient ? t('home.feature.blocks.economy.title') : 'Экономия'}
                 </h6>
                 <div className="text">
                   {isClient
@@ -95,9 +91,7 @@ export default function Feature() {
             <div className="inner-box wow fadeInUp" data-wow-delay="200ms">
               <div className="content-box">
                 <h6 className="title">
-                  {isClient
-                    ? t('home.feature.blocks.capacity.title')
-                    : 'Ёмкость'}
+                  {isClient ? t('home.feature.blocks.capacity.title') : 'Ёмкость'}
                 </h6>
                 <div className="text">
                   {isClient
@@ -120,9 +114,7 @@ export default function Feature() {
             <div className="inner-box wow fadeInUp" data-wow-delay="300ms">
               <div className="content-box">
                 <h6 className="title">
-                  {isClient
-                    ? t('home.feature.blocks.warranty.title')
-                    : 'Гарантия'}
+                  {isClient ? t('home.feature.blocks.warranty.title') : 'Гарантия'}
                 </h6>
                 <div className="text">
                   {isClient
@@ -145,9 +137,7 @@ export default function Feature() {
             <div className="inner-box wow fadeInUp" data-wow-delay="300ms">
               <div className="content-box">
                 <h6 className="title">
-                  {isClient
-                    ? t('home.feature.blocks.environment.title')
-                    : 'Экологичность'}
+                  {isClient ? t('home.feature.blocks.environment.title') : 'Экологичность'}
                 </h6>
                 <div className="text">
                   {isClient

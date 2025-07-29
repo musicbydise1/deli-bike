@@ -25,9 +25,7 @@ export default function Features() {
               </div>
               <div className="content-box">
                 <h6 className="title">{t('home.features.blocks.economy.title')}</h6>
-                <div className="text">
-                  {t('home.features.blocks.economy.description')}
-                </div>
+                <div className="text">{t('home.features.blocks.economy.description')}</div>
               </div>
             </div>
           </div>
@@ -39,9 +37,7 @@ export default function Features() {
               </div>
               <div className="content-box">
                 <h6 className="title">{t('home.features.blocks.income.title')}</h6>
-                <div className="text">
-                  {t('home.features.blocks.income.description')}
-                </div>
+                <div className="text">{t('home.features.blocks.income.description')}</div>
               </div>
             </div>
           </div>
@@ -53,9 +49,7 @@ export default function Features() {
               </div>
               <div className="content-box">
                 <h6 className="title">{t('home.features.blocks.maintenance.title')}</h6>
-                <div className="text">
-                  {t('home.features.blocks.maintenance.description')}
-                </div>
+                <div className="text">{t('home.features.blocks.maintenance.description')}</div>
               </div>
             </div>
           </div>
@@ -67,9 +61,7 @@ export default function Features() {
               </div>
               <div className="content-box">
                 <h6 className="title">{t('home.features.blocks.eco.title')}</h6>
-                <div className="text">
-                  {t('home.features.blocks.eco.description')}
-                </div>
+                <div className="text">{t('home.features.blocks.eco.description')}</div>
               </div>
             </div>
           </div>
