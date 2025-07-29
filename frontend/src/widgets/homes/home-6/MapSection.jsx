@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { FaWhatsapp, FaTelegramPlane, FaInstagram } from 'react-icons/fa';
 import Link from 'next/link';
 import { useUser } from '@/context/UserContext';
+import { useTranslation } from 'react-i18next';
 
 export default function MapSection() {
   // Состояние для локации; по умолчанию "kz"
   const { location } = useUser();
+  const { t } = useTranslation('common');
 
   if (location === 'by') {
     console.log(true);
@@ -34,7 +36,7 @@ export default function MapSection() {
 
       <div className="boxcar-container">
         <div className="map-box">
-          <h2>Контакты</h2>
+          <h2>{t('home.mapSection.title')}</h2>
 
           {/* Блок с иконками */}
           <div className="flex items-center space-x-4 mb-2">
@@ -88,44 +90,43 @@ export default function MapSection() {
           </div>
 
           <p className="text-sm text-gray-700 mb-4">
-            <strong>Общие вопросы:</strong> info@deli-bike.kz (в РК)
+            <strong>{t('home.mapSection.contacts.general')}:</strong> info@deli-bike.kz ({t('home.mapSection.contacts.inKZ')})
             <br />
-            <strong>Сотрудничество:</strong>
-            <br /> Sales_KZ@deli-bike.kz (в РК), <br /> Sales_BY@deli-bike.kz (в РБ)
+            <strong>{t('home.mapSection.contacts.cooperation')}:</strong>
+            <br /> Sales_KZ@deli-bike.kz ({t('home.mapSection.contacts.inKZ')}), <br /> Sales_BY@deli-bike.kz ({t('home.mapSection.contacts.inBY')})
             <br />
-            <strong>Реклама и сотрудничество с юрлицами:</strong> marketing@deli-bike.kz (все
-            страны)
+            <strong>{t('home.mapSection.contacts.marketing')}:</strong> marketing@deli-bike.kz ({t('home.mapSection.contacts.allCountries')})
             <br />
-            <strong>Сервис:</strong>
-            <br /> service_KZ@deli-bike.kz (в РК), <br /> service_BY@deli-bike.kz (в РБ)
+            <strong>{t('home.mapSection.contacts.service')}:</strong>
+            <br /> service_KZ@deli-bike.kz ({t('home.mapSection.contacts.inKZ')}), <br /> service_BY@deli-bike.kz ({t('home.mapSection.contacts.inBY')})
             <br />
-            <strong>Трудоустройство:</strong> HR@deli-bike.kz (все страны)
+            <strong>{t('home.mapSection.contacts.employment')}:</strong> HR@deli-bike.kz ({t('home.mapSection.contacts.allCountries')})
           </p>
 
           <p className="text-sm text-gray-700 mb-4">
-            <strong>СЕРВИС-ЦЕНТР:</strong>
+            <strong>{t('home.mapSection.serviceCenter.title')}:</strong>
             <br />
-            РК, Алматы, пр. Суюнбая, ул. Бекмаханова, д. 419/2
+            {t('home.mapSection.serviceCenter.addressKZ')}
             <br />
-            РБ, Минск, ул. Притыцкого, д. 2, корп. 1.
+            {t('home.mapSection.serviceCenter.addressBY')}
             <br />
-            График работы: Ежедневно 10:00–19:00
+            {t('home.mapSection.serviceCenter.workingHours')}
           </p>
 
           <div>
             <ul className="mb-2 space-y-1">
               <li>
                 <Link href="/terms" className="text-sm text-[#ff5500] hover:underline">
-                  Политика конфиденциальности
+                  {t('home.mapSection.links.privacy')}
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="text-sm text-[#ff5500] hover:underline">
-                  Договор на использование сервиса
+                  {t('home.mapSection.links.terms')}
                 </Link>
               </li>
             </ul>
-            <span className="text-xs font-bold text-gray-500">ТОО «MD Line (МД Лайн)»</span>
+            <span className="text-xs font-bold text-gray-500">{t('home.mapSection.companyName')}</span>
           </div>
         </div>
       </div>

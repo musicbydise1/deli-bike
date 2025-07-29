@@ -4,7 +4,7 @@ import Image from 'next/image';
 import InputMask from 'react-input-mask';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import styles from '../../../../public/css/pages/home/FormModalContent.module.css';
-import Button from '@/shared/ui/ui/button/Button';
+import { Button } from '@mantine/core';
 
 export default function FormModalContent() {
   // Добавляем новое поле companyName в formData
@@ -228,7 +228,7 @@ export default function FormModalContent() {
           />
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <Button variant="primary" className="w-full mt-2" type="submit" disabled={!isPhoneFilled}>
+        <Button variant="filled" color="#ff5500" type="submit" disabled={!isPhoneFilled}>
           Отправить &nbsp;&rarr;
         </Button>
       </form>

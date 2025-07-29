@@ -7,7 +7,7 @@ import Slider from 'react-slick';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { AiOutlineLoading } from 'react-icons/ai';
-import Button from '@/shared/ui/ui/button/Button';
+import { Button } from '@mantine/core';
 // Импортируем контекст корзины
 import { useCart } from '@/context/CartContext';
 import { useGetBikesQuery } from '@/store/services/bikesApi';
@@ -142,8 +142,8 @@ export default function Listings1() {
 
                   <div className="btn-box">
                     <Button
-                      className="w-full mb-4 !ml-0"
-                      variant="primary-outline"
+                      variant="outline"
+                      color="#ff5500"
                       onClick={() => handleRent(bike.id)}
                       disabled={loadingBikeId === bike.id}
                     >

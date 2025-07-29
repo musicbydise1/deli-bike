@@ -16,11 +16,15 @@ i18n
       caches: ['localStorage'], // Кэшируем выбор пользователя
     },
     backend: {
-      loadPath: '/locales/{{lng}}/common.json', // Путь к JSON-файлам
+      loadPath: '/locales/{{lng}}/{{ns}}.json', // Путь к JSON-файлам
     },
+    ns: ['common'], // Пространства имен
+    defaultNS: 'common', // Пространство имен по умолчанию
     interpolation: {
       escapeValue: false, // React сам экранирует значения
     },
+    load: 'all', // Загружаем все пространства имен сразу
+    preload: ['ru', 'kz'], // Предзагружаем все языки
   });
 
 export default i18n;

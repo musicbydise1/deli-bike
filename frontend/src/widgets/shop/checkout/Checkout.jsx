@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
-import Button from '@/ui/button/Button';
+import { Button } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import { BillingDetails } from './BillingDetails';
 import { OrderSummary } from './OrderSummary';
@@ -174,7 +174,12 @@ export default function Checkout() {
               />
               {isEditing && (
                 <div className="form-submit" style={{ marginTop: '1rem' }}>
-                  <Button variant="primary" className="w-full !ml-0" onClick={handleSave}>
+                  <Button
+                    variant="filled"
+                    color="#ff5500"
+                    className="w-full !ml-0"
+                    onClick={handleSave}
+                  >
                     Сохранить
                   </Button>
                 </div>
@@ -190,7 +195,12 @@ export default function Checkout() {
                 t={t}
               />
               <div className="form-submit">
-                <Button variant="primary" className="w-full !ml-0" onClick={handleOrder}>
+                <Button
+                  variant="filled"
+                  color="#ff5500"
+                  className="w-full !ml-0"
+                  onClick={handleOrder}
+                >
                   Заказать
                 </Button>
               </div>

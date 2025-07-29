@@ -4,14 +4,16 @@ import { FaDollarSign, FaTenge } from 'react-icons/fa';
 import { HiMiniWrenchScrewdriver } from 'react-icons/hi2';
 import { RiSpeedFill } from 'react-icons/ri';
 import { MdEco } from 'react-icons/md';
+import { useTranslation } from 'react-i18next';
 
 export default function Features() {
+  const { t } = useTranslation('common');
   return (
     <section className="why-choose-us-section-four why-choose-home" id="features">
       <div className="boxcar-container">
         <div className="boxcar-title wow fadeInUp">
           <h2 className="title">
-            Почему выбирают <span className="orange">DELI-BIKE</span>
+            {t('home.features.title')} <span className="orange">DELI-BIKE</span>
           </h2>
         </div>
         <div className="row">
@@ -22,10 +24,9 @@ export default function Features() {
                 <IoStatsChart size={50} color="#ff5500" />
               </div>
               <div className="content-box">
-                <h6 className="title">Экономия 60% </h6>
+                <h6 className="title">{t('home.features.blocks.economy.title')}</h6>
                 <div className="text">
-                  Скорость, манёвренность, передвижение по тротуару, доставка по прямой, без <br />{' '}
-                  пробок и АЗС.
+                  {t('home.features.blocks.economy.description')}
                 </div>
               </div>
             </div>
@@ -37,9 +38,9 @@ export default function Features() {
                 <FaDollarSign size={50} color="#ff5500" />
               </div>
               <div className="content-box">
-                <h6 className="title">Доход +40%</h6>
+                <h6 className="title">{t('home.features.blocks.income.title')}</h6>
                 <div className="text">
-                  Меньше времени на заказ, больше заказов в день. Повышаете свой доход.
+                  {t('home.features.blocks.income.description')}
                 </div>
               </div>
             </div>
@@ -51,10 +52,9 @@ export default function Features() {
                 <HiMiniWrenchScrewdriver size={50} color="#ff5500" />
               </div>
               <div className="content-box">
-                <h6 className="title">Обслуживание − 80%</h6>
+                <h6 className="title">{t('home.features.blocks.maintenance.title')}</h6>
                 <div className="text">
-                  Нет затрат на бензин, штрафы, парковки, ремонт, страховку, техосмотр, шины
-                  зима-лета и т.д.
+                  {t('home.features.blocks.maintenance.description')}
                 </div>
               </div>
             </div>
@@ -66,10 +66,9 @@ export default function Features() {
                 <MdEco size={50} color="#ff5500" />
               </div>
               <div className="content-box">
-                <h6 className="title">ЗАБОТА О ГОРОДЕ</h6>
+                <h6 className="title">{t('home.features.blocks.eco.title')}</h6>
                 <div className="text">
-                  Экологичный и стильный транспорт наступившего будущего, бесшумный, не нервирует
-                  автолюбителей
+                  {t('home.features.blocks.eco.description')}
                 </div>
               </div>
             </div>

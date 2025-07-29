@@ -4,84 +4,115 @@ import { AiOutlineEye } from 'react-icons/ai';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import {
+  Title,
+  Text,
+  Stack,
+  Card,
+  Group,
+  Badge,
+  Box,
+  Button,
+  Flex,
+  Center,
+  ActionIcon,
+} from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 
 export default function HistoryOrders({ historyRentals, setActiveTab }) {
   const router = useRouter();
+  const { t } = useTranslation();
 
-  // Берем только последние 3 заказа
+  // Take only the last 3 rentals
   const lastThreeRentals = historyRentals.slice(-3);
 
   return (
-    <div>
-      <h3 className="text-lg font-semibold mb-3">ПОСЛЕДНИЕ ЗАКАЗЫ</h3>
-      <div className="space-y-3">
+    <Box>
+      <Title order={3} mb="md" tt="uppercase">
+        {t('history.title', 'ПОСЛЕДНИЕ ЗАКАЗЫ')}
+      </Title>
+      <Stack gap="sm">
         {lastThreeRentals.length === 0 ? (
-          <p className="text-sm text-gray-500">Нет заказов в истории</p>
+          <Text size="sm" c="dimmed">
+            {t('history.noOrders', 'Нет заказов в истории')}
+          </Text>
         ) : (
           lastThreeRentals.map(rental => {
             const bikeInfo = rental.bike || {};
             return (
-              <div key={rental.id} className="relative border border-gray-200 rounded-lg p-3">
-                {/* Иконка «глаз» в правом верхнем углу */}
-                <div className="absolute top-2 right-2">
-                  <Link href={`/orders/${rental.id}`}>
-                    <AiOutlineEye className="cursor-pointer text-orange-500 text-xl" />
-                  </Link>
-                </div>
+              <Card key={rental.id} padding="sm" radius="md" withBorder pos="relative">
+                <ActionIcon
+                  component={Link}
+                  href={`/orders/${rental.id}`}
+                  variant="transparent"
+                  color="orange"
+                  pos="absolute"
+                  top={8}
+                  right={8}
+                >
+                  <AiOutlineEye size={20} />
+                </ActionIcon>
 
-                <div className="flex">
-                  <div className="w-14 h-14 bg-gray-100 flex items-center justify-center mr-3">
-                    {bikeInfo.imageUrls && bikeInfo.imageUrls.length > 0 ? (
-                      <Image
-                        src={bikeInfo.imageUrls[0]}
-                        alt="Bike"
-                        className="h-full object-cover"
-                      />
-                    ) : (
-                      <span className="text-sm text-gray-400">IMG</span>
-                    )}
-                  </div>
+                <Group align="flex-start" gap="md">
+                  <Box w={56} h={56} bg="gray.1" style={{ flexShrink: 0 }}>
+                    <Center h="100%">
+                      {bikeInfo.imageUrls && bikeInfo.imageUrls.length > 0 ? (
+                        <Image
+                          src={bikeInfo.imageUrls[0]}
+                          alt={bikeInfo.name || t('history.bike', 'Байк')}
+                          width={56}
+                          height={56}
+                          style={{ height: '100%', objectFit: 'cover' }}
+                        />
+                      ) : (
+                        <Text size="xs" c="dimmed">
+                          IMG
+                        </Text>
+                      )}
+                    </Center>
+                  </Box>
 
-                  <div className="flex-1">
-                    <div className="text-xs text-gray-500">Заказ №{rental.id}</div>
-                    <div className="font-semibold text-sm uppercase">
-                      {bikeInfo.name || 'Без названия'} {bikeInfo.model}
-                    </div>
-                    <div className="text-xs text-gray-400">
-                      Срок аренды:{' '}
-                      <span className="text-black">
+                  <Box style={{ flex: 1 }}>
+                    <Text size="xs" c="dimmed">
+                      {t('history.orderNumber', 'Заказ №')} {rental.id}
+                    </Text>
+                    <Text fw={600} size="sm" tt="uppercase">
+                      {bikeInfo.name || t('history.unnamed', 'Без названия')} {bikeInfo.model}
+                    </Text>
+                    <Text size="xs" c="dimmed">
+                      {t('history.rentalPeriod', 'Срок аренды')}:{' '}
+                      <Text span c="dark">
                         {new Date(rental.startDate).toLocaleDateString('ru-RU')} –{' '}
                         {new Date(rental.endDate).toLocaleDateString('ru-RU')}
-                      </span>
-                    </div>
-                    <div className="text-xs text-gray-500">Статус: {rental.status}</div>
-                  </div>
-                </div>
+                      </Text>
+                    </Text>
+                    <Text size="xs" c="dimmed">
+                      {t('history.status', 'Статус')}: {rental.status}
+                    </Text>
+                  </Box>
+                </Group>
 
-                {/* Блок с аксессуарами и суммой (как на скриншоте) */}
-                <div className="mt-2 flex space-x-2">
-                  <div className="bg-orange-50 text-orange-500 px-2 py-1 rounded text-xs">
-                    Аксессуаров: {rental.accessoriesCount ?? 0} шт
-                  </div>
-                  <div className="bg-orange-50 text-orange-500 px-2 py-1 rounded text-xs">
-                    Сумма: {Math.round(rental.totalPrice).toLocaleString('ru-RU') ?? 0} ₸
-                  </div>
-                </div>
-              </div>
+                <Group gap="xs" mt="xs">
+                  <Badge color="orange" variant="light" size="sm">
+                    {t('history.accessories', 'Аксессуаров')}: {rental.accessoriesCount ?? 0}{' '}
+                    {t('history.pcs', 'шт')}
+                  </Badge>
+                  <Badge color="orange" variant="light" size="sm">
+                    {t('history.amount', 'Сумма')}:{' '}
+                    {Math.round(rental.totalPrice).toLocaleString('ru-RU') ?? 0} ₸
+                  </Badge>
+                </Group>
+              </Card>
             );
           })
         )}
-      </div>
+      </Stack>
 
-      <div className="mt-4">
-        {/* Переходим на /orders при клике */}
-        <button
-          className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded transition"
-          onClick={() => setActiveTab('rent')}
-        >
-          Все заказы
-        </button>
-      </div>
-    </div>
+      <Box mt="md">
+        <Button variant="light" color="gray" fullWidth onClick={() => setActiveTab('rent')}>
+          {t('history.allOrders', 'Все заказы')}
+        </Button>
+      </Box>
+    </Box>
   );
 }

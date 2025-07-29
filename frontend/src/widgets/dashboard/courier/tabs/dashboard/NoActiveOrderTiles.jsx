@@ -1,12 +1,25 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Button from '@/ui/button/Button';
+import {
+  Button,
+  Box,
+  Title,
+  Text,
+  Flex,
+  SimpleGrid,
+  Card,
+  Center,
+  Container,
+  Loader,
+} from '@mantine/core';
 import { AiOutlineLoading } from 'react-icons/ai';
 import Image from 'next/image';
 import { useGetBikesQuery } from '@/store/services/bikesApi';
+import { useTranslation } from 'react-i18next';
 
 export default function NoActiveOrderTiles() {
+  const { t } = useTranslation();
   const { data, isLoading, error } = useGetBikesQuery();
   const bikes = Array.isArray(data?.data) ? data.data : [];
   const [loadingBikeId, setLoadingBikeId] = useState(null);
@@ -19,57 +32,61 @@ export default function NoActiveOrderTiles() {
   };
 
   return (
-    <div className="p-4 md:p-6 lg:p-8">
-      <h1 className="text-2xl font-bold mb-1">Личный кабинет</h1>
-      <p className="text-gray-600 mb-6">Выберите свой первый электросамокат</p>
+    <Container p={{ base: 'md', md: 'lg', lg: 'xl' }}>
+      <Title order={1} mb="xs">
+        {t('dashboard')}
+      </Title>
+      <Text color="dimmed" mb="xl">
+        Выберите свой первый электросамокат
+      </Text>
 
       {isLoading ? (
-        <div className="flex justify-center items-center h-40">
-          <AiOutlineLoading size={50} className="animate-spin" />
-        </div>
+        <Center h={160}>
+          <Loader size="lg" />
+        </Center>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <SimpleGrid cols={{ base: 1, md: 3 }} spacing="md" mb="lg">
           {bikes.length === 0 ? (
-            <div className="text-gray-500">Нет доступных байков для аренды</div>
+            <Text color="dimmed">Нет доступных байков для аренды</Text>
           ) : (
             bikes.map(bike => (
-              <div
-                key={bike.id}
-                className="border border-gray-200 rounded-lg p-4 flex flex-col items-center"
-              >
-                <div className="w-full h-40 mb-4 flex items-center justify-center">
-                  {bike.imageUrls && bike.imageUrls.length > 0 ? (
-                    <Image
-                      src={bike.imageUrls[0]}
-                      alt={bike.name}
-                      className="h-full object-cover"
-                    />
-                  ) : (
-                    <span className="text-gray-400">IMAGE</span>
-                  )}
-                </div>
+              <Card key={bike.id} padding="md" radius="md" withBorder>
+                <Card.Section>
+                  <Box h={160} mb="md">
+                    <Center h="100%">
+                      {bike.imageUrls && bike.imageUrls.length > 0 ? (
+                        <Image
+                          src={bike.imageUrls[0]}
+                          alt={bike.name}
+                          width={300}
+                          height={160}
+                          style={{ height: '100%', objectFit: 'cover' }}
+                        />
+                      ) : (
+                        <Text color="dimmed">IMAGE</Text>
+                      )}
+                    </Center>
+                  </Box>
+                </Card.Section>
 
-                <h2 className="text-lg font-semibold mb-2 uppercase">
+                <Title order={3} tt="uppercase" mb="md" ta="center">
                   {bike.name} - {bike.model}
-                </h2>
+                </Title>
 
                 <Button
-                  variant="primary"
-                  className="w-full ml-0"
+                  variant="filled"
+                  color="#ff5500"
                   onClick={() => handleRent(bike.id)}
                   disabled={loadingBikeId === bike.id}
+                  fullWidth
                 >
-                  {loadingBikeId === bike.id ? (
-                    <AiOutlineLoading className="animate-spin" />
-                  ) : (
-                    'Арендовать'
-                  )}
+                  {loadingBikeId === bike.id ? <Loader size="sm" color="white" /> : t('bikes.rent')}
                 </Button>
-              </div>
+              </Card>
             ))
           )}
-        </div>
+        </SimpleGrid>
       )}
-    </div>
+    </Container>
   );
 }

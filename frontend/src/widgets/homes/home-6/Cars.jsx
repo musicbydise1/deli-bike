@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Slider from 'react-slick';
 import Image from 'next/image';
 import { useEffect, useState, useCallback } from 'react';
-import Button from '@/shared/ui/ui/button/Button';
+import { Button, Stack } from '@mantine/core';
 import { IoIosArrowDown } from 'react-icons/io';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
@@ -24,7 +24,7 @@ export default function Cars() {
   const [isMobile, setIsMobile] = useState(false);
   const [isInnerTouchActive, setIsInnerTouchActive] = useState(false);
   const [rentingBikeId, setRentingBikeId] = useState(null);
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     const handleResize = () => {
@@ -96,9 +96,9 @@ export default function Cars() {
       <div className="boxcar-container">
         <div className="boxcar-title wow fadeInUp">
           <h2>
-            {t('bikes.rental_cost')} <span className="orange">Deli-Bike</span>
+            {t('home.bikes.rental_cost')} <span className="orange">Deli-Bike</span>
           </h2>
-          <p>{t('bikes.price_note')}</p>
+          <p>{t('home.bikes.price_note')}</p>
         </div>
 
         <div className="tab-content wow fadeInUp" data-wow-delay="200ms" id="nav-tabContent">
@@ -207,10 +207,10 @@ export default function Cars() {
                             <span className="spec-value">{bike.brakes}</span>
                           </li>
                         </ul>
-                        <div className="btn-box">
+                        <Stack>
                           <Button
-                            className="w-full mb-4 !ml-0"
-                            variant="primary-outline"
+                            variant="outline"
+                            color="#ff5500"
                             onClick={() => handleRentClick(bike.id)}
                             disabled={rentingBikeId === bike.id}
                           >
@@ -220,7 +220,7 @@ export default function Cars() {
                               t('bikes.rent')
                             )}
                           </Button>
-                        </div>
+                        </Stack>
                       </div>
                     </div>
                   </div>
@@ -310,10 +310,10 @@ export default function Cars() {
                             <span className="spec-value">{bike.brakes}</span>
                           </li>
                         </ul>
-                        <div className="btn-box">
+                        <Stack>
                           <Button
-                            className="w-full mb-4 !ml-0"
-                            variant="primary-outline"
+                            variant="outline"
+                            color="#ff5500"
                             onClick={() => handleRentClick(bike.id)}
                             disabled={rentingBikeId === bike.id}
                           >
@@ -323,7 +323,7 @@ export default function Cars() {
                               t('bikes.rent')
                             )}
                           </Button>
-                        </div>
+                        </Stack>
                       </div>
                     </div>
                   </div>

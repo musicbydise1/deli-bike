@@ -1,102 +1,95 @@
 'use client';
 import React, { useState } from 'react';
-import { FiPhone, FiMail } from 'react-icons/fi';
+import { 
+  Paper, 
+  Title, 
+  Text, 
+  TextInput, 
+  Textarea, 
+  Button, 
+  Group, 
+  Stack,
+  Box
+} from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { useTranslation } from 'react-i18next';
+import { IconPhone, IconMail } from '@tabler/icons-react';
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+  const { t } = useTranslation();
+  const [submitted, setSubmitted] = useState(false);
+
+  const form = useForm({
+    initialValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+    validate: {
+      name: (value) => (value.trim().length < 2 ? t('contactForm.validation.nameRequired', 'Name is required') : null),
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : t('contactForm.validation.emailInvalid', 'Invalid email')),
+      message: (value) => (value.trim().length < 10 ? t('contactForm.validation.messageLength', 'Message should be at least 10 characters') : null),
+    },
   });
 
-  // Обработчик изменения полей формы
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  // Обработчик отправки формы
-  const handleSubmit = e => {
-    e.preventDefault();
-    // Логика отправки данных на сервер или на email
-    alert('Ваше сообщение отправлено!');
-    // Очистим поля формы
-    setFormData({ name: '', email: '', message: '' });
+  const handleSubmit = (values) => {
+    // Logic to send data to server or email
+    console.log('Form submitted:', values);
+    alert(t('contactForm.submitSuccess', 'Your message has been sent!'));
+    form.reset();
+    setSubmitted(true);
   };
 
   return (
-    <div className="w-full border border-gray-200 rounded p-4">
-      <h2 className="text-xl font-semibold mb-4">Связаться с нами</h2>
+    <Paper withBorder p="md" radius="md">
+      <Title order={3} mb="md">{t('contactForm.title', 'Contact Us')}</Title>
 
-      <p className="text-gray-600 mb-4 text-sm">
-        Если вы не нашли ответ на свой вопрос, вы можете связаться с нашей службой поддержки:
-      </p>
+      <Text c="dimmed" size="sm" mb="md">
+        {t('contactForm.description', 'If you couldn\'t find an answer to your question, you can contact our support team:')}
+      </Text>
 
-      {/* Контактная информация */}
-      <div className="flex items-center mb-2">
-        <FiPhone className="text-gray-600 mr-2" />
-        <span className="text-gray-800">+7 (777) 123-45-67</span>
-      </div>
-      <div className="flex items-center mb-4">
-        <FiMail className="text-gray-600 mr-2" />
-        <span className="text-gray-800">support@delilux.kz</span>
-      </div>
-      <p className="text-sm text-gray-500 mb-4">Мы работаем 7 дней в неделю с 9:00 до 21:00.</p>
+      {/* Contact information */}
+      <Stack mb="md">
+        <Group gap="xs">
+          <IconPhone size={16} style={{ color: 'var(--mantine-color-gray-6)' }} />
+          <Text>{t('contactForm.phone', '+7 (777) 123-45-67')}</Text>
+        </Group>
+        <Group gap="xs">
+          <IconMail size={16} style={{ color: 'var(--mantine-color-gray-6)' }} />
+          <Text>{t('contactForm.email', 'support@delilux.kz')}</Text>
+        </Group>
+        <Text size="sm" c="dimmed">
+          {t('contactForm.workingHours', 'We work 7 days a week from 9:00 to 21:00.')}
+        </Text>
+      </Stack>
 
-      {/* Форма обратной связи */}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="name">
-            Ваше имя
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-500"
-            placeholder="Введите ваше имя"
+      {/* Feedback form */}
+      <Box component="form" onSubmit={form.onSubmit(handleSubmit)}>
+        <Stack>
+          <TextInput
+            label={t('contactForm.fields.name', 'Your Name')}
+            placeholder={t('contactForm.placeholders.name', 'Enter your name')}
             required
+            {...form.getInputProps('name')}
           />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">
-            Ваш Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-500"
-            placeholder="Введите ваш email"
+          <TextInput
+            label={t('contactForm.fields.email', 'Your Email')}
+            placeholder={t('contactForm.placeholders.email', 'Enter your email')}
             required
+            {...form.getInputProps('email')}
           />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="message">
-            Сообщение
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={4}
-            value={formData.message}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-500"
-            placeholder="Опишите вашу проблему или вопрос"
+          <Textarea
+            label={t('contactForm.fields.message', 'Message')}
+            placeholder={t('contactForm.placeholders.message', 'Describe your problem or question')}
+            minRows={4}
             required
-          ></textarea>
-        </div>
-        <button
-          type="submit"
-          className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded transition"
-        >
-          Отправить
-        </button>
-      </form>
-    </div>
+            {...form.getInputProps('message')}
+          />
+          <Button type="submit" color="orange" mt="sm">
+            {t('contactForm.submit', 'Send')}
+          </Button>
+        </Stack>
+      </Box>
+    </Paper>
   );
 }

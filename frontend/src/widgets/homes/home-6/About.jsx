@@ -1,7 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 export default function About() {
+  const { t } = useTranslation('common');
   return (
     <>
       <section className="about-inner-one about-home">
@@ -11,8 +13,7 @@ export default function About() {
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <div className="boxcar-title">
                   <h2>
-                    АКСЕССУАРЫ <span className="orange">DELI-BIKE</span> ДЛЯ КОМФОРТНОЙ И БЕЗОПАСОЙ
-                    ЕЗДЫ
+                    {t('home.about.title')} <span className="orange">DELI-BIKE</span> {t('home.about.titleEnd')}
                   </h2>
                 </div>
               </div>
@@ -28,11 +29,10 @@ export default function About() {
                   <div className="exp-box">
                     <div className="ext-text-box">
                       <h2 className="title">
-                        Шлем <br /> <span className="black">Deli-bike</span>
+                        {t('home.about.helmet.title')} <br /> <span className="black">Deli-bike</span>
                       </h2>
                       <div className="text">
-                        Ваша безопасность – <br />
-                        это наш приоритет
+                        {t('home.about.helmet.description')}
                       </div>
                     </div>
                     <Image
@@ -47,11 +47,10 @@ export default function About() {
                   <div className="image-box second-box">
                     <div className="ext-text-box second-text">
                       <h2 className="title">
-                        Велозамок <span className="orange">Deli-bike</span>
+                        {t('home.about.lock.title')} <span className="orange">Deli-bike</span>
                       </h2>
                       <div className="text">
-                        Безопасность и <br />
-                        спокойствие
+                        {t('home.about.lock.description')}
                       </div>
                     </div>
                     <Image
@@ -70,14 +69,14 @@ export default function About() {
                 <div className="image-box">
                   <div className="ext-text-box second-text">
                     <h2 className="title">
-                      Термо-контейнер <span className="orange">Deli-bike</span>
+                      {t('home.about.container.title')} <span className="orange">Deli-bike</span>
                     </h2>
                     <div className="text">
                       <ul className="about-list">
-                        <li>Держит температуру</li>
-                        <li>Закрывается на замок</li>
-                        <li>Прочный корпус</li>
-                        <li>Лайтбокс (подсветка)</li>
+                        <li>{t('home.about.container.features.1')}</li>
+                        <li>{t('home.about.container.features.2')}</li>
+                        <li>{t('home.about.container.features.3')}</li>
+                        <li>{t('home.about.container.features.4')}</li>
                       </ul>
                     </div>
                   </div>
@@ -97,12 +96,10 @@ export default function About() {
                 <div className="image-box two second-box-box mb-[27px]">
                   <div className="ext-text-box second-text">
                     <h2 className="title text-[var(--theme-color1)]">
-                      Лазерный свет <span className="black">Deli-bike</span>
+                      {t('home.about.laser.title')} <span className="black">Deli-bike</span>
                     </h2>
                     <div className="text pb-[25px]">
-                      Фонарь с лазерным наведением, прекрасно видимый окружающим автомобилям.
-                      Лазерные указатели, которые выступают на дорогу с обеих сторон велосипеда,
-                      определяют безопасную зону обгона велосипедиста.
+                      {t('home.about.laser.description')}
                     </div>
                   </div>
                 </div>
@@ -112,11 +109,10 @@ export default function About() {
                       <div className="exp-box">
                         <div className="ext-text-box">
                           <h2 className="title">
-                            Дождевик <br /> <span className="black">Deli-bike</span>
+                            {t('home.about.raincoat.title')} <br /> <span className="black">Deli-bike</span>
                           </h2>
                           <div className="text">
-                            Работайте с комфортом в <br />
-                            любую погоду.
+                            {t('home.about.raincoat.description')}
                           </div>
                         </div>
                         <Image
@@ -136,11 +132,10 @@ export default function About() {
                       <div className="image-box">
                         <div className="ext-text-box second-text">
                           <h2 className="title">
-                            Смартфон <br /> <span className="orange">Deli-bike</span>
+                            {t('home.about.smartphone.title')} <br /> <span className="orange">Deli-bike</span>
                           </h2>
                           <div className="text">
-                            Нет смартфона или нужен дополнительный? <br />
-                            Можете выгодно арендовать у нас.
+                            {t('home.about.smartphone.description')}
                           </div>
                         </div>
                         <Image

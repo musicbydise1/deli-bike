@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useCallback, useEffect, useState } from 'react';
-// import Button from '@/shared/ui/ui/button/Button';
 import { Button, Flex } from '@mantine/core';
 import Image from 'next/image';
 import { useTranslation, Trans } from 'react-i18next';
@@ -15,7 +14,7 @@ export default function Hero() {
   const [userRoleCookie, setUserRoleCookie] = useState('courier');
   const [isClient, setIsClient] = useState(false);
   const range = '90';
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     setIsClient(true);
@@ -51,12 +50,12 @@ export default function Hero() {
             <div className="inner-column">
               <div className="left-banner">
                 <h1 className="wow fadeInUp mb-0" data-wow-delay="100ms">
-                  {isClient ? t('home_title') : 'Аренда электровелосипедов'}{' '}
+                  {isClient ? t('home.hero.title') : 'Аренда электровелосипедов'}{' '}
                   <span className="orange !mb-[15px] uppercase">
                     {isClient
                       ? userRoleCookie === 'courier'
-                        ? t('for_courier')
-                        : t('for_business')
+                        ? t('home.hero.for_courier')
+                        : t('home.hero.for_business')
                       : userRoleCookie === 'courier'
                         ? 'Для Курьеров'
                         : 'Для Бизнеса'}
@@ -100,7 +99,7 @@ export default function Hero() {
                 >
                   <Link href="/#bikes">
                     <Button variant="filled" color="#ff5500" style={{ textTransform: 'uppercase' }}>
-                      {isClient ? t('home.hero.rent_bike') : 'Арендовать электровелосипеды'}
+                      {isClient ? t('buttons.rent_bike') : 'Арендовать электровелосипеды'}
                     </Button>
                   </Link>
 
@@ -110,7 +109,7 @@ export default function Hero() {
                     style={{ textTransform: 'uppercase' }}
                     onClick={toggleModal}
                   >
-                    {isClient ? t('home.hero.get_consultation') : 'Получить консультацию'}
+                    {isClient ? t('buttons.get_consultation') : 'Получить консультацию'}
                   </Button>
                 </Flex>
 

@@ -1,57 +1,48 @@
 'use client';
-import React, { useState } from 'react';
-import { FiChevronDown } from 'react-icons/fi';
+import React from 'react';
+import { 
+  Title, 
+  Accordion, 
+  Paper,
+  Box
+} from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 
 export default function FaqAccordion() {
-  // Пример данных для FAQ
+  const { t } = useTranslation();
+
+  // FAQ data with translations
   const faqItems = [
     {
-      question: 'Как продлить аренду?',
-      answer:
-        'Чтобы продлить аренду, перейдите в раздел «Мои заказы», выберите активный заказ и нажмите кнопку «Продлить». Далее следуйте инструкциям по оплате и срокам продления.',
+      question: t('faq.items.0.question', 'How to extend the rental?'),
+      answer: t('faq.items.0.answer', 
+        'To extend the rental, go to the "My Orders" section, select the active order and click the "Extend" button. Then follow the instructions for payment and extension terms.')
     },
     {
-      question: 'Что делать, если велосипед сломался?',
-      answer:
-        'Если вы столкнулись с неисправностью или поломкой, немедленно свяжитесь с нашей службой поддержки по телефону или электронной почте. Мы поможем решить проблему или организуем замену велосипеда.',
+      question: t('faq.items.1.question', 'What to do if the bicycle breaks down?'),
+      answer: t('faq.items.1.answer', 
+        'If you encounter a malfunction or breakdown, immediately contact our support service by phone or email. We will help solve the problem or arrange a bicycle replacement.')
     },
     {
-      question: 'Можно ли сдать велосипед раньше срока?',
-      answer:
-        'Да, вы можете сдать велосипед раньше срока аренды, однако стоимость аренды при этом не пересчитывается. Свяжитесь с нами, если хотите досрочно вернуть велосипед.',
-    },
+      question: t('faq.items.2.question', 'Can I return the bicycle before the rental period ends?'),
+      answer: t('faq.items.2.answer', 
+        'Yes, you can return the bicycle before the rental period ends, however, the rental cost is not recalculated. Contact us if you want to return the bicycle early.')
+    }
   ];
 
-  // Состояние для управления открытыми пунктами FAQ (JS без типов)
-  const [openIndex, setOpenIndex] = useState(null);
-
-  const toggleFAQ = index => {
-    setOpenIndex(prev => (prev === index ? null : index));
-  };
-
   return (
-    <div className="mb-8 w-full">
-      <h2 className="text-xl font-semibold mb-4">Часто задаваемые вопросы</h2>
-      <div className="divide-y divide-gray-200 border border-gray-200 rounded w-full">
-        {faqItems.map((item, index) => (
-          <div key={index}>
-            <button
-              onClick={() => toggleFAQ(index)}
-              className="w-full flex items-center justify-between p-4 text-left focus:outline-none"
-            >
-              <span className="font-medium text-gray-800">{item.question}</span>
-              <FiChevronDown
-                className={`transform transition-transform ${
-                  openIndex === index ? 'rotate-180' : ''
-                } text-gray-500`}
-              />
-            </button>
-            {openIndex === index && (
-              <div className="px-4 pb-4 text-gray-700 text-sm">{item.answer}</div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
+    <Box mb="xl">
+      <Title order={3} mb="md">{t('faq.title', 'Frequently Asked Questions')}</Title>
+      <Paper withBorder>
+        <Accordion>
+          {faqItems.map((item, index) => (
+            <Accordion.Item key={index} value={`item-${index}`}>
+              <Accordion.Control>{item.question}</Accordion.Control>
+              <Accordion.Panel>{item.answer}</Accordion.Panel>
+            </Accordion.Item>
+          ))}
+        </Accordion>
+      </Paper>
+    </Box>
   );
 }

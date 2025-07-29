@@ -3,7 +3,7 @@ import React from 'react';
 import Header6 from '@/widgets/headers/Header6';
 import Features from '@/widgets/homes/home-6/Features';
 import Footer3 from '@/widgets/footers/Footer3';
-import '../../../public/css/pages/home/Home.css';
+import '@public/css/pages/home/Home.css';
 import Link from 'next/link';
 
 export default function AboutPage() {

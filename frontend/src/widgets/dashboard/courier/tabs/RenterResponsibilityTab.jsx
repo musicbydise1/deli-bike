@@ -1,95 +1,122 @@
 'use client';
 import React from 'react';
+import { 
+  Container, 
+  Title, 
+  Text, 
+  Paper, 
+  List, 
+  Stack,
+  ThemeIcon
+} from '@mantine/core';
+import { useTranslation } from 'react-i18next';
+import { IconCircleDot } from '@tabler/icons-react';
 
 export default function RenterResponsibilityTab() {
+  const { t } = useTranslation();
+
   return (
-    <div className="max-w-3xl mx-auto p-4 md:p-6 lg:p-8">
-      <h1 className="text-2xl font-bold mb-4">Ответственность арендатора</h1>
-      <p className="text-sm text-gray-500 mb-6">Последнее обновление: 10.03.2025</p>
+    <Container size="md" p="md">
+      <Title order={2} mb="md">{t('renterResponsibility.title', 'Renter Responsibility')}</Title>
+      <Text size="sm" c="dimmed" mb="xl">{t('renterResponsibility.lastUpdated', 'Last updated: 10.03.2025')}</Text>
 
-      <div className="space-y-4 text-gray-700 leading-relaxed text-sm md:text-base">
-        <p>
-          Настоящий раздел описывает основные правила и ответственность арендатора (далее —
-          «Арендатор») при пользовании электрическим велосипедом (далее — «Велосипед»),
-          предоставляемым компанией <strong>DeliLux</strong> (далее — «Компания»). Соблюдение данных
-          условий обязательно для всех арендаторов.
-        </p>
+      <Paper withBorder p="lg" radius="md">
+        <Stack gap="md">
+          <Text>
+            {t('renterResponsibility.intro', 
+              'This section describes the basic rules and responsibilities of the renter (hereinafter referred to as the "Renter") when using an electric bicycle (hereinafter referred to as the "Bicycle") provided by the company')} <Text span fw={700}>DeliLux</Text> {t('renterResponsibility.introEnd', '(hereinafter referred to as the "Company"). Compliance with these conditions is mandatory for all renters.')}
+          </Text>
 
-        <h2 className="text-lg font-semibold">1. Общие обязанности</h2>
-        <ul className="list-disc list-inside ml-4">
-          <li>
-            Арендатор обязан использовать Велосипед исключительно в соответствии с его назначением и
-            действующим законодательством.
-          </li>
-          <li>Запрещено передавать Велосипед третьим лицам без письменного разрешения Компании.</li>
-          <li>
-            Арендатор обязан соблюдать правила дорожного движения и техники безопасности, а также
-            нести ответственность за любой ущерб, причинённый имуществу или здоровью третьих лиц.
-          </li>
-        </ul>
+          <Title order={3}>{t('renterResponsibility.sections.generalDuties.title', '1. General Duties')}</Title>
+          <List 
+            spacing="sm"
+            icon={
+              <ThemeIcon color="gray" size={24} radius="xl">
+                <IconCircleDot size={16} />
+              </ThemeIcon>
+            }
+          >
+            <List.Item>
+              {t('renterResponsibility.sections.generalDuties.items.0', 'The Renter must use the Bicycle exclusively in accordance with its intended purpose and applicable law.')}
+            </List.Item>
+            <List.Item>
+              {t('renterResponsibility.sections.generalDuties.items.1', 'It is forbidden to transfer the Bicycle to third parties without the written permission of the Company.')}
+            </List.Item>
+            <List.Item>
+              {t('renterResponsibility.sections.generalDuties.items.2', 'The Renter must comply with traffic rules and safety regulations, and is also responsible for any damage caused to property or health of third parties.')}
+            </List.Item>
+          </List>
 
-        <h2 className="text-lg font-semibold">2. Штрафы и пени</h2>
-        <ul className="list-disc list-inside ml-4">
-          <li>
-            В случае просрочки возврата Велосипеда Компания вправе начислить пеню в размере,
-            установленном действующими тарифами или договором аренды.
-          </li>
-          <li>
-            За умышленную порчу или несанкционированные изменения конструкции Велосипеда могут быть
-            наложены штрафы, размер которых определяется Компанией с учётом стоимости ремонта или
-            замены деталей.
-          </li>
-          <li>
-            Если Велосипед был передан третьим лицам без согласования с Компанией, Арендатор может
-            быть оштрафован вплоть до полной стоимости Велосипеда.
-          </li>
-        </ul>
+          <Title order={3}>{t('renterResponsibility.sections.penalties.title', '2. Penalties and Fines')}</Title>
+          <List 
+            spacing="sm"
+            icon={
+              <ThemeIcon color="gray" size={24} radius="xl">
+                <IconCircleDot size={16} />
+              </ThemeIcon>
+            }
+          >
+            <List.Item>
+              {t('renterResponsibility.sections.penalties.items.0', 'In case of late return of the Bicycle, the Company has the right to charge a penalty in the amount established by the current tariffs or the rental agreement.')}
+            </List.Item>
+            <List.Item>
+              {t('renterResponsibility.sections.penalties.items.1', 'For deliberate damage or unauthorized changes to the design of the Bicycle, fines may be imposed, the amount of which is determined by the Company, taking into account the cost of repair or replacement of parts.')}
+            </List.Item>
+            <List.Item>
+              {t('renterResponsibility.sections.penalties.items.2', 'If the Bicycle was transferred to third parties without the consent of the Company, the Renter may be fined up to the full cost of the Bicycle.')}
+            </List.Item>
+          </List>
 
-        <h2 className="text-lg font-semibold">3. Повреждения и утрата Велосипеда</h2>
-        <ul className="list-disc list-inside ml-4">
-          <li>
-            В случае обнаружения повреждений Велосипеда при его получении, Арендатор обязан
-            немедленно сообщить об этом Компании.
-          </li>
-          <li>
-            Если Велосипед был повреждён или утрачен по вине Арендатора, последний несёт
-            материальную ответственность в размере стоимости ремонта или полной замены Велосипеда.
-          </li>
-          <li>
-            При возникновении страхового случая (если Велосипед застрахован), Арендатор обязан
-            соблюдать инструкции страховой компании и Компании по оформлению документов.
-          </li>
-        </ul>
+          <Title order={3}>{t('renterResponsibility.sections.damages.title', '3. Damage and Loss of the Bicycle')}</Title>
+          <List 
+            spacing="sm"
+            icon={
+              <ThemeIcon color="gray" size={24} radius="xl">
+                <IconCircleDot size={16} />
+              </ThemeIcon>
+            }
+          >
+            <List.Item>
+              {t('renterResponsibility.sections.damages.items.0', 'If damage to the Bicycle is detected upon receipt, the Renter must immediately report this to the Company.')}
+            </List.Item>
+            <List.Item>
+              {t('renterResponsibility.sections.damages.items.1', 'If the Bicycle was damaged or lost through the fault of the Renter, the latter bears financial responsibility in the amount of the cost of repair or full replacement of the Bicycle.')}
+            </List.Item>
+            <List.Item>
+              {t('renterResponsibility.sections.damages.items.2', 'In the event of an insured event (if the Bicycle is insured), the Renter must follow the instructions of the insurance company and the Company for processing documents.')}
+            </List.Item>
+          </List>
 
-        <h2 className="text-lg font-semibold">4. Страхование и безопасность</h2>
-        <ul className="list-disc list-inside ml-4">
-          <li>
-            Компания может предоставлять услуги страхования Велосипеда на условиях, оговоренных в
-            договоре аренды.
-          </li>
-          <li>
-            Арендатор обязан соблюдать все меры предосторожности, включая использование защитной
-            экипировки и соблюдение скоростных режимов.
-          </li>
-          <li>
-            В случае несчастного случая или аварии Арендатор обязан немедленно уведомить Компанию и
-            при необходимости вызвать экстренные службы.
-          </li>
-        </ul>
+          <Title order={3}>{t('renterResponsibility.sections.insurance.title', '4. Insurance and Safety')}</Title>
+          <List 
+            spacing="sm"
+            icon={
+              <ThemeIcon color="gray" size={24} radius="xl">
+                <IconCircleDot size={16} />
+              </ThemeIcon>
+            }
+          >
+            <List.Item>
+              {t('renterResponsibility.sections.insurance.items.0', 'The Company may provide Bicycle insurance services on the terms specified in the rental agreement.')}
+            </List.Item>
+            <List.Item>
+              {t('renterResponsibility.sections.insurance.items.1', 'The Renter must observe all precautions, including the use of protective equipment and compliance with speed limits.')}
+            </List.Item>
+            <List.Item>
+              {t('renterResponsibility.sections.insurance.items.2', 'In case of an accident or accident, the Renter must immediately notify the Company and, if necessary, call emergency services.')}
+            </List.Item>
+          </List>
 
-        <h2 className="text-lg font-semibold">5. Споры и разногласия</h2>
-        <p>
-          Все споры и разногласия, связанные с соблюдением настоящих правил ответственности,
-          разрешаются путём переговоров. Если соглашение не достигнуто, спор подлежит рассмотрению в
-          судебном порядке в соответствии с законодательством Республики Казахстан.
-        </p>
+          <Title order={3}>{t('renterResponsibility.sections.disputes.title', '5. Disputes and Disagreements')}</Title>
+          <Text>
+            {t('renterResponsibility.sections.disputes.content', 'All disputes and disagreements related to compliance with these rules of responsibility are resolved through negotiations. If an agreement is not reached, the dispute is subject to consideration in court in accordance with the legislation of the Republic of Kazakhstan.')}
+          </Text>
 
-        <p>
-          Соблюдение данных условий позволит обеспечить безопасность и комфорт всем участникам
-          дорожного движения, а также избежать возможных конфликтных ситуаций между Арендатором и
-          Компанией.
-        </p>
-      </div>
-    </div>
+          <Text>
+            {t('renterResponsibility.conclusion', 'Compliance with these conditions will ensure safety and comfort for all road users, as well as avoid possible conflict situations between the Renter and the Company.')}
+          </Text>
+        </Stack>
+      </Paper>
+    </Container>
   );
 }

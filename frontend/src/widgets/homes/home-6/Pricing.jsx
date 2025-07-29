@@ -1,9 +1,10 @@
 'use client';
 import { pricingPlans } from '@/data/pricing';
 import React, { useState } from 'react';
-import Button from '@/shared/ui/ui/button/Button';
+import { Button } from '@mantine/core';
 import { useTariff } from '@/context/TariffContext';
 import NotificationModal from '@/shared/ui/ui/notifications/NotificationModal';
+import { useTranslation } from 'react-i18next';
 
 export default function Pricing() {
   const {
@@ -12,6 +13,7 @@ export default function Pricing() {
     extendedWarrantyStates,
     setExtendedWarrantyStates,
   } = useTariff();
+  const { t } = useTranslation('common');
 
   // Локальное состояние для показа уведомления
   const [showNotification, setShowNotification] = useState(false);
@@ -30,9 +32,9 @@ export default function Pricing() {
       <div className="boxcar-container">
         <div className="boxcar-title text-center pricing-title">
           <h2>
-            Тарифы <span>Deli-Bike</span>
+            {t('home.pricing.title')} <span>Deli-Bike</span>
           </h2>
-          <p>Аренда, гарантийное обслуживание, сервис, расширенная гарантия</p>
+          <p>{t('home.pricing.description')}</p>
         </div>
         <div className="row">
           {pricingPlans.map((plan, index) => (
@@ -78,8 +80,8 @@ export default function Pricing() {
                 </div>
 
                 <Button
-                  variant="secondary"
-                  className="w-full !ml-0"
+                  variant="light"
+                  color="#ff5500"
                   onClick={e => {
                     e.stopPropagation();
                     handlePlanClick(plan);

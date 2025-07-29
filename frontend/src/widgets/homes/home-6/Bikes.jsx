@@ -14,7 +14,7 @@ const carBrands = [
 export default function Bikes() {
   const [activeCategory, setActiveCategory] = useState(carBrands[0]);
   const [filtered, setFiltered] = useState([]);
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   useEffect(() => {
     setFiltered([...carData].filter(elm => elm.brand.includes(activeCategory.label)));
   }, [activeCategory]);

@@ -1,9 +1,11 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 
 export default function Banner() {
   const [userRole, setUserRole] = useState('courier');
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     const cookies = document.cookie.split(';').map(cookie => cookie.trim());
@@ -35,8 +37,8 @@ export default function Banner() {
                   />
                 </figure>
                 <div className="overlay-text">
-                  <h2 className="overlay-title">КАК МЫ РАБОТАЕМ?</h2>
-                  <p className="overlay-subtitle">Всего три шага — и вы на электровелосипеде.</p>
+                  <h2 className="overlay-title">{t('home.banner.howWeWork')}</h2>
+                  <p className="overlay-subtitle">{t('home.banner.threeSteps')}</p>
                 </div>
               </div>
             </div>
@@ -51,14 +53,14 @@ export default function Banner() {
               <div className="boxcar-title work-box dark">
                 <div className="nums">1</div>
                 <div>
-                  <h2>Выбираете тариф на сайте</h2>
+                  <h2>{t('home.banner.steps.1.title')}</h2>
                   <ul className="corporate-banner-items">
-                    <li className="corporate-banner-item">Юрлицо или физлицо</li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.1.items.1')}</li>
                     <li className="corporate-banner-item">
-                      Выбираете модель сотрудничества (гарантийная, депозитная, тарифная)
+                      {t('home.banner.steps.1.items.2')}
                     </li>
-                    <li className="corporate-banner-item">Подбираете оптимальный план аренды</li>
-                    <li className="corporate-banner-item">Согласуем скидку партнера</li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.1.items.3')}</li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.1.items.4')}</li>
                   </ul>
                 </div>
               </div>
@@ -66,11 +68,11 @@ export default function Banner() {
               <div className="boxcar-title work-box dark">
                 <div className="nums">2</div>
                 <div>
-                  <h2>Приезжаете к нам</h2>
+                  <h2>{t('home.banner.steps.2.title')}</h2>
                   <ul className="corporate-banner-items">
-                    <li className="corporate-banner-item">Оформляем договор</li>
-                    <li className="corporate-banner-item">Подтверждаете оплату</li>
-                    <li className="corporate-banner-item">Забираете электровелосипед</li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.2.items.1')}</li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.2.items.2')}</li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.2.items.3')}</li>
                   </ul>
                 </div>
               </div>
@@ -78,11 +80,11 @@ export default function Banner() {
               <div className="boxcar-title work-box dark">
                 <div className="nums">3</div>
                 <div>
-                  <h2>Садитесь и едете</h2>
+                  <h2>{t('home.banner.steps.3.title')}</h2>
                   <ul className="corporate-banner-items">
-                    <li className="corporate-banner-item">Можно сразу приступить к работе</li>
+                    <li className="corporate-banner-item">{t('home.banner.steps.3.items.1')}</li>
                     <li className="corporate-banner-item">
-                      АКБ заряжены, электровелосипед подготовлен к работе
+                      {t('home.banner.steps.3.items.2')}
                     </li>
                   </ul>
                 </div>
@@ -90,16 +92,16 @@ export default function Banner() {
               <div className="boxcar-title work-box dark">
                 <div className="nums">4</div>
                 <div>
-                  <h2>Сервис</h2>
+                  <h2>{t('home.banner.steps.4.title')}</h2>
                   <ul className="corporate-banner-items">
                     <li className="corporate-banner-item">
-                      Оперативно устраняем неполадки, чтобы вы не простаивали
+                      {t('home.banner.steps.4.items.1')}
                     </li>
                     <li className="corporate-banner-item">
-                      Возможна подмена электровелосипеда на время ремонта
+                      {t('home.banner.steps.4.items.2')}
                     </li>
                     <li className="corporate-banner-item">
-                      Предоставляем расширенные гарантии на детали
+                      {t('home.banner.steps.4.items.3')}
                     </li>
                   </ul>
                 </div>

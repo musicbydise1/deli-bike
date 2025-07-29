@@ -1,18 +1,24 @@
 'use client';
 import React from 'react';
+import { Container, Title, Stack } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 import FaqAccordion from './FaqAccordion';
 import ContactForm from './ContactForm';
 
 export default function SupportTab() {
+  const { t } = useTranslation();
+
   return (
-    <div className="p-4 md:p-6 lg:p-8">
-      <h1 className="text-2xl font-bold mb-6">Поддержка</h1>
+    <Container size="lg" p="md">
+      <Title order={1} mb="xl">{t('support.title', 'Support')}</Title>
 
-      {/* Аккордеон с часто задаваемыми вопросами (на всю ширину) */}
-      <FaqAccordion />
+      <Stack gap="xl">
+        {/* FAQ accordion (full width) */}
+        <FaqAccordion />
 
-      {/* Форма обратной связи и контакты (на всю ширину) */}
-      <ContactForm />
-    </div>
+        {/* Contact form and information (full width) */}
+        <ContactForm />
+      </Stack>
+    </Container>
   );
 }

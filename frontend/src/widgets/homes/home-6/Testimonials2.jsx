@@ -2,15 +2,17 @@
 
 import { customerData } from '@/data/testimonials';
 import Slider from 'react-slick';
+import { useTranslation } from 'react-i18next';
 
 export default function Testimonials2() {
+  const { t } = useTranslation('common');
   return (
     <section className="boxcar-customers-section" id="reviews">
       <div className="boxcar-container">
         <div className="boxcar-title wow fadeInUp">
-          <h2>Что говорят наши курьеры</h2>
+          <h2>{t('home.testimonials2.title')}</h2>
           {/*<div className="text">*/}
-          {/*    Рейтинг 4.7 / 5 на основе 28,370 отзывов. Показываем только отзывы с 4 и 5 звездами.*/}
+          {/*    {t('testimonials2.subtitle')}*/}
           {/*</div>*/}
         </div>
         <Slider
@@ -81,7 +83,7 @@ export default function Testimonials2() {
                   </ul>
                   {customer.verified && (
                     <span>
-                      <i className="fa-solid fa-circle-check" /> Проверено
+                      <i className="fa-solid fa-circle-check" /> {t('testimonials2.verified')}
                     </span>
                   )}
                 </div>

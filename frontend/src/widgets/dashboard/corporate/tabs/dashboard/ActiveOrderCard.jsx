@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import ProgressBar from '@/ui/progress-bar/ProgressBar';
+import ProgressBar from '@/shared/ui/ui/progress-bar/ProgressBar';
 import Image from 'next/image';
 
 export default function ActiveOrderCard({ activeOrder }) {
@@ -37,7 +37,13 @@ export default function ActiveOrderCard({ activeOrder }) {
 
       <div className="h-48 mb-4 flex items-center justify-center">
         {bike.imageUrls && bike.imageUrls.length > 0 ? (
-          <Image src={bike.imageUrls[0]} alt="Bike" className="h-full object-cover" />
+          <Image
+            width={40}
+            height={40}
+            src={bike.imageUrls[0]}
+            alt="Bike"
+            className="h-full object-cover"
+          />
         ) : (
           <span className="text-gray-400 text-base">IMAGE</span>
         )}

@@ -2,9 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { TbShieldLockFilled } from 'react-icons/tb';
+import { useTranslation } from 'react-i18next';
 
 export default function Cooperation() {
   const [userRole, setUserRole] = useState('courier');
+  const { t } = useTranslation('common');
 
   // Получаем роль пользователя из cookies вместо localStorage
   useEffect(() => {
@@ -21,14 +23,14 @@ export default function Cooperation() {
       <div className="boxcar-container">
         <div className="boxcar-title wow fadeInUp !mb-[30px]">
           <h2 className="title">
-            Варианты сотрудничества <span className="hero-title-small-text">Deli-Bike</span>
+            {t('home.cooperation.title')} <span className="hero-title-small-text">Deli-Bike</span>
           </h2>
-          <p>Индивидуальные решения для Партнёров</p>
+          <p>{t('home.cooperation.subtitle')}</p>
         </div>
         <div className="cooperation-main-block">
           <div className="inner-box wow fadeInUp" data-wow-delay="100ms">
             <div className="content-box">
-              <h6 className="title">Договор (Юр.лицо)</h6>
+              <h6 className="title">{t('home.cooperation.contract')}</h6>
             </div>
           </div>
         </div>
@@ -37,10 +39,9 @@ export default function Cooperation() {
           <div className="cooperation-block col-lg-4 col-md-6 col-sm-12">
             <div className="inner-box wow fadeInUp" data-wow-delay="100ms">
               <div className="content-box">
-                <h6 className="title">Депозитная Модель</h6>
+                <h6 className="title">{t('home.cooperation.models.deposit.title')}</h6>
                 <div className="text">
-                  Соглашение о сотрудничестве с компанией, оплачивающей аренду; договор с курьером;
-                  за транспорт отвечает курьер.
+                  {t('home.cooperation.models.deposit.description')}
                 </div>
               </div>
             </div>
@@ -50,9 +51,9 @@ export default function Cooperation() {
           <div className="cooperation-block col-lg-4 col-md-6 col-sm-12">
             <div className="inner-box wow fadeInUp">
               <div className="content-box">
-                <h6 className="title">Гарантийная Модель</h6>
+                <h6 className="title">{t('home.cooperation.models.warranty.title')}</h6>
                 <div className="text">
-                  Договор с компанией, оплачивающей аренду; за транспорт отвечает компания.
+                  {t('home.cooperation.models.warranty.description')}
                 </div>
               </div>
             </div>
@@ -62,10 +63,9 @@ export default function Cooperation() {
           <div className="cooperation-block col-lg-4 col-md-6 col-sm-12">
             <div className="inner-box wow fadeInUp" data-wow-delay="200ms">
               <div className="content-box">
-                <h6 className="title">Тарифная Модель</h6>
+                <h6 className="title">{t('home.cooperation.models.tariff.title')}</h6>
                 <div className="text">
-                  Договор с курьером, оплачивающим аренду полностью/частично; скидки компании
-                  распространяются на курьера; за транспорт отвечает курьер.
+                  {t('home.cooperation.models.tariff.description')}
                 </div>
               </div>
             </div>
@@ -75,15 +75,15 @@ export default function Cooperation() {
         <div className="row tariffs">
           <div className="col-lg-6 col-md-6 col-sm-12">
             <div className="tariff-title">
-              <h5>Тарифы</h5>
+              <h5>{t('home.cooperation.tariffs.title')}</h5>
             </div>
             <div className="row">
               <div className="cooperation-block col-lg-6 col-md-12 col-sm-12">
                 <div className="inner-box wow fadeInUp" data-wow-delay="100ms">
                   <div className="content-box">
-                    <h6 className="title">Стандарт</h6>
+                    <h6 className="title">{t('home.cooperation.tariffs.standard.title')}</h6>
                     <div className="text">
-                      Стандартный пакет аренды, услуг и сервисного обслуживания Оборудования
+                      {t('home.cooperation.tariffs.standard.description')}
                     </div>
                   </div>
                 </div>
@@ -93,10 +93,9 @@ export default function Cooperation() {
               <div className="cooperation-block col-lg-6 col-md-12 col-sm-12">
                 <div className="inner-box wow fadeInUp" data-wow-delay="200ms">
                   <div className="content-box">
-                    <h6 className="title">премиум</h6>
+                    <h6 className="title">{t('home.cooperation.tariffs.premium.title')}</h6>
                     <div className="text">
-                      Аренда с бесплатным сервисным обслуживанием определенных элементов
-                      Оборудования
+                      {t('home.cooperation.tariffs.premium.description')}
                     </div>
                   </div>
                 </div>
@@ -111,9 +110,9 @@ export default function Cooperation() {
                 <div className="tariff-icon">
                   <TbShieldLockFilled size={80} />
                 </div>
-                <h6 className="title">расширенная гарантия</h6>
+                <h6 className="title">{t('home.cooperation.tariffs.extendedWarranty.title')}</h6>
                 <div className="text">
-                  Бесплатное сервисное обслуживание расширенного пакета элементов Оборудования
+                  {t('home.cooperation.tariffs.extendedWarranty.description')}
                 </div>
               </div>
             </div>

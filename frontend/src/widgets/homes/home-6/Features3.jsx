@@ -1,277 +1,235 @@
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '@mantine/core';
+import { Tabs, Button } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 
 export default function Features3() {
+  const { t } = useTranslation('common');
   return (
     <section className="cars-section">
       <div className="boxcar-container">
         <div className="boxcar-title categ wow fadeInUp">
           <h2>
-            На чём ездить <span style={{ color: 'var(--theme-color1)' }}>выгоднее?</span>
+            {t('home.features3.title')} <span style={{ color: 'var(--theme-color1)' }}>{t('home.features3.titleHighlight')}</span>
           </h2>
-          <p>Пешком, мопед, авто или электровелосипед — посмотрите, где самая большая выгода</p>
+          <p>{t('home.features3.subtitle')}</p>
         </div>
 
-        {/* Навигация по вкладкам */}
-        <ul className="nav nav-tabs wow fadeInUp" id="myTab" role="tablist">
-          <li className="nav-item" role="presentation">
-            <Button
-              className="nav-link active"
-              color="#ff5500"
-              id="foot-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#foot"
-              type="button"
-              role="tab"
-              aria-controls="foot"
-              aria-selected="true"
-            >
-              Пешком
-            </Button>
-          </li>
-          <li className="nav-item" role="presentation">
-            <Button
-              className="nav-link"
-              color="#ff5500"
-              id="moped-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#moped"
-              type="button"
-              role="tab"
-              aria-controls="moped"
-              aria-selected="false"
-            >
-              Мопед
-            </Button>
-          </li>
-          <li className="nav-item" role="presentation">
-            <Button
-              className="nav-link"
-              color="#ff5500"
-              id="car-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#car"
-              type="button"
-              role="tab"
-              aria-controls="car"
-              aria-selected="false"
-            >
-              Авто
-            </Button>
-          </li>
-        </ul>
+        <Tabs defaultValue="foot" className="wow fadeInUp">
+          <Tabs.List mb="xl">
+            <Tabs.Tab value="foot" color="#ff5500">
+              {t('home.features3.tabs.foot')}
+            </Tabs.Tab>
+            <Tabs.Tab value="moped" color="#ff5500">
+              {t('home.features3.tabs.moped')}
+            </Tabs.Tab>
+            <Tabs.Tab value="car" color="#ff5500">
+              {t('home.features3.tabs.car')}
+            </Tabs.Tab>
+          </Tabs.List>
 
-        {/* Содержимое вкладок */}
-        <div className="tab-content wow fadeInUp" id="myTabContent">
-          {/* --- Вкладка «Пешком» --- */}
-          <div
-            className="tab-pane fade show active"
-            id="foot"
-            role="tabpanel"
-            aria-labelledby="foot-tab"
-          >
-            <div className="row">
-              {/* Левая часть с таблицей */}
-              <div className="col-lg-9 col-md-12 col-sm-12">
-                <table className="comparison-table">
-                  <thead>
-                    <tr>
-                      <th>Параметр</th>
-                      <th>Пешком</th>
-                      <th>Deli-Bike</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Скорость (в городе)</td>
-                      <td>Медленно</td>
-                      <td>На +300% быстрее</td>
-                    </tr>
-                    <tr>
-                      <td>Бензин, день</td>
-                      <td>Нет затрат</td>
-                      <td>Нет затрат</td>
-                    </tr>
-                    <tr>
-                      <td>Ремонт/ТО, мес</td>
-                      <td>Нет затрат</td>
-                      <td>Нет затрат</td>
-                    </tr>
-                    <tr>
-                      <td>Пробег за день, км</td>
-                      <td>
-                        <span>
-                          Ограничен <br /> (до 20-30 км)
-                        </span>
-                      </td>
-                      <td>До 150-200 км</td>
-                    </tr>
-                    <tr>
-                      <td>Количество заказов в день</td>
-                      <td>Ограничено</td>
-                      <td>В 3–5 раз больше</td>
-                    </tr>
-                    <tr>
-                      <td>Доход в месяц</td>
-                      <td style={{ color: '#ac2318' }}>Ограничен / фиксирован</td>
-                      <td>
-                        <span>+300% доход</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+          {/* Содержимое вкладок */}
+          <div className="wow fadeInUp">
+            {/* --- Вкладка «Пешком» --- */}
+            <Tabs.Panel value="foot">
+              <div className="row">
+                {/* Левая часть с таблицей */}
+                <div className="col-lg-9 col-md-12 col-sm-12">
+                  <table className="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>{t('home.features3.table.header.parameter')}</th>
+                        <th>{t('home.features3.table.header.foot')}</th>
+                        <th>Deli-Bike</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{t('home.features3.table.rows.speed')}</td>
+                        <td>{t('home.features3.table.foot.speed')}</td>
+                        <td>{t('home.features3.table.delibike.speed')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.fuel')}</td>
+                        <td>{t('home.features3.table.foot.fuel')}</td>
+                        <td>{t('home.features3.table.delibike.fuel')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.maintenance')}</td>
+                        <td>{t('home.features3.table.foot.maintenance')}</td>
+                        <td>{t('home.features3.table.delibike.maintenance')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.distance')}</td>
+                        <td>
+                          <span>
+                            {t('home.features3.table.foot.distance')}
+                          </span>
+                        </td>
+                        <td>{t('home.features3.table.delibike.distance')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.orders')}</td>
+                        <td>{t('home.features3.table.foot.orders')}</td>
+                        <td>{t('home.features3.table.delibike.orders')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.income')}</td>
+                        <td style={{ color: '#ac2318' }}>{t('home.features3.table.foot.income')}</td>
+                        <td>
+                          <span>{t('home.features3.table.delibike.income')}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                {/* Правая часть с изображением */}
+                <div className="col-lg-3 col-md-12 col-sm-12 d-flex align-items-center">
+                  {/* Укажите свои пути, ширину и высоту */}
+                  <Image
+                    src="/images/foot1.jpg"
+                    alt={t('home.features3.tabs.foot')}
+                    width={350} // ваша ширина
+                    height={350} // ваша высота
+                    className="table-images"
+                  />
+                </div>
               </div>
-              {/* Правая часть с изображением */}
-              <div className="col-lg-3 col-md-12 col-sm-12 d-flex align-items-center">
-                {/* Укажите свои пути, ширину и высоту */}
-                <Image
-                  src="/images/foot1.jpg"
-                  alt="Пешком"
-                  width={350} // ваша ширина
-                  height={350} // ваша высота
-                  className="table-images"
-                />
-              </div>
-            </div>
-          </div>
+            </Tabs.Panel>
 
-          {/* --- Вкладка «Мопед» --- */}
-          <div className="tab-pane fade" id="moped" role="tabpanel" aria-labelledby="moped-tab">
-            <div className="row">
-              {/* Левая часть с таблицей */}
-              <div className="col-lg-9 col-md-12 col-sm-12">
-                <table className="comparison-table">
-                  <thead>
-                    <tr>
-                      <th>Параметр</th>
-                      <th>Мопед</th>
-                      <th>Deli-Bike</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Скорость (в городе)</td>
-                      <td>Сопоставима</td>
-                      <td>Сопоставима</td>
-                    </tr>
-                    <tr>
-                      <td>Бензин, день</td>
-                      <td>~800 тенге</td>
-                      <td>Нет затрат</td>
-                    </tr>
-                    <tr>
-                      <td>Ремонт/ТО, мес</td>
-                      <td>5 000–10 000 тенге</td>
-                      <td>Меньше (нет ДВС, масла и т.д.)</td>
-                    </tr>
-                    <tr>
-                      <td>Пробег за день</td>
-                      <td>Сопоставим</td>
-                      <td>Сопоставим</td>
-                    </tr>
-                    <tr>
-                      <td>Количество заказов в день</td>
-                      <td>Ограничено пробками</td>
-                      <td>Больше ~+24% заказов</td>
-                    </tr>
-                    <tr>
-                      <td>Доход в месяц</td>
-                      <td>
-                        <span style={{ color: '#ac2318' }}>
-                          Потери ~50 тыс. тенге <br />
-                          (без аренды)
-                        </span>
-                      </td>
-                      <td>
-                        <span>+250% доход</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+            {/* --- Вкладка «Мопед» --- */}
+            <Tabs.Panel value="moped">
+              <div className="row">
+                {/* Левая часть с таблицей */}
+                <div className="col-lg-9 col-md-12 col-sm-12">
+                  <table className="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>{t('home.features3.table.header.parameter')}</th>
+                        <th>{t('home.features3.table.header.moped')}</th>
+                        <th>Deli-Bike</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{t('home.features3.table.rows.speed')}</td>
+                        <td>{t('home.features3.table.moped.speed')}</td>
+                        <td>{t('home.features3.table.moped.delibike.speed')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.fuel')}</td>
+                        <td>{t('home.features3.table.moped.fuel')}</td>
+                        <td>{t('home.features3.table.delibike.fuel')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.maintenance')}</td>
+                        <td>{t('home.features3.table.moped.maintenance')}</td>
+                        <td>{t('home.features3.table.moped.delibike.maintenance')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.distance')}</td>
+                        <td>{t('home.features3.table.moped.distance')}</td>
+                        <td>{t('home.features3.table.moped.delibike.distance')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.orders')}</td>
+                        <td>{t('home.features3.table.moped.orders')}</td>
+                        <td>{t('home.features3.table.moped.delibike.orders')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.income')}</td>
+                        <td>
+                          <span style={{ color: '#ac2318' }}>
+                            {t('home.features3.table.moped.income')}
+                          </span>
+                        </td>
+                        <td>
+                          <span>{t('home.features3.table.moped.delibike.income')}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                {/* Правая часть с изображением */}
+                <div className="col-lg-3 col-md-12 col-sm-12 d-flex align-items-center">
+                  <Image
+                    src="/images/moped.jpg"
+                    alt={t('home.features3.tabs.moped')}
+                    width={350}
+                    height={350}
+                    className="table-images"
+                  />
+                </div>
               </div>
-              {/* Правая часть с изображением */}
-              <div className="col-lg-3 col-md-12 col-sm-12 d-flex align-items-center">
-                <Image
-                  src="/images/moped.jpg"
-                  alt="Мопед"
-                  width={350}
-                  height={350}
-                  className="table-images"
-                />
-              </div>
-            </div>
-          </div>
+            </Tabs.Panel>
 
-          {/* --- Вкладка «Авто» --- */}
-          <div className="tab-pane fade" id="car" role="tabpanel" aria-labelledby="car-tab">
-            <div className="row">
-              {/* Левая часть с таблицей */}
-              <div className="col-lg-9 col-md-12 col-sm-12">
-                <table className="comparison-table">
-                  <thead>
-                    <tr>
-                      <th>Параметр</th>
-                      <th>Автомобиль</th>
-                      <th>Deli-Bike</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Скорость (в городе)</td>
-                      <td>Сопоставима</td>
-                      <td>Сопоставима</td>
-                    </tr>
-                    <tr>
-                      <td>Бензин, день</td>
-                      <td>1 200–2 400 тенге</td>
-                      <td>Нет затрат</td>
-                    </tr>
-                    <tr>
-                      <td>Ремонт/ТО, мес</td>
-                      <td>25 000–50 000 тенге</td>
-                      <td>Меньше (нет ДВС, масла и т.д.)</td>
-                    </tr>
-                    <tr>
-                      <td>Пробег за день</td>
-                      <td>Неограничен (зависит от бака)</td>
-                      <td>До 90 км (запасной АКБ)</td>
-                    </tr>
-                    <tr>
-                      <td>Количество заказов в день</td>
-                      <td>Ограничено пробками</td>
-                      <td>Больше на ~+37% заказов</td>
-                    </tr>
-                    <tr>
-                      <td>Доход в месяц</td>
-                      <td>
-                        <span style={{ color: '#ac2318' }}>
-                          {' '}
-                          Потери ~120 тыс. тенге <br />
-                          (без аренды){' '}
-                        </span>
-                      </td>
-                      <td>
-                        {' '}
-                        <span>+300% доход</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+            {/* --- Вкладка «Авто» --- */}
+            <Tabs.Panel value="car">
+              <div className="row">
+                {/* Левая часть с таблицей */}
+                <div className="col-lg-9 col-md-12 col-sm-12">
+                  <table className="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>{t('home.features3.table.header.parameter')}</th>
+                        <th>{t('home.features3.table.header.car')}</th>
+                        <th>Deli-Bike</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{t('home.features3.table.rows.speed')}</td>
+                        <td>{t('home.features3.table.car.speed')}</td>
+                        <td>{t('home.features3.table.car.delibike.speed')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.fuel')}</td>
+                        <td>{t('home.features3.table.car.fuel')}</td>
+                        <td>{t('home.features3.table.delibike.fuel')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.maintenance')}</td>
+                        <td>{t('home.features3.table.car.maintenance')}</td>
+                        <td>{t('home.features3.table.car.delibike.maintenance')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.distance')}</td>
+                        <td>{t('home.features3.table.car.distance')}</td>
+                        <td>{t('home.features3.table.car.delibike.distance')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.orders')}</td>
+                        <td>{t('home.features3.table.car.orders')}</td>
+                        <td>{t('home.features3.table.car.delibike.orders')}</td>
+                      </tr>
+                      <tr>
+                        <td>{t('home.features3.table.rows.income')}</td>
+                        <td>
+                          <span style={{ color: '#ac2318' }}>
+                            {t('home.features3.table.car.income')}
+                          </span>
+                        </td>
+                        <td>
+                          <span>{t('home.features3.table.car.delibike.income')}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                {/* Правая часть с изображением */}
+                <div className="col-lg-3 col-md-12 col-sm-12 d-flex align-items-center">
+                  <Image
+                    src="/images/car.jpg"
+                    alt={t('home.features3.table.header.car')}
+                    width={350}
+                    height={350}
+                    className="table-images"
+                  />
+                </div>
               </div>
-              {/* Правая часть с изображением */}
-              <div className="col-lg-3 col-md-12 col-sm-12 d-flex align-items-center">
-                <Image
-                  src="/images/car.jpg"
-                  alt="Автомобиль"
-                  width={350}
-                  height={350}
-                  className="table-images"
-                />
-              </div>
-            </div>
+            </Tabs.Panel>
           </div>
-        </div>
+        </Tabs>
       </div>
     </section>
   );

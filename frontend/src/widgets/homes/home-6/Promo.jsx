@@ -1,15 +1,17 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import Button from '@/shared/ui/ui/button/Button';
+import { Button } from '@mantine/core';
 import Modal from '@/widgets/homes/home-6/Modal';
 import FormModalContent from '@/widgets/homes/home-6/FormModalContent';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 // Импортируем нужные иконки
 import { FaUserFriends, FaHandsHelping, FaMoneyCheckAlt, FaBoxOpen } from 'react-icons/fa';
 
 export default function Promo() {
   // Локальное состояние для роли пользователя
   const [userRole, setUserRole] = useState('courier');
+  const { t } = useTranslation('common');
 
   // Получаем роль из cookies вместо localStorage
   useEffect(() => {
@@ -31,9 +33,9 @@ export default function Promo() {
         {/* Заголовок блока */}
         <div className="boxcar-title promo-title">
           <h2>
-            Промо-программы <span className="orange">Deli-Bike</span>
+            {t('home.promo.title')} <span className="orange">Deli-Bike</span>
           </h2>
-          <p>(индивидуальные решения)</p>
+          <p>{t('home.promo.subtitle')}</p>
         </div>
 
         <div className="row">
@@ -46,11 +48,9 @@ export default function Promo() {
                   <FaUserFriends className="promo-icon" />
                 </div>
                 <div>
-                  <h4>Уже сотрудничаете с нами?</h4>
+                  <h4>{t('home.promo.blocks.referral.title')}</h4>
                   <p>
-                    Приводи нового Партнёра — получай
-                    <br />
-                    сниженный тариф
+                    {t('home.promo.blocks.referral.description')}
                   </p>
                 </div>
               </div>
@@ -62,8 +62,8 @@ export default function Promo() {
                     <FaHandsHelping className="promo-icon" />
                   </div>
                   <div>
-                    <h4>Кросс-Промо для ПАРТНЁРА</h4>
-                    <p>(для удержания Курьеров)</p>
+                    <h4>{t('home.promo.blocks.crossPromo.title')}</h4>
+                    <p>{t('home.promo.blocks.crossPromo.description')}</p>
                   </div>
                 </div>
               )}
@@ -75,8 +75,8 @@ export default function Promo() {
                     <FaMoneyCheckAlt className="promo-icon" />
                   </div>
                   <div>
-                    <h4>Аренда с выкупом</h4>
-                    <p>12, 18 и 24 месяца</p>
+                    <h4>{t('home.promo.blocks.rentToBuy.title')}</h4>
+                    <p>{t('home.promo.blocks.rentToBuy.description')}</p>
                   </div>
                 </div>
               )}
@@ -87,8 +87,8 @@ export default function Promo() {
                   <FaBoxOpen className="promo-icon" />
                 </div>
                 <div>
-                  <h4>TERMОBOX</h4>
-                  <p>Брендируется под заказ</p>
+                  <h4>{t('home.promo.blocks.termobox.title')}</h4>
+                  <p>{t('home.promo.blocks.termobox.description')}</p>
                   {/* Галерея из 3 фото */}
                   <div className="termo-photos mt-2">
                     <Image
@@ -129,8 +129,8 @@ export default function Promo() {
                 height={600}
               />
               <div className="promo-overlay position-absolute">
-                <Button variant="primary" className="mt-2" onClick={toggleModal}>
-                  Отправить заявку
+                <Button variant="filled" color="#ff5500" className="mt-2" onClick={toggleModal}>
+                  {t('home.promo.button')}
                 </Button>
               </div>
             </div>

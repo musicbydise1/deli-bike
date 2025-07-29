@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import Button from '@/ui/button/Button';
+import { Button } from '@mantine/core';
 import { useUser } from '@/context/UserContext';
 import { useTariff } from '@/context/TariffContext';
 import { useCart } from '@/context/CartContext';
@@ -129,7 +129,7 @@ const SidebarComponent = ({ product }) => {
       {!hasAccessToken ? (
         <div>
           <Link href={roleCookie === 'courier' ? '/login' : '/other-login'}>
-            <Button variant="primary" className="w-full !ml-0">
+            <Button variant="filled" color="#ff5500">
               Войти
             </Button>
           </Link>
@@ -138,7 +138,7 @@ const SidebarComponent = ({ product }) => {
           </span>
         </div>
       ) : (
-        <Button variant="primary" className="w-full !ml-0" onClick={handleAddToCart}>
+        <Button variant="filled" color="#ff5500" onClick={handleAddToCart}>
           {isAdded ? 'Уже добавлено' : 'Добавить в корзину'}
         </Button>
       )}

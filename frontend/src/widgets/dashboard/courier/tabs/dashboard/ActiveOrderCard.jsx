@@ -1,93 +1,117 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import ProgressBar from '@/ui/progress-bar/ProgressBar';
+import ProgressBar from '@/shared/ui/ui/progress-bar/ProgressBar';
 import Image from 'next/image';
+import { Card, Text, Title, Group, Button, Box, Center, Stack, Progress } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 
 export default function ActiveOrderCard({ activeOrder }) {
+  const { t } = useTranslation();
   const bike = activeOrder.bike || {};
 
-  // Начало и конец аренды
+  // Rental start and end dates
   const start = new Date(activeOrder.startDate);
   const end = new Date(activeOrder.endDate);
   const now = new Date();
 
-  // Сколько всего дней между startDate и endDate
+  // Total days between startDate and endDate
   const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
 
-  // Сколько дней прошло с начала аренды до текущего момента
+  // Days passed since the start of the rental
   const daysPassed = Math.max(0, Math.floor((now - start) / (1000 * 60 * 60 * 24)));
 
-  // Чтобы «шкала» не уходила за границы
+  // Ensure the progress doesn't exceed boundaries
   const activeIndex = Math.min(daysPassed, totalDays);
 
-  // Сколько дней осталось
+  // Days left until the end of the rental
   const daysLeft = Math.max(0, Math.ceil((end - now) / (1000 * 60 * 60 * 24)));
 
+  // Calculate progress percentage
+  const progressValue = totalDays > 0 ? (activeIndex / totalDays) * 100 : 0;
+
   return (
-    <div className="border border-gray-200 rounded-lg p-4 md:p-6">
-      <div className="flex justify-between items-center mb-4">
-        <div>
-          <div className="text-sm text-gray-700">Заказ №{activeOrder.id}</div>
-          <div className="text-xl font-semibold uppercase">
-            {bike.name || 'Название байка'} {bike.model}
-          </div>
-        </div>
-      </div>
+    <Card padding="md" radius="md" withBorder>
+      <Group justify="space-between" mb="md">
+        <Box>
+          <Text size="sm" c="dimmed">
+            {t('activeOrder.orderNumber', 'Заказ №')}
+            {activeOrder.id}
+          </Text>
+          <Title order={3} tt="uppercase">
+            {bike.name || t('activeOrder.bikeName', 'Название байка')} {bike.model}
+          </Title>
+        </Box>
+      </Group>
 
-      <div className="h-48 mb-4 flex items-center justify-center">
-        {bike.imageUrls && bike.imageUrls.length > 0 ? (
-          <Image src={bike.imageUrls[0]} alt="Bike" className="h-full object-cover" />
-        ) : (
-          <span className="text-gray-400 text-base">IMAGE</span>
-        )}
-      </div>
+      <Box h={192} mb="md">
+        <Center h="100%">
+          {bike.imageUrls && bike.imageUrls.length > 0 ? (
+            <Image
+              width={300}
+              height={192}
+              src={bike.imageUrls[0]}
+              alt={bike.name || t('activeOrder.bike', 'Байк')}
+              style={{ height: '100%', objectFit: 'cover' }}
+            />
+          ) : (
+            <Text c="dimmed">{t('activeOrder.image', 'ИЗОБРАЖЕНИЕ')}</Text>
+          )}
+        </Center>
+      </Box>
 
-      {/* Если статус on_payment – выводим альтернативный блок */}
+      {/* Alternative block for on_payment status */}
       {activeOrder.status === 'on_payment' ? (
-        <>
-          <div className="text-sm mb-2 text-red-600">
-            Ваш заказ ещё не оплачен. Необходимо оплатить в течение
-            <span className="font-semibold"> 72 часов</span> и забрать велосипед в отделении.
-          </div>
-          <div className="flex space-x-3">
-            <a
-              href="/invoice"
-              className="w-full text-[14px] bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded transition uppercase text-center"
-            >
-              Перейти к счёту
-            </a>
-          </div>
-        </>
+        <Stack>
+          <Text size="sm" c="red.6">
+            {t('activeOrder.notPaid', 'Ваш заказ ещё не оплачен. Необходимо оплатить в течение')}
+            <Text span fw={600}>
+              {' '}
+              72 {t('activeOrder.hours', 'часов')}
+            </Text>
+            {t('activeOrder.andPickup', 'и забрать велосипед в отделении.')}
+          </Text>
+          <Button component="a" href="/invoice" color="orange" fullWidth tt="uppercase">
+            {t('activeOrder.goToInvoice', 'Перейти к счёту')}
+          </Button>
+        </Stack>
       ) : (
-        <>
-          {/* Обычный блок при других статусах */}
-          <div className="text-sm mb-2 text-gray-700">
-            Срок аренды истекает через{' '}
-            <span className="text-orange-500 font-medium">{daysLeft} дней</span>
-          </div>
+        <Stack>
+          <Text size="sm">
+            {t('activeOrder.expiresIn', 'Срок аренды истекает через')}{' '}
+            <Text span c="orange" fw={500}>
+              {daysLeft} {t('activeOrder.days', 'дней')}
+            </Text>
+          </Text>
 
-          <div className="mb-4">
-            <ProgressBar totalBars={totalDays} activeIndex={activeIndex} />
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span>{start.toLocaleDateString('ru-RU')}</span>
-              <span>{end.toLocaleDateString('ru-RU')}</span>
-            </div>
-          </div>
+          <Box mb="md">
+            <Progress value={progressValue} color="orange" size="md" radius="xs" />
+            <Group justify="space-between" mt={4}>
+              <Text size="xs" c="dimmed">
+                {start.toLocaleDateString('ru-RU')}
+              </Text>
+              <Text size="xs" c="dimmed">
+                {end.toLocaleDateString('ru-RU')}
+              </Text>
+            </Group>
+          </Box>
 
-          <div className="flex space-x-3">
-            <button className="w-full text-[14px] bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded transition uppercase">
-              Продлить
-            </button>
-            <Link
+          <Group grow>
+            <Button color="orange" tt="uppercase">
+              {t('activeOrder.extend', 'Продлить')}
+            </Button>
+            <Button
+              component={Link}
               href={`/orders/${activeOrder.id}`}
-              className="w-full text-[14px] bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded transition uppercase text-center"
+              variant="light"
+              color="gray"
+              tt="uppercase"
             >
-              Подробнее
-            </Link>
-          </div>
-        </>
+              {t('activeOrder.details', 'Подробнее')}
+            </Button>
+          </Group>
+        </Stack>
       )}
-    </div>
+    </Card>
   );
 }

@@ -24,9 +24,11 @@ import {
   Text,
   UnstyledButton,
   rem,
+  Avatar,
 } from '@mantine/core';
 import { ORANGE_COLOR } from '@/app/theme/colors';
 import styles from './Header6.module.css';
+import ProfileDropdown from '@/widgets/headers/ProfileDropdown';
 
 export default function Header6({ white = false }) {
   const [userRoleCookie, setUserRoleCookie] = useState('courier');
@@ -330,57 +332,17 @@ export default function Header6({ white = false }) {
 
               {/* User Menu */}
               <Box className={styles.userMenu}>
-                <Menu
-                  opened={isProfileMenuOpen}
-                  onOpen={() => setIsProfileMenuOpen(true)}
-                  onClose={() => setIsProfileMenuOpen(false)}
-                  position="bottom-end"
-                  withinPortal={false}
-                >
+                <Menu shadow="md" width={220}>
                   <Menu.Target>
-                    <Group spacing="xs">
-                      {userData && (
-                        <Text className={styles.userInfo}>
-                          {userData.firstName
-                            ? `${userData.firstName} ${userData.lastName ? userData.lastName[0] + '.' : ''}`
-                            : 'Имя пользователя'}
-                        </Text>
-                      )}
-                      <UnstyledButton>
-                        <FaUser size={18} color="white" />
-                      </UnstyledButton>
-                    </Group>
+                    {/* любой ваш триггер: аватар, иконка, кнопка */}
+                    <Avatar radius="xl" src="/path/to/avatar.jpg" alt="avatar" />
                   </Menu.Target>
 
-                  <Menu.Dropdown className={styles.dropdownMenu}>
-                    <Menu.Item
-                      component={Link}
-                      href="/dashboard"
-                      onClick={() => setIsProfileMenuOpen(false)}
-                      icon={<IoGridSharp size={15} />}
-                    >
-                      {isClient ? t('dashboard') : 'Личный кабинет'}
-                    </Menu.Item>
-                    <Menu.Item
-                      component={Link}
-                      href="/dashboard"
-                      onClick={() => setIsProfileMenuOpen(false)}
-                      icon={<HiOutlineShoppingBag size={20} />}
-                    >
-                      {isClient ? t('my_orders') : 'Аренда'}
-                    </Menu.Item>
-                    <Menu.Item
-                      component={Link}
-                      href="/dashboard"
-                      onClick={() => setIsProfileMenuOpen(false)}
-                      icon={<MdSettings size={20} />}
-                    >
-                      {isClient ? t('profile') : 'Профиль'}
-                    </Menu.Item>
-                    <Menu.Item onClick={handleLogout} icon={<HiOutlineLogout size={20} />}>
-                      {isClient ? t('logout') : 'Выйти'}
-                    </Menu.Item>
-                  </Menu.Dropdown>
+                  <ProfileDropdown
+                    isClient={isClient}
+                    onClose={() => setIsProfileMenuOpen(false)}
+                    onLogout={handleLogout}
+                  />
                 </Menu>
               </Box>
             </Group>

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import InteractiveBike from '@/shared/ui/ui/interactive/InteractiveBike';
 import { MdSunny } from 'react-icons/md';
 import { FaDollarSign, FaTenge } from 'react-icons/fa';
-import Button from '@/shared/ui/ui/button/Button';
+import { Button } from '@mantine/core';
 import Modal from '@/widgets/homes/home-6/Modal';
 import FormModalContent from '@/widgets/homes/home-6/FormModalContent';
 
@@ -59,7 +59,7 @@ export default function Cta() {
                       </div>
                     </div>
                     <div className="desc-btn ml-0! mt-[70px]">
-                      <Button variant="primary" onClick={openModal}>
+                      <Button variant="filled" color="#ff5500" onClick={openModal}>
                         Оставить заявку
                       </Button>
                     </div>

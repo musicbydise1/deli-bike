@@ -1,41 +1,26 @@
 'use client';
 import React from 'react';
+import { Accordion, Title, Paper, Box } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 
-export default function SupportAccordion({ supportItems, openIndex, toggleItem }) {
+export default function SupportAccordion({ supportItems }) {
+  const { t } = useTranslation();
+
   return (
-    <div className="mt-8 border border-gray-200 rounded-lg p-4">
-      <h3 className="text-lg font-semibold mb-3">Поддержка</h3>
-      <div className="divide-y divide-gray-200">
-        {supportItems.map((item, index) => (
-          <div key={index}>
-            <button
-              onClick={() => toggleItem(index)}
-              className="w-full text-left py-3 focus:outline-none flex items-center justify-between"
-            >
-              <span className="font-medium text-gray-800">{item.title}</span>
-              <svg
-                className={`w-4 h-4 text-gray-500 transform transition-transform ${
-                  openIndex === index ? 'rotate-180' : ''
-                }`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M5 15l7-7 7 7"
-                />
-              </svg>
-            </button>
-            {openIndex === index && (
-              <div className="text-sm text-gray-700 mb-3">{item.content}</div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
+    <Box mt="xl">
+      <Paper p="md" radius="md" withBorder>
+        <Title order={3} mb="md">
+          {t('support.title', 'Поддержка')}
+        </Title>
+        <Accordion>
+          {supportItems.map((item, index) => (
+            <Accordion.Item key={index} value={`item-${index}`}>
+              <Accordion.Control>{t(`support.items.${index}.title`, item.title)}</Accordion.Control>
+              <Accordion.Panel>{t(`support.items.${index}.content`, item.content)}</Accordion.Panel>
+            </Accordion.Item>
+          ))}
+        </Accordion>
+      </Paper>
+    </Box>
   );
 }

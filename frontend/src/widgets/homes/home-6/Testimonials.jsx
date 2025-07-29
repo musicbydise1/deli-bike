@@ -2,13 +2,26 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { clients, testimonials2 } from '@/data/testimonials';
-import Button from '@/shared/ui/ui/button/Button';
-import Modal from '@/widgets/homes/home-6/Modal';
+import {
+  Box,
+  Button,
+  Stack,
+  Container,
+  Grid,
+  Title,
+  Text,
+  Paper,
+  Group,
+  Modal,
+  Center,
+} from '@mantine/core';
 import FormModalContent from '@/widgets/homes/home-6/FormModalContent';
+import { useTranslation } from 'react-i18next';
 
 export default function Testimonials() {
   const [userRole, setUserRole] = useState('courier');
   const [userRoleCookie, setUserRoleCookie] = useState('courier');
+  const { t } = useTranslation('common');
 
   // Состояние для открытия модального окна
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,88 +48,79 @@ export default function Testimonials() {
 
   return (
     <>
-      <section className="boxcar-testimonial-section-three">
-        <div className="large-container">
-          <div className="right-box">
-            <div className="row">
-              {/* content-column */}
-              <div className="content-column col-lg-6 col-md-12 col-sm-12">
-                <div className="inner-column">
-                  <div className="boxcar-title textiominal-title light">
-                    <h2>Кому Deli-bike подойдет?</h2>
-                    <div className="text">
-                      Электровелосипеды DELI-BIKE сокращают расходы и <br />
-                      повышают скорость доставки. <br />
-                      DELI-BIKE подходит как для Курьеров, так и для компаний, <br />
-                      занимающихся доставкой (розничные сети, общепит, <br />
-                      службы доставки и т.д.).
-                    </div>
-                  </div>
-                  <div className="image-box">
+      <Box py={50} sx={{ backgroundColor: '#ff5500' }}>
+        <Container size="xl">
+          <Grid>
+            {/* Left column with title and image */}
+            <Grid.Col span={{ base: 12, md: 6 }}>
+              <Box>
+                <Title order={1} mb="md" style={{ textTransform: 'uppercase' }} >
+                  {t('home.testimonials.title')}
+                </Title>
+                <Text mb="xl" size="lg">
+                  {t('home.testimonials.description')}
+                </Text>
+                <Box mt="md">
+                  <Center>
                     <Image
                       alt="DeliBike banner"
                       title="DeliBike"
                       src="/images/testiominals-bike1.png"
-                      width={500}
+                      width={350}
                       height={371}
-                      className="testiominals-img"
+                      style={{ maxWidth: '100%', height: 'auto' }}
                     />
-                  </div>
-                </div>
-              </div>
-              {/* testimonial-block */}
-              <div className="col-lg-6 col-md-12 col-sm-12">
-                <div className="row">
-                  {clients.map((client, index) => (
-                    <div
-                      key={index}
-                      className="testimonial-block-three col-lg-6 col-md-6 col-sm-12"
-                    >
-                      <div className="inner-box">
-                        <div className="content-box">
-                          {/* Заголовок */}
-                          <h3 className="client-title">{client.title}</h3>
-                          {/* Список описаний */}
-                          <ul className="client-description">
-                            {client.description.map((item, idx) => (
-                              <li key={idx}>
-                                <strong>{item.title}</strong>
-                                <br />
-                                <small>{item.text}</small>
-                              </li>
-                            ))}
-                            <div className="button-container">
-                              {userRole === client.type ? (
-                                <Button
-                                  className="m-0 w-full"
-                                  variant="secondary"
-                                  onClick={openModal}
-                                >
-                                  Оставить заявку
-                                </Button>
-                              ) : (
-                                <Button
-                                  onClick={toggleUserRole}
-                                  className="m-0 w-full"
-                                  variant="primary-outline"
-                                >
-                                  Подробнее
-                                </Button>
-                              )}
-                            </div>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Модальное окно с формой заявки */}
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+                  </Center>
+                </Box>
+              </Box>
+            </Grid.Col>
+
+            {/* Right column with client cards */}
+            <Grid.Col span={{ base: 12, md: 6 }}>
+              <Grid>
+                {clients.map((client, index) => (
+                  <Grid.Col key={index} span={{ base: 12, sm: 6 }}>
+                    <Paper shadow="sm" p="md" radius="md" h="100%">
+                      <Title order={3} mb="md">
+                        {t(`home.testimonials.clients.${client.type}.title`)}
+                      </Title>
+                      <Stack spacing="sm" mb="md">
+                        {client.description.map((item, idx) => (
+                          <Box key={idx} mb="xs">
+                            <Text fw={700}>{t(`home.testimonials.clients.${client.type}.items.${idx}.title`)}</Text>
+                            <Text size="sm" color="dimmed">
+                              {t(`home.testimonials.clients.${client.type}.items.${idx}.text`)}
+                            </Text>
+                          </Box>
+                        ))}
+                      </Stack>
+                      <Box mt="auto">
+                        {userRole === client.type ? (
+                          <Button fullWidth variant="light" color="#ff5500" onClick={openModal}>
+                            {t('home.testimonials.buttons.apply')}
+                          </Button>
+                        ) : (
+                          <Button
+                            fullWidth
+                            variant="outline"
+                            color="#ff5500"
+                            onClick={toggleUserRole}
+                          >
+                            {t('home.testimonials.buttons.more')}
+                          </Button>
+                        )}
+                      </Box>
+                    </Paper>
+                  </Grid.Col>
+                ))}
+              </Grid>
+            </Grid.Col>
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Modal with form */}
+      <Modal opened={isModalOpen} onClose={closeModal} size="md" centered>
         <FormModalContent />
       </Modal>
     </>

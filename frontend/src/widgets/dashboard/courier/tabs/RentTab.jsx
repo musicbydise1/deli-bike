@@ -1,99 +1,126 @@
 'use client';
 import React from 'react';
 import { useGetRentalsQuery } from '@/store/services/rentalsApi';
-import { FiEye } from 'react-icons/fi';
+import { IconEye } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import { 
+  Container, 
+  Title, 
+  Text, 
+  Table, 
+  Group, 
+  Image, 
+  Stack, 
+  ActionIcon, 
+  Loader, 
+  Alert,
+  Box,
+  Paper
+} from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 
 export default function RentTab() {
+  const { t } = useTranslation();
   const router = useRouter();
   const { data, isLoading, error } = useGetRentalsQuery();
   const rentals = Array.isArray(data?.data) ? data.data : [];
 
-  // RTK Query already загружает аренды
-
-  if (isLoading) {
-    return <p className="p-4">Загрузка заказов...</p>;
-  }
-
-  if (error) {
-    return <p className="p-4 text-red-500">Ошибка: {error}</p>;
-  }
-
   const handleViewClick = id => {
-    // Переход на страницу конкретного заказа
-    // Например, если у вас маршрут /rentals/[id], делаем:
     router.push(`/orders/${id}`);
   };
 
+  if (isLoading) {
+    return (
+      <Box p="md">
+        <Loader size="md" />
+        <Text mt="xs">{t('rent.loading', 'Loading orders...')}</Text>
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Alert title={t('rent.error', 'Error')} color="red" p="md">
+        {error.toString()}
+      </Alert>
+    );
+  }
+
   return (
-    <div>
-      {/* Заголовок */}
-      <h1 className="text-3xl font-bold mb-6">ЗАКАЗЫ</h1>
+    <Container size="xl" p="md">
+      <Title order={1} mb="xl">{t('rent.title', 'ORDERS')}</Title>
 
-      {/* Таблица */}
-      <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-200 text-sm rounded-sm">
-          <thead className="bg-gray-100 border-b border-gray-200">
-            <tr>
-              <th className="px-4 py-2 text-left font-medium text-gray-700">Модель</th>
-              <th className="px-4 py-2 text-left font-medium text-gray-700">№ заказа</th>
-              <th className="px-4 py-2 text-left font-medium text-gray-700">Дата заказа</th>
-              <th className="px-4 py-2 text-left font-medium text-gray-700">Товаров в заказе</th>
-              <th className="px-4 py-2 text-left font-medium text-gray-700">Сумма</th>
-              <th className="px-4 py-2 text-left font-medium text-gray-700">Действия</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {rentals.map(rental => {
-              const bike = rental.bike || {};
-              const startDate = new Date(rental.startDate).toLocaleDateString('ru-RU');
-              const endDate = new Date(rental.endDate).toLocaleDateString('ru-RU');
-              // Допустим, у нас всегда "1 шт" в заказе
-              const itemsCount = '1 шт';
-              // Форматируем цену в тенге
-              const priceTenge = Number(rental.totalPrice).toLocaleString('ru-RU') + ' ₸';
+      <Paper withBorder p={0}>
+        <Box style={{ overflowX: 'auto' }}>
+          <Table striped highlightOnHover>
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>{t('rent.table.model', 'Model')}</Table.Th>
+                <Table.Th>{t('rent.table.orderNumber', 'Order #')}</Table.Th>
+                <Table.Th>{t('rent.table.orderDate', 'Order Date')}</Table.Th>
+                <Table.Th>{t('rent.table.itemsCount', 'Items in Order')}</Table.Th>
+                <Table.Th>{t('rent.table.amount', 'Amount')}</Table.Th>
+                <Table.Th>{t('rent.table.actions', 'Actions')}</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
+              {rentals.map(rental => {
+                const bike = rental.bike || {};
+                const startDate = new Date(rental.startDate).toLocaleDateString(
+                  t('rent.locale', 'en-US')
+                );
+                const endDate = new Date(rental.endDate).toLocaleDateString(
+                  t('rent.locale', 'en-US')
+                );
+                const itemsCount = t('rent.itemsCount', '1 pc');
+                const priceTenge = Number(rental.totalPrice).toLocaleString(
+                  t('rent.locale', 'en-US')
+                ) + ' ₸';
 
-              return (
-                <tr key={rental.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2 whitespace-nowrap text-gray-700">
-                    {/* Фотография + Название и Модель */}
-                    <div className="flex items-center space-x-2">
-                      {bike.imageUrls && bike.imageUrls.length > 0 ? (
-                        <Image
-                          src={bike.imageUrls[0]}
-                          alt="Bike"
-                          className="w-[64px] h-[64px] object-cover rounded"
-                        />
-                      ) : (
-                        <div className="w-[64px] h-[64px] bg-gray-200 rounded" />
-                      )}
-                      <div>
-                        <div className="font-semibold">{bike.name || 'Без названия'}</div>
-                        <div className="text-xs text-gray-500">{bike.model || 'Без модели'}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-4 py-2 whitespace-nowrap text-gray-700">№{rental.id}</td>
-                  <td className="px-4 py-2 whitespace-nowrap text-gray-700">
-                    {startDate} - {endDate}
-                  </td>
-                  <td className="px-4 py-2 whitespace-nowrap text-gray-700">{itemsCount}</td>
-                  <td className="px-4 py-2 whitespace-nowrap text-gray-700">{priceTenge}</td>
-                  <td className="px-4 py-2 whitespace-nowrap text-gray-700">
-                    <button
-                      onClick={() => handleViewClick(rental.id)}
-                      className="inline-flex items-center space-x-1 text-blue-600 hover:text-blue-800"
-                    >
-                      <FiEye />
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </div>
+                return (
+                  <Table.Tr key={rental.id}>
+                    <Table.Td>
+                      <Group gap="sm">
+                        {bike.imageUrls && bike.imageUrls.length > 0 ? (
+                          <Image
+                            src={bike.imageUrls[0]}
+                            alt={t('rent.bikeImage', 'Bike')}
+                            w={64}
+                            h={64}
+                            radius="md"
+                          />
+                        ) : (
+                          <Box w={64} h={64} bg="gray.2" style={{ borderRadius: 8 }} />
+                        )}
+                        <Stack gap={4}>
+                          <Text fw={600}>{bike.name || t('rent.noName', 'No name')}</Text>
+                          <Text size="xs" c="dimmed">{bike.model || t('rent.noModel', 'No model')}</Text>
+                        </Stack>
+                      </Group>
+                    </Table.Td>
+                    <Table.Td>№{rental.id}</Table.Td>
+                    <Table.Td>
+                      {startDate} - {endDate}
+                    </Table.Td>
+                    <Table.Td>{itemsCount}</Table.Td>
+                    <Table.Td>{priceTenge}</Table.Td>
+                    <Table.Td>
+                      <ActionIcon 
+                        variant="subtle" 
+                        color="blue" 
+                        onClick={() => handleViewClick(rental.id)}
+                        aria-label={t('rent.view', 'View')}
+                      >
+                        <IconEye size={18} />
+                      </ActionIcon>
+                    </Table.Td>
+                  </Table.Tr>
+                );
+              })}
+            </Table.Tbody>
+          </Table>
+        </Box>
+      </Paper>
+    </Container>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Button from '@/ui/button/Button';
+import { Button } from '@mantine/core';
 import { AiOutlineLoading } from 'react-icons/ai';
 import Image from 'next/image';
 import { useGetBikesQuery } from '@/store/services/bikesApi';
@@ -42,7 +42,13 @@ export default function NoActiveOrderTiles() {
             >
               <div className="w-full h-40 mb-4 flex items-center justify-center">
                 {bike.imageUrls && bike.imageUrls.length > 0 ? (
-                  <Image src={bike.imageUrls[0]} alt={bike.name} className="h-full object-cover" />
+                  <Image
+                    src={bike.imageUrls[0]}
+                    alt={bike.name}
+                    width={300}
+                    height={160}
+                    className="h-full object-cover"
+                  />
                 ) : (
                   <span className="text-gray-400">IMAGE</span>
                 )}
@@ -54,8 +60,8 @@ export default function NoActiveOrderTiles() {
 
               <div className="w-full">
                 <Button
-                  variant="primary"
-                  className="w-full"
+                  variant="filled"
+                  color="#ff5500"
                   onClick={() => handleRent(bike.id)}
                   disabled={loadingBikeId === bike.id}
                 >

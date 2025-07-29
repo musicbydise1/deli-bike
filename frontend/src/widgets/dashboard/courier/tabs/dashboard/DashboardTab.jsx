@@ -8,54 +8,64 @@ import NoActiveOrderTiles from './NoActiveOrderTiles';
 import ActiveOrderCard from './ActiveOrderCard';
 import HistoryOrders from './HistoryOrders';
 import SupportAccordion from './SupportAccordion';
+import { Container, Title, Text, Grid, Box, Loader, Alert } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
+import { IconAlertCircle } from '@tabler/icons-react';
 
 export default function DashboardTab({ setActiveTab }) {
+  const { t } = useTranslation();
   const [userId, setUserId] = useState(null);
   const [activeRentals, setActiveRentals] = useState([]);
   const [historyRentals, setHistoryRentals] = useState([]);
+
   const {
     data: activeData,
     isLoading: loadingActive,
     error: activeError,
   } = useGetRentalsByUserQuery(userId, { skip: userId === null });
+
   const {
     data: historyData,
     isLoading: loadingHistory,
     error: historyError,
   } = useGetRentalHistoryByUserQuery(userId, { skip: userId === null });
+
   const loading = loadingActive || loadingHistory;
   const error = activeError || historyError;
 
-  // Состояние для аккордеона
-  const [openIndex, setOpenIndex] = useState(null);
-  const toggleItem = index => {
-    setOpenIndex(prevIndex => (prevIndex === index ? null : index));
-  };
-
-  // Массив пунктов поддержки
+  // Support items array
   const supportItems = [
     {
-      title: 'Техническое обслуживание',
-      content:
+      title: t('support.items.0.title', 'Техническое обслуживание'),
+      content: t(
+        'support.items.0.content',
         'Информация о сервисном обслуживании, периодичности ТО, контактах сервисных центров и т.д.',
+      ),
     },
     {
-      title: 'Правила эксплуатации электробайков',
-      content: 'Основные рекомендации по использованию, безопасной езде и уходе за электробайком.',
+      title: t('support.items.1.title', 'Правила эксплуатации электробайков'),
+      content: t(
+        'support.items.1.content',
+        'Основные рекомендации по использованию, безопасной езде и уходе за электробайком.',
+      ),
     },
     {
-      title: 'Правила эксплуатации АКБ (аккумуляторов)',
-      content:
+      title: t('support.items.2.title', 'Правила эксплуатации АКБ (аккумуляторов)'),
+      content: t(
+        'support.items.2.content',
         'Информация о зарядке, хранении и обслуживании аккумуляторных батарей, чтобы продлить срок службы.',
+      ),
     },
     {
-      title: 'Связаться с нами',
-      content:
+      title: t('support.items.3.title', 'Связаться с нами'),
+      content: t(
+        'support.items.3.content',
         'Телефон горячей линии: +7 (777) 123-45-67. Email: support@delilux.kz. Адрес: г. Алматы, пр. Достык, 123.',
+      ),
     },
   ];
 
-  // Считываем userId из localStorage
+  // Read userId from localStorage
   useEffect(() => {
     const raw = localStorage.getItem('userData');
     if (raw) {
@@ -63,14 +73,14 @@ export default function DashboardTab({ setActiveTab }) {
         const user = JSON.parse(raw);
         setUserId(user.id);
       } catch (err) {
-        console.error('Не удалось распарсить userData:', err);
+        console.error(t('dashboard.errors.parseError', 'Не удалось распарсить userData:'), err);
       }
     } else {
-      console.warn('userData нет в localStorage');
+      console.warn(t('dashboard.errors.noUserData', 'userData нет в localStorage'));
     }
-  }, []);
+  }, [t]);
 
-  // Обновляем локальное состояние при получении данных из API
+  // Update local state when API data is received
   useEffect(() => {
     if (activeData?.data) {
       setActiveRentals(activeData.data);
@@ -84,47 +94,63 @@ export default function DashboardTab({ setActiveTab }) {
   }, [historyData]);
 
   if (loading) {
-    return <p className="p-4">Загрузка данных об арендах...</p>;
+    return (
+      <Box p="md">
+        <Loader size="md" />
+        <Text mt="xs">{t('dashboard.loading', 'Загрузка данных об арендах...')}</Text>
+      </Box>
+    );
   }
 
   if (error) {
-    return <p className="p-4 text-red-500">Ошибка: {error}</p>;
+    return (
+      <Alert
+        icon={<IconAlertCircle size={16} />}
+        title={t('dashboard.error', 'Ошибка')}
+        color="red"
+        p="md"
+      >
+        {error.toString()}
+      </Alert>
+    );
   }
 
-  // Ищем заказ со статусом 'active' или 'on_payment'
+  // Find order with status 'active' or 'on_payment'
   const activeOrder = activeRentals.find(r => r.status === 'active' || r.status === 'on_payment');
 
-  // Если нет активного заказа — показываем плитки
+  // If no active order - show tiles
   if (!activeOrder) {
     return (
       <>
         <NoActiveOrderTiles />
-        <SupportAccordion
-          supportItems={supportItems}
-          openIndex={openIndex}
-          toggleItem={toggleItem}
-        />
+        <SupportAccordion supportItems={supportItems} />
       </>
     );
   }
 
-  // Если есть активный заказ — показываем карточку + историю + поддержку
+  // If there is an active order - show card + history + support
   return (
-    <div className="">
-      <h1 className="text-2xl font-bold mb-1">Личный кабинет</h1>
-      <p className="text-gray-600 mb-6">Персональный центр управления вашей арендой</p>
+    <Container fluid p={0}>
+      <Title order={1} mb="xs">
+        {t('dashboard.title', 'Личный кабинет')}
+      </Title>
+      <Text c="dimmed" mb="xl">
+        {t('dashboard.subtitle', 'Персональный центр управления вашей арендой')}
+      </Text>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Левая часть: активный заказ */}
-        <div className="md:col-span-2">
+      <Grid gutter="md">
+        {/* Left part: active order */}
+        <Grid.Col span={{ base: 12, md: 8 }}>
           <ActiveOrderCard activeOrder={activeOrder} />
-        </div>
+        </Grid.Col>
 
-        {/* Правая часть: история */}
-        <HistoryOrders historyRentals={historyRentals} setActiveTab={setActiveTab} />
-      </div>
+        {/* Right part: history */}
+        <Grid.Col span={{ base: 12, md: 4 }}>
+          <HistoryOrders historyRentals={historyRentals} setActiveTab={setActiveTab} />
+        </Grid.Col>
+      </Grid>
 
-      <SupportAccordion supportItems={supportItems} openIndex={openIndex} toggleItem={toggleItem} />
-    </div>
+      <SupportAccordion supportItems={supportItems} />
+    </Container>
   );
 }
