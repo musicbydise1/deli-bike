@@ -1,0 +1,21 @@
+import Footer1 from '@/widgets/footers/Footer1';
+import Header1 from '@/widgets/headers/Header1';
+import ShopList from '@/widgets/shop/ShopList';
+
+import React from 'react';
+import Header6 from '@/widgets/headers/Header6';
+
+export const metadata = {
+  title: 'Shop Cart || Boxcar - React Nextjs Car Template',
+  description: 'Boxcar - React Nextjs Car Template',
+};
+export default function ShopListPage() {
+  return (
+    <>
+      <Header6 headerClass="boxcar-header header-style-v1 style-two inner-header cus-style-1" />
+      <ShopList />
+
+      <Footer1 parentClass="boxcar-footer footer-style-one v1 cus-st-1" />
+    </>
+  );
+}
