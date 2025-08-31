@@ -1,3 +1,4 @@
+'use client';
 import About from '@/widgets/homes/home-6/About';
 import React from 'react';
 import Header6 from '@/widgets/headers/Header6';

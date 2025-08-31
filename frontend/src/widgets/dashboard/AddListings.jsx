@@ -1,7 +1,7 @@
 'use client';
 import Sidebar from './Sidebar';
 import Image from 'next/image';
-import SelectComponent from '../common/SelectComponent';
+import SelectComponent from '@/shared/ui/common/SelectComponent';
 import { useState } from 'react';
 export default function AddListings() {
   const [images, setImages] = useState([

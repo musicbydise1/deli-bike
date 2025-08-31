@@ -2,7 +2,7 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import Image from 'next/image';
-import SelectComponent from '../common/SelectComponent';
+import SelectComponent from '@/shared/ui/common/SelectComponent';
 export default function Saved() {
   return (
     <section className="dashboard-widget">
