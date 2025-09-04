@@ -10,7 +10,12 @@ import { AuthModule } from '@/modules/auth/auth.module';
 import { UserModule } from '@/modules/users/users.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Bike, BikePrice, Translation]), TranslationsModule, AuthModule, UserModule],
+  imports: [
+    TypeOrmModule.forFeature([Bike, BikePrice, Translation]),
+    TranslationsModule,
+    AuthModule,
+    UserModule,
+  ],
   controllers: [BikeController],
   providers: [BikeService],
   exports: [BikeService],

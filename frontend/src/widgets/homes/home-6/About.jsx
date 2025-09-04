@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 export default function About() {
   const { t } = useTranslation('common');
@@ -100,7 +99,7 @@ export default function About() {
                     <div className="text pb-[25px]">{t('home.about.laser.description')}</div>
                   </div>
                 </div>
-                <div className="row box-double-img">
+                <div className="row box-double-img mt-8">
                   <div className="image-block col-lg-6 col-6">
                     <div className="image-box last-home-box">
                       <div className="exp-box">
