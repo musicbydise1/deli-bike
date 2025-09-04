@@ -83,7 +83,7 @@ export default function Testimonials2() {
                   </ul>
                   {customer.verified && (
                     <span>
-                      <i className="fa-solid fa-circle-check" /> {t('testimonials2.verified')}
+                      <i className="fa-solid fa-circle-check" /> {t('home.testimonials2.verified')}
                     </span>
                   )}
                 </div>

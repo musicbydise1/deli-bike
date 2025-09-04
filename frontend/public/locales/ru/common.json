@@ -369,6 +369,24 @@
         "terms": "Договор на использование сервиса"
       },
       "companyName": "ТОО «MD Line (МД Лайн)»"
+    },
+    "footer": {
+      "sections": {
+        "usefulLinks": "Полезные ссылки",
+        "ebikes": "Электровелосипеды",
+        "serviceCenter": "Сервисный центр"
+      },
+      "workingHours": "10:00 - 19:00",
+      "findUs": "Найдите нас",
+      "subscriptionText": "Напишите нам",
+      "submitButton": "Написать"
+
+    },
+    "bikes": {
+      "section_title": "Электровелосипеды",
+      "price_note": "Цены",
+      "view": "Посмотреть",
+      "rent": "Арендовать"
     }
   },
   "breadcrumb": {

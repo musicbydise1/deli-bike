@@ -1,30 +1,35 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import HttpApi from 'i18next-http-backend';
+
+// Import translation resources directly so they are available during SSR
+import ruCommon from '../../public/locales/ru/common.json';
+import kzCommon from '../../public/locales/kz/common.json';
+
+const resources = {
+  ru: { common: ruCommon },
+  kz: { common: kzCommon },
+};
 
 i18n
-  .use(HttpApi) // Подключаем загрузку через HTTP
-  .use(LanguageDetector) // Автоматически определяет язык пользователя
+  // Keep language detection, but ensure it works both server and client side
+  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: 'ru', // Язык по умолчанию
-    supportedLngs: ['ru', 'kz'], // Поддерживаемые языки
-    lng: 'ru', // Начальный язык
+    resources,
+    fallbackLng: 'ru', // default language
+    supportedLngs: ['ru', 'kz'],
+    lng: 'ru',
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'], // Порядок определения языка
-      caches: ['localStorage'], // Кэшируем выбор пользователя
+      // Prefer htmlTag so <html lang="..."> controls SSR rendering, then navigator/localStorage on client
+      order: ['htmlTag', 'navigator', 'localStorage'],
+      caches: ['localStorage'],
     },
-    backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json', // Путь к JSON-файлам
-    },
-    ns: ['common'], // Пространства имен
-    defaultNS: 'common', // Пространство имен по умолчанию
-    interpolation: {
-      escapeValue: false, // React сам экранирует значения
-    },
-    load: 'all', // Загружаем все пространства имен сразу
-    preload: ['ru', 'kz'], // Предзагружаем все языки
+    ns: ['common'],
+    defaultNS: 'common',
+    interpolation: { escapeValue: false },
+    load: 'all',
+    preload: ['ru', 'kz'],
   });
 
 export default i18n;

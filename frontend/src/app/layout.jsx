@@ -19,7 +19,7 @@ import { jost, theme } from './theme';
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${jost.className} ${jost.variable}`}>
+    <html lang="ru" className={`${jost.className} ${jost.variable}`}>
       <body>
         <MantineProvider theme={theme}>
           <Provider store={store}>

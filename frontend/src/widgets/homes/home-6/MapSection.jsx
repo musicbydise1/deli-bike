@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaWhatsapp, FaTelegramPlane, FaInstagram } from 'react-icons/fa';
 import Link from 'next/link';
 import { useUser } from '@/context/UserContext';
@@ -44,7 +44,7 @@ export default function MapSection() {
               href="https://wa.me/+77088892879"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-500 hover:text-green-600 text-3xl"
+              className="text-green-500 hover:text-green-600 text-3xl mr-2"
             >
               <FaWhatsapp />
             </a>
@@ -67,7 +67,7 @@ export default function MapSection() {
           </div>
 
           {/* Ссылки на сайты и телефон */}
-          <div className="mb-4">
+          <div className="mb-2">
             <a
               href="https://deli-bike.kz"
               target="_blank"
@@ -76,6 +76,7 @@ export default function MapSection() {
             >
               www.deli-bike.kz
             </a>
+            <br />
             <a
               href="https://deli-bike.by"
               target="_blank"
@@ -84,12 +85,13 @@ export default function MapSection() {
             >
               www.deli-bike.by
             </a>
+            <br />
             <a href="tel:+77078253696" className="text-[#ff5500] hover:underline">
               +7 (707) 825-3696
             </a>
           </div>
 
-          <p className="text-sm text-gray-700 mb-4">
+          <p className="text-sm text-gray-700 mb-2">
             <strong>{t('home.mapSection.contacts.general')}:</strong> info@deli-bike.kz (
             {t('home.mapSection.contacts.inKZ')})
             <br />

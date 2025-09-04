@@ -4,7 +4,6 @@ import Slider from 'react-slick';
 import Image from 'next/image';
 import { useEffect, useState, useCallback } from 'react';
 import { Button, Stack } from '@mantine/core';
-import { IoIosArrowDown } from 'react-icons/io';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
 import { useGetBikesQuery } from '@/store/services/bikesApi';
@@ -20,7 +19,6 @@ export default function Cars() {
   const router = useRouter();
   const { data, isLoading, error } = useGetBikesQuery();
   const bikes = Array.isArray(data?.data) ? data.data : [];
-  const [selectedCategory, setSelectedCategory] = useState(buttons[0]);
   const [isMobile, setIsMobile] = useState(false);
   const [isInnerTouchActive, setIsInnerTouchActive] = useState(false);
   const [rentingBikeId, setRentingBikeId] = useState(null);
@@ -96,7 +94,7 @@ export default function Cars() {
       <div className="boxcar-container">
         <div className="boxcar-title wow fadeInUp">
           <h2>
-            {t('home.bikes.rental_cost')} <span className="orange">Deli-Bike</span>
+            {t('home.bikes.section_title')} <span className="orange">Deli-Bike</span>
           </h2>
           <p>{t('home.bikes.price_note')}</p>
         </div>
