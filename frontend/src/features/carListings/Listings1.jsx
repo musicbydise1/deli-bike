@@ -122,14 +122,14 @@ export default function Listings1() {
                       <span className="spec-title">Время зарядки</span>
                       <span className="spec-value">{bike.charge_time} ч</span>
                     </li>
-                    <li className="spec-item">
-                      <span className="spec-title">Макс. нагрузка</span>
-                      <span className="spec-value">до {Math.round(bike.max_load)} кг</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-title">Вес</span>
-                      <span className="spec-value">{Math.round(bike.weight)} кг</span>
-                    </li>
+                    {/*<li className="spec-item">*/}
+                    {/*  <span className="spec-title">Макс. нагрузка</span>*/}
+                    {/*  <span className="spec-value">до {Math.round(bike.max_load)} кг</span>*/}
+                    {/*</li>*/}
+                    {/*<li className="spec-item">*/}
+                    {/*  <span className="spec-title">Вес</span>*/}
+                    {/*  <span className="spec-value">{Math.round(bike.weight)} кг</span>*/}
+                    {/*</li>*/}
                     <li className="spec-item">
                       <span className="spec-title">Подвеска</span>
                       <span className="spec-value">{bike.suspension}</span>

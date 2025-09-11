@@ -19,14 +19,14 @@ const ProductSpecs = ({ product }) => {
           <span>Время зарядки</span>
           <span>{product.charge_time} ч</span>
         </li>
-        <li className="specifications-item">
-          <span>Макс. нагрузка</span>
-          <span>до {Math.round(product.max_load)} кг</span>
-        </li>
-        <li className="specifications-item">
-          <span>Вес</span>
-          <span>{Math.round(product.weight)} кг</span>
-        </li>
+        {/*<li className="specifications-item">*/}
+        {/*  <span>Макс. нагрузка</span>*/}
+        {/*  <span>до {Math.round(product.max_load)} кг</span>*/}
+        {/*</li>*/}
+        {/*<li className="specifications-item">*/}
+        {/*  <span>Вес</span>*/}
+        {/*  <span>{Math.round(product.weight)} кг</span>*/}
+        {/*</li>*/}
         <li className="specifications-item">
           <span>Привод</span>
           <span>{product.suspension}</span>
