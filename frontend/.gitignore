@@ -5,4 +5,5 @@ node_modules/
 out
 public/*
 !.prettierrc*
+!public/googleb961c7074d634bf6.html
 

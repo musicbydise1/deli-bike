@@ -10,14 +10,17 @@ import Footer3 from '@/widgets/footers/Footer3';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function generateStaticParams() {
-  const res = await fetch(`${API_URL}/bikes`, { cache: 'no-store' });
-  if (!res.ok) {
+  if (!API_URL) return [];
+  try {
+    const res = await fetch(`${API_URL}/bikes`, { cache: 'no-store' });
+    if (!res.ok) return [];
+    const { data } = await res.json();
+    return (data ?? []).map(bike => ({
+      id: bike.id.toString(),
+    }));
+  } catch {
     return [];
   }
-  const { data } = await res.json();
-  return data.map(bike => ({
-    id: bike.id.toString(),
-  }));
 }
 
 /**

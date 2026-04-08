@@ -14,19 +14,18 @@ export const metadata = {
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function generateStaticParams() {
-  // Пример запроса к API:
-  const res = await fetch(`${API_URL}/rentals`, { cache: 'no-store' });
-  if (!res.ok) {
-    throw new Error('Ошибка при получении данных из API');
+  if (!API_URL) return [];
+  try {
+    const res = await fetch(`${API_URL}/rentals`, { cache: 'no-store' });
+    if (!res.ok) return [];
+    const json = await res.json();
+    const rentals = json.data || [];
+    return rentals.map(rental => ({
+      id: rental.id.toString(),
+    }));
+  } catch {
+    return [];
   }
-  const json = await res.json();
-  // Предполагаем, что нужный массив в json.data
-  const rentals = json.data || [];
-
-  // Возвращаем массив объектов, где ключ должен совпадать с именем динамического сегмента ([id] -> id)
-  return rentals.map(rental => ({
-    id: rental.id.toString(),
-  }));
 }
 
 // Основной компонент страницы
